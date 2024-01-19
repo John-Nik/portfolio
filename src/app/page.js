@@ -1,5 +1,8 @@
 export default function page() {
-    return <p style={{fontSize: '10rem'}}>hello world</p>
+    return (
+        <main>
+        </main>
+    )
 }
 
 export const metadata = {

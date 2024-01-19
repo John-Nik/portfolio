@@ -1,5 +1,234 @@
+$base-color: #010E19;
+$shade-1: #011627;
+$tint-1: #406ABF;
+$tint-2: #83ADE2;
+$tint-3: #6ABAFB;
+$secondary-color: #217D7A;
+$secondary-tint-1: #52E099;
+
 * {
     margin: 0;
     padding: 0;
-    font-family: 'ZCOOL QingKe HuangYou';
+}
+
+@media only screen and (min-width: 0px) {
+    nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        background-color: $shade-1;
+        box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.05);
+        
+        .container {
+            padding: 20px 32px;
+            display: flex;
+            flex-direction: row;
+    
+            .logo-container {
+                width: 50%;
+    
+                .logo {
+                    color: white;
+                    font-size: clamp(3rem, 5.6vw, 4rem);
+                    letter-spacing: 1px;
+                    transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                }
+    
+                .logo:hover {
+                    color: $secondary-color;
+                }
+            }
+
+            .burger-icon-wrapper {
+                width: 50%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+
+
+                .burger-icon {
+                    width: 42px;
+                    height: 32px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    overflow: hidden;
+                    align-items: flex-end;
+    
+                    .line1 {
+                        width: 48px;
+                        height: 1px;
+                        background-color: white;
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+    
+                    .line2 {
+                        width: 48px;
+                        height: 1px;
+                        background-color: white;
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+    
+                    .line3 {
+                        width: 48px;
+                        height: 1px;
+                        background-color: white;
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+                }
+    
+                .burger-icon.open-menu {
+                    .line1 {
+                        transform: rotate(405deg) translateY(10px) translateX(10px);
+                    }
+    
+                    .line2 {
+                        opacity: 0;
+                    }
+    
+                    .line3 {
+                        transform: rotate(-405deg) translateY(-10px) translateX(10px);
+                    }
+                }
+            }
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                width: 100%;
+                margin-top: 68px;
+                padding-top: 0px;
+                margin-left: -32px;
+                opacity: 0;
+                list-style: none;
+                overflow: hidden;
+                gap: 0rem;
+                height: 0px;
+                transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+                @for $i from 1 through 4 {
+                    li:nth-child(1n + #{$i}) {
+                      transition-delay: $i * 0.06s + 0.05s;
+                    }
+                }
+
+                li {
+                    transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    opacity: 0;
+                    display: flex;
+                    justify-content: center;
+                    height: fit-content;
+
+                    a {
+                        font-size: 40px;
+                        color: white;
+                        text-decoration: none;
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+    
+                    a.activeLink {
+                        color: $tint-1;
+                    }
+                }
+    
+                li:hover {
+                    a {
+                        color: $secondary-color;
+                    }
+                }
+            }
+
+            ul.open-menu {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                width: 100%;
+                margin-top: 68px;
+                padding-top: 32px;
+                margin-left: -32px;
+                list-style: none;
+                opacity: 1;
+                gap: 3rem;
+                height: calc(100vh - 88px);
+                background: rgb(1,22,39);
+                background: -moz-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
+                background: -webkit-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
+                background: linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#011627",endColorstr="#011627",GradientType=1);
+
+                li {
+                    opacity: 1;
+                    display: flex;
+                    justify-content: center;
+                    height: fit-content;
+
+                    a {
+                        font-size: 40px;
+                        color: white;
+                        text-decoration: none;
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+    
+                    a.activeLink {
+                        color: $tint-1;
+                    }
+                }
+    
+                li:hover {
+                    a {
+                        color: $secondary-color;
+                    }
+                }
+            }
+        }
+    }
+    
+    body {
+        background-color: $base-color;
+    }
+    
+    main {
+        margin-top: 64px;
+    }
+}
+
+@media only screen and (min-width: 860px) {
+    nav {        
+        .container {    
+            .logo-container {    
+                .logo {
+                    cursor: pointer;
+                }
+            }
+
+            .burger-icon-wrapper {
+                display: none;
+            }
+    
+            ul {
+                margin-top: 0px;
+                margin-left: 0px;
+                height: 4rem;
+                opacity: 1;
+                width: 50%;
+                position: relative;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                padding-top: 16px;
+                gap: 3rem;
+                
+                li {
+                    opacity: 1;
+
+                    a {
+                        font-size: clamp(1.5rem, 3vw, 2rem);
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+                }
+            }
+        }
+    }
 }
