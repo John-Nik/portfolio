@@ -7,3 +7,5 @@
 **0.3.0:** Created the navigation bar for all pages
 
 **0.3.1:** Changed the horizontal padding of the navigation bar's container from 32px to 24px
+
+**0.3.2:** Changed the burger icon lines' thickness from 1px to 2px
