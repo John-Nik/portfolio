@@ -13,3 +13,5 @@
 **0.3.3:** Adjusted the height of the mobile navigation bar from 68px to 80px
 
 **0.4.0:** Added the footer
+
+**0.4.1:** Made the icons of the footer from 40px to 30px
