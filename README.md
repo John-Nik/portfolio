@@ -11,3 +11,5 @@
 **0.3.2:** Changed the burger icon lines' thickness from 1px to 2px
 
 **0.3.3:** Adjusted the height of the mobile navigation bar from 68px to 80px
+
+**0.4.0:** Added the footer

@@ -1,7 +1,14 @@
+import Footer from './components/footer/footer.js';
+
 export default function page() {
     return (
-        <main>
-        </main>
+        <>
+            <main>
+            </main>
+            <Footer>
+                
+            </Footer>
+        </>
     )
 }
 
