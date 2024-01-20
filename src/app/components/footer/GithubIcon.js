@@ -2,7 +2,7 @@
 
 export default function GithubIcon() {
     function userWantsGithub() {
-        window.location.href = 'mailto:nikolaou.giannis@yahoo.com?subject=Cool website';
+        window.location.href = 'https://www.github.com/John-Nik';
     }
 
     return (
