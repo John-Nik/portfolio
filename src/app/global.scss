@@ -37,7 +37,7 @@ $secondary-tint-1: #52E099;
             
                         .logo {
                             color: white;
-                            font-size: clamp(48px, 5.6vw, 64px);
+                            font-size: clamp(48px, 5.6vw, 58px);
                             letter-spacing: 1px;
                             transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                         }
@@ -207,7 +207,7 @@ $secondary-tint-1: #52E099;
         header {
             nav {        
                 .container {
-                    padding: 5px 32px;
+                    padding: 0px 32px;
         
                     .logo-container {
                         display: flex;
@@ -239,7 +239,7 @@ $secondary-tint-1: #52E099;
                             opacity: 1;
         
                             a {
-                                font-size: clamp(24px, 3vw, 32px);
+                                font-size: clamp(24px, 3vw, 29px);
                                 transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                             }
                         }

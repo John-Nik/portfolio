@@ -6,6 +6,6 @@ export default function CallIcon() {
     }
 
     return (
-        <img onClick={userWantsCall} src="/icons/phone.svg" alt="" srcset="" />
+        <img onClick={userWantsCall} src="/icons/phone.svg" alt="" />
     )
 }

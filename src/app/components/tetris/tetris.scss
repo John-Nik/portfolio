@@ -1,0 +1,12 @@
+#tetris-container {
+    display: grid;
+    width: 100%;
+    height: calc(100vh - 90px - 60px);
+    background-color: purple;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    grid-template-rows: repeat(auto-fit, max(60px));
+
+    div {
+        background-color: blue;
+    }
+}
