@@ -1,0 +1,11 @@
+.square {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    box-shadow: inset 1px 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 1px 1px rgb(3, 3, 3, 0.2);
+    background-color: rgb(1, 14, 24);
+}
+
+.square.reveal {
+    box-shadow: none;
+    color: white;
+}

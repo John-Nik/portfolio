@@ -16,4 +16,6 @@
 
 **0.4.1:** Made the icons of the footer from 40px to 30px
 
-**0.4.2:** In the footer, fixed the github icon's redirect from the mailto to the correct github link 
+**0.4.2:** In the footer, fixed the github icon's redirect from the mailto to the correct github link
+
+**0.4.3:** Added the tetris background game using react's capabilities. It's interactive, but not playable
