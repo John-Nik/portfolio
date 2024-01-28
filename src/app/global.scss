@@ -13,6 +13,10 @@ $secondary-tint-1: #52E099;
 
 @media only screen and (min-width: 0px) {
     body {
+        .square {
+            font-family: var(--fira-code);
+        }
+
         background-color: $base-color;
 
         header {
@@ -102,7 +106,7 @@ $secondary-tint-1: #52E099;
                     }
         
                     ul {
-                        display: flex;
+                        display: none;
                         flex-direction: column;
                         position: fixed;
                         width: 100%;
@@ -223,6 +227,7 @@ $secondary-tint-1: #52E099;
                     }
             
                     ul {
+                        display: flex;
                         margin-top: 0px;
                         margin-left: 0px;
                         height: 64px;

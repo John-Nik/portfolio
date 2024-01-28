@@ -1,11 +1,13 @@
 'use client'
 import { ZCOOL_QingKe_HuangYou } from 'next/font/google';
+import { Fira_Code } from 'next/font/google';
 import './global.scss';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 
 const zcoolFont = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], display: 'swap'})
+const firaCodeFont = Fira_Code({subsets: ['latin'], preload: true, variable: '--fira-code', display: 'swap'})
 
 
 export default function heads({children}) {
@@ -17,7 +19,7 @@ export default function heads({children}) {
     }
 
     return (
-        <html lang="en">
+        <html lang="en" className={`${firaCodeFont.variable}`}>
             <head>
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
