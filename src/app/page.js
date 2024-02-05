@@ -1,11 +1,12 @@
 import Footer from './components/footer/footer.js';
-import Container from './components/tetris/container.js'
+import TetrisContainer from './components/tetris/tetrisContainer.js'
+import './components/tetris/tetris.scss'
 
 export default function page() {
     return (
         <>
             <main>
-                <Container />
+                <TetrisContainer />
             </main>
             
             <Footer>

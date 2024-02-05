@@ -18,6 +18,8 @@
 
 **0.4.2:** In the footer, fixed the github icon's redirect from the mailto to the correct github link
 
-**0.4.3:** Added the tetris background game using react's capabilities. It's interactive, but not playable
+**0.4.3:** Added the Minesweeper background game using react's capabilities. It's interactive, but not playable
 
-**0.4.4:** Fixed up the tetris game to show the bombs around each dug up block
+**0.4.4:** Fixed up the Minesweeper game to show the bombs around each dug up block
+
+**0.5.0:** Finished the Minesweeper game. Although fun to challenging and fun to develop in react, the framework's limitations make the game feel slow to respond, and make the codebase too difficult to nagivate and understand. The game is only playable in desktops for now

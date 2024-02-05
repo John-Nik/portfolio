@@ -33,6 +33,21 @@ $secondary-tint-1: #52E099;
                     display: flex;
                     flex-direction: row;
                     height: 80px;
+
+                    .dead-smiley-wrapper {
+                        display: none;
+                        position: absolute;
+                        margin-top: 24px;
+                        cursor: pointer;
+                        z-index: 10;
+                        
+
+                        img {
+                            width: 34px;
+                            height: 34px;
+                            cursor: pointer;
+                        }
+                    }
             
                     .logo-container {
                         width: 50%;
@@ -212,6 +227,7 @@ $secondary-tint-1: #52E099;
             nav {        
                 .container {
                     padding: 0px 32px;
+                    justify-content: center;
         
                     .logo-container {
                         display: flex;
