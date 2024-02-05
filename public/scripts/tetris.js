@@ -150,7 +150,7 @@ function handleInformUserAboutBombsPlaced(fn) {
             fadeInCenterFn();
             break;
         case 'fadeOut':
-            fadeOutAfterLossFn();
+            fadeOutFn();
             break;
         case 'moveDownRightCorner':
             moveDownRightCornerFn();
@@ -171,7 +171,7 @@ function handleInformUserAboutBombsPlaced(fn) {
         isBombsPlacedTextVisibleToUser = true;
     }
 
-    function fadeOutAfterLossFn() {
+    function fadeOutFn() {
         setTimeout(() => {
             tellUserBombsPlacedContainer.style.opacity = '0';
             isBombsPlacedTextVisibleToUser = false;
@@ -454,7 +454,7 @@ function winGame() {
     }, 30000)
     
     setTimeout(() => {
-        handleInformUserAboutBombsPlaced('reset');
+        handleInformUserAboutBombsPlaced('fadeOut');
     }, 5000)
 
     removeUserSquareInterractivity();
