@@ -25,3 +25,10 @@
 **0.5.0:** Finished the Minesweeper game. Although fun to challenging and fun to develop in react, the framework's limitations make the game feel slow to respond, and make the codebase too difficult to nagivate and understand. The game is only playable in desktops for now
 
 **0.5.1:** Fixed the bug where the splash text of how many bombs are placed suddenly appearing in the middle of the screen instead of fading in when attempting to replay after a win 
+
+**0.5.2:** <ul>
+    <li>Made the game create new squares if the user resizes the window</li>
+    <li>Added a more intelligent way to determine if a game is finished, without the user cheating by resizing the window into a smaller resolution</li>
+    <li>Rename the files to the correct game, from "Tetris" to "Minesweeper"</li>
+    <li>Optimized the game to not request the server the "flag.svg" file whenever there is a flag placed on the board</li>
+</ul>

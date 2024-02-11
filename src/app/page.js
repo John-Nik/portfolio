@@ -1,12 +1,12 @@
 import Footer from './components/footer/footer.js';
-import TetrisContainer from './components/tetris/tetrisContainer.js'
-import './components/tetris/tetris.scss'
+import MinesweeperContainer from './components/minesweeper/minesweeperContainer.js'
+import './components/minesweeper/minesweeper.scss'
 
 export default function page() {
     return (
         <>
             <main>
-                <TetrisContainer />
+                <MinesweeperContainer />
             </main>
             
             <Footer>
