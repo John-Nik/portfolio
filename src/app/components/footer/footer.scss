@@ -15,7 +15,7 @@ $secondary-tint-1: #52E099;
         position: relative;
         width: 100%;
         height: fit-content;
-        padding: 27px 0px;
+        
     
         .footer-links-container {
             display: flex;
@@ -61,6 +61,7 @@ $secondary-tint-1: #52E099;
                 @for $i from 4 through 6 {
                     &:nth-child(#{$i}) {
                       display: flex;
+                      padding: 14px 0px;
 
                       &:after {
                         display: none;
@@ -107,8 +108,7 @@ $secondary-tint-1: #52E099;
 
 @media only screen and (min-width: 860px) {
     footer {
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding: 8px 0px;
 
         .footer-links-container {
             width: 50%;

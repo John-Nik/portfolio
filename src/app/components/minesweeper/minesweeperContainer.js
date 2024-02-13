@@ -7,6 +7,7 @@ export default function MinesweeperContainer() {
             <Content />
             <div id={'game'}></div>
             <Script src="scripts/minesweeper.js" strategy="lazyOnload" />
+            <Script src="scripts/bolts.js" strategy="lazyOnload" />
         </section>
     )
 }

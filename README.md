@@ -31,4 +31,10 @@
     <li>Added a more intelligent way to determine if a game is finished, without the user cheating by resizing the window into a smaller resolution</li>
     <li>Rename the files to the correct game, from "Tetris" to "Minesweeper"</li>
     <li>Optimized the game to not request the server the "flag.svg" file whenever there is a flag placed on the board</li>
+</ul><br>
+
+**0.5.3:** <ul>
+    <li>Half completed the mobile and tablet version of the page</li>
+    <li>Optimized the code for more readability and speed</li>
+    <li>Changed the UI of the information panel to make it more readable</li>
 </ul>

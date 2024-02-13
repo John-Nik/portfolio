@@ -6,22 +6,26 @@ let columnsToFit = Math.floor(boardWidth / squareSize);
 let rowsToFit = Math.floor(boardHeight / squareSize);
 let matrix = [];
 let bombsPlaced = 0;
-let difficulty = 0.2;
+let difficulty;
 let squares;
 let rows;
 let squaresInBoard = 0;
 let squaresInterractedWith = 0;
 let squaresInViewport = 0;
-let userPlayingGame = false;
 let autoplayRunning = true;
-let lastClickedBombPosition = '';
-let interval;
+let userDugBombPosition = '';
+let autoplayIntervalToDigSquare;
 let isBombsPlacedTextVisibleToUser = false;
 const tellUserBombsPlacedContainer = document.querySelector('.bombs-placed-container');
 const tellUserBombsPlacedWrapper = document.querySelector('.bombs-placed-container .wrapper');
 const tellUserBombsPlaced = document.querySelector('.bombs-placed-text');
-let userSelectedDifficulty = document.querySelector('.difficulty-feedback.active');
+let instructions = document.querySelector('.game-instructions-span');
+let windowWidth = window.innerWidth;
 let flagSvg = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect x="0.666504" width="17" height="18" fill="url(#pattern0)"/><defs><pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_14_9231" transform="matrix(0.00827206 0 0 0.0078125 -0.0294118 0)"/></pattern><image id="image0_14_9231" width="128" height="128" xlink:href="data:image/png;base64,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"/></defs></svg>';
+
+
+
+
 
 
 
@@ -29,10 +33,11 @@ let flagSvg = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns
 chooseDifficulty();
 
 function chooseDifficulty() {
+    let userSelectedDifficulty = document.querySelector('.difficulty-feedback.active');
     let difficultyLevel = userSelectedDifficulty.dataset.difficulty;
-    
-    const difficultyVariables = [0.2, 0.25, 0.3, 0.4];
 
+    const difficultyVariables = [0.12, 0.15, 0.20, 0.25];
+    
     difficulty = difficultyVariables[difficultyLevel];
 }
 
@@ -41,16 +46,29 @@ container.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 })
 
+// changes the instructions showcased to the user depending on the device screen width
+if (boardWidth < 1024) {
+    instructions.innerHTML = '// Click bottom right flag <br> // to switch to flagging <br> // or digging squares';
+} else {
+    instructions.innerHTML = '// Left click to dig square <br> // Right click to flag square'
+}
+
 
 populateBoard();
 function populateBoard() {
+    // reset everything
+    matrix = [];
+    container.innerHTML = '';
+    squaresInBoard = 0;
+    squaresInterractedWith = 0;
+    bombsPlaced = 0;
+
     if (autoplayRunning) {
-        matrix = [];
-        container.innerHTML = '';
-        squaresInBoard = 0;
-        squaresInterractedWith = 0;
-        bombsPlaced = 0;
+        difficulty = 0.2;
+    } else {
+        chooseDifficulty();
     }
+
 
     container.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
 
@@ -62,63 +80,56 @@ function populateBoard() {
     rows = document.querySelectorAll('.row');
     rows.forEach((row, rowIndex) => {
         for (let i = 0; i < columnsToFit; i++) {
-            let squareHasBomb = false;
-            
-            if (autoplayRunning) {
-                difficulty = 0.3;
-            }
-
-            if (Math.random() < difficulty) {
-                bombsPlaced++;
-                squareHasBomb = true;
-            }
-
-
-            matrix[rowIndex].push({
-                isRevealed: false,
-                hasBomb: squareHasBomb,
-                isFlagged: false,
-                position: `${rowIndex}_${i}`,
-                isWithinViewport: true
-            })
-            squaresInBoard++;
-            squaresInViewport++;
-            row.insertAdjacentHTML('beforeEnd', `<div class="square" data-position="${rowIndex}_${i}"></div>`)
+            generateSquare(row, rowIndex, i);
         }
 
         row.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`
-        row.style.width = `100%`;
     })
 
     squares = document.querySelectorAll('.square');
 }
 
+function generateSquare(htmlRow, matrixRowIndex, squareColumn) {
+    let squareHasBomb = false;
+
+    if (Math.random() < difficulty) {
+        bombsPlaced++;
+        squareHasBomb = true;
+    }
+
+    matrix[matrixRowIndex].push({
+        isRevealed: false,
+        hasBomb: squareHasBomb,
+        isFlagged: false,
+        position: `${matrixRowIndex}_${squareColumn}`,
+        isWithinViewport: true
+    })
+
+    squaresInBoard++;
+    squaresInViewport++;
+    htmlRow.insertAdjacentHTML('beforeEnd', `<div class="square" data-position="${matrixRowIndex}_${squareColumn}"></div>`)
+}
 
 
-
-
-
-
-
-watchUserInitiatedGameStatus();
+watchIfUserStartedGame();
 autoplayGame();
 
 
-
 function autoplayGame() {
-    autoplayRunning = true;
-    let reducedMatrix = matrix.reduce((accumulator, currentValue) => {
+    let condensedMatrix = matrix.reduce((accumulator, currentValue) => {
         return accumulator.concat(currentValue);
     })
+    
+    autoplayRunning = true;
 
     unrevealedSquares();
     function unrevealedSquares() {
-        let unrevealed_squares = reducedMatrix.filter((square) => !square.isRevealed);
+        let unrevealed_squares = condensedMatrix.filter((square) => { if (!square.isRevealed && !square.isFlagged) {return square} });
 
         randomlySelectSquare();
         function randomlySelectSquare() {
             if (unrevealed_squares.length == 0) {
-                clearInterval(interval);
+                clearInterval(autoplayIntervalToDigSquare);
                 populateBoard();
                 autoplayGame();
             } else {
@@ -127,13 +138,7 @@ function autoplayGame() {
                 let Y = position.split('_')[0];
                 let X = position.split('_')[1];
 
-                if (unrevealed_squares[randomGeneratedNumber].isFlagged) {
-                    randomlySelectSquare();
-                    return;
-                }
-
                 if (unrevealed_squares[randomGeneratedNumber].hasBomb) {
-                    matrix[Y][X].isRevealed = true;
                     matrix[Y][X].isFlagged = true;
                     let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
                     squareToUpdate.innerHTML = flagSvg;
@@ -142,73 +147,76 @@ function autoplayGame() {
 
                 digSquare(Y, X);
             }
-            console.count()
         }
     }
-    interval = setInterval(unrevealedSquares, 1500);
+
+    autoplayIntervalToDigSquare = setInterval(unrevealedSquares, 1500);
 }
 
-function handleInformUserAboutBombsPlaced(fn) {
-    switch (fn) {
-        case 'reset':
-            resetFn();
-            break;
-        case 'fadeIn':
-            fadeInCenterFn();
-            break;
-        case 'fadeOut':
-            fadeOutFn();
-            break;
-        case 'moveDownRightCorner':
-            moveDownRightCornerFn();
-            break;
-    }
-
-    function resetFn() {
+class informUserBombsPlacedText {
+    static reset() {
         tellUserBombsPlacedContainer.style.display = 'none';
         tellUserBombsPlacedWrapper.style.left = '0px';
         tellUserBombsPlacedWrapper.style.top = '0px';
         tellUserBombsPlacedWrapper.style.fontSize = '3rem';
         tellUserBombsPlacedContainer.style.opacity = '0';
+        isBombsPlacedTextVisibleToUser = false;
     }
 
-    function fadeInCenterFn() {
-        tellUserBombsPlacedContainer.style.display = 'flex';
+    static fadeOut() {
+        tellUserBombsPlacedContainer.style.opacity = '0';
+        isBombsPlacedTextVisibleToUser = false;
+    }
+
+    static moveDownRightCorner() {
+        tellUserBombsPlacedWrapper.style.left = '44%';
+        tellUserBombsPlacedWrapper.style.top = '53.5%';
+    }
+
+    static decreaseFontSize() {
+        tellUserBombsPlacedWrapper.style.fontSize = '1rem';
+    }
+
+    static resetFontSize() {
+        tellUserBombsPlacedWrapper.style.fontSize = '3rem';
+    }
+
+    static reduceOpacity() {
+        tellUserBombsPlacedContainer.style.opacity = '0.7';
+    }
+
+    static fullOpacity() {
         tellUserBombsPlacedContainer.style.opacity = '1';
+    }
+
+    static centerPosition() {
+        tellUserBombsPlacedWrapper.style.left = '0px';
+        tellUserBombsPlacedWrapper.style.top = '0px';
+    }
+
+    static fadeIn() {
+        tellUserBombsPlacedContainer.style.display = 'flex';
+
+        setTimeout(() => {
+            tellUserBombsPlacedContainer.style.opacity = '1';
+        }, 100)
+        
         isBombsPlacedTextVisibleToUser = true;
-    }
-
-    function fadeOutFn() {
-        setTimeout(() => {
-            tellUserBombsPlacedContainer.style.opacity = '0';
-            isBombsPlacedTextVisibleToUser = false;
-            setTimeout(resetFn, 1000)
-        }, 4500)
-    }
-
-    function moveDownRightCornerFn() {
-        setTimeout(() => {
-            tellUserBombsPlacedWrapper.style.left = '44%';
-            tellUserBombsPlacedWrapper.style.top = '53.5%';
-            tellUserBombsPlacedWrapper.style.fontSize = '1rem';
-        }, 1000)
-
-        setTimeout(() => {
-            tellUserBombsPlacedContainer.style.opacity = '0.7';
-        }, 1500)
     }
 }
 
 function startGame() {
     populateBoard();
-    userPlayingGame = true;
 
     if (isBombsPlacedTextVisibleToUser) {
-        handleInformUserAboutBombsPlaced('reset');
-        handleInformUserAboutBombsPlaced('fadeIn');
+        informUserBombsPlacedText.centerPosition();
+        informUserBombsPlacedText.fullOpacity();
+        informUserBombsPlacedText.resetFontSize();
 
         setTimeout(() => {
-            handleInformUserAboutBombsPlaced('moveDownRightCorner');
+            informUserBombsPlacedText.moveDownRightCorner();
+            informUserBombsPlacedText.reduceOpacity();
+            informUserBombsPlacedText.decreaseFontSize();
         }, 2500);
         
         setTimeout(() => {
@@ -219,63 +227,78 @@ function startGame() {
             }, 750)
         }, 2000)
     } else {
-        handleInformUserAboutBombsPlaced('fadeIn');
-        setTimeout(handleInformUserAboutBombsPlaced('moveDownRightCorner'), 5000);
+        informUserBombsPlacedText.fadeIn();
+        setTimeout(() => {
+            informUserBombsPlacedText.moveDownRightCorner();
+            informUserBombsPlacedText.reduceOpacity();
+            informUserBombsPlacedText.decreaseFontSize();
+        }, 2000);
         tellUserBombsPlaced.textContent = `// ${bombsPlaced}`;
-    }  
-
+    }
 
     setTimeout(() => {
         squares.forEach((square) => {
             square.addEventListener('click', (clickedSquare) => {
-                if (!clickedSquare.currentTarget.classList.contains('revealed')) {
-                    let Y = clickedSquare.currentTarget.dataset.position.split('_')[0];
-                    let X = clickedSquare.currentTarget.dataset.position.split('_')[1];
-        
-                    digSquare(Y, X);
-                    isGameFinished();
-                }
+                userLeftClick(clickedSquare)
             })
             
             square.addEventListener('contextmenu', (rightClickedSquare) => {
-                rightClickedSquare.preventDefault();
-                let Y = rightClickedSquare.currentTarget.dataset.position.split('_')[0];
-                let X = rightClickedSquare.currentTarget.dataset.position.split('_')[1];
-                isGameFinished();
-                
-                if (rightClickedSquare.currentTarget.classList.contains('revealed') == false) {
-                    if (matrix[Y][X].isFlagged == false) {
-                        bombsPlaced = bombsPlaced - 1;
-                        squaresInterractedWith++;
-                        rightClickedSquare.currentTarget.innerHTML = flagSvg;
-                        matrix[Y][X].isFlagged = true;
-                        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-                    } else {
-                        bombsPlaced++;
-                        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-                        squaresInterractedWith = squaresInterractedWith - 1;
-                        matrix[Y][X].isFlagged = false;
-                        rightClickedSquare.currentTarget.innerHTML = '';
-                    }
-                }
+                userRightClick(rightClickedSquare)
             })
         })
     }, 1500)    
 }
 
 
+function userLeftClick(clickedSquare) {
+    if (!clickedSquare.currentTarget.classList.contains('revealed')) {
+        let Y = clickedSquare.currentTarget.dataset.position.split('_')[0];
+        let X = clickedSquare.currentTarget.dataset.position.split('_')[1];
+
+        digSquare(Y, X);
+        isGameFinished();
+    }
+}
+
+function userRightClick(rightClickedSquare) {
+    rightClickedSquare.preventDefault();
+    let Y = rightClickedSquare.currentTarget.dataset.position.split('_')[0];
+    let X = rightClickedSquare.currentTarget.dataset.position.split('_')[1];
+    
+    if (rightClickedSquare.currentTarget.classList.contains('revealed') == false) {
+        if (matrix[Y][X].isFlagged == false) {
+
+            matrix[Y][X].isFlagged = true;
+            squaresInterractedWith++;
+            bombsPlaced = bombsPlaced - 1;
+            rightClickedSquare.currentTarget.innerHTML = flagSvg;
+            tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
+        } else {
+
+            matrix[Y][X].isFlagged = false;
+            squaresInterractedWith = squaresInterractedWith - 1;
+            bombsPlaced++;
+            rightClickedSquare.currentTarget.innerHTML = '';
+            tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
+        }
+    }
+
+    isGameFinished();
+}
+
+
 function digSquare(Y, X) {
     let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
+
     if (matrix[Y][X].isFlagged == false) {
-        squaresInterractedWith++;
-        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
         matrix[Y][X].isRevealed = true;
+        squaresInterractedWith++;
 
         if (matrix[Y][X].hasBomb) {
             squareToUpdate.innerHTML = '<img src="/icons/bomb.svg"></img>';
             squareToUpdate.classList.add('revealed');
-            lastClickedBombPosition = `${Y}_${X}`;
-            // lostGame();
+            userDugBombPosition = `${Y}_${X}`;
+            lostGame();
         } else {
             if (countBombs(Y, X) == 0) {
                 emptySquare(Y, X);
@@ -295,11 +318,13 @@ function digSquare(Y, X) {
     }
 }
 
+
 function removeUserSquareInterractivity() {
     squares.forEach((square) => {
         square.replaceWith(square.cloneNode(true));
     })
 }
+
 
 function lostGame() {
     const endGameDesc = document.querySelector('.end-game-status');
@@ -316,38 +341,52 @@ function lostGame() {
     smileyFace.style.display = 'flex';
 
     autoplayRunning = true;
-    userPlayingGame = false;
     autoplayGame();
 
     removeUserSquareInterractivity();
 
-    endGameDesc.innerHTML = "You've lost the game";
-    startGameButton.innerHTML = 'Play-again';
 
     setTimeout(() => {
-        if (userPlayingGame == false) {
-            handleInformUserAboutBombsPlaced('fadeOut');
+        if (autoplayRunning) {
+            informUserBombsPlacedText.fadeOut();
+            setTimeout(() => { informUserBombsPlacedText.reset() }, 1500)
         }
     }, 4500);
 
+    if (boardWidth < 720) {
+        let showSettingsButton = document.querySelector('.show-settings-panel-button');
+
+        showSettingsButton.innerHTML = 'You-lost. Play-again?'
+        textContentWrapper.style.display = 'flex';
+        setTimeout(() => {
+            textContentWrapper.style.opacity = '1';
+        })
+    } else {
+        endGameDesc.innerHTML = "You've lost the game";
+        startGameButton.innerHTML = 'Play-again';
+
+        textContentWrapper.style.display = 'flex';
+        gameControlPanel.style.display = 'flex';
+        setTimeout(() => {
+            textContentWrapper.style.opacity = '1';
+            gameControlPanel.style.opacity = '1';
+        }, 50)
+    }
     
-    textContentWrapper.style.display = 'flex';
-    gameControlPanel.style.display = 'flex';
-    setTimeout(() => {
-        textContentWrapper.style.opacity = '1';
-        gameControlPanel.style.opacity = '1';
-    }, 50)
+    
 
     setTimeout(() => {
-        let Y = lastClickedBombPosition.split('_')[0];
-        let X = lastClickedBombPosition.split('_')[1];
-        let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
+        if (autoplayRunning) {
+            let Y = userDugBombPosition.split('_')[0];
+            let X = userDugBombPosition.split('_')[1];
+            let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
 
-        matrix[Y][X].isRevealed = false;
-        matrix[Y][X].isFlagged = true;
-        squareToUpdate.innerHTML = flagSvg;
-        squareToUpdate.classList.remove('revealed');
-        squaresInterractedWith++;
+            matrix[Y][X].isRevealed = false;
+            matrix[Y][X].isFlagged = true;
+            squareToUpdate.innerHTML = flagSvg;
+            squareToUpdate.classList.remove('revealed');
+            squaresInterractedWith++;
+        }
     }, 5000)
 
 
@@ -356,10 +395,9 @@ function lostGame() {
     container.style.top = `${randomY}px`;
 
     let intervalShakeGameBoard = setInterval(() => {
-        if (timesShakeExecuted > 9) {
+        if (timesShakeExecuted == 9) {
             clearInterval(intervalShakeGameBoard)
         }
-        console.count();
         if (useNegativeShakeCoords) {
             useNegativeShakeCoords = false;
             container.style.left = `-${randomX}px`;
@@ -376,11 +414,9 @@ function lostGame() {
 function countBombs(Y, X) {
     let bombsCounted = 0;
     let surroundingSquares = checkSurroundingSquares(Y, X);
-    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
-
 
     surroundingSquares.forEach((square) => {
-        if (square.info.hasBomb) {
+        if (square.hasBomb) {
             bombsCounted++;
         }
     })
@@ -391,16 +427,13 @@ function countBombs(Y, X) {
 function checkSurroundingSquares(Y, X) {
     let surroundingSquares = [];
 
-
+    // checks to see if the line above or below the clicked line is outside of the matrix bounds. If not, it does the same test to the left and right columns. If they are within bounds, it pushes the square to the surroundingSquares Array with the positional information in it
     for (let i = -1; i < 2; i++) {
         if (matrix[Number(Y) + Number(i)] != undefined) {
             for (let j = -1; j < 2; j++) {
                 if (matrix[Number(Y) + Number(i)][Number(X) + Number(j)] != undefined) {
                     if (Number(Y) + Number(i) != Y || Number(X) + Number(j) != X) {
-                        surroundingSquares.push({
-                            info: matrix[Number(Y) + Number(i)][Number(X) + Number(j)],
-                            position: `${Number(Y) + Number(i)}_${Number(X) + Number(j)}`
-                        })
+                        surroundingSquares.push( matrix[Number(Y) + Number(i)][Number(X) + Number(j)] )
                     }
                 }
             }
@@ -413,7 +446,6 @@ function checkSurroundingSquares(Y, X) {
 function emptySquare(Y, X) {
     let surroundingSquares = checkSurroundingSquares(Y, X);
 
-    
     surroundingSquares.forEach((square) => {
         let Y = square.position.split('_')[0];
         let X = square.position.split('_')[1];
@@ -437,7 +469,7 @@ function emptySquare(Y, X) {
 
 function isGameFinished() {
     if (squaresInViewport === squaresInterractedWith) {
-        if (autoplayRunning && !userPlayingGame) {
+        if (autoplayRunning) {
             populateBoard();
         } else {
             winGame();
@@ -446,44 +478,42 @@ function isGameFinished() {
 }
 
 function winGame() {
-    const endGameDesc = document.querySelector('.end-game-status');
+    const gameStatusTextBox = document.querySelector('.end-game-status');
     const startGameButton = document.querySelector('.start-game-button');
-    const textContentWrapper = document.querySelector('.textContent');
+    const headerTitleContentContainer = document.querySelector('.textContent');
     const gameControlPanel = document.querySelector('.gameSettings');
 
-    autoplayRunning = true;
-    userPlayingGame = false;
-
+    
     setTimeout(() => {
         populateBoard();
         autoplayGame();
+        autoplayRunning = true;
     }, 30000)
     
     setTimeout(() => {
-        handleInformUserAboutBombsPlaced('fadeOut');
+        informUserBombsPlacedText.fadeOut();
     }, 5000)
 
     removeUserSquareInterractivity();
 
-    endGameDesc.innerHTML = "You've won!";
+    gameStatusTextBox.innerHTML = "You've won!";
     startGameButton.innerHTML = 'Play-again';
-
     
-    textContentWrapper.style.display = 'flex';
+    headerTitleContentContainer.style.display = 'flex';
     gameControlPanel.style.display = 'flex';
     setTimeout(() => {
-        textContentWrapper.style.opacity = '1';
+        headerTitleContentContainer.style.opacity = '1';
         gameControlPanel.style.opacity = '1';
     }, 50)
 }
 
-function watchUserInitiatedGameStatus() {
+function watchIfUserStartedGame() {
     const watchUserInput = document.querySelector('.user-initiated-game-start');
 
     const mutationObserver = new MutationObserver(() => {
         if (watchUserInput.childElementCount != 0) {
-            userPlayingGame = true;
-            clearInterval(interval);
+            clearInterval(autoplayIntervalToDigSquare);
+            autoplayRunning = false;
             startGame();
         } else {
             watchUserInput.innerHTML = '';
@@ -500,90 +530,44 @@ window.addEventListener('resize', () => {
     let newBoardHeight = container.offsetHeight;
     let newColumnsToFit = Math.floor(newBoardWidth / squareSize);
     let newRowsToFit = Math.floor(newBoardHeight / squareSize);
-    let DxColumns = newColumnsToFit - columnsToFit;
-    let DyRows = newRowsToFit - rowsToFit;
+    let deltaNewColumnsOldColumns = newColumnsToFit - columnsToFit;
+    let deltaNewRowsOldRows = newRowsToFit - rowsToFit;
+
+    if (newBoardWidth < 1024) {
+        instructions.innerHTML = '// Click bottom right flag <br> // to switch to flagging <br> //or digging squares';
+    } else {
+        instructions.innerHTML = '// Left click to dig square <br> // Right click to flag square'
+    }
 
     if (newColumnsToFit > columnsToFit) {
-        let oldColumns = [];
+        let lastColumnSquares = [];
 
         rows.forEach((row) => {
             if (row.lastChild.classList.contains('revealed') && row.lastChild.textContent != '') {
-                oldColumns.push(row.lastChild)
+                lastColumnSquares.push(row.lastChild)
             }
         })
 
         
-
-        for (let i = 0; i < DxColumns; i++) {
-            newBoardWidth = container.offsetWidth;
-            newColumnsToFit = Math.floor(newBoardWidth / squareSize);
-            DxColumns = newColumnsToFit - columnsToFit;
-
+        for (let i = 0; i < deltaNewColumnsOldColumns; i++) {
             rows.forEach((row, rowIndex) => {
                 let rowLength = matrix[rowIndex].length;
-                    let squareHasBomb = false;
-                    
-                    if (autoplayRunning) {
-                        difficulty = 0.3;
-                    }
-        
-                    if (Math.random() < difficulty) {
-                        bombsPlaced++;
-                        squareHasBomb = true;
-                    }
-                    
-                    matrix[rowIndex].push({
-                        isRevealed: false,
-                        hasBomb: squareHasBomb,
-                        isFlagged: false,
-                        isWithinViewport: true,
-                        position: `${rowIndex}_${rowLength}`
-                    })
 
-                    squaresInBoard++;
-                    squaresInViewport++;
-                    row.insertAdjacentHTML('beforeEnd', `<div class="square" data-position="${rowIndex}_${rowLength}"></div>`)
+                generateSquare(row, rowIndex, rowLength)
 
-                    row.lastChild.addEventListener('click', (clickedSquare) => {
-                        if (!clickedSquare.currentTarget.classList.contains('revealed')) {
-                            let Y = clickedSquare.currentTarget.dataset.position.split('_')[0];
-                            let X = clickedSquare.currentTarget.dataset.position.split('_')[1];
-                
-                            digSquare(Y, X);
-                            isGameFinished();
-                        }
-                    })
+                row.lastChild.addEventListener('click', (clickedSquare) => {
+                    userLeftClick(clickedSquare);
+                })
 
-                    row.lastChild.addEventListener('contextmenu', (rightClickedSquare) => {
-                        rightClickedSquare.preventDefault();
-                        let Y = rightClickedSquare.currentTarget.dataset.position.split('_')[0];
-                        let X = rightClickedSquare.currentTarget.dataset.position.split('_')[1];
-                        isGameFinished();
-                        
-                        if (rightClickedSquare.currentTarget.classList.contains('revealed') == false) {
-                            if (matrix[Y][X].isFlagged == false) {
-                                bombsPlaced = bombsPlaced - 1;
-                                squaresInterractedWith++;
-                                rightClickedSquare.currentTarget.innerHTML = flagSvg;
-                                matrix[Y][X].isFlagged = true;
-                                tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-                            } else {
-                                bombsPlaced++;
-                                tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-                                squaresInterractedWith = squaresInterractedWith - 1;
-                                matrix[Y][X].isFlagged = false;
-                                rightClickedSquare.currentTarget.innerHTML = '';
-                            }
-                        }
-                    })
+                row.lastChild.addEventListener('contextmenu', (rightClickedSquare) => {
+                    userRightClick(rightClickedSquare);
+                })
 
-
-                row.style.gridTemplateColumns = `repeat(${newColumnsToFit}, minmax(24px, 1fr))`
-                row.style.width = `100%`;    
+                row.style.gridTemplateColumns = `repeat(${newColumnsToFit}, minmax(24px, 1fr))`  
             })
         }
 
-        oldColumns.forEach((square) => {
+        lastColumnSquares.forEach((square) => {
             let Y = square.dataset.position.split('_')[0];
             let X = square.dataset.position.split('_')[1];
 
@@ -601,77 +585,29 @@ window.addEventListener('resize', () => {
     }
 
     if (newRowsToFit > rowsToFit) {
-        for (let i = 0; i < DyRows; i++) {
-            newBoardHeight = container.offsetHeight;
-            newRowsToFit = Math.floor(newBoardHeight / squareSize);
-            DyRows = newRowsToFit - rowsToFit;
+        for (let i = 0; i < deltaNewRowsOldRows; i++) {
+            let matrixLastRowIndex = matrix.length - 1;
 
             matrix.push([]);
             container.insertAdjacentHTML('beforeEnd', '<div class="row"></div>');
-            let matrixLastRow = matrix.length - 1;
 
             for (let j = 0; j < columnsToFit; j++) {
-                let squareHasBomb = false;
-
-                if (autoplayRunning) {
-                    difficulty = 0.3;
-                }
-
-                if (Math.random() < difficulty) {
-                    bombsPlaced++;
-                    squareHasBomb = true;
-                }
-
-                matrix[matrixLastRow].push({
-                    isRevealed: false,
-                    hasBomb: squareHasBomb,
-                    isFlagged: false,
-                    isWithinViewport: true,
-                    position: `${matrixLastRow}_${j}`
-                })
-
-                squaresInBoard++;
-                squaresInViewport++;
-                container.lastChild.insertAdjacentHTML('beforeEnd', `<div class="square" data-position="${matrixLastRow}_${j}"></div>`);
-                container.lastChild.lastChild.addEventListener('click', (clickedSquare) => {
-                    if (!clickedSquare.currentTarget.classList.contains('revealed')) {
-                        let Y = clickedSquare.currentTarget.dataset.position.split('_')[0];
-                        let X = clickedSquare.currentTarget.dataset.position.split('_')[1];
-            
-                        digSquare(Y, X);
-                        isGameFinished();
-                    }
-                })
+                generateSquare(container.lastChild, matrixLastRowIndex, j)
                 
+                container.lastChild.lastChild.addEventListener('click', (clickedSquare) => {
+                    userLeftClick(clickedSquare);
+                })
                 
                 container.lastChild.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
-                container.lastChild.style.width = `100%`;
             }
-            
-            container.lastChild.lastChild.addEventListener('contextmenu', (rightClickedSquare) => {
-                rightClickedSquare.preventDefault();
-                let Y = rightClickedSquare.currentTarget.dataset.position.split('_')[0];
-                let X = rightClickedSquare.currentTarget.dataset.position.split('_')[1];
-                isGameFinished();
-                
-                if (rightClickedSquare.currentTarget.classList.contains('revealed') == false) {
-                    if (matrix[Y][X].isFlagged == false) {
-                        bombsPlaced = bombsPlaced - 1;
-                        squaresInterractedWith++;
-                        rightClickedSquare.currentTarget.innerHTML = flagSvg;
-                        matrix[Y][X].isFlagged = true;
-                        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-                    } else {
-                        bombsPlaced++;
-                        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-                        squaresInterractedWith = squaresInterractedWith - 1;
-                        matrix[Y][X].isFlagged = false;
-                        rightClickedSquare.currentTarget.innerHTML = '';
-                    }
-                }
+
+            container.lastChild.childNodes.forEach((square) => {
+                square.addEventListener('contextmenu', (rightClickedSquare) => {
+                    userRightClick(rightClickedSquare);
+                })
             })
-            
         }
+
 
         container.lastChild.previousSibling.childNodes.forEach((square) => {
             if (square.classList.contains('revealed') && square.textContent != '') {
@@ -686,6 +622,8 @@ window.addEventListener('resize', () => {
                 square.classList.replace(oldBombsSurroundingClass, `B${bombsCurrentlyAround}`);
             }
         })
+
+
         container.style.gridTemplateRows = `repeat(${newRowsToFit}, minmax(24px, 1fr))`;
         rowsToFit = newRowsToFit;
         boardHeight = newBoardHeight;
@@ -694,7 +632,7 @@ window.addEventListener('resize', () => {
     tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
 })
 
-screen.orientation.addEventListener('change', (event) => {
+screen.orientation.addEventListener('change', () => {
     let newWidth = container.offsetWidth;
     let newHeight = container.offsetHeight;
     let rowsVisible = Math.floor(newHeight / squareSize);
@@ -749,14 +687,14 @@ screen.orientation.addEventListener('change', (event) => {
 
 function isMobile() {
     var check = false;
-    (function(a){
-      if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) 
+    
+    if (boardWidth < 720) {
         check = true;
-    })(navigator.userAgent||navigator.vendor||window.opera);
+    }
     
     if (check) {
-        return 24
+        return 28
     } else {
         return 32
     }
-  };
+};

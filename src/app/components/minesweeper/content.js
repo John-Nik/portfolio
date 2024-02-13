@@ -1,5 +1,6 @@
 'use client'
 import './content.scss'
+import { useEffect } from 'react';
 
 export default function Content() {
     function startGame() {
@@ -12,18 +13,29 @@ export default function Content() {
 
         smileyFace.style.display = 'none';
 
-        if (containerWidth >= 720) {
-            textContentWrapper.style.opacity = '0';
-            gameControlPanel.style.opacity = '0';
-            setTimeout(() => {
-                textContentWrapper.style.display = 'none';
-                gameControlPanel.style.display = 'none';
-            }, 500)
-        }
+        textContentWrapper.style.opacity = '0';
+        gameControlPanel.style.opacity = '0';
+        setTimeout(() => {
+            textContentWrapper.style.display = 'none';
+            gameControlPanel.style.display = 'none';
+        }, 500)
 
 
         gameStart.innerHTML = '<div></div>';
     }
+
+    useEffect(() => {
+        const bolt2 = document.querySelector('#bolt2');
+        const bolt4 = document.querySelector('#bolt4');
+        const gameSettingsPanel = document.querySelector('.game-settings-container');
+        let panelHeight;
+
+        panelHeight = gameSettingsPanel.offsetHeight;
+        let desiredMarginTop = panelHeight * 1 - 35 + 'px';
+
+        bolt2.style.marginTop = desiredMarginTop;
+        bolt4.style.marginTop = desiredMarginTop;
+    }, [])
 
     function changeDifficulty(clickedbutton) {
         const buttons = document.querySelectorAll('.difficulty-feedback');
@@ -32,6 +44,21 @@ export default function Content() {
         })
 
         clickedbutton.currentTarget.classList.add('active');
+    }
+
+    function showSettingsPanel() {
+        const informationPanel = document.querySelector('.textContent');
+        const settingsPanel = document.querySelector('.gameSettings');
+
+        informationPanel.style.opacity = '0';
+        setTimeout(() => {
+            informationPanel.style.display = 'none';
+            settingsPanel.style.display = 'flex';
+
+            setTimeout(() => {
+                settingsPanel.style.opacity = '1';
+            }, 20)
+        }, 200)
     }
 
     return (
@@ -61,6 +88,9 @@ export default function Content() {
                                     <span>Download CV</span>
                                 </div>
                             </a>
+                            <button onClick={showSettingsPanel} className={'show-settings-panel-button'}>
+                                Start-Game
+                            </button>
                         </div>
                     </div>
 
@@ -69,7 +99,7 @@ export default function Content() {
                     
 
                     <div className={'gameSettings'}>
-                        <div className={'wrapper'}>
+                        <div className={'wrapper game-settings-container'}>
                             <div className={'bolt-container'} aria-hidden={'true'}>
                                 <img id={'bolt1'} src='/icons/bolt.svg' />
                                 <img id={'bolt2'} src='/icons/bolt.svg' />
@@ -79,7 +109,7 @@ export default function Content() {
 
                             <div className={'game-settings-wrapper'}>
                                 <div className={'game-instructions'}>
-                                    <span>
+                                    <span className={'game-instructions-span'}>
                                         // Left click to dig square
                                         <br />
                                         // Right click to flag square
@@ -103,10 +133,8 @@ export default function Content() {
                                     <div className={'end-game-status'} />
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </>
