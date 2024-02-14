@@ -49,6 +49,14 @@ export default function Content() {
     function showSettingsPanel() {
         const informationPanel = document.querySelector('.textContent');
         const settingsPanel = document.querySelector('.gameSettings');
+        const footerIconsContainer = document.querySelector('.footer-links-container');
+        const socialsIcon = document.querySelector('.socials-icon-wrap');
+        const flagIcon = document.querySelector('.flag-icon-wrap');
+
+        footerIconsContainer.classList.toggle('hide-icons');
+        socialsIcon.classList.toggle('show');
+        flagIcon.classList.toggle('show');
+
 
         informationPanel.style.opacity = '0';
         setTimeout(() => {

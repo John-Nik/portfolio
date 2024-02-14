@@ -6,6 +6,6 @@ export default function EmailIcon() {
     }
 
     return (
-        <img onClick={userWantsEmail} src="/icons/email.svg" alt="" />
+        <img className={'email-icon icon'} onClick={userWantsEmail} src="/icons/email.svg" alt="" />
     )
 }

@@ -6,6 +6,6 @@ export default function GithubIcon() {
     }
 
     return (
-        <img onClick={userWantsGithub} src="/icons/github.svg" alt="" />
+        <img className={'github-icon icon'} onClick={userWantsGithub} src="/icons/github.svg" alt="" />
     )
 }

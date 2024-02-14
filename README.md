@@ -38,3 +38,5 @@
     <li>Optimized the code for more readability and speed</li>
     <li>Changed the UI of the information panel to make it more readable</li>
 </ul>
+
+**0.5.4:** Greatly made progress towards the mobile version of the home page

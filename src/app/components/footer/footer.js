@@ -3,6 +3,8 @@ import './footer.scss';
 import CallIcon from './CallIcon.js';
 import EmailIcon from './EmailIcon.js';
 import GithubIcon from './GithubIcon.js';
+import SocialsIcon from './SocialsIcon.js';
+import FlagIcon from './FlagIcon.js';
 
 export default function Footer({children}) {
     return ( 
@@ -25,6 +27,12 @@ export default function Footer({children}) {
                 </li>
                 <li>
                     <GithubIcon />
+                </li>
+                <li className={'socials-icon-wrap'}>
+                    <SocialsIcon />
+                </li>
+                <li className={'flag-icon-wrap'}>
+                    <FlagIcon />
                 </li>
             </ul>
             {children}

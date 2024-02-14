@@ -32,6 +32,64 @@ $secondary-tint-1: #52E099;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
+
+                img {
+                    position: relative;
+                    left: 0px;
+                    opacity: 0.6;
+                    scale: 1;
+                    transition: left 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.23s, scale 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.15s;
+                    will-change: scroll-position;
+                }
+
+                .socials-icon {
+                    position: relative;
+                    width: auto;
+                    height: 42px;
+                    transition: all 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.15s;
+                    opacity: 0;
+                    scale: 0;
+                    will-change: auto;
+                }
+
+                &.flag-icon-wrap {
+                    opacity: 0;
+                    transition: all 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.15s;
+                    position: absolute;
+                    left: calc(50vw - 10px);
+
+                    &:after {
+                        display: none;
+                    }
+                }
+
+                &.show.flag-icon-wrap {
+                    opacity: 1;
+                }
+
+                .flag-icon {
+                    width: 26px;
+                    height: auto;
+                    opacity: 1;
+                }
+
+                &.socials-icon-wrap {
+                    opacity: 0;
+                    background-color: $base-color;
+                    position: absolute;
+                    left: 12px;
+                    margin-top: -2px;
+                }
+
+                &.show.socials-icon-wrap {
+                    height: 30px;
+                    opacity: 1;
+                }
+
+                &.show .socials-icon {
+                    scale: 1;
+                    opacity: 0.6;
+                }
     
                 &:after {
                     content: "";
@@ -58,7 +116,7 @@ $secondary-tint-1: #52E099;
                     }
                 }
 
-                @for $i from 4 through 6 {
+                @for $i from 4 through 8 {
                     &:nth-child(#{$i}) {
                       display: flex;
                       padding: 14px 0px;
@@ -106,6 +164,23 @@ $secondary-tint-1: #52E099;
     }
 }
 
+@media only screen and (max-width: 860px) {
+    .hide-icons {
+        .icon {
+            opacity: 0;
+            scale: 0;
+        }
+
+        .email-icon {
+            left: calc(-50vw + 28px);
+        }
+
+        .github-icon {
+            left: calc(-100vw + 60px);
+        }
+    }
+}
+
 @media only screen and (min-width: 860px) {
     footer {
         padding: 8px 0px;
@@ -122,7 +197,7 @@ $secondary-tint-1: #52E099;
                     }
                 }
 
-                @for $i from 4 through 6 {
+                @for $i from 4 through 8 {
                     &:nth-child(#{$i}) {
                       display: none;
                     }
