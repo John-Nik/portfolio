@@ -50,3 +50,5 @@
 **0.5.8:** Testing the "minimal-ui" meta tag to remove safari's UI when on mobile version, making it a better user experience
 
 **0.5.9:** Changed the styling for the mobile version and made everything mode compact
+
+**0.5.10:** Made the opened navigation bar on mobile version have a background filter in Safari
