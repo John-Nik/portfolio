@@ -113,7 +113,7 @@
                     background-color: #406ABF;
                     border-radius: 24px;
                     box-shadow: none;
-                    border: none;
+                    border: solid #406ABF;
                     cursor: pointer;
                     text-decoration: none;
                     display: flex;
@@ -134,8 +134,10 @@
     
                         span {
                             position: relative;
+                            width: fit-content;
                             z-index: 10;
-                            padding: 16px 69px;
+                            padding: 16px 0px;
+                            font-size: clamp(24px, 2vw, 32px);
                         }
     
                         
@@ -192,8 +194,10 @@
     
                         span {
                             position: relative;
+                            width: fit-content;
                             z-index: 10;
-                            padding: 16px 69px;
+                            padding: 16px 0px;
+                            font-size: clamp(24px, 2vw, 32px);
                         }
                     }
     
@@ -583,7 +587,7 @@
                     background-color: #406ABF;
                     border-radius: 24px;
                     box-shadow: none;
-                    border: none;
+                    border: solid #406ABF;
                     cursor: pointer;
                     text-decoration: none;
                     display: flex;
@@ -604,8 +608,10 @@
     
                         span {
                             position: relative;
+                            width: fit-content;
                             z-index: 10;
-                            padding: 16px 69px;
+                            padding: 16px 0px;
+                            font-size: clamp(24px, 2vw, 32px);
                         }
     
                         
@@ -660,8 +666,10 @@
     
                         span {
                             position: relative;
+                            width: fit-content;
                             z-index: 10;
-                            padding: 16px 69px;
+                            padding: 16px 0px;
+                            font-size: clamp(24px, 2vw, 32px);
                         }
                     }
     
@@ -1023,7 +1031,7 @@
                     background-color: #406ABF;
                     border-radius: 24px;
                     box-shadow: none;
-                    border: none;
+                    border: solid #406ABF;
                     cursor: pointer;
                     text-decoration: none;
                     display: flex;

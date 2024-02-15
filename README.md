@@ -40,3 +40,5 @@
 </ul>
 
 **0.5.4:** Greatly made progress towards the mobile version of the home page
+
+**0.5.5:** Finished the main page

@@ -25,6 +25,7 @@ let windowWidth = window.innerWidth;
 let flagSvg = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect x="0.666504" width="17" height="18" fill="url(#pattern0)"/><defs><pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_14_9231" transform="matrix(0.00827206 0 0 0.0078125 -0.0294118 0)"/></pattern><image id="image0_14_9231" width="128" height="128" xlink:href="data:image/png;base64,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"/></defs></svg>';
 let mobileUserWantsToFlag = 0;
 const triggerTapFlagIcon = document.querySelector('.flag-icon-wrap');
+const gameSettings = document.querySelector('.gameSettings');
 
 
 
@@ -53,7 +54,7 @@ container.addEventListener('contextmenu', (e) => {
 
 // changes the instructions showcased to the user depending on the device screen width
 if (boardWidth < 1024) {
-    instructions.innerHTML = '// Click bottom right flag <br> // to switch to flagging <br> // or digging squares';
+    instructions.innerHTML = '// Click bottom right flag to switch to flagging or digging squares';
 } else {
     instructions.innerHTML = '// Left click to dig square <br> // Right click to flag square'
 }
@@ -362,15 +363,19 @@ function lostGame() {
 
     removeUserSquareInterractivity();
 
+    if (screenWidth > 860) {
+        setTimeout(() => {
+            if (autoplayRunning) {
+                informUserBombsPlacedText.fadeOut();
+                setTimeout(() => { informUserBombsPlacedText.reset() }, 1500)
+            }
+        }, 4500);
+    } else {
+        informUserBombsPlacedText.reset()
+    }
+    
 
-    setTimeout(() => {
-        if (autoplayRunning) {
-            informUserBombsPlacedText.fadeOut();
-            setTimeout(() => { informUserBombsPlacedText.reset() }, 1500)
-        }
-    }, 4500);
-
-    if (screenWidth < 720) {
+    if (screenWidth < 860) {
         let showSettingsButton = document.querySelector('.show-settings-panel-button');
 
         showSettingsButton.innerHTML = 'You-lost<br>Play-again?'
@@ -514,9 +519,16 @@ function winGame() {
         autoplayRunning = true;
     }, 30000)
     
-    setTimeout(() => {
-        informUserBombsPlacedText.fadeOut();
-    }, 5000)
+    if (screenWidth > 860) {
+        setTimeout(() => {
+            if (autoplayRunning) {
+                informUserBombsPlacedText.fadeOut();
+                setTimeout(() => { informUserBombsPlacedText.reset() }, 1500)
+            }
+        }, 4500);
+    } else {
+        informUserBombsPlacedText.reset()
+    }
 
     removeUserSquareInterractivity();
 
@@ -560,6 +572,8 @@ function watchIfUserStartedGame() {
 
 
 
+let isDesktopRes;
+let panelShownPriorWindowResize;
 window.addEventListener('resize', () => {
     let newBoardWidth = container.offsetWidth;
     let newBoardHeight = container.offsetHeight;
@@ -567,12 +581,64 @@ window.addEventListener('resize', () => {
     let newRowsToFit = Math.floor(newBoardHeight / squareSize);
     let deltaNewColumnsOldColumns = newColumnsToFit - columnsToFit;
     let deltaNewRowsOldRows = newRowsToFit - rowsToFit;
+    const textContentWrapper = document.querySelector('.textContent');
     screenWidth = window.innerWidth;
 
-    if (newBoardWidth < 1024) {
-        instructions.innerHTML = '// Click bottom right flag <br> // to switch to flagging <br> //or digging squares';
+    if (screenWidth < 1024) {
+        let endGameStatus = document.querySelector('.end-game-status');
+        endGameStatus.innerHTML = '';
+
+
+        instructions.innerHTML = '// Click bottom right flag to switch to flagging or digging squares';
+        
+        if (isDesktopRes == undefined) {
+            isDesktopRes = false;
+        }
+
+
+        if (isDesktopRes) {
+            if (panelShownPriorWindowResize == 'textContent' && panelShownPriorWindowResize != undefined)  {
+                gameSettings.style.opacity = '0';
+                gameSettings.style.display = 'none';
+                textContentWrapper.style.opacity = '1';
+                textContentWrapper.style.display = 'flex';
+            }
+    
+            if (panelShownPriorWindowResize == 'gameSettings' && panelShownPriorWindowResize != undefined) {
+                gameSettings.style.opacity = '1';
+                gameSettings.style.display = 'flex';
+                textContentWrapper.style.opacity = '0';
+                textContentWrapper.style.display = 'none';
+            }
+
+            isDesktopRes = false;
+        }
     } else {
         instructions.innerHTML = '// Left click to dig square <br> // Right click to flag square'
+
+
+        if (isDesktopRes == undefined) {
+            isDesktopRes = true;
+        }
+        
+        if (textContentWrapper.style.display == '') {
+            textContentWrapper.style.display = 'flex';
+        }
+
+        if (isDesktopRes == false) {
+            if (textContentWrapper.style.display == 'flex') {
+                panelShownPriorWindowResize = 'textContent';
+            } else {
+                panelShownPriorWindowResize = 'gameSettings';
+            }
+    
+            textContentWrapper.style.opacity = '1';
+            textContentWrapper.style.display = 'flex';
+            gameSettings.style.opacity = '1';
+            gameSettings.style.display = 'flex';
+
+            isDesktopRes = true;
+        }
     }
 
     if (newColumnsToFit > columnsToFit) {
@@ -691,7 +757,6 @@ screen.orientation.addEventListener('change', () => {
                     let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
 
                     square.isWithinViewport = false;
-                    squareToUpdate.style.display = 'none';
                 }
             })
     
@@ -702,8 +767,6 @@ screen.orientation.addEventListener('change', () => {
             matrix[outsideViewportRow].forEach((square) => {
                 square.isWithinViewport = false;
             })
-
-            rows[outsideViewportRow].style.display = 'none';
         }
     }
 
