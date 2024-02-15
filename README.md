@@ -54,3 +54,5 @@
 **0.5.10:** Made the opened navigation bar on mobile version have a background filter in Safari
 
 **0.5.11:** Removed the -webkit-backdrop-filter
+
+**0.5.12:** Increased the square size of mobile devices to make it easier for the user to play the game without any frustration and mistaps

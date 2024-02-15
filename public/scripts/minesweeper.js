@@ -794,7 +794,7 @@ function isMobile() {
     }
     
     if (check) {
-        return 28
+        return 32
     } else {
         return 32
     }
