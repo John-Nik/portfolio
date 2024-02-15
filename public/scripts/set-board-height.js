@@ -1,4 +1,11 @@
 const minesweeperContainer = document.querySelector('#minesweeper-container');
-const screenHeight = window.innerHeight - 64 - 58 + 'px';
+let containerHeight = '';
 
-minesweeperContainer.style.height = screenHeight;
+if (window.innerWidth < 860) {
+    containerHeight = window.innerHeight - 64 - 58 + 'px';
+} else {
+    containerHeight = window.innerHeight - 90 - 58 + 'px';
+}
+
+
+minesweeperContainer.style.height = containerHeight;
