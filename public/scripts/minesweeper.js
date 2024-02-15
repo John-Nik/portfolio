@@ -29,7 +29,6 @@ const gameSettings = document.querySelector('.gameSettings');
 
 
 
-setTimeout(function () {   window.scrollTo(0, 1); }, 1000);
 
 triggerTapFlagIcon.addEventListener('click', () => {
     mobileUserWantsToFlag = (mobileUserWantsToFlag + 1) % 2;

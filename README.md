@@ -48,3 +48,5 @@
 **0.5.7:** Fixed the problem where on mobile browsers the footer would not be within the viewer's viewport due to the browser's ui hiding it
 
 **0.5.8:** Testing the "minimal-ui" meta tag to remove safari's UI when on mobile version, making it a better user experience
+
+**0.5.9:** Changed the styling for the mobile version and made everything mode compact
