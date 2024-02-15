@@ -52,3 +52,5 @@
 **0.5.9:** Changed the styling for the mobile version and made everything mode compact
 
 **0.5.10:** Made the opened navigation bar on mobile version have a background filter in Safari
+
+**0.5.11:** Removed the -webkit-backdrop-filter
