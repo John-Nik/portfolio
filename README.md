@@ -42,3 +42,5 @@
 **0.5.4:** Greatly made progress towards the mobile version of the home page
 
 **0.5.5:** Finished the main page
+
+**0.5.6:** Made the gap between the squares bigger for the phone version, as they were stuck together
