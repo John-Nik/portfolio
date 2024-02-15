@@ -175,7 +175,7 @@ $secondary-tint-1: #52E099;
                         flex-direction: column;
                         position: fixed;
                         width: 100%;
-                        margin-top: 68px;
+                        margin-top: 64px;
                         padding-top: 32px;
                         list-style: none;
                         opacity: 1;
@@ -219,7 +219,7 @@ $secondary-tint-1: #52E099;
 
         main {
             margin-top: 64px;
-            min-height: calc(95vh - 84px - clamp(2.5rem, 3.75vw, 3rem) - 30px - 25px);
+            height: 100%;
         }
     }
     

@@ -44,3 +44,5 @@
 **0.5.5:** Finished the main page
 
 **0.5.6:** Made the gap between the squares bigger for the phone version, as they were stuck together
+
+**0.5.7:** Fixed the problem where on mobile browsers the footer would not be within the viewer's viewport due to the browser's ui hiding it

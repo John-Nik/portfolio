@@ -8,6 +8,7 @@ export default function MinesweeperContainer() {
             <div id={'game'}></div>
             <Script src="scripts/minesweeper.js" strategy="lazyOnload" />
             <Script src="scripts/bolts.js" strategy="lazyOnload" />
+            <Script src="scripts/set-board-height.js" strategy="beforeInteractive" />
         </section>
     )
 }

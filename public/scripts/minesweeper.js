@@ -582,7 +582,10 @@ window.addEventListener('resize', () => {
     let deltaNewColumnsOldColumns = newColumnsToFit - columnsToFit;
     let deltaNewRowsOldRows = newRowsToFit - rowsToFit;
     const textContentWrapper = document.querySelector('.textContent');
+    const screenHeight = window.innerHeight - 64 - 58 + 'px';
     screenWidth = window.innerWidth;
+
+    container.style.height = screenHeight;
 
     if (screenWidth < 1024) {
         let endGameStatus = document.querySelector('.end-game-status');
