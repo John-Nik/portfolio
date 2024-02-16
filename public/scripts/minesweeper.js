@@ -2,7 +2,7 @@ const container = document.querySelector('#game');
 let boardWidth = container.offsetWidth;
 let boardHeight = container.offsetHeight;
 let screenWidth = window.innerWidth;
-let squareSize = isMobile(); // returns 24 or 32
+let squareSize = 32;
 let columnsToFit = Math.floor(boardWidth / squareSize);
 let rowsToFit = Math.floor(boardHeight / squareSize);
 let matrix = [];
@@ -94,6 +94,7 @@ function populateBoard() {
     squares = document.querySelectorAll('.square');
 }
 
+
 function generateSquare(htmlRow, matrixRowIndex, squareColumn) {
     let squareHasBomb = false;
 
@@ -158,57 +159,23 @@ function autoplayGame() {
     autoplayIntervalToDigSquare = setInterval(unrevealedSquares, 1500);
 }
 
-class informUserBombsPlacedText {
-    static reset() {
-        tellUserBombsPlacedContainer.style.display = 'none';
-        tellUserBombsPlacedWrapper.style.left = '0px';
-        tellUserBombsPlacedWrapper.style.top = '0px';
-        tellUserBombsPlacedWrapper.style.fontSize = '3rem';
-        tellUserBombsPlacedContainer.style.opacity = '0';
-        isBombsPlacedTextVisibleToUser = false;
-    }
 
-    static fadeOut() {
-        tellUserBombsPlacedContainer.style.opacity = '0';
-        isBombsPlacedTextVisibleToUser = false;
-    }
+function watchIfUserStartedGame() {
+    const watchUserInput = document.querySelector('.user-initiated-game-start');
 
-    static moveDownRightCorner() {
-        tellUserBombsPlacedWrapper.style.left = 'calc(50% - 122px + 48px)';
-        tellUserBombsPlacedWrapper.style.top = 'calc(50% - 40px + 68px)';
-    }
+    const mutationObserver = new MutationObserver(() => {
+        if (watchUserInput.childElementCount != 0) {
+            clearInterval(autoplayIntervalToDigSquare);
+            autoplayRunning = false;
+            startGame();
+        } else {
+            watchUserInput.innerHTML = '';
+        }
+    })
 
-    static decreaseFontSize() {
-        tellUserBombsPlacedWrapper.style.fontSize = '1rem';
-    }
-
-    static resetFontSize() {
-        tellUserBombsPlacedWrapper.style.fontSize = '3rem';
-    }
-
-    static reduceOpacity() {
-        tellUserBombsPlacedContainer.style.opacity = '0.7';
-    }
-
-    static fullOpacity() {
-        tellUserBombsPlacedContainer.style.opacity = '1';
-    }
-
-    static centerPosition() {
-        tellUserBombsPlacedWrapper.style.left = '0px';
-        tellUserBombsPlacedWrapper.style.top = '0px';
-    }
-
-    static fadeIn() {
-        tellUserBombsPlacedContainer.style.display = 'flex';
-
-        setTimeout(() => {
-            tellUserBombsPlacedContainer.style.opacity = '1';
-        }, 100)
-        
-        isBombsPlacedTextVisibleToUser = true;
-    }
+    mutationObserver.observe(watchUserInput, { childList: true });
 }
+
 
 function startGame() {
     populateBoard();
@@ -270,32 +237,6 @@ function userLeftClick(clickedSquare) {
     }
 }
 
-function userRightClick(rightClickedSquare) {
-    rightClickedSquare.preventDefault();
-    let Y = rightClickedSquare.currentTarget.dataset.position.split('_')[0];
-    let X = rightClickedSquare.currentTarget.dataset.position.split('_')[1];
-    
-    if (rightClickedSquare.currentTarget.classList.contains('revealed') == false) {
-        if (matrix[Y][X].isFlagged == false) {
-
-            matrix[Y][X].isFlagged = true;
-            squaresInterractedWith++;
-            bombsPlaced = bombsPlaced - 1;
-            rightClickedSquare.currentTarget.innerHTML = flagSvg;
-            tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-        } else {
-
-            matrix[Y][X].isFlagged = false;
-            squaresInterractedWith = squaresInterractedWith - 1;
-            bombsPlaced++;
-            rightClickedSquare.currentTarget.innerHTML = '';
-            tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-        }
-    }
-
-    isGameFinished();
-}
-
 
 function digSquare(Y, X) {
     let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
@@ -325,6 +266,86 @@ function digSquare(Y, X) {
         tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
         matrix[Y][X].isFlagged = false;
         squareToUpdate.innerHTML = '';
+    }
+}
+
+
+function userRightClick(rightClickedSquare) {
+    rightClickedSquare.preventDefault();
+    let Y = rightClickedSquare.currentTarget.dataset.position.split('_')[0];
+    let X = rightClickedSquare.currentTarget.dataset.position.split('_')[1];
+    
+    if (rightClickedSquare.currentTarget.classList.contains('revealed') == false) {
+        if (matrix[Y][X].isFlagged == false) {
+
+            matrix[Y][X].isFlagged = true;
+            squaresInterractedWith++;
+            bombsPlaced = bombsPlaced - 1;
+            rightClickedSquare.currentTarget.innerHTML = flagSvg;
+            tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
+        } else {
+
+            matrix[Y][X].isFlagged = false;
+            squaresInterractedWith = squaresInterractedWith - 1;
+            bombsPlaced++;
+            rightClickedSquare.currentTarget.innerHTML = '';
+            tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
+        }
+    }
+
+    isGameFinished();
+}
+
+
+class informUserBombsPlacedText {
+    static reset() {
+        tellUserBombsPlacedContainer.style.display = 'none';
+        tellUserBombsPlacedWrapper.style.left = '0px';
+        tellUserBombsPlacedWrapper.style.top = '0px';
+        tellUserBombsPlacedWrapper.style.fontSize = '3rem';
+        tellUserBombsPlacedContainer.style.opacity = '0';
+        isBombsPlacedTextVisibleToUser = false;
+    }
+
+    static fadeOut() {
+        tellUserBombsPlacedContainer.style.opacity = '0';
+        isBombsPlacedTextVisibleToUser = false;
+    }
+
+    static moveDownRightCorner() {
+        tellUserBombsPlacedWrapper.style.left = 'calc(50% - 122px + 48px)';
+        tellUserBombsPlacedWrapper.style.top = 'calc(50% - 40px + 68px)';
+    }
+
+    static decreaseFontSize() {
+        tellUserBombsPlacedWrapper.style.fontSize = '1rem';
+    }
+
+    static resetFontSize() {
+        tellUserBombsPlacedWrapper.style.fontSize = '3rem';
+    }
+
+    static reduceOpacity() {
+        tellUserBombsPlacedContainer.style.opacity = '0.7';
+    }
+
+    static fullOpacity() {
+        tellUserBombsPlacedContainer.style.opacity = '1';
+    }
+
+    static centerPosition() {
+        tellUserBombsPlacedWrapper.style.left = '0px';
+        tellUserBombsPlacedWrapper.style.top = '0px';
+    }
+
+    static fadeIn() {
+        tellUserBombsPlacedContainer.style.display = 'flex';
+
+        setTimeout(() => {
+            tellUserBombsPlacedContainer.style.opacity = '1';
+        }, 100)
+        
+        isBombsPlacedTextVisibleToUser = true;
     }
 }
 
@@ -432,6 +453,7 @@ function lostGame() {
     }, 30)
 }
 
+
 function countBombs(Y, X) {
     let bombsCounted = 0;
     let surroundingSquares = checkSurroundingSquares(Y, X);
@@ -444,6 +466,7 @@ function countBombs(Y, X) {
 
     return bombsCounted;
 }
+
 
 function checkSurroundingSquares(Y, X) {
     let surroundingSquares = [];
@@ -463,6 +486,7 @@ function checkSurroundingSquares(Y, X) {
 
     return surroundingSquares;
 }
+
 
 function emptySquare(Y, X) {
     let surroundingSquares = checkSurroundingSquares(Y, X);
@@ -488,6 +512,7 @@ function emptySquare(Y, X) {
     })
 }
 
+
 function isGameFinished() {
     if (squaresInViewport === squaresInterractedWith) {
         if (autoplayRunning) {
@@ -497,6 +522,7 @@ function isGameFinished() {
         }
     }
 }
+
 
 function winGame() {
     const gameStatusTextBox = document.querySelector('.end-game-status');
@@ -553,23 +579,6 @@ function winGame() {
     }
 }
 
-function watchIfUserStartedGame() {
-    const watchUserInput = document.querySelector('.user-initiated-game-start');
-
-    const mutationObserver = new MutationObserver(() => {
-        if (watchUserInput.childElementCount != 0) {
-            clearInterval(autoplayIntervalToDigSquare);
-            autoplayRunning = false;
-            startGame();
-        } else {
-            watchUserInput.innerHTML = '';
-        }
-    })
-
-    mutationObserver.observe(watchUserInput, { childList: true });
-}
-
-
 
 let isDesktopRes;
 let panelShownPriorWindowResize;
@@ -581,15 +590,16 @@ window.addEventListener('resize', () => {
     let deltaNewColumnsOldColumns = newColumnsToFit - columnsToFit;
     let deltaNewRowsOldRows = newRowsToFit - rowsToFit;
     const textContentWrapper = document.querySelector('.textContent');
-    const screenHeight = window.innerHeight - 64 - 58 + 'px';
+    let screenHeight = window.innerHeight - 90 - 58 + 'px';
     screenWidth = window.innerWidth;
+    const minesweeperContainer = document.querySelector('#minesweeper-container');
+    minesweeperContainer.style.height = screenHeight;
 
-    container.style.height = screenHeight;
+
 
     if (screenWidth < 1024) {
         let endGameStatus = document.querySelector('.end-game-status');
         endGameStatus.innerHTML = '';
-
 
         instructions.innerHTML = '// Click bottom right flag to switch to flagging or digging squares';
         
@@ -618,7 +628,6 @@ window.addEventListener('resize', () => {
     } else {
         instructions.innerHTML = '// Left click to dig square <br> // Right click to flag square'
 
-
         if (isDesktopRes == undefined) {
             isDesktopRes = true;
         }
@@ -642,6 +651,8 @@ window.addEventListener('resize', () => {
             isDesktopRes = true;
         }
     }
+
+
 
     if (newColumnsToFit > columnsToFit) {
         let lastColumnSquares = [];
@@ -672,20 +683,13 @@ window.addEventListener('resize', () => {
         }
 
         lastColumnSquares.forEach((square) => {
-            let Y = square.dataset.position.split('_')[0];
-            let X = square.dataset.position.split('_')[1];
-
-            let oldBombsSurrounding = square.textContent;
-            let oldBombsSurroundingClass = 'B' + oldBombsSurrounding;
-            let bombsCurrentlyAround = countBombs(Y, X);
-            
-            
-            square.innerHTML = bombsCurrentlyAround;
-            square.classList.replace(oldBombsSurroundingClass, `B${bombsCurrentlyAround}`);
+            updateOldSiblingSquaresNearNewlyAddedSquares(square);
         })
 
         columnsToFit = newColumnsToFit;
         boardWidth = newBoardWidth;
+        squares = document.querySelectorAll('.square');
+        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
     }
 
     if (newRowsToFit > rowsToFit) {
@@ -701,101 +705,38 @@ window.addEventListener('resize', () => {
                 container.lastChild.lastChild.addEventListener('click', (clickedSquare) => {
                     userLeftClick(clickedSquare);
                 })
-                
-                container.lastChild.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
-            }
 
-            container.lastChild.childNodes.forEach((square) => {
-                square.addEventListener('contextmenu', (rightClickedSquare) => {
+                container.lastChild.lastChild.addEventListener('contextmenu', (rightClickedSquare) => {
                     userRightClick(rightClickedSquare);
                 })
-            })
+            }
+            container.lastChild.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
         }
 
 
         container.lastChild.previousSibling.childNodes.forEach((square) => {
             if (square.classList.contains('revealed') && square.textContent != '') {
-                let Y = square.dataset.position.split('_')[0];
-                let X = square.dataset.position.split('_')[1];
-
-                let bombsCurrentlyAround = countBombs(Y, X);
-                let bombsPreviouslySurrounding = square.textContent;
-                let oldBombsSurroundingClass = 'B' + bombsPreviouslySurrounding;
-
-                square.innerHTML = bombsCurrentlyAround;
-                square.classList.replace(oldBombsSurroundingClass, `B${bombsCurrentlyAround}`);
+                updateOldSiblingSquaresNearNewlyAddedSquares(square);
             }
         })
-
 
         container.style.gridTemplateRows = `repeat(${newRowsToFit}, minmax(24px, 1fr))`;
         rowsToFit = newRowsToFit;
         boardHeight = newBoardHeight;
         rows = document.querySelectorAll('.row');
+        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
     }
-    tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
 })
 
-screen.orientation.addEventListener('change', () => {
-    let newWidth = container.offsetWidth;
-    let newHeight = container.offsetHeight;
-    let rowsVisible = Math.floor(newHeight / squareSize);
-    let columnsVisible = Math.floor(newWidth / squareSize);
-    let matrixLength = matrix.length;
+function updateOldSiblingSquaresNearNewlyAddedSquares(square) {
+    let Y = square.dataset.position.split('_')[0];
+    let X = square.dataset.position.split('_')[1];
 
-    for (let i = 0; i < matrixLength; i++) {
-        if (i < rowsVisible) {
-            matrix[i].forEach((square, squareIndex) => {
-                if (squareIndex < columnsVisible) {
-                    let Y = square.position.split('_')[0];
-                    let X = square.position.split('_')[1];
-                    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
+    let oldBombsSurrounding = square.textContent;
+    let oldBombsSurroundingClass = 'B' + oldBombsSurrounding;
+    let bombsCurrentlyAround = countBombs(Y, X);
     
-                    square.isWithinViewport = true;
-                    squareToUpdate.style.display = 'flex';
-                } else {
-                    let Y = square.position.split('_')[0];
-                    let X = square.position.split('_')[1];
-                    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
-
-                    square.isWithinViewport = false;
-                }
-            })
     
-            rows[i].style.display = 'flex';
-        } else {
-            let outsideViewportRow = i;
-
-            matrix[outsideViewportRow].forEach((square) => {
-                square.isWithinViewport = false;
-            })
-        }
-    }
-
-    squaresInViewport = rowsVisible * columnsVisible;
-    squaresInterractedWith = 0;
-
-    matrix.forEach((row) => {
-        row.forEach((square) => {
-            if (square.isWithinViewport) {
-                if (square.isFlagged || square.isRevealed) {
-                    squaresInterractedWith++;
-                }
-            }
-        })
-    })
-})
-
-function isMobile() {
-    var check = false;
-    
-    if (boardWidth < 720) {
-        check = true;
-    }
-    
-    if (check) {
-        return 32
-    } else {
-        return 32
-    }
-};
+    square.innerHTML = bombsCurrentlyAround;
+    square.classList.replace(oldBombsSurroundingClass, `B${bombsCurrentlyAround}`);
+}

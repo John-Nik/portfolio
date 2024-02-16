@@ -6,9 +6,12 @@ import GithubIcon from './GithubIcon.js';
 import SocialsIcon from './SocialsIcon.js';
 import FlagIcon from './FlagIcon.js';
 
-export default function Footer({children}) {
+export default function Footer() {
     return ( 
         <footer>
+            <div className={'toggle-background'}>
+
+            </div>
             <ul className={'footer-links-container'}>
                 <li>
                     <a href={'tel:0035799475294'}>+357 99475294</a>
@@ -35,7 +38,6 @@ export default function Footer({children}) {
                     <FlagIcon />
                 </li>
             </ul>
-            {children}
         </footer>
     )
 }

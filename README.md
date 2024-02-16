@@ -56,3 +56,11 @@
 **0.5.11:** Removed the -webkit-backdrop-filter
 
 **0.5.12:** Increased the square size of mobile devices to make it easier for the user to play the game without any frustration and mistaps
+
+**0.5.13:** <ul>
+<li>Fixed an issue where the board height's was going out of the intended bounds.</li>
+<li>Fixed the footer's call and email buttons not working on mobile</li>
+<li>Fixed the footer's styling cropping over the board</li>
+<li>Debloated the css for the minesweeper game</li>
+<li>Slight optimization on the minesweeper.js for more readability and minimal perfomance gains</li>
+</ul>
