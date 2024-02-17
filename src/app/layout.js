@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
 
+
 const zcoolFont = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], display: 'swap'})
 const firaCodeFont = Fira_Code({subsets: ['latin'], preload: true, variable: '--fira-code', display: 'swap'})
 const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], preload: true, variable: '--press-start-font', display: 'swap'})
@@ -39,16 +40,11 @@ export default function heads({children}) {
         }
 
 
-        gameStart.innerHTML = '<div></div>';
+        gameStart.innerHTML = '<div></div>';    
     }
 
     return (
         <html lang="en" className={`${firaCodeFont.variable} ${pressStartFont.variable}`}>
-            <head>
-                <meta charSet="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta name="viewport" content="minimal-ui" />
-            </head>
 
             <body className={zcoolFont.className}>
                 <header>

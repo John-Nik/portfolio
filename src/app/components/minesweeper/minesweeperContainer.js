@@ -1,5 +1,6 @@
 import Script from 'next/script'
 import Content from './content.js'
+import './styling.scss'
 
 export default function MinesweeperContainer() {
     return (

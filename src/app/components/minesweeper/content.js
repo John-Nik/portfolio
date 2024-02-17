@@ -1,5 +1,4 @@
 'use client'
-import './content.scss'
 import { useEffect } from 'react';
 
 export default function Content() {

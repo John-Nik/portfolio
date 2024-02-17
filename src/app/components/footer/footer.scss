@@ -90,6 +90,7 @@ $secondary-tint-1: #52E099;
 
                 &.show.flag-icon-wrap {
                     opacity: 1;
+                    z-index: 0;
                 }
 
                 .flag-icon {
@@ -109,6 +110,7 @@ $secondary-tint-1: #52E099;
                 &.show.socials-icon-wrap {
                     height: 30px;
                     opacity: 1;
+                    z-index: 0;
                 }
 
                 &.show .socials-icon {
