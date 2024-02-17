@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 export default function SocialsIcon() {
-    let [isFlag, setIsFlag] = useState(0);
+    let [isFlag, setIsFlag] = useState(1);
 
     function changeIcon() {
         let flagIcon = document.querySelector('.flag-icon');
@@ -17,6 +17,6 @@ export default function SocialsIcon() {
     }
 
     return (
-        <img className={'flag-icon'} onClick={changeIcon} src="/icons/flag2.svg" alt="" />
+        <img className={'flag-icon'} onClick={changeIcon} src="/icons/shovel.png" alt="" />
     )
 }

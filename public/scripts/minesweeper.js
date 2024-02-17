@@ -590,10 +590,7 @@ window.addEventListener('resize', () => {
     let deltaNewColumnsOldColumns = newColumnsToFit - columnsToFit;
     let deltaNewRowsOldRows = newRowsToFit - rowsToFit;
     const textContentWrapper = document.querySelector('.textContent');
-    let screenHeight = window.innerHeight - 90 - 58 + 'px';
     screenWidth = window.innerWidth;
-    const minesweeperContainer = document.querySelector('#minesweeper-container');
-    minesweeperContainer.style.height = screenHeight;
 
 
 

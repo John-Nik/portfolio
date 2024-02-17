@@ -63,4 +63,11 @@
 <li>Fixed the footer's styling cropping over the board</li>
 <li>Debloated the css for the minesweeper game</li>
 <li>Slight optimization on the minesweeper.js for more readability and minimal perfomance gains</li>
+</ul><br>
+
+**0.5.14:** <ul>
+<li>Moved the resizing board's height logic from minesweeper.js to set-board-height.js</li>
+<li>Fixed the issue with the Giannis clipping into the board</li>
+<li>Fixed the issue where the flag/shovel icons and the socials icons were being hidden</li>
+<li>Removed the < head > tag from the layout.js</li>
 </ul>
