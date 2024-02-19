@@ -82,7 +82,7 @@ export default function Content() {
                     <div className={'textContent'}>
                         <span className={'topper'}>Hello, my name is</span>
                         <h1 className={'title'}>Giannis Nikolaou</h1>
-                        <h2 className={'work'}> a front-end developer</h2>
+                        <h2 className={'work'}></h2>
                         <div className={'buttons-container'}>
                             <a href={'/contactMe.html'} className={'get-in-touch-button'}>
                                 <div className={'GIT-wrapper'}>

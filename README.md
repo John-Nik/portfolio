@@ -78,4 +78,8 @@
 <li>Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish</li>
 </ul><br>
 
-**0.5.16:** Minor change in the mobile navigation bar
+**0.5.16:** <ul>
+<li>Minor change in the mobile navigation bar</li>
+<li>minified the js scripts, and added a "debug" folder which contains their unminified versions</li>
+<li>Added a fancy typing effect to the my title on page load</li>
+</ul>
