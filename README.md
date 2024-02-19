@@ -76,4 +76,6 @@
 <li>Finished the entire UI of the home page</li>
 <li>Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping</li>
 <li>Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish</li>
-</ul>
+</ul><br>
+
+**0.5.16:** Minor change in the mobile navigation bar
