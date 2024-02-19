@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SocialsIcon() {
     let [isFlag, setIsFlag] = useState(1);
@@ -15,6 +15,18 @@ export default function SocialsIcon() {
         }
 
     }
+
+    useEffect(() =>  {
+        if ("ontouchstart" in document.documentElement) {
+            let flagIcon = document.querySelector('.flag-icon');
+            let flagIconWrap = document.querySelector('.flag-icon-wrap');
+            
+            flagIcon.classList.add('touch-enabled-device');
+            flagIconWrap.classList.add('touch-enabled-device');
+        }
+    }, [])
+
+    
 
     return (
         <img className={'flag-icon'} onClick={changeIcon} src="/icons/shovel.png" alt="" />

@@ -12,6 +12,7 @@ let squares;
 let rows;
 let squaresInBoard = 0;
 let squaresInterractedWith = 0;
+let squaresInViewport = 0;
 let autoplayRunning = true;
 let userDugBombPosition = '';
 let autoplayIntervalToDigSquare;
@@ -111,6 +112,7 @@ function generateSquare(htmlRow, matrixRowIndex, squareColumn) {
     })
 
     squaresInBoard++;
+    squaresInViewport++;
     htmlRow.insertAdjacentHTML('beforeEnd', `<div class="square" data-position="${matrixRowIndex}_${squareColumn}"></div>`)
 }
 
@@ -512,7 +514,7 @@ function emptySquare(Y, X) {
 
 
 function isGameFinished() {
-    if (squaresInBoard === squaresInterractedWith) {
+    if (squaresInViewport === squaresInterractedWith) {
         if (autoplayRunning) {
             populateBoard();
         } else {

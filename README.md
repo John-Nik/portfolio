@@ -70,4 +70,10 @@
 <li>Fixed the issue with the Giannis clipping into the board</li>
 <li>Fixed the issue where the flag/shovel icons and the socials icons were being hidden</li>
 <li>Removed the < head > tag from the layout.js</li>
+</ul><br>
+
+**0.5.15:** <ul>
+<li>Finished the entire UI of the home page</li>
+<li>Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping</li>
+<li>Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish</li>
 </ul>
