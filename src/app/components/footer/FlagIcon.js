@@ -17,7 +17,7 @@ export default function SocialsIcon() {
     }
 
     useEffect(() =>  {
-        if ("ontouchstart" in document.documentElement) {
+        if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)) {
             let flagIcon = document.querySelector('.flag-icon');
             let flagIconWrap = document.querySelector('.flag-icon-wrap');
             

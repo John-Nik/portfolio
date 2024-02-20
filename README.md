@@ -83,3 +83,5 @@
 <li>minified the js scripts, and added a "debug" folder which contains their unminified versions</li>
 <li>Added a fancy typing effect to the my title on page load</li>
 </ul>
+
+**0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices
