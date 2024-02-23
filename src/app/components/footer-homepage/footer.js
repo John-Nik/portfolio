@@ -3,6 +3,8 @@ import './footer.scss';
 import CallIcon from '../icons-components/CallIcon.js';
 import EmailIcon from '../icons-components/EmailIcon.js';
 import GithubIcon from '../icons-components/GithubIcon.js';
+import SocialsIcon from '../icons-components/SocialsIcon.js';
+import FlagIcon from '../icons-components/FlagIcon.js';
 
 export default function Footer() {
     return ( 
@@ -28,6 +30,12 @@ export default function Footer() {
                 </li>
                 <li>
                     <GithubIcon />
+                </li>
+                <li className={'socials-icon-wrap'}>
+                    <SocialsIcon />
+                </li>
+                <li className={'flag-icon-wrap'}>
+                    <FlagIcon />
                 </li>
             </ul>
         </footer>

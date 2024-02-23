@@ -1,10 +1,4 @@
-$base-color: #010E19;
-$shade-1: #011627;
-$tint-1: #406ABF;
-$tint-2: #83ADE2;
-$tint-3: #6ABAFB;
-$secondary-color: #217D7A;
-$secondary-tint-1: #52E099;
+@import './color-scheme.scss';
 
 * {
     margin: 0;
@@ -13,215 +7,13 @@ $secondary-tint-1: #52E099;
 
 @media only screen and (min-width: 0px) {
     body {
-        .square {
-            font-family: var(--fira-code);
-        }
-
         background-color: $base-color;
 
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 200000;
-    
-            nav {
-                background-color: $shade-1;
-                box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.05);
-                padding: 0px 16px;
-                height: 64px;
-                
-                .container {
-                    display: flex;
-                    flex-direction: row;
-                    height: 64px;
-                    justify-content: center;
-
-                    .dead-smiley-wrapper {
-                        display: none;
-                        position: absolute;
-                        margin-top: 24px;
-                        cursor: pointer;
-                        z-index: 10;
-                        
-
-                        img {
-                            width: 34px;
-                            height: 34px;
-                            cursor: pointer;
-                        }
-                    }
-            
-                    .logo-container {
-                        width: 50%;
-                        display: flex;
-                        align-items: center;
-                        position: relative;
-            
-                        .logo {
-                            color: white;
-                            font-size: clamp(48px, 5.6vw, 58px);
-                            letter-spacing: 1px;
-                            transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                        }
-            
-                        .logo:hover {
-                            color: $secondary-color;
-                        }
-                    }
-        
-                    .burger-icon-wrapper {
-                        width: 50%;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: center;
-        
-        
-        
-                        .burger-icon {
-                            width: 42px;
-                            height: 32px;
-                            display: flex;
-                            flex-direction: column;
-                            gap: 15px;
-                            overflow: hidden;
-                            align-items: flex-end;
-            
-                            .line1 {
-                                width: 48px;
-                                height: 2px;
-                                background-color: white;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            .line2 {
-                                width: 48px;
-                                height: 2px;
-                                background-color: white;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            .line3 {
-                                width: 48px;
-                                height: 2px;
-                                background-color: white;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-                        }
-            
-                        .burger-icon.open-menu {
-                            .line1 {
-                                transform: rotate(405deg) translateY(10px) translateX(10px);
-                            }
-            
-                            .line2 {
-                                opacity: 0;
-                            }
-            
-                            .line3 {
-                                transform: rotate(-405deg) translateY(-10px) translateX(10px);
-                            }
-                        }
-                    }
-        
-                    ul {
-                        display: flex;
-                        flex-direction: column;
-                        position: fixed;
-                        width: 100%;
-                        margin-top: 68px;
-                        padding-top: 0px;
-                        opacity: 0;
-                        list-style: none;
-                        gap: 0px;
-                        height: 0px;
-                        pointer-events: none;
-                        transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        
-                        @for $i from 1 through 4 {
-                            li:nth-child(1n + #{$i}) {
-                              transition-delay: $i * 0.06s + 0.05s;
-                            }
-                        }
-        
-                        li {
-                            transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            opacity: 0;
-                            display: flex;
-                            justify-content: center;
-                            height: fit-content;
-        
-                            a {
-                                font-size: 40px;
-                                color: white;
-                                text-decoration: none;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            a.activeLink {
-                                color: $tint-1;
-                            }
-                        }
-            
-                        li:hover {
-                            a {
-                                color: $secondary-color;
-                            }
-                        }
-                    }
-        
-                    ul.open-menu {
-                        display: flex;
-                        flex-direction: column;
-                        position: fixed;
-                        width: 100%;
-                        margin-top: 64px;
-                        padding-top: 32px;
-                        list-style: none;
-                        opacity: 1;
-                        gap: 48px;
-                        z-index: 1000;
-                        pointer-events: all;
-                        height: calc(100vh - 88px);
-                        background: rgb(1,22,39);
-                        -webkit-backdrop-filter: blur(2px);
-                        backdrop-filter: blur(2px);
-                        background: -moz-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
-                        background: -webkit-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
-                        background: linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
-                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#011627",endColorstr="#011627",GradientType=1);
-        
-                        li {
-                            opacity: 1;
-                            display: flex;
-                            justify-content: center;
-                            height: fit-content;
-        
-                            a {
-                                font-size: 40px;
-                                color: white;
-                                text-decoration: none;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            a.activeLink {
-                                color: $tint-1;
-                            }
-                        }
-            
-                        li:hover {
-                            a {
-                                color: $secondary-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
         main {
             margin-top: 64px;
             height: 100%;
+            min-height: calc(100vh - 64px - 60px);
         }
     }
     
@@ -230,60 +22,10 @@ $secondary-tint-1: #52E099;
 
 @media only screen and (min-width: 1200px) {
     body {
-        header {
-            nav {     
-                height: 90px;
-                   
-                .container {
-                    padding: 0px 32px;
-                    justify-content: center;
-        
-                    .logo-container {
-                        display: flex;
-                        align-items: flex-end;
-                        top: 6px;
-        
-                        .logo {
-                            cursor: pointer;
-                        }
-                    }
-        
-                    .burger-icon-wrapper {
-                        display: none;
-                    }
-            
-                    ul {
-                        display: flex;
-                        margin-top: 0px;
-                        margin-left: 0px;
-                        height: 64px;
-                        opacity: 1;
-                        width: 50%;
-                        position: relative;
-                        flex-direction: row;
-                        justify-content: flex-end;
-                        align-items: center;
-                        padding-top: 16px;
-                        gap: 48px;
-                        
-                        li {
-                            opacity: 1;
-        
-                            a {
-                                font-size: clamp(24px, 3vw, 29px);
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-                        }
-                    }
-                }
-            }
-        }
         
         main {
             margin-top: 90px;
-            min-height: calc(100vh - 98px - clamp(2.5rem, 3.75vw, 3rem) - 27px);
-            display: flex;
-            align-items: center;
+            min-height: calc(100vh - 90px - 60px);
         }
     }
 }

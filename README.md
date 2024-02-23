@@ -85,3 +85,10 @@
 </ul>
 
 **0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices
+
+**0.6.0:** <ul>
+<li>Added the about me page</li>
+<li>Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page</li>
+<li>Split the icons of of the footer into their own components for future re-usage</li>
+<li>Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"</li>
+</ul>
