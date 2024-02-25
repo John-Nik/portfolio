@@ -100,8 +100,10 @@
 
 **0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
 
-**0.6.3:** Undid the changes due to vh including mobile browser's UI into its calculation
+**0.6.3:** Undid the changes due to vh/vb not accounting for the mobile browser's UI into its calculation
 
-**0.6.4:** Adjusted the height of the < main > element as that seems to be the culprit for the bug where the footer overflows both from tablet devices and mobile phones
+**0.6.4:** Adjusted the height styling properties of the < main > element as that seems to be the culprit for the bug where the footer overflows both from tablet devices and mobile phones
 
 **0.6.5:** Added more sections in the about me page, and also removed some leftover console.logs from the Header components
+
+**0.6.6:** Added partytown
