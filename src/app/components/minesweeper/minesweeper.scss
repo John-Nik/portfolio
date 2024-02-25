@@ -1,12 +1,7 @@
 #minesweeper-container {
     width: 100%;
     position: relative;
-}
-
-@media only screen and (min-width: 0px) {
-    #minesweeper-container {
-        height: calc(100vb - 64px - 58px);
-    }
+    height: calc(100vh - 64px - 58px);
 }
 
 #game {
