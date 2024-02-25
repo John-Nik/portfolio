@@ -99,3 +99,5 @@
 </ul><br>
 
 **0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
+
+**0.6.3:** Undid the changes due to vh including mobile browser's UI into its calculation
