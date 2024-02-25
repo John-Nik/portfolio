@@ -1,0 +1,78 @@
+@import '../../../../color-scheme.scss';
+
+@media only screen and (min-width: 0px) {
+    #description-section {
+        display: flex;
+        width: 100%;
+        height: calc(80vh - 100px);
+        min-height: 600px;
+        max-height: 800px;
+        justify-content: center;
+    
+        .container {
+            width: 100%;
+            max-width: 1480px;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+    
+            .text-content {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding-left: 24px;
+                padding-right: 24px;
+    
+                p {
+                    width: 100%;
+                    color: white;
+                    font-size: clamp(20px, 2vw, 28px);
+                    font-family: var(--fira-code);
+                    text-align: center;
+    
+                    .colored-text {
+                        color: $secondary-tint-1;
+                    }
+                }
+            }
+    
+            .image-wrapper {
+                display: none;
+                width: 50%;
+                justify-content: flex-end;
+                padding-right: 24px;
+                align-items: center;
+    
+                img {
+                    width: 80%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media only screen and (min-width: 800px) {
+    #description-section {
+        height: 80vh;
+
+        .container {
+
+            .image-wrapper {
+                display: flex;
+            }
+            
+            .text-content {
+                width: 50%;
+                padding-right: 0px;
+
+                p {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

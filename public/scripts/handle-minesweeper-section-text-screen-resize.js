@@ -1,0 +1,1 @@
+const breakLineTextContent=document.querySelector(".break-line");window.innerWidth<950?breakLineTextContent.innerHTML="<br><br>":breakLineTextContent.innerHTML="",window.addEventListener("resize",(()=>{window.innerWidth<950?breakLineTextContent.innerHTML="<br><br>":breakLineTextContent.innerHTML=""}));

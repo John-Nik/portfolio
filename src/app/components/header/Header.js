@@ -16,10 +16,6 @@ export default function Header() {
         setNavMenuState((navMenuState + 1) % 2);
     }
 
-    useEffect(() => {
-        console.log('change')
-    }, [pathname])
-
     return (
         <header>
             <nav>

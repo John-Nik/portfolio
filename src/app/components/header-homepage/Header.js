@@ -15,10 +15,6 @@ export default function Header() {
         setNavMenuState((navMenuState + 1) % 2);
     }
 
-    useEffect(() => {
-        console.log('change')
-    }, [pathname])
-
     function startGame() {
         const container = document.querySelector('.container');
         const containerWidth = container.offsetWidth;

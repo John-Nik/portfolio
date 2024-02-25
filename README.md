@@ -103,3 +103,5 @@
 **0.6.3:** Undid the changes due to vh including mobile browser's UI into its calculation
 
 **0.6.4:** Adjusted the height of the < main > element as that seems to be the culprit for the bug where the footer overflows both from tablet devices and mobile phones
+
+**0.6.5:** Added more sections in the about me page, and also removed some leftover console.logs from the Header components
