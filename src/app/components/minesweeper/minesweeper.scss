@@ -1,24 +1,17 @@
-@media only screen and (max-width: 860px) {
-    #minesweeper-container {
-        height: calc(100vh - 64px - 58px);
-    }
-}
-
 #minesweeper-container {
     width: 100%;
-    height: calc(100vh - 90px - 58px);
     position: relative;
 }
 
 @media only screen and (min-width: 0px) {
     #minesweeper-container {
-        height: calc(100vh - 64px - 58px);
+        height: calc(100vb - 64px - 58px);
     }
 }
 
 @media only screen and (min-width: 860px) {
     #minesweeper-container {
-        height: calc(100vh - 90px - 58px);
+        height: calc(100vb - 90px - 58px);
     }
 }
 

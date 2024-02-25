@@ -96,4 +96,6 @@
 **0.6.1:** <ul>
     <li>Removed the unnecessary javascript that sets the board height and instead used css for it</li>
     <li>Fixed a bug with the footer-homepage where it doesn't overflows the viewport of mobile devices causing the icons of it to not be visible</li>
-</ul>
+</ul><br>
+
+**0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
