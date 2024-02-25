@@ -212,7 +212,7 @@ $secondary-tint-1: #52E099;
 
         main {
             margin-top: 64px !important;
-            height: 100% !important;
+            height: min-content;
         }
     }
     
@@ -273,7 +273,6 @@ $secondary-tint-1: #52E099;
         
         main {
             margin-top: 90px !important;
-            min-height: calc(100vh - 98px - clamp(2.5rem, 3.75vw, 3rem) - 27px) !important;
             display: flex !important;
             align-items: flex-start !important;
         }

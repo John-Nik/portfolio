@@ -101,3 +101,5 @@
 **0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
 
 **0.6.3:** Undid the changes due to vh including mobile browser's UI into its calculation
+
+**0.6.4:** Adjusted the height of the < main > element as that seems to be the culprit for the bug where the footer overflows both from tablet devices and mobile phones
