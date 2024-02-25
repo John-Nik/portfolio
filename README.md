@@ -37,7 +37,7 @@
     <li>Half completed the mobile and tablet version of the page</li>
     <li>Optimized the code for more readability and speed</li>
     <li>Changed the UI of the information panel to make it more readable</li>
-</ul>
+</ul><br>
 
 **0.5.4:** Greatly made progress towards the mobile version of the home page
 
@@ -56,39 +56,44 @@
 **0.5.11:** Removed the -webkit-backdrop-filter
 
 **0.5.12:** Increased the square size of mobile devices to make it easier for the user to play the game without any frustration and mistaps
-
+<br><br>
 **0.5.13:** <ul>
-<li>Fixed an issue where the board height's was going out of the intended bounds.</li>
-<li>Fixed the footer's call and email buttons not working on mobile</li>
-<li>Fixed the footer's styling cropping over the board</li>
-<li>Debloated the css for the minesweeper game</li>
-<li>Slight optimization on the minesweeper.js for more readability and minimal perfomance gains</li>
+    <li>Fixed an issue where the board height's was going out of the intended bounds.</li>
+    <li>Fixed the footer's call and email buttons not working on mobile</li>
+    <li>Fixed the footer's styling cropping over the board</li>
+    <li>Debloated the css for the minesweeper game</li>
+    <li>Slight optimization on the minesweeper.js for more readability and minimal perfomance gains</li>
 </ul><br>
 
 **0.5.14:** <ul>
-<li>Moved the resizing board's height logic from minesweeper.js to set-board-height.js</li>
-<li>Fixed the issue with the Giannis clipping into the board</li>
-<li>Fixed the issue where the flag/shovel icons and the socials icons were being hidden</li>
-<li>Removed the < head > tag from the layout.js</li>
+    <li>Moved the resizing board's height logic from minesweeper.js to set-board-height.js</li>
+    <li>Fixed the issue with the Giannis clipping into the board</li>
+    <li>Fixed the issue where the flag/shovel icons and the socials icons were being hidden</li>
+    <li>Removed the < head > tag from the layout.js</li>
 </ul><br>
 
 **0.5.15:** <ul>
-<li>Finished the entire UI of the home page</li>
-<li>Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping</li>
-<li>Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish</li>
+    <li>Finished the entire UI of the home page</li>
+    <li>Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping</li>
+    <li>Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish</li>
 </ul><br>
 
 **0.5.16:** <ul>
-<li>Minor change in the mobile navigation bar</li>
-<li>minified the js scripts, and added a "debug" folder which contains their unminified versions</li>
-<li>Added a fancy typing effect to the my title on page load</li>
-</ul>
+    <li>Minor change in the mobile navigation bar</li>
+    <li>minified the js scripts, and added a "debug" folder which contains their unminified versions</li>
+    <li>Added a fancy typing effect to the my title on page load</li>
+</ul><br>
 
-**0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices
+**0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices<br><br>
 
 **0.6.0:** <ul>
-<li>Added the about me page</li>
-<li>Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page</li>
-<li>Split the icons of of the footer into their own components for future re-usage</li>
-<li>Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"</li>
+    <li>Added the about me page</li>
+    <li>Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page</li>
+    <li>Split the icons of of the footer into their own components for future re-usage</li>
+    <li>Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"</li>
+</ul><br>
+
+**0.6.1:** <ul>
+    <li>Removed the unnecessary javascript that sets the board height and instead used css for it</li>
+    <li>Fixed a bug with the footer-homepage where it doesn't overflows the viewport of mobile devices causing the icons of it to not be visible</li>
 </ul>
