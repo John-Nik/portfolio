@@ -107,3 +107,12 @@
 **0.6.5:** Added more sections in the about me page, and also removed some leftover console.logs from the Header components
 
 **0.6.6:** Added partytown
+
+**0.6.7:** <ul>
+    <li>Added a new color-scheme profile</li>
+    <li>Added a new unfinished section to the about me page</li>
+    <li>Made the Minesweeper section's text on the About me page hyphenate</li>
+    <li>Added a library that forces hyphenation if the user's browser agent doesn't support it</li>
+    <li>Made the title of the page from a max of 96px to 64px</li>
+    <li>Made the speed of the autoplay on the about me page from 1.5 seconds intervals to 1.1 seconds</li>
+</ul><br>

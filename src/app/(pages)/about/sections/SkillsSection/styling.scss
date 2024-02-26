@@ -1,0 +1,56 @@
+@import '../../../../color-scheme.scss';
+
+#skills-section {
+    background: rgb(1,14,25);
+    background: -moz-linear-gradient(180deg, rgba(1,14,25,1) 0%, rgba(0,6,10,1) 20%);
+    background: -webkit-linear-gradient(180deg, rgba(1,14,25,1) 0%, rgba(0,6,10,1) 20%);
+    background: linear-gradient(180deg, rgba(1,14,25,1) 0%, rgba(0,6,10,1) 20%);
+    display: flex;
+    justify-content: center;
+    height: 400vh;
+    max-height: 2500px;
+    width: 100%;
+
+    .container {
+        display: flex;
+        width: 100%;
+        max-width: 1480px;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0px 24px;
+
+        p {
+            width: 100%;
+            display: flexbox;
+            height: fit-content;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 20px;
+            font-family: var(--fira-code);
+            text-align: left;
+            margin-bottom: 90px;
+            max-width: 800px;
+            hyphens: auto;
+
+            .colored-text {
+                color: $secondary-tint-2;
+            }
+        }
+
+        .threeD-icons-container {
+            display: grid;
+            width: 100%;
+            height: fit-content;
+            grid-template-columns: repeat(3, 1fr);
+
+            .threeD-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 300px;
+                width: 100%;
+            }
+        }
+    }
+}

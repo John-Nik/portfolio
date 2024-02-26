@@ -35,6 +35,8 @@
             font-size: clamp(20px, 2vw, 28px);
             font-family: var(--fira-code);
             color: white;
+            text-align: left;
+            hyphens: auto;
 
             .colored-text {
                 color: $secondary-tint-1;

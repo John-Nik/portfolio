@@ -119,7 +119,7 @@ function autoplayGame() {
         }
     }
 
-    autoplayIntervalToDigSquare = setInterval(unrevealedSquares, 1500);
+    autoplayIntervalToDigSquare = setInterval(unrevealedSquares, 1100);
 }
 
 
