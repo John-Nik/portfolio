@@ -10,28 +10,24 @@ export default function SkillsSection() {
                     <div className={'threeD-icons-container'}>
                         <div className={'threeD-icon'}>
                             <div className={'html5'}>
+                                <div className={'img-wrapper'}>
+                                    <img src="icons/html5-logo.svg" />
+                                </div>
                             </div>
                         </div>
                         <div className={'threeD-icon'}>
                             <div className={'css3'}>
-                                <div className={'left-wall'}>
-                                    <div className={'white-color'}>
-                                        <div className={'light-blue-color'} />
-                                        <div className={'light-blue-color2'} />
-                                    </div>
-                                </div>
-                                <div className={'right-wall'}>
-                                    <div className={'lighter-blue-wall'}>
-                                        <div className={'white-color'}>
-                                            <div className={'light-blue-color'} />
-                                            <div className={'light-blue-color2'} />
-                                        </div>
-                                    </div>
+                                <div className={'img-wrapper'}>
+                                    <img src="icons/css3-logo.svg" />
                                 </div>
                             </div>
                         </div>
                         <div className={'threeD-icon'}>
-                            <div className={'scss'}></div>
+                            <div className={'scss'}>
+                                <div className={'img-wrapper'}>
+                                    <img src="icons/sass.svg" />
+                                </div>
+                            </div>
                         </div>
                         <div className={'threeD-icon'}>
                             <div className={'javascript'}>

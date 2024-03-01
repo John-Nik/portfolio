@@ -132,170 +132,257 @@
                 }
 
                 .css3 {
-                    width: 250px;
-                    height: 250px;
+                    width: 200px;
+                    height: 200px;
                     position: relative;
                     display: flex;
                     flex-direction: row;
                     transform-style: preserve-3d;
+                    transition: all 0.2s ease-in-out;
+                    scale: 1.0;
 
-                    .left-wall {
-                        transform-style: preserve-3d;
-                        width: 80px;
+                    .img-wrapper {
+                        width: 200px;
                         height: 200px;
-                        background-color: #264de4;
-                        transform-origin: 0 100%;
-                        transform: skewY(20deg) translateY(-20px);
-                        transition: all 0.2s ease-in-out;
-                        clip-path: polygon(0 0, 100% 0, 100% 100%, 5px 100%);
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: center;
-                        z-index: 1;
-                        
-                        .white-color {
-                            width: 66%;
-                            height: 60%;
-                            background-color: white;
-                            transform: skewX(-2deg);
-                            transition: all 0.2s ease-in-out;
+                        position: relative;
+                        top: -10px;
+
+                        &:after {
+                            content: '';
                             display: flex;
-                            flex-direction: column;
-                            gap: 15%;
-                            transform: translateX(1px);
-                            overflow: visible;
-                            align-items: flex-end;
-                            clip-path: polygon(0 0, 100% 0, 100% 100%, 2px 100%);
+                            width: 22px;
+                            height: 98%;
+                            background-color: hsl(228, 78%, 35%);
+                            position: absolute;
+                            left: 80%;
+                            top: 0%;
+                            transform-style: preserve-3d;
+                            transform: skewY(-30deg) rotateZ(5deg) translateX(-5px) translateY(-15px);
+                            z-index: -1;
+                            transition: all ease-in-out 0.2s;
+                            clip-path: polygon(0 7px, 100% 20px, 90% 95%, 3px 99%)
+                        }
 
-                            .light-blue-color {
-                                margin-top: 28%;
-                                width: 70%;
-                                height: 25%;
-                                background-color: #2965f1;
-                                transition: all 0.2s ease-in-out;
-                            }
+                        &:before {
+                            content: '';
+                            display: flex;
+                            width: calc(100% - 12px);
+                            height: 20px;
+                            background-color: hsl(228, 78%, 35%);
+                            transform: skewX(-20deg) rotateZ(10deg) translateY(-17px) translateX(-22px);
+                            transform-style: preserve-3d;
+                            clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%);
+                            transition: all ease-in-out 0.2s;
+                            position: absolute;
+                        }
 
-                            .light-blue-color2 {
-                                width: 65%;
-                                height: 35%;
-                                background-color: #2965f1;
-                                transition: all 0.2s ease-in-out;
-                            }
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            transform-style: preserve-3d;
+                            transform: skewY(10deg) translateX(-20px);
+                            transition: all ease-in-out 0.2s;
+                            clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
+                            position: relative;
                         }
                     }
 
-                    &:hover .left-wall {
-                        width: 100px;
-                        height: 200px;
-                        scale: 1.1;
-                        transform: skewY(10deg) translateY(-20px);
-                        clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%);
+                    &:hover {
+                        scale: 1.3;
 
-                        .white-color {
-                            clip-path: polygon(0 0, 100% 0, 100% 100%, 5px 100%);
-
-                            .light-blue-color {
-                                margin-top: 20%;
-                                width: 100%;
-                                height: 25%;
-                                background-color: #2965f1;
-                                transition: all 0.2s ease-in-out;
-                            }
-
-                            .light-blue-color2 {
-                                width: 65%;
-                                height: 35%;
-                                background-color: #2965f1;
-                                transition: all 0.2s ease-in-out;
-                            }
-                        }
-                    }
-
-                    .right-wall {
-                        transform-style: preserve-3d;
-                        width: 120px;
-                        height: 200px;
-                        background-color: #264de4;
-                        transform: skewY(-3deg) translateX(-2px) translateY(9px);
-                        transform-origin: 0 100%;
-                        transition: all 0.2s ease-in-out;
-                        display: flex;
-                        align-items: center;
-                        overflow: visible;
-                        border-radius: 0px 0px 0px 4px;
-                        z-index: -1;
-                        clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
-
-                        .lighter-blue-wall {
-                            background-color: #2965f1;
-                            width: 80%;
-                            height: 80%;
-                            transform: skewX(-2deg);
-                            clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
-                            transition: all 0.2s ease-in-out;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-around;
-    
-                            .white-color {
-                                background-color: white;
-                                width: 80%;
-                                height: 75%;
-                                clip-path: polygon(0 0, 100% 0, calc(100% - 9px) 100%, 0 100%);
-                                transform: skewX(-2deg);
-                                transition: all 0.2s ease-in-out;
+                        .img-wrapper {
+                            &:after {
                                 display: flex;
-                                flex-direction: column;
-                                gap: 15%;
-                                transform: translateX(-2px);
-                                overflow: visible;
+                                width: 0px;
+                                height: 87%;
+                                left: 80%;
+                                top: 0%;
+                                transform: skewY(-15deg) rotateZ(5deg) translateX(15px) translateY(-12px);
+                                clip-path: polygon(0 3px, 100% 3px, 100% 98%, 0 99.5%);
+                            }
     
-                                .light-blue-color {
-                                    margin-top: 20%;
-                                    width: 70%;
-                                    height: 25%;
-                                    background-color: #2965f1;
-                                    clip-path: polygon(0 0, 100% 0, calc(100% - 2px) 100%, 0 100%);
-                                    transform: translateX(-1px);
-                                    transition: all 0.2s ease-in-out;
-                                }
-    
-                                .light-blue-color2 {
-                                    width: 65%;
-                                    height: 35%;
-                                    background-color: #2965f1;
-                                    clip-path: polygon(0 0, 100% 0, calc(100% - 2px) 100%, 0 100%);
-                                    transform: translateX(-1px);
-                                    transition: all 0.2s ease-in-out;
-                                }
+                            &:before {
+                                width: calc(100% - 25px);
+                                height: 0px;
+                                transform: translateY(-15px) translateX(12px);
+                                clip-path: polygon(5px 0, calc(100% - 5px) 0, 100% 100%, 1px 100%);
+                            }
+
+
+                            img {
+                                transform: skewY(0) translateY(-20px) translateX(0);
                             }
                         }
                     }
+                }
 
-                    &:hover .right-wall {
-                        width: 100px;
+                .html5 {
+                    width: 200px;
+                    height: 200px;
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    transform-style: preserve-3d;
+                    transition: all 0.2s ease-in-out;
+                    scale: 1.0;
+
+                    .img-wrapper {
+                        width: 200px;
                         height: 200px;
-                        scale: 1.1;
-                        transform: skewY(-10deg) translateX(7px) translateY(-1px);
-                        clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+                        position: relative;
+                        top: -10px;
 
-                        .lighter-blue-wall {
-                            clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 100%, 0 100%);
+                        &:after {
+                            content: '';
+                            display: flex;
+                            width: 22px;
+                            height: 98%;
+                            background-color: hsl(12, 77%, 35%);
+                            position: absolute;
+                            left: 80%;
+                            top: 0%;
+                            transform-style: preserve-3d;
+                            transform: skewY(-30deg) rotateZ(5deg) translateX(-5px) translateY(-15px);
+                            z-index: -1;
+                            transition: all ease-in-out 0.2s;
+                            clip-path: polygon(0 7px, 100% 20px, 90% 95%, 3px 99%)
+                        }
+
+                        &:before {
+                            content: '';
+                            display: flex;
+                            width: calc(100% - 12px);
+                            height: 20px;
+                            background-color: hsl(12, 77%, 35%);
+                            transform: skewX(-20deg) rotateZ(10deg) translateY(-17px) translateX(-22px);
+                            transform-style: preserve-3d;
+                            clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%);
+                            transition: all ease-in-out 0.2s;
+                            position: absolute;
+                        }
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            top: 2px;
+                            left: 11px;
+                            transform-style: preserve-3d;
+                            transform: skewY(10deg) translateX(-20px);
+                            transition: all ease-in-out 0.2s;
+                            clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 86.5%, 44% 100%, 2px 89%);
+                            position: relative;
+                        }
+                    }
+
+                    &:hover {
+                        scale: 1.3;
+
+                        .img-wrapper {
+                            &:after {
+                                display: flex;
+                                width: 0px;
+                                height: 87%;
+                                left: 80%;
+                                top: 0%;
+                                transform: skewY(-15deg) rotateZ(5deg) translateX(15px) translateY(-12px);
+                                clip-path: polygon(0 3px, 100% 3px, 100% 98%, 0 99.5%);
+                            }
     
-                            .white-color {
-                                clip-path: polygon(0 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
-    
-                                .light-blue-color {
-                                    width: 67%;
-                                    clip-path: polygon(0 0, 100% 0, calc(100% - 1px) 100%, 0 100%);
-                                }
-    
-                                .light-blue-color2 {
-                                    clip-path: polygon(0 0, 100% 0, calc(100% - 1px) 100%, 0 100%);
-                                }
+                            &:before {
+                                width: calc(100% - 25px);
+                                height: 0px;
+                                transform: translateY(-15px) translateX(12px);
+                                clip-path: polygon(5px 0, calc(100% - 5px) 0, 100% 100%, 1px 100%);
+                            }
+
+
+                            img {
+                                transform: skewY(0) translateY(-20px) translateX(0);
                             }
                         }
-                    }                    
+                    }
+                }
+
+                .scss {
+                    width: 200px;
+                    height: 200px;
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    transform-style: preserve-3d;
+                    transition: all 0.2s ease-in-out;
+                    scale: 1.0;
+
+                    .img-wrapper {
+                        width: 200px;
+                        height: 200px;
+                        position: relative;
+                        top: -10px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            top: 2px;
+                            left: 11px;
+                            transform-style: preserve-3d;
+                            transform: skewY(10deg) translateX(-20px);
+                            transition: all ease-in-out 0.2s;
+                            background-color: white;
+                            clip-path: circle(49%);
+                            position: relative;
+                        }
+
+                        &:before {
+                            content: '';
+                            display: flex;
+                            width: 70px;
+                            height: 50px;
+                            background-color: rgb(0, 6, 10);
+                            position: absolute;
+                            z-index: -1;
+                            top: 92%;
+                            left: 60%;
+                            transform: skewY(-30deg) translateX(20px) translateY(1px);
+                            transition: all ease-in-out 0.2s;
+                        }
+
+                        &:after {
+                            display: flex;
+                            content: '';
+                            width: 200px;
+                            height: 220px;
+                            position: absolute;
+                            top: 0%;
+                            left: 80%;
+                            transform: rotateZ(-30deg) skewX(2deg) translateX(-44px) translateY(-92px);
+                            clip-path: ellipse(8rem 55% at left center);
+                            background-color: hsl(330, 55%, 50%);
+                            z-index: -2;
+                            transition: all ease-in-out 0.2s;
+                        }
+                    }
+
+                    &:hover {
+                        scale: 1.35;
+                        transform: translateY(-10px);
+
+                        .img-wrapper {
+                            img {
+                                transform: translateX(0px) translateY(-10px) skewY(0);
+                            }
+
+                            &:after {
+                                height: 180px;
+                                width: 200px;
+                                transform: translateY(-54px) translateX(-69px) rotateZ(-30deg) skewX(2deg);
+                                clip-path: ellipse(100px 50% at left center);
+                            }
+                            
+                            &:before {
+                                height: 20px;
+                            }
+                        }
+                    }
                 }
             }
         }

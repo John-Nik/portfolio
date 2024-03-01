@@ -1,7 +1,7 @@
-import Footer from './components/footer-homepage/footer.js';
-import MinesweeperContainer from './components/minesweeper/minesweeperContainer.js'
+import Footer from './components/footer-homepage/footer.jsx';
+import MinesweeperContainer from './components/minesweeper/minesweeperContainer.jsx'
 import './components/minesweeper/minesweeper.scss';
-import Header from './components/header-homepage/Header.js';
+import Header from './components/header-homepage/Header.jsx';
 
 
 

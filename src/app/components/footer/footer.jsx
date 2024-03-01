@@ -1,8 +1,8 @@
 import React from 'react';
 import './footer.scss';
-import CallIcon from '../icons-components/CallIcon.js';
-import EmailIcon from '../icons-components/EmailIcon.js';
-import GithubIcon from '../icons-components/GithubIcon.js';
+import CallIcon from '../icons-components/CallIcon.jsx';
+import EmailIcon from '../icons-components/EmailIcon.jsx';
+import GithubIcon from '../icons-components/GithubIcon.jsx';
 
 export default function Footer() {
     return ( 

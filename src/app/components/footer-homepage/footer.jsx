@@ -1,10 +1,10 @@
 import React from 'react';
 import './footer.scss';
-import CallIcon from '../icons-components/CallIcon.js';
-import EmailIcon from '../icons-components/EmailIcon.js';
-import GithubIcon from '../icons-components/GithubIcon.js';
-import SocialsIcon from '../icons-components/SocialsIcon.js';
-import FlagIcon from '../icons-components/FlagIcon.js';
+import CallIcon from '../icons-components/CallIcon.jsx';
+import EmailIcon from '../icons-components/EmailIcon.jsx';
+import GithubIcon from '../icons-components/GithubIcon.jsx';
+import SocialsIcon from '../icons-components/SocialsIcon.jsx';
+import FlagIcon from '../icons-components/FlagIcon.jsx';
 
 export default function Footer() {
     return ( 

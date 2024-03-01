@@ -118,3 +118,5 @@
 </ul><br>
 
 **0.6.8:** Added an unfinished skills section on the about me page
+
+**0.6.9:** Changed the filetype of all components and pages from .js to .jsx to start getting into a better habit, and added 4/8 3D icons on the about me skills section. Only works for desktops for now
