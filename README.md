@@ -116,3 +116,5 @@
     <li>Made the title of the page from a max of 96px to 64px</li>
     <li>Made the speed of the autoplay on the about me page from 1.5 seconds intervals to 1.1 seconds</li>
 </ul><br>
+
+**0.6.8:** Added an unfinished skills section on the about me page

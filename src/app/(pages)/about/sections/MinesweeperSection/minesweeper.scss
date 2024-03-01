@@ -1,5 +1,6 @@
 #background-game {
     background-color: black;
+    overflow: visible;
 }
 
 .row {
@@ -18,6 +19,7 @@
 
 
 .square {
+    top: 0px;
     width: 100%;
     height: 100%;
     min-width: 28px;
@@ -29,9 +31,11 @@
     align-items: center;
     font-size: 1.25rem;
     font-family: var(--fira-code);
+    transition: all ease-in-out 4s;
 }
 
 .square.revealed {
+    position: relative;
     box-shadow: none;
     color: white;
 

@@ -8,10 +8,38 @@ export default function SkillsSection() {
                     <p>Initially, I built personal projects to kickstart my journey. However, I soon felt the need for something <span className={'colored-text'}>more difficult,</span> and the idea of building websites for local businesses came to mind. That's when I decided to design and build websites for local businesses, accommodating all their wants and needs.</p>
 
                     <div className={'threeD-icons-container'}>
-                        <div className={'html5 threeD-icon'}></div>
-                        <div className={'css3 threeD-icon'}></div>
-                        <div className={'scss threeD-icon'}></div>
-                        <div className={'javascript threeD-icon'}></div>
+                        <div className={'threeD-icon'}>
+                            <div className={'html5'}>
+                            </div>
+                        </div>
+                        <div className={'threeD-icon'}>
+                            <div className={'css3'}>
+                                <div className={'left-wall'}>
+                                    <div className={'white-color'}>
+                                        <div className={'light-blue-color'} />
+                                        <div className={'light-blue-color2'} />
+                                    </div>
+                                </div>
+                                <div className={'right-wall'}>
+                                    <div className={'lighter-blue-wall'}>
+                                        <div className={'white-color'}>
+                                            <div className={'light-blue-color'} />
+                                            <div className={'light-blue-color2'} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={'threeD-icon'}>
+                            <div className={'scss'}></div>
+                        </div>
+                        <div className={'threeD-icon'}>
+                            <div className={'javascript'}>
+                                <div>
+                                    <span>JS</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <p>
