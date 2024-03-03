@@ -128,3 +128,5 @@
 **0.6.12:** Trying more webkit changes to optimize the animation effect for apple products
 
 **0.6.12.1:** Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
+
+**0.6.12.2:** Added a 0s transition-delay to all the animations

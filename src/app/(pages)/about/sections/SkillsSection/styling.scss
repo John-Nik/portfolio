@@ -245,8 +245,8 @@
                         -webkit-transform-style: preserve-3d;
                         transform: scale(1, 1);
                         -webkit-transform: scale(1, 1);
-                        transition: all 0.2s ease-in-out;
-                        -webkit-transition: all 0.2s ease-in-out;
+                        transition: all 0.2s ease-in-out 0s;
+                        -webkit-transition: all 0.2s ease-in-out 0s;
     
                         .img-wrapper {
                             width: 98px;
@@ -268,8 +268,8 @@
                                 -webkit-transform-style: preserve-3d;
                                 -webkit-transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px);
                                 z-index: -1;
-                                transition: all ease-in-out 0.2s;
-                                -webkit-transition: all 0.2s ease-in-out;
+                                transition: all ease-in-out 0.2s 0s;
+                                -webkit-transition: all 0.2s ease-in-out 0s;
                                 clip-path: polygon(0 10px, 100% 20px, 90% 95%, 3px 99%)
                             }
     
@@ -284,8 +284,8 @@
                                 -webkit-transform: skewX(-20deg) rotateZ(10deg) translateY(-9px) translateX(-6px);
                                 -webkit-transform-style: preserve-3d;
                                 clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
-                                transition: all ease-in-out 0.2s;
-                                -webkit-transition: all 0.2s ease-in-out;
+                                transition: all ease-in-out 0.2s 0s;
+                                -webkit-transition: all 0.2s ease-in-out 0s;
                                 position: absolute;
                             }
     
@@ -296,8 +296,8 @@
                                 transform-style: preserve-3d;
                                 transform: skewY(10deg);
                                 -webkit-transform: skewY(10deg);
-                                transition: all ease-in-out 0.2s;
-                                -webkit-transition: all 0.2s ease-in-out;
+                                transition: all ease-in-out 0.2s 0s;
+                                -webkit-transition: all 0.2s ease-in-out 0s;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
                                 position: relative;
                             }
