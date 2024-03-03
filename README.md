@@ -124,3 +124,5 @@
 **0.6.10:** Made progress in making the icons on the skills section mobile compatible
 
 **0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari
+
+**0.6.12:** Trying more webkit changes to optimize the animation effect for apple products
