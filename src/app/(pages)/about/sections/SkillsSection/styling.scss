@@ -243,9 +243,10 @@
                         flex-direction: row;
                         transform-style: preserve-3d;
                         -webkit-transform-style: preserve-3d;
+                        transform: scale(1, 1);
+                        -webkit-transform: scale(1, 1);
                         transition: all 0.2s ease-in-out;
                         -webkit-transition: all 0.2s ease-in-out;
-                        scale: 1;
     
                         .img-wrapper {
                             width: 98px;
@@ -303,7 +304,8 @@
                         }
     
                         &:hover {
-                            scale: 1.2;
+                            transform: scale(1.2, 1.2);
+                            -webkit-transform: scale(1.2, 1.2);
     
                             .img-wrapper {
                                 &:after {
