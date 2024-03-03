@@ -134,3 +134,5 @@
 **0.6.12.3:** Did some changes to see the end result in webkit browsers and debug from there
 
 **0.6.12.4:** Added a small delay in the picture to test a theory
+
+**0.6.12.5:** Added -webkit-clip-path

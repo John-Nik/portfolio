@@ -284,6 +284,7 @@
                                 -webkit-transform: skewX(-20deg) rotateZ(10deg) translateY(-9px) translateX(-6px);
                                 -webkit-transform-style: preserve-3d;
                                 clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
+                                -webkit-clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
                                 transition: all ease-in-out 0.2s 0s;
                                 -webkit-transition: all 0.2s ease-in-out 0.01s;
                                 position: absolute;
@@ -328,6 +329,7 @@
                                     transform: translateY(-20px) translateX(20px);
                                     -webkit-transform: translateY(-20px) translateX(20px);
                                     clip-path: polygon(0 0, 98% 1px, 98% 100%, 2px 100%);
+                                    -webkit-clip-path: polygon(0 0, 98% 1px, 98% 100%, 2px 100%);
                                 }
     
     
