@@ -122,3 +122,5 @@
 **0.6.9:** Changed the filetype of all components and pages from .js to .jsx to start getting into a better habit, and added 4/8 3D icons on the about me skills section. Only works for desktops for now
 
 **0.6.10:** Made progress in making the icons on the skills section mobile compatible
+
+**0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari
