@@ -130,3 +130,5 @@
 **0.6.12.1:** Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
 
 **0.6.12.2:** Added a 0s transition-delay to all the animations
+
+**0.6.12.3:** Did some changes to see the end result in webkit browsers and debug from there
