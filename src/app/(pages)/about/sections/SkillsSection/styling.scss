@@ -269,7 +269,7 @@
                                 -webkit-transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px);
                                 z-index: -1;
                                 transition: all ease-in-out 0.2s 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0.1s;
+                                -webkit-transition: all 0.2s ease-in-out 0.01s;
                                 clip-path: polygon(0 10px, 100% 20px, 90% 95%, 3px 99%)
                             }
     
@@ -285,7 +285,7 @@
                                 -webkit-transform-style: preserve-3d;
                                 clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
                                 transition: all ease-in-out 0.2s 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0.1s;
+                                -webkit-transition: all 0.2s ease-in-out 0.01s;
                                 position: absolute;
                             }
     
