@@ -293,8 +293,8 @@
                             }
     
                             img {
-                                width: 98px;
-                                height: 128px;
+                                width: 100%;
+                                height: 100%;
                                 -webkit-transform-style: preserve-3d;
                                 transform-style: preserve-3d;
                                 transform: skewY(10deg);
@@ -302,7 +302,7 @@
                                 transition: all 0.2s ease-in-out 0s;
                                 -webkit-transition: all 0.2s ease-in-out 0s;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
-                                position: relative;
+                                position: absolute;
                                 will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
                             }
                         }
@@ -315,7 +315,7 @@
                                 &:after {
                                     display: flex;
                                     width: 0px;
-                                    height: 69px;
+                                    height: 70%;
                                     left: 80%;
                                     top: 0%;
                                     transform: skewY(-5deg) rotateZ(5deg) translateX(30px) translateY(-20px);
@@ -324,8 +324,11 @@
                                 }
         
                                 &:before {
-                                    width: 95px;
+                                    width: 100%;
                                     height: 5px;
+                                    z-index: 5;
+                                    opacity: 0.5;
+                                    filter: hue-rotate(120deg);
                                     transform: translateY(-20px) translateX(20px);
                                     -webkit-transform: translateY(-20px) translateX(20px);
                                     clip-path: polygon(0 0, 98% 1px, 98% 100%, 2px 100%);
