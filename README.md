@@ -158,3 +158,5 @@
 -- **0.6.12.15:** Changed the width and height of the image from 100% & 100% to 98px and 128px respectively
 
 -- **0.6.12.16:** Changed the position property of the img from relative to absolute
+
+-- **0.6.12.17:** Changed the animation time function from ease-in-out to ease-in

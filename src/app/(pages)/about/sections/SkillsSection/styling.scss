@@ -268,8 +268,8 @@
                                 -webkit-transform-style: preserve-3d;
                                 -webkit-transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px);
                                 z-index: -1;
-                                transition: all 0.2s ease-in-out 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0s;
+                                transition: all 0.2s ease-in 0s;
+                                -webkit-transition: all 0.2s ease-in 0s;
                                 clip-path: polygon(0 10px, 100% 20px, 90% 95%, 3px 99%);
                                 will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
                             }
@@ -286,8 +286,8 @@
                                 -webkit-transform-style: preserve-3d;
                                 clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
                                 -webkit-clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
-                                transition: all 0.2s ease-in-out 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0s;
+                                transition: all 0.2s ease-in 0s;
+                                -webkit-transition: all 0.2s ease-in 0s;
                                 position: absolute;
                                 will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
                             }
@@ -299,8 +299,8 @@
                                 transform-style: preserve-3d;
                                 transform: skewY(10deg);
                                 -webkit-transform: skewY(10deg);
-                                transition: all 0.2s ease-in-out 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0s;
+                                transition: all 0.2s ease-in 0s;
+                                -webkit-transition: all 0.2s ease-in 0s;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
                                 position: absolute;
                                 will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
@@ -325,10 +325,7 @@
         
                                 &:before {
                                     width: 100%;
-                                    height: 5px;
-                                    z-index: 5;
-                                    opacity: 0.5;
-                                    filter: hue-rotate(120deg);
+                                    height: 0px;
                                     transform: translateY(-20px) translateX(20px);
                                     -webkit-transform: translateY(-20px) translateX(20px);
                                     clip-path: polygon(0 0, 98% 1px, 98% 100%, 2px 100%);
