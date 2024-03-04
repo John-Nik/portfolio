@@ -160,3 +160,5 @@
 -- **0.6.12.16:** Changed the position property of the img from relative to absolute
 
 -- **0.6.12.17:** Changed the animation time function from ease-in-out to ease-in
+
+-- **0.6.12.18:** Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
