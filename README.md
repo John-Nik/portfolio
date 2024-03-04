@@ -138,3 +138,5 @@
 -- **0.6.12.5:** Added -webkit-clip-path
 
 -- **0.6.12.6:** Changed the transition time from 0.2s to 1s for the img to test a theory
+
+-- **0.6.12.7:** Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
