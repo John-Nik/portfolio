@@ -168,3 +168,5 @@
 -- **0.6.12.20:** Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively
 
 -- **0.6.12.21:** Switched the shortened translate to translate3d(tx, ty, tz)
+
+-- **0.6.12.22:** Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
