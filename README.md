@@ -146,3 +146,5 @@
 -- **0.6.12.9:** Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
 
 -- **0.6.12.10:** Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
+
+-- **0.6.12.11:** Added the width and height in the will-change property

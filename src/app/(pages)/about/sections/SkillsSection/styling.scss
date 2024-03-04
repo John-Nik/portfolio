@@ -271,7 +271,7 @@
                                 transition: all 0.2s ease-in-out 0s;
                                 -webkit-transition: all 0.2s ease-in-out 0s;
                                 clip-path: polygon(0 10px, 100% 20px, 90% 95%, 3px 99%);
-                                will-change: transform, -webkit-transform, clip-path, -webkit-clip-path;
+                                will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
                             }
     
                             &:before {
@@ -289,7 +289,7 @@
                                 transition: all 0.2s ease-in-out 0s;
                                 -webkit-transition: all 0.2s ease-in-out 0s;
                                 position: absolute;
-                                will-change: transform, -webkit-transform, clip-path, -webkit-clip-path;
+                                will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
                             }
     
                             img {
@@ -303,7 +303,7 @@
                                 -webkit-transition: all 0.2s ease-in-out 0s;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
                                 position: relative;
-                                will-change: transform, -webkit-transform, clip-path, -webkit-clip-path;
+                                will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
                             }
                         }
     
