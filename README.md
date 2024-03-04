@@ -142,3 +142,5 @@
 -- **0.6.12.7:** Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
 
 -- **0.6.12.8:** Added the translate3d(100) property to force gpu processing of the transition animations
+
+-- **0.6.12.9:** Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
