@@ -152,3 +152,5 @@
 -- **0.6.12.12:** Added the translateZ(0) property
 
 -- **0.6.12.13:** Changed the width and height properties from percentages to px
+
+-- **0.6.12.14:** Changed the width of the top surface from 98px to 95px
