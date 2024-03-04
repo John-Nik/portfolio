@@ -299,8 +299,8 @@
                                 transform-style: preserve-3d;
                                 transform: translate3d(0px, 0px, 0px) skewY(10deg);
                                 -webkit-transform: translate3d(0px, 0px, 0px) skewY(10deg);
-                                transition: all 0.2s ease-in-out 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0s;
+                                transition: all 0.2s ease-in-out 33ms;
+                                -webkit-transition: all 0.2s ease-in-out 33ms;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
                                 position: absolute;
                                 will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;
@@ -321,6 +321,7 @@
                                     transform: translate3d(30px, -20px, 0px) skewY(-5deg) rotateZ(5deg);
                                     -webkit-transform: translate3d(30px, -20px, 0px) skewY(-5deg) rotateZ(5deg);
                                     clip-path: polygon(0 8px, 99% 2px, 100% 98%, 0 99.5%);
+                                    -webkit-clip-path: polygon(0 8px, 99% 2px, 100% 98%, 0 99.5%);
                                 }
         
                                 &:before {

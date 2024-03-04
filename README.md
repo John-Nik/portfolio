@@ -172,3 +172,7 @@
 -- **0.6.12.22:** Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
 
 -- **0.6.12.23:** Changed the px values to the correct ones
+
+-- **0.6.12.24:** Added the -webkit-clip-path on :after
+
+-- **0.6.12.25:** Added a 33ms delay in the img
