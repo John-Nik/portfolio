@@ -264,9 +264,9 @@
                                 left: 80%;
                                 top: 0%;
                                 transform-style: preserve-3d;
-                                transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px) translateZ(0);
+                                transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px);
                                 -webkit-transform-style: preserve-3d;
-                                -webkit-transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px) translateZ(0);
+                                -webkit-transform: skewY(-30deg) rotateZ(5deg) translateX(11px) translateY(-6px);
                                 z-index: -1;
                                 transition: all 0.2s ease-in-out 0s;
                                 -webkit-transition: all 0.2s ease-in-out 0s;
@@ -280,9 +280,9 @@
                                 width: 115px;
                                 height: 14px;
                                 background-color: hsl(12, 77%, 35%);
-                                transform: skewX(-20deg) rotateZ(10deg) translateY(-9px) translateX(-6px) translateZ(0);
+                                transform: skewX(-20deg) rotateZ(10deg) translateY(-9px) translateX(-6px);
                                 transform-style: preserve-3d;
-                                -webkit-transform: skewX(-20deg) rotateZ(10deg) translateY(-9px) translateX(-6px) translateZ(0);
+                                -webkit-transform: skewX(-20deg) rotateZ(10deg) translateY(-9px) translateX(-6px);
                                 -webkit-transform-style: preserve-3d;
                                 clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
                                 -webkit-clip-path: polygon(11px 0, 96% 2px, 100% 100%, 0 100%);
@@ -297,8 +297,8 @@
                                 height: 100%;
                                 -webkit-transform-style: preserve-3d;
                                 transform-style: preserve-3d;
-                                transform: skewY(10deg) translateZ(0);
-                                -webkit-transform: skewY(10deg) translateZ(0);
+                                transform: skewY(10deg);
+                                -webkit-transform: skewY(10deg);
                                 transition: all 0.2s ease-in-out 0s;
                                 -webkit-transition: all 0.2s ease-in-out 0s;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
@@ -315,7 +315,7 @@
                                 &:after {
                                     display: flex;
                                     width: 0px;
-                                    height: 70%;
+                                    height: 69px;
                                     left: 80%;
                                     top: 0%;
                                     transform: skewY(-5deg) rotateZ(5deg) translateX(30px) translateY(-20px);
@@ -324,11 +324,8 @@
                                 }
         
                                 &:before {
-                                    width: 100%;
+                                    width: 98px;
                                     height: 5px;
-                                    z-index: 5;
-                                    opacity: 0.5;
-                                    filter: hue-rotate(120deg);
                                     transform: translateY(-20px) translateX(20px);
                                     -webkit-transform: translateY(-20px) translateX(20px);
                                     clip-path: polygon(0 0, 98% 1px, 98% 100%, 2px 100%);

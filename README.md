@@ -150,3 +150,5 @@
 -- **0.6.12.11:** Added the width and height in the will-change property
 
 -- **0.6.12.12:** Added the translateZ(0) property
+
+-- **0.6.12.13:** Changed the width and height properties from percentages to px
