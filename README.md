@@ -170,3 +170,5 @@
 -- **0.6.12.21:** Switched the shortened translate to translate3d(tx, ty, tz)
 
 -- **0.6.12.22:** Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
+
+-- **0.6.12.23:** Changed the px values to the correct ones
