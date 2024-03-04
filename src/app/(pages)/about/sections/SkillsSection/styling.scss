@@ -299,8 +299,8 @@
                                 transform-style: preserve-3d;
                                 transform: translate3d(0px, 0px, 0px) skewY(10deg);
                                 -webkit-transform: translate3d(0px, 0px, 0px) skewY(10deg);
-                                transition: all 0.2s ease-in-out 10ms;
-                                -webkit-transition: all 0.2s ease-in-out 10ms;
+                                transition: all 0.2s ease-in-out 15ms;
+                                -webkit-transition: all 0.2s ease-in-out 15ms;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
                                 position: absolute;
                                 will-change: transform, -webkit-transform, clip-path, -webkit-clip-path, width, height;

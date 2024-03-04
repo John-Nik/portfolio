@@ -180,3 +180,5 @@
 -- **0.6.12.26:** Changed the delay from 33ms to 20ms
 
 -- **0.6.12.27:** Changed the delay from 20ms to 10ms
+
+-- **0.6.12.28:** Changed the delay from 10ms to 15ms
