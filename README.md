@@ -140,3 +140,5 @@
 -- **0.6.12.6:** Changed the transition time from 0.2s to 1s for the img to test a theory
 
 -- **0.6.12.7:** Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
+
+-- **0.6.12.8:** Added the translate3d(100) property to force gpu processing of the transition animations
