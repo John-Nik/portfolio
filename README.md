@@ -176,3 +176,5 @@
 -- **0.6.12.24:** Added the -webkit-clip-path on :after
 
 -- **0.6.12.25:** Added a 33ms delay in the img
+
+-- **0.6.12.26:** Changed the delay from 33ms to 20ms
