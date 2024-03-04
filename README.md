@@ -127,12 +127,14 @@
 
 **0.6.12:** Trying more webkit changes to optimize the animation effect for apple products
 
-**0.6.12.1:** Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
+-- **0.6.12.1:** Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
 
-**0.6.12.2:** Added a 0s transition-delay to all the animations
+-- **0.6.12.2:** Added a 0s transition-delay to all the animations
 
-**0.6.12.3:** Did some changes to see the end result in webkit browsers and debug from there
+-- **0.6.12.3:** Did some changes to see the end result in webkit browsers and debug from there
 
-**0.6.12.4:** Added a small delay in the picture to test a theory
+-- **0.6.12.4:** Added a small delay in the picture to test a theory
 
-**0.6.12.5:** Added -webkit-clip-path
+-- **0.6.12.5:** Added -webkit-clip-path
+
+-- **0.6.12.6:** Changed the transition time from 0.2s to 1s for the img to test a theory

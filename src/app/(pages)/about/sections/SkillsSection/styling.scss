@@ -297,8 +297,8 @@
                                 transform-style: preserve-3d;
                                 transform: skewY(10deg);
                                 -webkit-transform: skewY(10deg);
-                                transition: all ease-in-out 0.2s 0s;
-                                -webkit-transition: all 0.2s ease-in-out 0s;
+                                transition: all ease-in-out 2s 0s;
+                                -webkit-transition: all ease-in-out 2s 0s;
                                 clip-path: polygon(2px 0, calc(100% - 2px) 0px, 90% 89%, 50% 99%, 0 89%);
                                 position: relative;
                             }
