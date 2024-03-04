@@ -164,3 +164,5 @@
 -- **0.6.12.18:** Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
 
 -- **0.6.12.19:** Changed the width of the hovered :before pseudo from 100% to 95%
+
+-- **0.6.12.20:** Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively

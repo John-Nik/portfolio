@@ -315,7 +315,7 @@
                                 &:after {
                                     display: flex;
                                     width: 0px;
-                                    height: 70%;
+                                    height: 65%;
                                     left: 80%;
                                     top: 0%;
                                     transform: translate(30px, -20px) skewY(-5deg) rotateZ(5deg);
@@ -324,7 +324,7 @@
                                 }
         
                                 &:before {
-                                    width: 95%;
+                                    width: 90%;
                                     height: 0px;
                                     transform: translate(20px, -20px);
                                     -webkit-transform: translate(20px, -20px);
