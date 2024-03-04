@@ -148,3 +148,5 @@
 -- **0.6.12.10:** Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
 
 -- **0.6.12.11:** Added the width and height in the will-change property
+
+-- **0.6.12.12:** Added the translateZ(0) property
