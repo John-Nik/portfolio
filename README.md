@@ -158,3 +158,4 @@
 <br><li>0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
 <br><li>0.6.12.32: Added a rotateX and rotateY in ".cub-1 .ft"  to test a theory
 <br><li>0.6.12.33: Reverted the previous changes and removed the backface-visibility property
+<br><li>0.6.12.34: Changed the orientation of the javascript icon so that instead of the JS facing the user when rotateZ(0), its instead facing the user when rotateX(180deg)
