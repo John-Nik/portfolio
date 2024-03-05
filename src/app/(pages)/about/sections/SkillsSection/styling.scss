@@ -109,8 +109,6 @@
                         .face, .face-wrapper {
                             transform-origin: 0 0;
                             -webkit-transform-origin: 0 0;
-                            backface-visibility: hidden;
-                            -webkit-backface-visibility: hidden;
                         }
 
                         .face {
@@ -204,8 +202,8 @@
                         }
 
                         .cub-1 .ft {
-                            transform:translateZ(3em) rotateY(30deg) rotateX(30deg);
-                            -webkit-transform:translateZ(3em) rotateY(30deg) rotateX(30deg);
+                            transform:translateZ(3em);
+                            -webkit-transform:translateZ(3em);
                         }
 
                         .cub-1 .bk {

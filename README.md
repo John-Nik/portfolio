@@ -157,3 +157,4 @@
 <br><li>0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
 <br><li>0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
 <br><li>0.6.12.32: Added a rotateX and rotateY in ".cub-1 .ft"  to test a theory
+<br><li>0.6.12.33: Reverted the previous changes and removed the backface-visibility property
