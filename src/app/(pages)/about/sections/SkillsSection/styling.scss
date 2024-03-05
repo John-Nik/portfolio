@@ -489,19 +489,19 @@
                         transition: all 0.2s ease-in-out;
                         scale: 1;
 
+                        &:hover {
+                            .cyl-1 {
+                                transform: translate3D(20px, -30px, 0px) rotateX(90deg) rotateY(180deg) rotateZ(180deg) scale3D(1.3, 1.3, 1.3);
+                            }
+                        }
+
                         #tridiv {
                             perspective: 800px;
                             position: absolute;
                             width: 100%;
                             height: 100%;
                             background: transparent;
-                            font-size: 112.5%;
-
-                            &:hover {
-                                .cyl-1 {
-                                    transform: translate3D(20px, 30px, 3.0625em) rotateX(90deg) rotateY(-30deg) rotateZ(0) scale3d(1.3, 1.3, 1.3);
-                                }
-                            }
+                            font-size: 125%;
                         }
 
                         .scene, .shape, .face, .face-wrapper, .cr {
@@ -512,7 +512,6 @@
                         .scene {
                             width: 100%;
                             height: 100%;
-                            left: 0px;
                         }
 
                         .shape {
@@ -524,6 +523,7 @@
                         .face, .face-wrapper {
                             transform-origin: 0 0;
                             backface-visibility: hidden;
+
                         }
 
                         .face {
@@ -539,8 +539,6 @@
 
                         .photon-shader {
                             position: absolute;
-                            left: 0;
-                            top: 0;
                             width: 100%;
                             height: 100%
                         }
@@ -570,75 +568,115 @@
                         }
 
                         .cyl-1 {
+                            top: 45px;
                             transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s;
-                            transform: translate3D(0px, 50px, 3.0625em) rotateX(90deg) rotateY(-30deg) rotateZ(30deg) scale(1);
-                            opacity: 1;
-                            width: 7em;
-                            height: 1.5em;
-                            will-change: transform;
+                            transform:translate3D(0px, 0px, 0px) rotateX(60deg) rotateY(180deg) rotateZ(150deg) scale3D(1, 1, 1);
+                            opacity:1;
+                            width:6em;
+                            height:1.5em;
                         }
 
                         .cyl-1 .tp, .cyl-1 .bm {
-                            width:7em;
-                            height:7em;
+                            width:6em;
+                            height:6em;
                         }
 
                         .cyl-1 .side {
-                            border-radius: 4px 4px 0px 0px;
-                            width:1.3em;
+                            width:1.0262229172794184em;
                             height:1.5em;
                         }
 
                         .cyl-1 .s0 {
-                            transform: rotateY(0deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(9.473684210526315deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s1 {
-                            transform: rotateY(30deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(28.421052631578945deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s2 {
-                            transform: rotateY(50deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(47.368421052631575deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s3 {
-                            transform: rotateY(70deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(66.3157894736842deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s4 {
-                            transform: rotateY(90deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(85.26315789473684deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s5 {
-                            transform: rotateY(110deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(104.21052631578947deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s6 {
-                            transform: rotateY(130deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(123.1578947368421deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s7 {
-                            transform: rotateY(150deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(142.10526315789474deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s8 {
-                            transform: rotateY(160deg) translate3D(-10px, 0px, 3.52em);
+                            transform: rotateY(161.05263157894734deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .s9 {
-                            transform: rotateY(190deg) translate3D(-50%, 0, 3.475em);
+                            transform: rotateY(180deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s10 {
+                            transform: rotateY(198.9473684210526deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s11 {
+                            transform: rotateY(217.89473684210526deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s12 {
+                            transform: rotateY(236.84210526315786deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s13 {
+                            transform: rotateY(255.78947368421052deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s14 {
+                            transform: rotateY(274.7368421052631deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s15 {
+                            transform: rotateY(293.6842105263158deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s16 {
+                            transform: rotateY(312.6315789473684deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s17 {
+                            transform: rotateY(331.578947368421deg) translate3D(-50%, 0, 2.975em);
+                        }
+
+                        .cyl-1 .s18 {
+                            transform: rotateY(350.52631578947364deg) translate3D(-50%, 0, 2.975em);
                         }
 
                         .cyl-1 .face, .cyl-1 .side {
                             background-color:#FFFFFF;
                         }
 
-                        .cyl-1 .side {
-                            background-color:hsl(330, 55%, 50%);
+                        .cyl-1 .tp {
+                            background:url(https://john-nik.com/icons/sass.svg) #ffffff;
                         }
 
-                        img {
-                            transform: rotateZ(30deg);
+                        .cyl-1 .bm {
+                            background-color:#ffffff;
+                        }
+
+                        .cyl-1 .side {
+                            background-color:#c63980;
+                            border-radius: 0px 0px 3px 3px;
                         }
                     }
                 }
