@@ -161,3 +161,4 @@
 <br><li>0.6.12.34: Changed the orientation of the javascript icon so that instead of the JS facing the user when rotateZ(0), its instead facing the user when rotateX(180deg)
 <br><li>0.6.12.35: Did the same thing with the scss icon
 <br><li>0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
+<br><li>0.6.12.37: Changed the orientation of the circle again
