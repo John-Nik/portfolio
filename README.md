@@ -155,3 +155,4 @@
 <br><li>0.6.12.28: Changed the delay from 10ms to 15ms
 <br><li>0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations
 <br><li>0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
+<br><li>0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
