@@ -204,8 +204,8 @@
                         }
 
                         .cub-1 .ft {
-                            transform:translateZ(3em);
-                            -webkit-transform:translateZ(3em);
+                            transform:translateZ(3em) rotateY(30deg) rotateX(30deg);
+                            -webkit-transform:translateZ(3em) rotateY(30deg) rotateX(30deg);
                         }
 
                         .cub-1 .bk {
