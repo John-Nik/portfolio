@@ -125,64 +125,33 @@
 
 **0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari<br><br>
 
-**0.6.12:** Trying more webkit changes to optimize the animation effect for apple products<ul>
- <li>--0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one</li>
-<br>
- <li>--0.6.12.2: Added a 0s transition-delay to all the animations</li>
-<br>
- <li>--0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there</li>
-<br>
- <li>--0.6.12.4: Added a small delay in the picture to test a theory</li>
-<br>
- <li>--0.6.12.5: Added -webkit-clip-path</li>
-<br>
- <li>--0.6.12.6: Changed the transition time from 0.2s to 1s for the img to test a theory</li>
-<br>
- <li>--0.6.12.7: Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"</li>
-<br>
- <li>--0.6.12.8: Added the translate3d(100) property to force gpu processing of the transition animations</li>
-<br>
- <li>--0.6.12.9: Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property</li>
-<br>
- <li>--0.6.12.10: Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path</li>
-<br>
- <li>--0.6.12.11: Added the width and height in the will-change property</li>
-<br>
- <li>--0.6.12.12: Added the translateZ(0) property</li>
-<br>
-<li>--0.6.12.13: Changed the width and height properties from percentages to px</li>
-<br>
- <li>--0.6.12.14: Changed the width of the top surface from 98px to 95px</li>
-<br>
- <li>--0.6.12.15: Changed the width and height of the image from 100% & 100% to 98px and 128px respectively</li>
-<br>
- <li>--0.6.12.16: Changed the position property of the img from relative to absolute</li>
-<br>
- <li>--0.6.12.17: Changed the animation time function from ease-in-out to ease-in</li>
-<br>
- <li>--0.6.12.18: Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties</li>
-<br>
- <li>--0.6.12.19: Changed the width of the hovered :before pseudo from 100% to 95%</li>
-<br>
- <li>--0.6.12.20: Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively</li>
-<br>
- <li>--0.6.12.21: Switched the shortened translate to translate3d(tx, ty, tz)</li>
-<br>
- <li>--0.6.12.22: Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %</li>
-<br>
- <li>--0.6.12.23: Changed the px values to the correct ones</li>
-<br>
- <li>--0.6.12.24: Added the -webkit-clip-path on :after</li>
-<br>
- <li>--0.6.12.25: Added a 33ms delay in the img</li>
-<br>
- <li>--0.6.12.26: Changed the delay from 33ms to 20ms</li>
-<br>
- <li>--0.6.12.27: Changed the delay from 20ms to 10ms</li>
-<br>
- <li>--0.6.12.28: Changed the delay from 10ms to 15ms</li>
-<br>
- <li>--0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations</li>
-<br>
-<li>0.6.12.30: Changed the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space</li>
-</ul>
+**0.6.12:** Trying more webkit changes to optimize the animation effect for Safar
+- - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
+<br><li>0.6.12.2: Added a 0s transition-delay to all the animations
+<br><li>0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there
+<br><li>0.6.12.4: Added a small delay in the picture to test a theory
+<br><li>0.6.12.5: Added -webkit-clip-path
+<br><li>0.6.12.6: Changed the transition time from 0.2s to 1s for the img to test a theory
+<br><li>0.6.12.7: Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
+<br><li>0.6.12.8: Added the translate3d(100) property to force gpu processing of the transition animations
+<br><li>0.6.12.9: Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
+<br><li>0.6.12.10: Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
+<br><li>0.6.12.11: Added the width and height in the will-change property
+<br><li>0.6.12.12: Added the translateZ(0) property
+<br><li0.6.12.13: Changed the width and height properties from percentages to px<br><li>0.6.12.14: Changed the width of the top surface from 98px to 95px
+<br><li>0.6.12.15: Changed the width and height of the image from 100% & 100% to 98px and 128px respectively
+<br><li>0.6.12.16: Changed the position property of the img from relative to absolute
+<br><li>0.6.12.17: Changed the animation time function from ease-in-out to ease-in
+<br><li>0.6.12.18: Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
+<br><li>0.6.12.19: Changed the width of the hovered :before pseudo from 100% to 95%
+<br><li>0.6.12.20: Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively
+<br><li>0.6.12.21: Switched the shortened translate to translate3d(tx, ty, tz)
+<br><li>0.6.12.22: Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
+<br><li>0.6.12.23: Changed the px values to the correct ones
+<br><li>0.6.12.24: Added the -webkit-clip-path on :after
+<br><li>0.6.12.25: Added a 33ms delay in the img
+<br><li>0.6.12.26: Changed the delay from 33ms to 20ms
+<br><li>0.6.12.27: Changed the delay from 20ms to 10ms
+<br><li>0.6.12.28: Changed the delay from 10ms to 15ms
+<br><li>0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations
+<br><li>0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
