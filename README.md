@@ -162,3 +162,4 @@
 <br><li>0.6.12.35: Did the same thing with the scss icon
 <br><li>0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
 <br><li>0.6.12.37: Changed the orientation of the circle again
+<br><li>0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
