@@ -163,3 +163,4 @@
 <br><li>0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
 <br><li>0.6.12.37: Changed the orientation of the circle again
 <br><li>0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
+<br><li>0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP

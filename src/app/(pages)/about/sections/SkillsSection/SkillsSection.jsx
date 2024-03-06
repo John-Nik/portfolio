@@ -27,7 +27,9 @@ export default function SkillsSection() {
                                 <div id="tridiv">
                                     <div className="scene">
                                         <div className="shape cylinder-1 cyl-1">
-                                            <div className="face bm" />
+                                            <div className="face bm">
+                                                <img src='/icons/sass.svg' />
+                                            </div>
                                             <div className="face tp" />
                                             <div className="face side s0" />
                                             <div className="face side s1" />
@@ -48,7 +50,6 @@ export default function SkillsSection() {
                                             <div className="face side s16" />
                                             <div className="face side s17" />
                                             <div className="face side s18" />
-
                                         </div>
                                     </div>
                                 </div>
