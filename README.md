@@ -164,3 +164,7 @@
 <br><li>0.6.12.37: Changed the orientation of the circle again
 <br><li>0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
 <br><li>0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP
+
+**0.6.13:**
+- Changed the html icon's positioning to absolute
+- Made all of the icons render in bigger resolutions but scale down to make it easier to resize them later on when making the page responsive
