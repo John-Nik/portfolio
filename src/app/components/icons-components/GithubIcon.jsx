@@ -1,11 +1,11 @@
 'use client';
 
-export default function GithubIcon() {
+export default function GithubIcon({link}) {
     function userWantsGithub() {
-        window.location.href = 'https://www.github.com/John-Nik';
+        window.open(link, "_blank");
     }
 
     return (
-        <img className={'github-icon icon'} onClick={userWantsGithub} src="/icons/github.svg" alt="" />
+        <img className={'github-icon icon'} title={`Visit ${link}`} onClick={userWantsGithub} src="/icons/github.svg" alt={`redirect to ${link}`} />
     )
 }

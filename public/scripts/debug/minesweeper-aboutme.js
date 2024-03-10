@@ -91,37 +91,36 @@ function autoplayGame() {
     
     autoplayRunning = true;
 
-    unrevealedSquares();
-    function unrevealedSquares() {
-        let unrevealed_squares = condensedMatrix.filter((square) => { if (!square.isRevealed && !square.isFlagged) {return square} });
+    randomlySelectSquare();
+    function randomlySelectSquare() {
+        if (condensedMatrix.length == 0) {
+            clearInterval(autoplayIntervalToDigSquare);
+            populateBoard();
+            autoplayGame();
+        } else {
+            let randomGeneratedNumber = Math.floor(Math.random() * condensedMatrix.length);
+            let position = condensedMatrix[randomGeneratedNumber].position;
+            let Y = position.split('_')[0];
+            let X = position.split('_')[1];
+            
+            if (condensedMatrix[randomGeneratedNumber].hasBomb) {
+                matrix[Y][X].isFlagged = true;
+                let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
+                squareToUpdate.innerHTML = flagSvg;
+                condensedMatrix.splice(randomGeneratedNumber, 1);
+                return;
+            }
 
-        randomlySelectSquare();
-        function randomlySelectSquare() {
-            if (unrevealed_squares.length == 0) {
-                clearInterval(autoplayIntervalToDigSquare);
-                populateBoard();
-                autoplayGame();
-            } else {
-                let randomGeneratedNumber = Math.floor(Math.random() * unrevealed_squares.length);
-                let position = unrevealed_squares[randomGeneratedNumber].position;
-                let Y = position.split('_')[0];
-                let X = position.split('_')[1];
-
-                if (unrevealed_squares[randomGeneratedNumber].hasBomb) {
-                    matrix[Y][X].isFlagged = true;
-                    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
-                    squareToUpdate.innerHTML = flagSvg;
-                    return;
-                }
-
-                digSquare(Y, X);
+            digSquare(Y, X);
+            condensedMatrix.splice(randomGeneratedNumber, 1);
+            if (countBombs(Y, X) == 0) {
+                condensedMatrix = condensedMatrix.filter((square) => { if (!square.isRevealed && !square.isFlagged) {return square} });
             }
         }
     }
 
-    autoplayIntervalToDigSquare = setInterval(unrevealedSquares, 1100);
+    autoplayIntervalToDigSquare = setInterval(randomlySelectSquare, 1100);
 }
-
 
 function startGame() {
     populateBoard();  

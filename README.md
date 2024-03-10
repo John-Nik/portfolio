@@ -108,14 +108,15 @@
 
 **0.6.6:** Added partytown
 
-**0.6.7:** <ul>
-    <li>Added a new color-scheme profile</li>
-    <li>Added a new unfinished section to the about me page</li>
-    <li>Made the Minesweeper section's text on the About me page hyphenate</li>
-    <li>Added a library that forces hyphenation if the user's browser agent doesn't support it</li>
-    <li>Made the title of the page from a max of 96px to 64px</li>
-    <li>Made the speed of the autoplay on the about me page from 1.5 seconds intervals to 1.1 seconds</li>
-</ul><br>
+**0.6.7:** 
+- Added a new color-scheme profile
+- Added a new unfinished section to the about me page
+- Made the Minesweeper section's text on the About me page hyphenate
+- Added a library that forces hyphenation if the user's browser agent doesn't support it
+- Made the title of the page from a max of 96px to 64px
+- Made the speed of the autoplay on the about me page from 1.5 seconds intervals to 1.1 seconds
+
+<br>
 
 **0.6.8:** Added an unfinished skills section on the about me page
 
@@ -125,46 +126,55 @@
 
 **0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari<br><br>
 
-**0.6.12:** Trying more webkit changes to optimize the animation effect for Safar
-- - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
-<br><li>0.6.12.2: Added a 0s transition-delay to all the animations
-<br><li>0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there
-<br><li>0.6.12.4: Added a small delay in the picture to test a theory
-<br><li>0.6.12.5: Added -webkit-clip-path
-<br><li>0.6.12.6: Changed the transition time from 0.2s to 1s for the img to test a theory
-<br><li>0.6.12.7: Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
-<br><li>0.6.12.8: Added the translate3d(100) property to force gpu processing of the transition animations
-<br><li>0.6.12.9: Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
-<br><li>0.6.12.10: Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
-<br><li>0.6.12.11: Added the width and height in the will-change property
-<br><li>0.6.12.12: Added the translateZ(0) property
-<br><li0.6.12.13: Changed the width and height properties from percentages to px<br><li>0.6.12.14: Changed the width of the top surface from 98px to 95px
-<br><li>0.6.12.15: Changed the width and height of the image from 100% & 100% to 98px and 128px respectively
-<br><li>0.6.12.16: Changed the position property of the img from relative to absolute
-<br><li>0.6.12.17: Changed the animation time function from ease-in-out to ease-in
-<br><li>0.6.12.18: Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
-<br><li>0.6.12.19: Changed the width of the hovered :before pseudo from 100% to 95%
-<br><li>0.6.12.20: Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively
-<br><li>0.6.12.21: Switched the shortened translate to translate3d(tx, ty, tz)
-<br><li>0.6.12.22: Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
-<br><li>0.6.12.23: Changed the px values to the correct ones
-<br><li>0.6.12.24: Added the -webkit-clip-path on :after
-<br><li>0.6.12.25: Added a 33ms delay in the img
-<br><li>0.6.12.26: Changed the delay from 33ms to 20ms
-<br><li>0.6.12.27: Changed the delay from 20ms to 10ms
-<br><li>0.6.12.28: Changed the delay from 10ms to 15ms
-<br><li>0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations
-<br><li>0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
-<br><li>0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
-<br><li>0.6.12.32: Added a rotateX and rotateY in ".cub-1 .ft"  to test a theory
-<br><li>0.6.12.33: Reverted the previous changes and removed the backface-visibility property
-<br><li>0.6.12.34: Changed the orientation of the javascript icon so that instead of the JS facing the user when rotateZ(0), its instead facing the user when rotateX(180deg)
-<br><li>0.6.12.35: Did the same thing with the scss icon
-<br><li>0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
-<br><li>0.6.12.37: Changed the orientation of the circle again
-<br><li>0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
-<br><li>0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP
+- **0.6.12:** Trying more webkit changes to optimize the animation effect for Safari
+    - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
+    - 0.6.12.2: Added a 0s transition-delay to all the animations
+    - 0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there
+    - 0.6.12.4: Added a small delay in the picture to test a theory
+    - 0.6.12.5: Added -webkit-clip-path
+    - 0.6.12.6: Changed the transition time from 0.2s to 1s for the img to test a theory
+    - 0.6.12.7: Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
+    - 0.6.12.8: Added the translate3d(100) property to force gpu processing of the transition animations
+    - 0.6.12.9: Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
+    - 0.6.12.10: Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
+    - 0.6.12.11: Added the width and height in the will-change property
+    - 0.6.12.12: Added the translateZ(0) property
+    - 0.6.12.13: Changed the width and height properties from percentages to px
+    - 0.6.12.14: Changed the width of the top surface from 98px to 95px
+    - 0.6.12.15: Changed the width and height of the image from 100% & 100% to 98px and 128px respectively
+    - 0.6.12.16: Changed the position property of the img from relative to absolute
+    - 0.6.12.17: Changed the animation time function from ease-in-out to ease-in
+    - 0.6.12.18: Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
+    - 0.6.12.19: Changed the width of the hovered :before pseudo from 100% to 95%
+    - 0.6.12.20: Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively
+    - 0.6.12.21: Switched the shortened translate to translate3d(tx, ty, tz)
+    - 0.6.12.22: Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
+    - 0.6.12.23: Changed the px values to the correct ones
+    - 0.6.12.24: Added the -webkit-clip-path on :after
+    - 0.6.12.25: Added a 33ms delay in the img
+    - 0.6.12.26: Changed the delay from 33ms to 20ms
+    - 0.6.12.27: Changed the delay from 20ms to 10ms
+    - 0.6.12.28: Changed the delay from 10ms to 15ms
+    - 0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations
+    - 0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
+    - 0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
+    - 0.6.12.32: Added a rotateX and rotateY in ".cub-1 .ft"  to test a theory
+    - 0.6.12.33: Reverted the previous changes and removed the backface-visibility property
+    - 0.6.12.34: Changed the orientation of the javascript icon so that instead of the JS facing the user when rotateZ(0), its instead facing the user when rotateX(180deg)
+    - 0.6.12.35: Did the same thing with the scss icon
+    - 0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
+    - 0.6.12.37: Changed the orientation of the circle again
+    - 0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
+    - 0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP
 
 **0.6.13:**
 - Changed the html icon's positioning to absolute
 - Made all of the icons render in bigger resolutions but scale down to make it easier to resize them later on when making the page responsive
+
+**0.7.0:**
+- Optimized the minesweeper scripts to prevent lag spikes when autoplay is turned on
+- Added the portfolio page
+- Added an npm package to load markdown files
+- Added @babel/core and @babel/preset-react npm packages
+- Added DecapCMS
+- Added npm-run-all npm package

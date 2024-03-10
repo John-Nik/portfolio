@@ -27,7 +27,7 @@ export default function Footer() {
                     <EmailIcon />
                 </li>
                 <li>
-                    <GithubIcon />
+                    <GithubIcon link={'https://www.github.com/John-Nik'} />
                 </li>
             </ul>
         </footer>
