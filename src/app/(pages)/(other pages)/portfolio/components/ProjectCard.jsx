@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation"
 
 export default function ProjectCard({project}) {
     const router = useRouter();
-    
+
     return (
-        <div onClick={() => router.push(`/portfolio/${project.slug}`)} className={"item-container"}>
+        <div onClick={() => router.push(`/portfolio/${project.attributes.title}`)} className={"item-container"}>
             <img className={'background'} src={`${project.attributes.img}`} />
             <h2>{project.attributes.title}</h2>
             <div className={'icons-wrapper'}>

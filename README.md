@@ -178,3 +178,7 @@
 - Added @babel/core and @babel/preset-react npm packages
 - Added DecapCMS
 - Added npm-run-all npm package
+
+<br>
+
+**0.7.1:** Fixed an issue that prevented the latest version from being build on netlify
