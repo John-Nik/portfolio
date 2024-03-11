@@ -13,6 +13,9 @@ export default function heads({children}) {
 
             <body className={zcoolFont.className}>
                 {children}
+                <div className={'minesweeper-homepage'}>
+                    <div />
+                </div>
             </body>
         </html>
     )

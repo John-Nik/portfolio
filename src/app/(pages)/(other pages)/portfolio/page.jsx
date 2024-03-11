@@ -1,6 +1,6 @@
 'use server'
 import './styling.scss';
-import ProjectCard from './components/ProjectCard.jsx'
+import ProjectCard from './components/ProjectCard/ProjectCard.jsx'
 
 export default async function({}) {
     const content = require.context('../../../content', true);

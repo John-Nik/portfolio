@@ -743,3 +743,45 @@ function updateOldSiblingSquaresNearNewlyAddedSquares(square) {
     square.innerHTML = bombsCurrentlyAround;
     square.classList.replace(oldBombsSurroundingClass, `B${bombsCurrentlyAround}`);
 }
+
+function watchIfUserSwitchesPage() {
+    const watchUserInput = document.querySelector('.minesweeper-homepage');
+
+    const mutationObserver = new MutationObserver(() => {
+        if (watchUserInput.childElementCount == 0) {
+            clearInterval(autoplayIntervalToDigSquare);
+            matrix = [];
+            squaresInBoard = 0;
+            squaresInterractedWith = 0;
+            bombsPlaced = 0;
+            boardWidth = container.offsetWidth;
+            oardHeight = container.offsetHeight;
+            screenWidth = window.innerWidth;
+            columnsToFit = Math.floor(boardWidth / squareSize);
+            rowsToFit = Math.floor(boardHeight / squareSize);
+            matrix = [];
+            bombsPlaced = 0;
+            difficulty;
+            squares;
+            rows;
+            squaresInBoard = 0;
+            squaresInterractedWith = 0;
+            squaresInViewport = 0;
+            autoplayRunning = true;
+            userDugBombPosition = '';
+            autoplayIntervalToDigSquare;
+            isBombsPlacedTextVisibleToUser = false;
+            mobileUserWantsToFlag = 0;
+        } else {
+            boardWidth = container.offsetWidth;
+            oardHeight = container.offsetHeight;
+            screenWidth = window.innerWidth;
+            columnsToFit = Math.floor(boardWidth / squareSize);
+            rowsToFit = Math.floor(boardHeight / squareSize);
+            populateBoard();
+            autoplayGame();
+        }
+    })
+
+    mutationObserver.observe(watchUserInput, { childList: true });
+}

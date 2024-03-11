@@ -182,3 +182,14 @@
 <br>
 
 **0.7.1:** Fixed an issue that prevented the latest version from being build on netlify
+
+<br>
+
+**0.7.2:** 
+- Added an absolute path importing the "color-scheme.scss" file in all the styling files, instead of the old relative path 
+- Changed all the font size values from pixels to rem to improve accessibility
+- Removed the red background the minesweeper game on the home page had
+- Added the /portfolio redirect in the navigation bars
+- Removed the unused useEffect and next/navigation imports from the navigation bars
+- Added the ability to view the full pages of my projects from the portfolio page
+- In the process of making the home page and aboutMe page have seemless page transitions instead of the current redirection. Will take time to implement and fix all the bugs that come along with this

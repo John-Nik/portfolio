@@ -1,12 +1,13 @@
 'use server'
-import './styling.scss';
+import FullPortfolioPage from "../components/FullPortfolioPage/FullPortfolioPage";
 
 export default async function() {
-    
+    const content = require.context('../../../../content', true);
+    let projects = content.keys().map((filename) => content(filename));
 
     return (
-      <>
-            <h1>portfolio simple full page</h1>
-      </>
+        <>
+            <FullPortfolioPage projects={projects} />
+        </>
     )
 }

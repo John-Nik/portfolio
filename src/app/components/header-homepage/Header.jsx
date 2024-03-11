@@ -3,8 +3,6 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import './styling.scss';
-import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation'
 
 
 export default function Header() {
@@ -13,6 +11,17 @@ export default function Header() {
 
     function triggerNavMenu() {
         setNavMenuState((navMenuState + 1) % 2);
+    }
+
+    
+    function toggleMinesweeperOn() {
+        const watchUserInput = document.querySelector('.minesweeper-homepage');
+        watchUserInput.innerHTML = '<div></div>'
+    }
+
+    function toggleMinesweeperOff() {
+        const watchUserInput = document.querySelector('.minesweeper-homepage');
+        watchUserInput.innerHTML = '';
     }
 
     function startGame() {
@@ -53,16 +62,16 @@ export default function Header() {
 
                     <ul className={navMenuState === 1 ? 'open-menu' : ''}>
                         <li>
-                            <Link href="/" className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
+                            <Link href="/" onClick={toggleMinesweeperOn} className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
                         </li>
                         <li>
-                            <Link href="/about" onClick={() => {window.location.href = '/about'}} className={pathname === '/about' ? 'activeLink' : ''}>aboutMe</Link>
+                            <Link href="/about" onClick={toggleMinesweeperOff} className={pathname === '/about' ? 'activeLink' : ''}>aboutMe</Link>
                         </li>
                         <li>
-                            <Link href="/portfolio" onClick={() => {window.location.href = '/portfolio'}} className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
+                            <Link href="/portfolio" onClick={toggleMinesweeperOff} className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
                         </li>
                         <li>
-                            <Link href="/contact" onClick={() => {window.location.href = '/contact'}} className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
+                            <Link href="/contact" onClick={toggleMinesweeperOff} className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
                         </li>
                     </ul>
                     <div className={'burger-icon-wrapper'}>

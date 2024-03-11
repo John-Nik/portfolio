@@ -1,10 +1,4 @@
-$base-color: #010E19;
-$shade-1: #011627;
-$tint-1: #406ABF;
-$tint-2: #83ADE2;
-$tint-3: #6ABAFB;
-$secondary-color: #217D7A;
-$secondary-tint-1: #52E099;
+@import '@/app/color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
     body {
@@ -50,7 +44,7 @@ $secondary-tint-1: #52E099;
             
                         .logo {
                             color: white;
-                            font-size: clamp(48px, 5.6vw, 58px);
+                            font-size: clamp(3rem, 5.6vw, 3.625rem);
                             letter-spacing: 1px;
                             transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                         }
@@ -143,7 +137,7 @@ $secondary-tint-1: #52E099;
                             height: fit-content;
         
                             a {
-                                font-size: 40px;
+                                font-size: 2.5rem;
                                 color: white;
                                 text-decoration: none;
                                 transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -189,7 +183,7 @@ $secondary-tint-1: #52E099;
                             height: fit-content;
         
                             a {
-                                font-size: 40px;
+                                font-size: 2.5rem;
                                 color: white;
                                 text-decoration: none;
                                 transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -211,7 +205,6 @@ $secondary-tint-1: #52E099;
         }
 
         main {
-            background-color: red !important;
             margin-top: 64px !important;
             height: fit-content !important;
         }
@@ -263,7 +256,7 @@ $secondary-tint-1: #52E099;
                             opacity: 1;
         
                             a {
-                                font-size: clamp(24px, 3vw, 29px);
+                                font-size: clamp(1.5rem, 3vw, 1.813rem);
                                 transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                             }
                         }

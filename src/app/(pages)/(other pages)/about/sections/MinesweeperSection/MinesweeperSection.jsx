@@ -5,20 +5,6 @@ import './minesweeper.scss'
 export default function MinesweeperSection() {
     return (
         <section id={'minesweeper-section'}>
-            <Script src="scripts/Hyphenopoly_Loader.js" strategy="beforeInteractive"></Script>
-            <Script id="hyphenate" strategy="lazyOnload">{
-                `Hyphenopoly.config({
-                    require: {
-                        "en-us": "Supercalifragilisticexpialidocious"
-                    },
-                    setup: {
-                        selectors: {
-                            ".hyphenate": {}
-                        }
-                    }
-                });`
-            }</Script>
-            
             <div className={'background-game'} />
 
             <div className={'text-content'}>

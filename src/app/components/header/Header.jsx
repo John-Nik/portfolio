@@ -3,7 +3,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import './styling.scss';
-import { useEffect } from 'react';
 
 
 
@@ -11,6 +10,11 @@ export default function Header() {
     const pathname = usePathname();
     const [navMenuState, setNavMenuState] = useState(0);
     const router = useRouter();
+
+    function toggleMinesweeperOn() {
+        const watchUserInput = document.querySelector('.minesweeper-homepage');
+        watchUserInput.innerHTML = '<div></div>'
+    }
 
     function triggerNavMenu() {
         setNavMenuState((navMenuState + 1) % 2);
@@ -26,16 +30,16 @@ export default function Header() {
 
                     <ul className={navMenuState === 1 ? 'open-menu' : ''}>
                         <li>
-                            <Link href="/" className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
+                            <Link href="/" onClick={toggleMinesweeperOn} className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
                         </li>
                         <li>
                             <Link href="/about" className={pathname === '/about' ? 'activeLink' : ''}>aboutMe</Link>
                         </li>
                         <li>
-                            <Link href="/" className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
+                            <Link href="/portfolio" className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
                         </li>
                         <li>
-                            <Link href="/" className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
+                            <Link href="/contact" className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
                         </li>
                     </ul>
                     
