@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 
 export default function ProjectCard({project}) {
     const router = useRouter();
-    console.log(project)
 
     return (
         <div className={"item-container"}>

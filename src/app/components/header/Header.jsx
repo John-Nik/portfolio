@@ -11,14 +11,18 @@ export default function Header() {
     const [navMenuState, setNavMenuState] = useState(0);
     const router = useRouter();
 
-    function toggleMinesweeperOn() {
-        const watchUserInput = document.querySelector('.minesweeper-homepage');
-        watchUserInput.innerHTML = '<div></div>'
-    }
-
     function triggerNavMenu() {
         setNavMenuState((navMenuState + 1) % 2);
     }
+
+    function turnOffMinesweeperGames() {
+        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+
+        homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
+        aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
+    }
+    
 
     return (
         <header>
@@ -30,16 +34,16 @@ export default function Header() {
 
                     <ul className={navMenuState === 1 ? 'open-menu' : ''}>
                         <li>
-                            <Link href="/" onClick={toggleMinesweeperOn} className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
+                            <Link href="/" className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
                         </li>
                         <li>
                             <Link href="/about" className={pathname === '/about' ? 'activeLink' : ''}>aboutMe</Link>
                         </li>
                         <li>
-                            <Link href="/portfolio" className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
+                            <Link href="/portfolio" onClick={turnOffMinesweeperGames} className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
                         </li>
                         <li>
-                            <Link href="/contact" className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
+                            <Link href="/contact" onClick={turnOffMinesweeperGames} className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
                         </li>
                     </ul>
                     

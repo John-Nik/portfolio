@@ -1,6 +1,6 @@
-const container = document.querySelector('#game');
-let boardWidth = container.offsetWidth;
-let boardHeight = container.offsetHeight;
+let containerHomepage = document.querySelector('#game');
+let boardWidth = containerHomepage.offsetWidth;
+let boardHeight = containerHomepage.offsetHeight;
 let screenWidth = window.innerWidth;
 let squareSize = 32;
 let columnsToFit = Math.floor(boardWidth / squareSize);
@@ -17,17 +17,20 @@ let autoplayRunning = true;
 let userDugBombPosition = '';
 let autoplayIntervalToDigSquare;
 let isBombsPlacedTextVisibleToUser = false;
-const tellUserBombsPlacedContainer = document.querySelector('.bombs-placed-container');
-const tellUserBombsPlacedWrapper = document.querySelector('.bombs-placed-container .wrapper');
-const tellUserBombsPlaced = document.querySelector('.bombs-placed-text');
+let tellUserBombsPlacedContainer = document.querySelector('.bombs-placed-container');
+let tellUserBombsPlacedWrapper = document.querySelector('.bombs-placed-container .wrapper');
+let tellUserBombsPlaced = document.querySelector('.bombs-placed-text');
 let instructions = document.querySelector('.game-instructions-span');
 let windowWidth = window.innerWidth;
 let flagSvg = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect x="0.666504" width="17" height="18" fill="url(#pattern0)"/><defs><pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1"><use xlink:href="#image0_14_9231" transform="matrix(0.00827206 0 0 0.0078125 -0.0294118 0)"/></pattern><image id="image0_14_9231" width="128" height="128" xlink:href="data:image/png;base64,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"/></defs></svg>';
 let mobileUserWantsToFlag = 0;
-const triggerTapFlagIcon = document.querySelector('.flag-icon-wrap');
-const gameSettings = document.querySelector('.gameSettings');
+let triggerTapFlagIcon = document.querySelector('.flag-icon-wrap');
+let gameSettings = document.querySelector('.gameSettings');
 
 
+containerHomepage.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+})
 
 
 triggerTapFlagIcon.addEventListener('click', () => {
@@ -47,7 +50,7 @@ function chooseDifficulty() {
 }
 
 
-container.addEventListener('contextmenu', (e) => {
+containerHomepage.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 })
 
@@ -61,9 +64,10 @@ if (boardWidth < 1024) {
 
 populateBoard();
 function populateBoard() {
+    
     // reset everything
     matrix = [];
-    container.innerHTML = '';
+    containerHomepage.innerHTML = '';
     squaresInBoard = 0;
     squaresInterractedWith = 0;
     bombsPlaced = 0;
@@ -74,12 +78,11 @@ function populateBoard() {
         chooseDifficulty();
     }
 
-
-    container.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
+    containerHomepage.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
 
     for (let i = 0; i < rowsToFit; i++) {
         matrix.push([]);
-        container.insertAdjacentHTML('beforeEnd', '<div class="row"></div>')
+        containerHomepage.insertAdjacentHTML('beforeEnd', '<div class="row"></div>')
     }
 
     rows = document.querySelectorAll('.row');
@@ -339,6 +342,7 @@ class informUserBombsPlacedText {
     }
 
     static fadeIn() {
+        console.log(tellUserBombsPlacedContainer)
         tellUserBombsPlacedContainer.style.display = 'flex';
 
         setTimeout(() => {
@@ -432,9 +436,9 @@ function lostGame() {
     }, 5000)
 
 
-    container.style.scale = "1.01";
-    container.style.left = `${randomX}px`;
-    container.style.top = `${randomY}px`;
+    containerHomepage.style.scale = "1.01";
+    containerHomepage.style.left = `${randomX}px`;
+    containerHomepage.style.top = `${randomY}px`;
 
     let intervalShakeGameBoard = setInterval(() => {
         if (timesShakeExecuted == 9) {
@@ -442,12 +446,12 @@ function lostGame() {
         }
         if (useNegativeShakeCoords) {
             useNegativeShakeCoords = false;
-            container.style.left = `-${randomX}px`;
-            container.style.top = `-${randomY}px`;
+            containerHomepage.style.left = `-${randomX}px`;
+            containerHomepage.style.top = `-${randomY}px`;
         } else {
             useNegativeShakeCoords = true;
-            container.style.left = `${randomX}px`;
-            container.style.top = `${randomY}px`;
+            containerHomepage.style.left = `${randomX}px`;
+            containerHomepage.style.top = `${randomY}px`;
         }
         timesShakeExecuted++;
     }, 30)
@@ -529,7 +533,7 @@ function winGame() {
     const startGameButton = document.querySelector('.start-game-button');
     const headerTitleContentContainer = document.querySelector('.textContent');
     const gameControlPanel = document.querySelector('.gameSettings');
-    const footerIconsContainer = document.querySelector('.footer-links-container');
+    const footerIconsContainer = document.querySelector('.footer-links-containerHomepage');
     const socialsIcon = document.querySelector('.socials-icon-wrap');
     const flagIcon = document.querySelector('.flag-icon-wrap');
 
@@ -583,8 +587,8 @@ function winGame() {
 let isDesktopRes;
 let panelShownPriorWindowResize;
 window.addEventListener('resize', () => {
-    let newBoardWidth = container.offsetWidth;
-    let newBoardHeight = container.offsetHeight;
+    let newBoardWidth = containerHomepage.offsetWidth;
+    let newBoardHeight = containerHomepage.offsetHeight;
     let newColumnsToFit = Math.floor(newBoardWidth / squareSize);
     let newRowsToFit = Math.floor(newBoardHeight / squareSize);
     let deltaNewColumnsOldColumns = newColumnsToFit - columnsToFit;
@@ -699,30 +703,30 @@ window.addEventListener('resize', () => {
             let matrixLastRowIndex = matrix.length - 1;
 
             matrix.push([]);
-            container.insertAdjacentHTML('beforeEnd', '<div class="row"></div>');
+            containerHomepage.insertAdjacentHTML('beforeEnd', '<div class="row"></div>');
 
             for (let j = 0; j < columnsToFit; j++) {
-                generateSquare(container.lastChild, matrixLastRowIndex, j)
+                generateSquare(containerHomepage.lastChild, matrixLastRowIndex, j)
                 
-                container.lastChild.lastChild.addEventListener('click', (clickedSquare) => {
+                containerHomepage.lastChild.lastChild.addEventListener('click', (clickedSquare) => {
                     userLeftClick(clickedSquare);
                 })
 
-                container.lastChild.lastChild.addEventListener('contextmenu', (rightClickedSquare) => {
+                containerHomepage.lastChild.lastChild.addEventListener('contextmenu', (rightClickedSquare) => {
                     userRightClick(rightClickedSquare);
                 })
             }
-            container.lastChild.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
+            containerHomepage.lastChild.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
         }
 
 
-        container.lastChild.previousSibling.childNodes.forEach((square) => {
+        containerHomepage.lastChild.previousSibling.childNodes.forEach((square) => {
             if (square.classList.contains('revealed') && square.textContent != '') {
                 updateOldSiblingSquaresNearNewlyAddedSquares(square);
             }
         })
 
-        container.style.gridTemplateRows = `repeat(${newRowsToFit}, minmax(24px, 1fr))`;
+        containerHomepage.style.gridTemplateRows = `repeat(${newRowsToFit}, minmax(24px, 1fr))`;
         rowsToFit = newRowsToFit;
         boardHeight = newBoardHeight;
         rows = document.querySelectorAll('.row');
@@ -744,42 +748,53 @@ function updateOldSiblingSquaresNearNewlyAddedSquares(square) {
     square.classList.replace(oldBombsSurroundingClass, `B${bombsCurrentlyAround}`);
 }
 
+watchIfUserSwitchesPage();
 function watchIfUserSwitchesPage() {
-    const watchUserInput = document.querySelector('.minesweeper-homepage');
+    const watchUserInput = document.querySelector('.is-minesweeper-playing-in-homepage');
 
     const mutationObserver = new MutationObserver(() => {
+        console.log('observation made')
         if (watchUserInput.childElementCount == 0) {
             clearInterval(autoplayIntervalToDigSquare);
             matrix = [];
             squaresInBoard = 0;
             squaresInterractedWith = 0;
             bombsPlaced = 0;
-            boardWidth = container.offsetWidth;
-            oardHeight = container.offsetHeight;
-            screenWidth = window.innerWidth;
-            columnsToFit = Math.floor(boardWidth / squareSize);
-            rowsToFit = Math.floor(boardHeight / squareSize);
+            boardWidth = 0;
+            boardHeight = 0;
+            screenWidth = 0;
+            columnsToFit = 0;
+            rowsToFit = 0;
             matrix = [];
-            bombsPlaced = 0;
             difficulty;
             squares;
             rows;
             squaresInBoard = 0;
             squaresInterractedWith = 0;
             squaresInViewport = 0;
-            autoplayRunning = true;
+            autoplayRunning = false;
             userDugBombPosition = '';
             autoplayIntervalToDigSquare;
             isBombsPlacedTextVisibleToUser = false;
             mobileUserWantsToFlag = 0;
         } else {
-            boardWidth = container.offsetWidth;
-            oardHeight = container.offsetHeight;
-            screenWidth = window.innerWidth;
-            columnsToFit = Math.floor(boardWidth / squareSize);
-            rowsToFit = Math.floor(boardHeight / squareSize);
-            populateBoard();
-            autoplayGame();
+            setTimeout(() => {
+                containerHomepage = document.querySelector('#game');
+                boardWidth = containerHomepage.offsetWidth;
+                boardHeight = containerHomepage.offsetHeight;
+                screenWidth = window.innerWidth;
+                columnsToFit = Math.floor(boardWidth / squareSize);
+                rowsToFit = Math.floor(boardHeight / squareSize);
+                tellUserBombsPlacedContainer = document.querySelector('.bombs-placed-container');
+                tellUserBombsPlacedWrapper = document.querySelector('.bombs-placed-container .wrapper');
+                tellUserBombsPlaced = document.querySelector('.bombs-placed-text');
+                triggerTapFlagIcon = document.querySelector('.flag-icon-wrap');
+                gameSettings = document.querySelector('.gameSettings');
+                autoplayRunning = true;
+                watchIfUserStartedGame();
+                populateBoard();
+                autoplayGame();
+            }, 150)
         }
     })
 

@@ -1,192 +1,191 @@
 @import '@/app/color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 200000;
 
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 200000;
-    
-            nav {
-                background-color: $shade-1;
-                box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.05);
-                padding: 0px 16px;
+        nav {
+            background-color: $shade-1;
+            box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.05);
+            padding: 0px 16px;
+            height: 64px;
+            
+            .container {
+                display: flex;
+                flex-direction: row;
                 height: 64px;
-                
-                .container {
+                justify-content: center;
+        
+                .logo-container {
+                    width: 50%;
                     display: flex;
-                    flex-direction: row;
-                    height: 64px;
-                    justify-content: center;
-            
-                    .logo-container {
-                        width: 50%;
+                    align-items: center;
+                    position: relative;
+        
+                    .logo {
+                        color: white;
+                        font-size: clamp(3rem, 5.6vw, 3.625rem);
+                        letter-spacing: 1px;
+                        transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                    }
+        
+                    .logo:hover {
+                        color: $secondary-color;
+                    }
+                }
+    
+                .burger-icon-wrapper {
+                    width: 50%;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+    
+    
+    
+                    .burger-icon {
+                        width: 42px;
+                        height: 32px;
                         display: flex;
-                        align-items: center;
-                        position: relative;
-            
-                        .logo {
-                            color: white;
-                            font-size: clamp(3rem, 5.6vw, 3.625rem);
-                            letter-spacing: 1px;
+                        flex-direction: column;
+                        gap: 15px;
+                        overflow: hidden;
+                        align-items: flex-end;
+        
+                        .line1 {
+                            width: 48px;
+                            height: 2px;
+                            background-color: white;
                             transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                         }
-            
-                        .logo:hover {
+        
+                        .line2 {
+                            width: 48px;
+                            height: 2px;
+                            background-color: white;
+                            transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                        }
+        
+                        .line3 {
+                            width: 48px;
+                            height: 2px;
+                            background-color: white;
+                            transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                        }
+                    }
+        
+                    .burger-icon.open-menu {
+                        .line1 {
+                            transform: rotate(405deg) translateY(10px) translateX(10px);
+                        }
+        
+                        .line2 {
+                            opacity: 0;
+                        }
+        
+                        .line3 {
+                            transform: rotate(-405deg) translateY(-10px) translateX(10px);
+                        }
+                    }
+                }
+    
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    position: fixed;
+                    width: 100%;
+                    margin-top: 68px;
+                    padding-top: 0px;
+                    opacity: 0;
+                    list-style: none;
+                    gap: 0px;
+                    height: 0px;
+                    pointer-events: none;
+                    transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    
+                    @for $i from 1 through 4 {
+                        li:nth-child(1n + #{$i}) {
+                            transition-delay: $i * 0.06s + 0.05s;
+                        }
+                    }
+    
+                    li {
+                        transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                        opacity: 0;
+                        display: flex;
+                        justify-content: center;
+                        height: fit-content;
+    
+                        a {
+                            font-size: 2.5rem;
+                            color: white;
+                            text-decoration: none;
+                            transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                        }
+        
+                        a.activeLink {
+                            color: $tint-1;
+                        }
+                    }
+        
+                    li:hover {
+                        a {
                             color: $secondary-color;
                         }
                     }
-        
-                    .burger-icon-wrapper {
-                        width: 50%;
-                        display: flex;
-                        justify-content: flex-end;
-                        align-items: center;
-        
-        
-        
-                        .burger-icon {
-                            width: 42px;
-                            height: 32px;
-                            display: flex;
-                            flex-direction: column;
-                            gap: 15px;
-                            overflow: hidden;
-                            align-items: flex-end;
-            
-                            .line1 {
-                                width: 48px;
-                                height: 2px;
-                                background-color: white;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            .line2 {
-                                width: 48px;
-                                height: 2px;
-                                background-color: white;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            .line3 {
-                                width: 48px;
-                                height: 2px;
-                                background-color: white;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-                        }
-            
-                        .burger-icon.open-menu {
-                            .line1 {
-                                transform: rotate(405deg) translateY(10px) translateX(10px);
-                            }
-            
-                            .line2 {
-                                opacity: 0;
-                            }
-            
-                            .line3 {
-                                transform: rotate(-405deg) translateY(-10px) translateX(10px);
-                            }
-                        }
-                    }
-        
-                    ul {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        position: fixed;
-                        width: 100%;
-                        margin-top: 68px;
-                        padding-top: 0px;
-                        opacity: 0;
-                        list-style: none;
-                        gap: 0px;
-                        height: 0px;
-                        pointer-events: none;
-                        transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        
-                        @for $i from 1 through 4 {
-                            li:nth-child(1n + #{$i}) {
-                              transition-delay: $i * 0.06s + 0.05s;
-                            }
-                        }
-        
-                        li {
-                            transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            opacity: 0;
-                            display: flex;
-                            justify-content: center;
-                            height: fit-content;
-        
-                            a {
-                                font-size: 2.5rem;
-                                color: white;
-                                text-decoration: none;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            a.activeLink {
-                                color: $tint-1;
-                            }
-                        }
-            
-                        li:hover {
-                            a {
-                                color: $secondary-color;
-                            }
-                        }
-                    }
-        
-                    ul.open-menu {
-                        display: flex;
-                        flex-direction: column;
-                        position: fixed;
-                        width: 100%;
-                        margin-top: 64px;
-                        padding-top: 32px;
-                        list-style: none;
+                }
+    
+                ul.open-menu {
+                    display: flex;
+                    flex-direction: column;
+                    position: fixed;
+                    width: 100%;
+                    margin-top: 64px;
+                    padding-top: 32px;
+                    list-style: none;
+                    opacity: 1;
+                    gap: 48px;
+                    z-index: 1000;
+                    pointer-events: all;
+                    height: calc(100vh - 88px);
+                    background: rgb(1,22,39);
+                    -webkit-backdrop-filter: blur(2px);
+                    backdrop-filter: blur(2px);
+                    background: -moz-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
+                    background: -webkit-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
+                    background: linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#011627",endColorstr="#011627",GradientType=1);
+    
+                    li {
                         opacity: 1;
-                        gap: 48px;
-                        z-index: 1000;
-                        pointer-events: all;
-                        height: calc(100vh - 88px);
-                        background: rgb(1,22,39);
-                        -webkit-backdrop-filter: blur(2px);
-                        backdrop-filter: blur(2px);
-                        background: -moz-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
-                        background: -webkit-linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
-                        background: linear-gradient(180deg, rgba(1,22,39,1) 0%, rgba(1,22,39,0.4) 100%);
-                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#011627",endColorstr="#011627",GradientType=1);
-        
-                        li {
-                            opacity: 1;
-                            display: flex;
-                            justify-content: center;
-                            height: fit-content;
-        
-                            a {
-                                font-size: 2.5rem;
-                                color: white;
-                                text-decoration: none;
-                                transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                            }
-            
-                            a.activeLink {
-                                color: $tint-1;
-                            }
+                        display: flex;
+                        justify-content: center;
+                        height: fit-content;
+    
+                        a {
+                            font-size: 2.5rem;
+                            color: white;
+                            text-decoration: none;
+                            transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                         }
-            
-                        li:hover {
-                            a {
-                                color: $secondary-color;
-                            }
+        
+                        a.activeLink {
+                            color: $tint-1;
+                        }
+                    }
+        
+                    li:hover {
+                        a {
+                            color: $secondary-color;
                         }
                     }
                 }
             }
-        }   
+        }
+    }
 }
 
 @media only screen and (min-width: 800px) {

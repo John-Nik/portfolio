@@ -1,8 +1,19 @@
+'use client'
+import { useEffect } from "react"
 import './styling.scss'
 import Script from 'next/script'
 import './minesweeper.scss'
 
+
 export default function MinesweeperSection() {
+    useEffect(() => {
+        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+
+        aboutMePageMinesweeper.innerHTML = '<div></div>';
+        homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
+    }, [])
+
     return (
         <section id={'minesweeper-section'}>
             <div className={'background-game'} />
@@ -12,7 +23,7 @@ export default function MinesweeperSection() {
             </div>
             
             <Script src="scripts/minesweeper-aboutme.js" strategy="lazyOnload" />
-            <Script src="scripts/handle-minesweeper-section-text-screen-resize.js" strategy="afterInteractive" />
+            <Script src="scripts/handle-about-me-minesweeper-section-text-screen-resize.js" strategy="afterInteractive" />
         </section>
     )
 }

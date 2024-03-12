@@ -21,9 +21,12 @@ export default function Content() {
 
 
         gameStart.innerHTML = '<div></div>';
+        console.log('game begun')
     }
 
-    useEffect(() => {
+
+
+    function placeBoltsInCorrectPositions() {
         const bolt2 = document.querySelector('#bolt2');
         const bolt4 = document.querySelector('#bolt4');
         const gameSettingsPanel = document.querySelector('.game-settings-container');
@@ -34,7 +37,34 @@ export default function Content() {
 
         bolt2.style.marginTop = desiredMarginTop;
         bolt4.style.marginTop = desiredMarginTop;
-    }, [])
+    }
+
+
+
+    function setBoardHeight() {
+        const minesweeperContainer = document.querySelector('#minesweeper-container');
+        let containerHeight = '';
+
+        if (window.innerWidth < 1200) {
+            containerHeight = window.innerHeight - 64 - 58 -1 + 'px';
+        } else {
+            containerHeight = window.innerHeight - 90 - 58 -1 + 'px';
+        }
+
+        minesweeperContainer.style.height = containerHeight;
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 1200) {
+                containerHeight = window.innerHeight - 64 - 58 -1 + 'px';
+            } else {
+                containerHeight = window.innerHeight - 90 - 58 -1 + 'px';
+            }
+
+            minesweeperContainer.style.height = containerHeight;
+        })
+    }
+
+
 
     function changeDifficulty(clickedbutton) {
         const buttons = document.querySelectorAll('.difficulty-feedback');
@@ -44,6 +74,8 @@ export default function Content() {
 
         clickedbutton.currentTarget.classList.add('active');
     }
+
+
 
     function showSettingsPanel() {
         const informationPanel = document.querySelector('.textContent');
@@ -61,12 +93,108 @@ export default function Content() {
         setTimeout(() => {
             informationPanel.style.display = 'none';
             settingsPanel.style.display = 'flex';
+            placeBoltsInCorrectPositions();
 
             setTimeout(() => {
                 settingsPanel.style.opacity = '1';
             }, 20)
         }, 200)
     }
+
+
+
+    useEffect(() => {
+        placeBoltsInCorrectPositions();
+        setBoardHeight();
+
+
+        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+
+        homepageMinesweeper.innerHTML = '<div></div>';
+        aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
+
+
+        // cannot place it in its own function since the values aren't stored unless I use useState, and the problem with that is that it will continuously loop over the other 2 functions, putting unnecessary strain on the cpu, so writing the code inside the useEffect, and making it more difficult to understand is the better solution
+        let timer = 70;
+        let titles = [' a UI Designer', ' a UX Des', ' a front-end developer'];
+        let arrayIndex = 0;
+        let charAtIndex = 0;
+        let stringPrintedArray = [];
+        let stringPrinted = '';
+        let isFuncAddingChars = true;
+        let interval = setInterval(animateTitle, timer);
+        const workTitle = document.querySelector('.work');
+        
+
+        animateTitle();
+        function animateTitle() {
+            if ( arrayIndex == titles.length - 1) {
+                if ( stringPrintedArray.length == titles[arrayIndex].length + 1 ) {
+                    popCharacter();
+                    stringPrinted = stringPrintedArray.join('');
+                    workTitle.textContent = stringPrinted;
+                    clearInterval(interval);
+                    
+                    function popCharacter() {
+                        stringPrintedArray.pop();
+                        stringPrinted = stringPrintedArray.join('');
+                        workTitle.textContent = stringPrinted;
+                        setTimeout(pushCharacter, 1000);
+                    }
+
+                    function pushCharacter() {
+                        stringPrintedArray.push('|')
+                        stringPrinted = stringPrintedArray.join('');
+                        workTitle.textContent = stringPrinted;
+                    }
+
+                    let interval2 = setInterval(popCharacter, 2000);
+
+                    setTimeout(() => {
+                        clearInterval(interval2)
+
+                        setTimeout(() => {
+                            stringPrintedArray.pop();
+                            stringPrinted = stringPrintedArray.join('');
+                            workTitle.textContent = stringPrinted;
+                        }, 1000)
+                    }, 4000)
+                    return;
+                }
+            }
+
+            if (isFuncAddingChars) {
+                if ( charAtIndex != titles[arrayIndex].length) {
+                    stringPrintedArray.pop();
+                    stringPrintedArray.push(titles[arrayIndex].charAt(charAtIndex));
+                    stringPrintedArray.push('|');
+                    stringPrinted = stringPrintedArray.join('');
+                    workTitle.textContent = stringPrinted;
+                    charAtIndex++;
+                } else {
+                    clearInterval(interval);
+                    isFuncAddingChars = false;
+                    setTimeout(() => {
+                        interval = setInterval(animateTitle, timer);
+                    }, 250)
+                }
+            } else {
+                if ( charAtIndex == 2 ) {
+                    arrayIndex++;
+                    isFuncAddingChars = true;
+                    return;
+                }
+
+                stringPrintedArray.pop();
+                stringPrintedArray.pop();
+                stringPrintedArray.push('|');
+                stringPrinted = stringPrintedArray.join('');
+                workTitle.textContent = stringPrinted;
+                charAtIndex = charAtIndex - 1;
+            }
+        }
+    }, [])
 
     return (
         <>
@@ -145,6 +273,5 @@ export default function Content() {
                 </div>
             </div>
         </>
-        
     )
 }

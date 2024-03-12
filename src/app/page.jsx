@@ -1,7 +1,7 @@
 import Footer from './components/footer-homepage/footer.jsx';
 import MinesweeperContainer from './components/minesweeper/minesweeperContainer.jsx'
-import './components/minesweeper/minesweeper.scss';
 import Header from './components/header-homepage/Header.jsx';
+import './components/minesweeper/minesweeper.scss';
 
 
 
@@ -10,7 +10,7 @@ export default function page() {
         <>
             <Header />
 
-            <main>
+            <main className={'homepage-body'}>
                 <MinesweeperContainer />
             </main>
             

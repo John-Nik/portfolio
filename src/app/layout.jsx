@@ -9,13 +9,12 @@ const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], prel
 
 export default function heads({children}) {
     return (
-        <html lang="en" className={`${firaCodeFont.variable} ${pressStartFont.variable}`}>
-
-            <body className={zcoolFont.className}>
+        <html lang="en">
+            <body className={`${zcoolFont.className} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
                 {children}
-                <div className={'minesweeper-homepage'}>
-                    <div />
-                </div>
+                
+                <div className={'is-minesweeper-playing-in-homepage'} />
+                <div className={'is-minesweeper-playing-in-about-page'} />
             </body>
         </html>
     )

@@ -8,9 +8,9 @@ export default async function({}) {
 
     return (
       <>
-            <h1 className={'title'}>// Portfolio</h1>
             <section>
                 <div className={'container'}>
+                    <h1 className={'title'}>// Portfolio</h1>
                     {
                         projects.map((project, key) => {
                             return (

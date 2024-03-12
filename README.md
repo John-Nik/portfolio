@@ -193,3 +193,15 @@
 - Removed the unused useEffect and next/navigation imports from the navigation bars
 - Added the ability to view the full pages of my projects from the portfolio page
 - In the process of making the home page and aboutMe page have seemless page transitions instead of the current redirection. Will take time to implement and fix all the bugs that come along with this
+
+<br>
+
+**0.7.3:**
+- Removed the "set-board-height.js", "bolts.js" and "front-end-title-animation.js" scripts and instead moved that logic to the "minesweeper/content.jsx" component, and use the "useEffect" hook for them
+- Instead of setting "overflow: hidden" on the \<body\> tag, it was instead set on the "homepage-body" class of the \<main\> tag located in the home page. This makes it easy to work with the other pages without breaking them
+- Moved the font variables on "/app/layout.jsx" from the \<html\> tag to the \<body\> tag. The reason was to stop the console warning from popping up
+- Made the "home" page and "about me" not refresh, but instead offer a seamless transition between all of the pages
+- Changed some small styling in the "about me" and "portfolio" page to make them more uniform
+- Added some logic in the minesweeper-containing components to make them detect when they're not in the page, thus stopping their execution
+- Made the "portfolio" and "contact" navigation links turn off both games
+- Enabled react's strict mode in NextJS config settings
