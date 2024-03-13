@@ -26,18 +26,21 @@
 
 **0.5.1:** Fixed the bug where the splash text of how many bombs are placed suddenly appearing in the middle of the screen instead of fading in when attempting to replay after a win 
 
-**0.5.2:** <ul>
-    <li>Made the game create new squares if the user resizes the window</li>
-    <li>Added a more intelligent way to determine if a game is finished, without the user cheating by resizing the window into a smaller resolution</li>
-    <li>Rename the files to the correct game, from "Tetris" to "Minesweeper"</li>
-    <li>Optimized the game to not request the server the "flag.svg" file whenever there is a flag placed on the board</li>
-</ul><br>
+<br>
 
-**0.5.3:** <ul>
-    <li>Half completed the mobile and tablet version of the page</li>
-    <li>Optimized the code for more readability and speed</li>
-    <li>Changed the UI of the information panel to make it more readable</li>
-</ul><br>
+**0.5.2:**
+- Made the game create new squares if the user resizes the window
+- Added a more intelligent way to determine if a game is finished, without the user cheating by resizing the window into a smaller resolution
+- Rename the files to the correct game, from "Tetris" to "Minesweeper"
+- Optimized the game to not request the server the "flag.svg" file whenever there is a flag placed on the board
+
+<br>
+
+**0.5.3:**
+- Half completed the mobile and tablet version of the page
+- Optimized the code for more readability and speed
+- Changed the UI of the information panel to make it more readable
+
 
 **0.5.4:** Greatly made progress towards the mobile version of the home page
 
@@ -56,47 +59,55 @@
 **0.5.11:** Removed the -webkit-backdrop-filter
 
 **0.5.12:** Increased the square size of mobile devices to make it easier for the user to play the game without any frustration and mistaps
-<br><br>
-**0.5.13:** <ul>
-    <li>Fixed an issue where the board height's was going out of the intended bounds.</li>
-    <li>Fixed the footer's call and email buttons not working on mobile</li>
-    <li>Fixed the footer's styling cropping over the board</li>
-    <li>Debloated the css for the minesweeper game</li>
-    <li>Slight optimization on the minesweeper.js for more readability and minimal perfomance gains</li>
-</ul><br>
 
-**0.5.14:** <ul>
-    <li>Moved the resizing board's height logic from minesweeper.js to set-board-height.js</li>
-    <li>Fixed the issue with the Giannis clipping into the board</li>
-    <li>Fixed the issue where the flag/shovel icons and the socials icons were being hidden</li>
-    <li>Removed the < head > tag from the layout.js</li>
-</ul><br>
+<br>
 
-**0.5.15:** <ul>
-    <li>Finished the entire UI of the home page</li>
-    <li>Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping</li>
-    <li>Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish</li>
-</ul><br>
+**0.5.13:**
+- Fixed an issue where the board height's was going out of the intended bounds.
+- Fixed the footer's call and email buttons not working on mobile
+- Fixed the footer's styling cropping over the board
+- Debloated the css for the minesweeper game
+- Slight optimization on the minesweeper.js for more readability and minimal perfomance gains
 
-**0.5.16:** <ul>
-    <li>Minor change in the mobile navigation bar</li>
-    <li>minified the js scripts, and added a "debug" folder which contains their unminified versions</li>
-    <li>Added a fancy typing effect to the my title on page load</li>
-</ul><br>
+<br>
 
-**0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices<br><br>
+**0.5.14:**
+- Moved the resizing board's height logic from minesweeper.js to set-board-height.js
+- Fixed the issue with the Giannis clipping into the board
+- Fixed the issue where the flag/shovel icons and the socials icons were being hidden
+- Removed the \<head\> tag from the layout.js
 
-**0.6.0:** <ul>
-    <li>Added the about me page</li>
-    <li>Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page</li>
-    <li>Split the icons of of the footer into their own components for future re-usage</li>
-    <li>Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"</li>
-</ul><br>
+<br>
 
-**0.6.1:** <ul>
-    <li>Removed the unnecessary javascript that sets the board height and instead used css for it</li>
-    <li>Fixed a bug with the footer-homepage where it doesn't overflows the viewport of mobile devices causing the icons of it to not be visible</li>
-</ul><br>
+**0.5.15:**
+- Finished the entire UI of the home page
+- Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping
+- Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish
+
+<br>
+
+**0.5.16:**
+- Minor change in the mobile navigation bar
+- minified the js scripts, and added a "debug" folder which contains their unminified versions
+- Added a fancy typing effect to the my title on page load
+
+<br>
+
+**0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices
+
+**0.6.0:**
+- Added the about me page
+- Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page
+- Split the icons of of the footer into their own components for future re-usage
+- Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"
+
+<br>
+
+**0.6.1:**
+- Removed the unnecessary javascript that sets the board height and instead used css for it
+- Fixed a bug with the footer-homepage where it doesn't overflows the viewport of mobile devices causing the icons of it to not be visible
+
+<br>
 
 **0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
 
@@ -126,46 +137,46 @@
 
 **0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari<br><br>
 
-- **0.6.12:** Trying more webkit changes to optimize the animation effect for Safari
-    - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
-    - 0.6.12.2: Added a 0s transition-delay to all the animations
-    - 0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there
-    - 0.6.12.4: Added a small delay in the picture to test a theory
-    - 0.6.12.5: Added -webkit-clip-path
-    - 0.6.12.6: Changed the transition time from 0.2s to 1s for the img to test a theory
-    - 0.6.12.7: Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
-    - 0.6.12.8: Added the translate3d(100) property to force gpu processing of the transition animations
-    - 0.6.12.9: Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
-    - 0.6.12.10: Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
-    - 0.6.12.11: Added the width and height in the will-change property
-    - 0.6.12.12: Added the translateZ(0) property
-    - 0.6.12.13: Changed the width and height properties from percentages to px
-    - 0.6.12.14: Changed the width of the top surface from 98px to 95px
-    - 0.6.12.15: Changed the width and height of the image from 100% & 100% to 98px and 128px respectively
-    - 0.6.12.16: Changed the position property of the img from relative to absolute
-    - 0.6.12.17: Changed the animation time function from ease-in-out to ease-in
-    - 0.6.12.18: Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
-    - 0.6.12.19: Changed the width of the hovered :before pseudo from 100% to 95%
-    - 0.6.12.20: Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively
-    - 0.6.12.21: Switched the shortened translate to translate3d(tx, ty, tz)
-    - 0.6.12.22: Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
-    - 0.6.12.23: Changed the px values to the correct ones
-    - 0.6.12.24: Added the -webkit-clip-path on :after
-    - 0.6.12.25: Added a 33ms delay in the img
-    - 0.6.12.26: Changed the delay from 33ms to 20ms
-    - 0.6.12.27: Changed the delay from 20ms to 10ms
-    - 0.6.12.28: Changed the delay from 10ms to 15ms
-    - 0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations
-    - 0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
-    - 0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
-    - 0.6.12.32: Added a rotateX and rotateY in ".cub-1 .ft"  to test a theory
-    - 0.6.12.33: Reverted the previous changes and removed the backface-visibility property
-    - 0.6.12.34: Changed the orientation of the javascript icon so that instead of the JS facing the user when rotateZ(0), its instead facing the user when rotateX(180deg)
-    - 0.6.12.35: Did the same thing with the scss icon
-    - 0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
-    - 0.6.12.37: Changed the orientation of the circle again
-    - 0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
-    - 0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP
+**0.6.12:** Trying more webkit changes to optimize the animation effect for Safari
+- - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
+  - 0.6.12.2: Added a 0s transition-delay to all the animations
+  - 0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there
+  - 0.6.12.4: Added a small delay in the picture to test a theory
+  - 0.6.12.5: Added -webkit-clip-path
+  - 0.6.12.6: Changed the transition time from 0.2s to 1s for the img to test a theory
+  - 0.6.12.7: Changed the transition time back to 0.2s and also changed the format from "all ease-in-out 0.2s" to "all 0.2s ease-in-out"
+  - 0.6.12.8: Added the translate3d(100) property to force gpu processing of the transition animations
+  - 0.6.12.9: Reverted the translate3d since it broke the look of the icons on safari browsers by removing the tilt of the icons. Instead added the will-change property
+  - 0.6.12.10: Added custom ident in the will-change property: transform, -webkit-transform, clip-path, -webkit-clip-path
+  - 0.6.12.11: Added the width and height in the will-change property
+  - 0.6.12.12: Added the translateZ(0) property
+  - 0.6.12.13: Changed the width and height properties from percentages to px
+  - 0.6.12.14: Changed the width of the top surface from 98px to 95px
+  - 0.6.12.15: Changed the width and height of the image from 100% & 100% to 98px and 128px respectively
+  - 0.6.12.16: Changed the position property of the img from relative to absolute
+  - 0.6.12.17: Changed the animation time function from ease-in-out to ease-in
+  - 0.6.12.18: Reverted the animation time function and changed all of the split translateX() and translateY() into a shortened translate(xd, yd). This had a minor effect of position, so it looks like there is some difference between the shortened and split translate transition properties
+  - 0.6.12.19: Changed the width of the hovered :before pseudo from 100% to 95%
+  - 0.6.12.20: Changed the width from 95% to 90% and the height from 70% to 65% for the hovered :after and :before pseudo elements respectively
+  - 0.6.12.21: Switched the shortened translate to translate3d(tx, ty, tz)
+  - 0.6.12.22: Changed the width and height of the hovered :after and :before pseudo elements to px values instead of %
+  - 0.6.12.23: Changed the px values to the correct ones
+  - 0.6.12.24: Added the -webkit-clip-path on :after
+  - 0.6.12.25: Added a 33ms delay in the img
+  - 0.6.12.26: Changed the delay from 33ms to 20ms
+  - 0.6.12.27: Changed the delay from 20ms to 10ms
+  - 0.6.12.28: Changed the delay from 10ms to 15ms
+  - 0.6.12.29: Changed the delay from 15ms to a final 17ms. From this experience I deduce that the way Safari handles animations in one of two ways. One, it prioritizes the element highest on the z-index, and on the next rendered frame, starts to animate the elements on the lower z-index, or Two, it prioritizes the main element over the pseudo :after and :before element's animations
+  - 0.6.12.30: Changed all the icons from 2D flat surfaces that fake a 3D space into proper 3D icons in 3-dimensional space
+  - 0.6.12.31: Added the -webkit prefix on the javascript icon to check how it compares with the scss icon in Safari
+  - 0.6.12.32: Added a rotateX and rotateY in ".cub-1 .ft"  to test a theory
+  - 0.6.12.33: Reverted the previous changes and removed the backface-visibility property
+  - 0.6.12.34: Changed the orientation of the javascript icon so that instead of the JS facing the user when rotateZ(0), its instead facing the user when rotateX(180deg)
+  - 0.6.12.35: Did the same thing with the scss icon
+  - 0.6.12.36: Flipped the orientation of the circle so the backside is visible to the user, eliminating the Z axis from playing an effect
+  - 0.6.12.37: Changed the orientation of the circle again
+  - 0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
+  - 0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP
 
 **0.6.13:**
 - Changed the html icon's positioning to absolute
@@ -205,3 +216,12 @@
 - Added some logic in the minesweeper-containing components to make them detect when they're not in the page, thus stopping their execution
 - Made the "portfolio" and "contact" navigation links turn off both games
 - Enabled react's strict mode in NextJS config settings
+
+<br>
+
+**0.7.4:**
+- Minified "handle-about-me-minesweeper-section-text-screen-resize.js"
+- Made the github and website link on the portfolio cards enlarge when hovered
+- Made the project title invisible on the "FullPortfolioPage.jsx" when hovered
+- Made the cards of the portfolio page have a "glowing spotlight" effects when hovered
+- Made the full project pages responsive

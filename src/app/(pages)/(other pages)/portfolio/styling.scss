@@ -10,7 +10,7 @@
 }
 
 @media only screen and (min-width: 0px) {
-    section {
+    .portfolio-page-section {
         width: 100%;
         display: flex;
         justify-content: center;
@@ -21,15 +21,33 @@
             width: 100%;
             max-width: 1480px;
             padding: 0px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cards-container {
+            width: 100%;
             display: grid;
             grid-template-columns: minmax(100px, 380px);
             gap: 22px;
             justify-content: center;
         }
 
+        .icon {
+            transition: box-shadow 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+            &:hover {
+                transform: scale(1.13);
+            }
+        }
+
         .item-container {
             transition: box-shadow 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
             cursor: pointer;
+            position: relative;
+            align-items: center;
+            border: none;
 
             &:hover {
                 .background {
@@ -39,27 +57,63 @@
                 h2 {
                     opacity: 1;
                 }
+
+                &:before {
+                    opacity: 1;
+                }
             }
     
             &:active {
                 box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0);
                 transform: translateY(-2px);
             }
+
+            &:before {
+                background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 40%);
+                content: '';
+                border-radius: inherit;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 2;
+                transition: all 0.5s;
+                opacity: 0;
+                pointer-events: none;
+
+                
+            }
+        }
+
+        .card-border {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 32px;
+            background-color: rgba(100, 100, 100, 1);
+        }
+
+        .card {
+            border-radius: inherit;
+            margin: 1px;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
         }
     }
 }
 
 @media only screen and (min-width: 800px) {
-    section {
-        .container {
+    .portfolio-page-section {
+        .cards-container {
             grid-template-columns: repeat(2, minmax(100px, 380px));
         }
     }
 }
 
 @media only screen and (min-width: 1280px) {
-    section {
-        .container {
+    .portfolio-page-section {
+        .cards-container {
             grid-template-columns: repeat(3, minmax(100px, 380px));
         }
 

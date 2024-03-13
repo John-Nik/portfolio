@@ -1,6 +1,6 @@
 'use server'
 import './styling.scss';
-import ProjectCard from './components/ProjectCard/ProjectCard.jsx'
+import CardsGridContainer from './components/CardsGridContainer/CardsGridContainer';
 
 export default async function({}) {
     const content = require.context('../../../content', true);
@@ -8,16 +8,12 @@ export default async function({}) {
 
     return (
       <>
-            <section>
+            <section className={'portfolio-page-section'}>
                 <div className={'container'}>
                     <h1 className={'title'}>// Portfolio</h1>
-                    {
-                        projects.map((project, key) => {
-                            return (
-                                <ProjectCard key={key} project={project} />
-                                )
-                        })
-                    }
+                    <div className={'cards-container'}>
+                        <CardsGridContainer projects={projects} />
+                    </div>
                 </div>
             </section>
       </>

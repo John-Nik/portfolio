@@ -4,11 +4,12 @@ import GithubIcon from '@/app/components/icons-components/GithubIcon';
 import WebsiteIcon from '@/app/components/icons-components/WebsiteIcon';
 import { useRouter } from "next/navigation";
 
-export default function ProjectCard({project}) {
+export default function ProjectCard({project, children}) {
     const router = useRouter();
 
     return (
         <div className={"item-container"}>
+            {children}
             <div onClickCapture={(e) => {e.stopPropagation; console.log(router); router.push(`/portfolio/${project.attributes.title}`, project.attributes.title)}} className={'card'}>
                 <img className={'background'} src={`/${project.attributes.img}`} />
                 <h2>{project.attributes.title}</h2>
