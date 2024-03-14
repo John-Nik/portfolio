@@ -55,7 +55,7 @@ export default function SkillsSection() {
             changeBackgroundColor(percent);
         }
     }
-   
+
 
     return (
         <section id={'skills-section'}>

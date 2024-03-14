@@ -26,12 +26,6 @@ export default function Footer() {
 
         window.addEventListener('scroll', changeFooterPosition)
         window.addEventListener('resize', changeFooterPosition)
-
-        return (() => {
-            window.removeEventListener('scroll', changeFooterPosition);
-            window.removeEventListener('resize', changeFooterPosition);
-        })
-
     }, [])
 
 

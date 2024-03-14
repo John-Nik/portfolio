@@ -232,3 +232,7 @@
 - Made the footer on all the pages stay in a fixed position on the user's screen
 - Changed some styling properties on the footer
 - Changed some styling options on the "/ProjectCard" component
+
+<br>
+
+**0.7.6:** Fixed an issue with the footer being completely see-through and moved the logic of the footer changing colors from the "/about/sections/SkillsSection" to "/about/sections/IntroductorySection"

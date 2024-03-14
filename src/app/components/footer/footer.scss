@@ -10,6 +10,7 @@
         box-shadow: 0px 0px 3px black;
         position: fixed;
         top: calc(100vh - 58px);
+        background-color: transparentize($color: $base-color, $amount: 0.03);
         backdrop-filter: blur(5px) brightness(0.8);
 
     
