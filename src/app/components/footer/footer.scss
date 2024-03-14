@@ -2,40 +2,18 @@
 
 @media only screen and (min-width: 0px) {
     footer {
-        z-index: 100000;
+        z-index: 1000;
         display: flex;
         align-items: center;
-        position: relative;
         width: 100%;
-        height: fit-content;
-        background-color: $base-color;
-        
-
-        .toggle-background {
-            position: absolute;
-            width: 68px;
-            height: 0px;
-            z-index: 0;
-            left: 0px;
-            top: 0px;
-            border-radius: 16px 16px 0px 0px;
-            background: rgb(3,70,124);
-            background: -moz-linear-gradient(180deg, rgba(3,70,124,0.7) 0%, rgba(1,14,25,1) 100%);
-            background: -webkit-linear-gradient(180deg, rgba(3,70,124,0.7) 0%, rgba(1,14,25,1) 100%);
-            background: linear-gradient(180deg, rgba(3,70,124,0.7) 0%, rgba(1,14,25,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#03467c",endColorstr="#010e19",GradientType=1);
-            transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        }
-
-        .toggle-background.open {
-            top: -200px;
-            height: 200px;
-        }
+        height: 58px;
+        box-shadow: 0px 0px 3px black;
+        position: fixed;
+        top: calc(100vh - 58px);
+        backdrop-filter: blur(5px) brightness(0.8);
 
     
         .footer-links-container {
-            background-color: $base-color;
-            position: relative;
             display: flex;
             width: 100%;
             padding: 0px 16px;
@@ -45,6 +23,8 @@
             height: 100%;
             gap: 2rem;
             list-style: none;
+            position: relative;
+            pointer-events: none;
 
             
             li {
@@ -52,7 +32,7 @@
                 flex-direction: row;
                 align-items: center;
                 position: relative;
-                pointer-events: none;
+                pointer-events: all;
 
                 img {
                     position: relative;
@@ -169,6 +149,7 @@
 
 @media only screen and (min-width: 800px) {
     footer {
+        height: 56px;
         padding: 8px 0px;
 
         .footer-links-container {

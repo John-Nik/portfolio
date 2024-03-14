@@ -8,7 +8,7 @@
     "partytown": "partytown copylib public/~partytown",
     "start": "next start",
     "lint": "next lint",
-    "startNextServer": "next dev",
+    "startNextServer": "next dev -- -H 192.168.10.2",
     "startDecapServer": "npx decap-server"
   },
   "dependencies": {

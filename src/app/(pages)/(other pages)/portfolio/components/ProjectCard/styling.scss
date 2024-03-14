@@ -11,58 +11,58 @@
         overflow: hidden;
         display: flex;
         justify-content: center;
-    }
 
-    .icons-wrapper {
-        position: absolute;
-        top: 82%;
-        display: flex;
-        justify-content: space-between;
-        width: calc(100% - 36px);
-        height: 30px;
-    }
-
-    .card {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .icon {
-        scale: 1.1;
-        backdrop-filter: blur(20px) brightness(0.8);
-    }
-
-    .github-icon {
-        border-radius: 50%;
-    }
-
-    .website-icon {
-        border-radius: 50%;
-    }
-
-    .background {
-        transition: all 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: 0;
-        border-radius: 30px;
-    }
-
-    h2 {
-        opacity: 0;
-        z-index: 1;
-        position: relative;
-        display: flex;
-        align-items: center;
-        color: white;
-        user-select: none;
-        font-weight: 500;
-        font-size: 2rem;
-        font-family: var(--fira-code);
+        .icons-wrapper {
+            position: absolute;
+            top: 82%;
+            display: flex;
+            justify-content: space-between;
+            width: calc(100% - 36px);
+            height: 30px;
+        }
+    
+        .card {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .icon {
+            scale: 1.1;
+            backdrop-filter: blur(20px) brightness(0.8);
+        }
+    
+        .github-icon {
+            border-radius: 50%;
+        }
+    
+        .website-icon {
+            border-radius: 50%;
+        }
+    
+        .background {
+            transition: all 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 0;
+            border-radius: 30px;
+        }
+    
+        h2 {
+            opacity: 0;
+            z-index: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: white;
+            user-select: none;
+            font-weight: 500;
+            font-size: 2rem;
+            font-family: var(--fira-code);
+        }
     }
 }

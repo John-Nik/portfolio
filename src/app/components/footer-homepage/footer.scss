@@ -1,14 +1,16 @@
 @import '@/app/color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
-    footer {
+    #homepage-footer {
         z-index: 100000;
         display: flex;
         align-items: center;
         position: relative;
         width: 100%;
+        box-shadow: 0px 0px 3px black;
         height: fit-content;
-        background-color: $base-color;
+        background-color: $base-color !important;
+        top: 0px !important;
         
 
         .toggle-background {
@@ -227,7 +229,7 @@
 }
 
 @media only screen and (min-width: 1020px) {
-    footer {
+    #homepage-footer {
         padding: 8px 0px;
 
         .footer-links-container {

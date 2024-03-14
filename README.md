@@ -225,3 +225,10 @@
 - Made the project title invisible on the "FullPortfolioPage.jsx" when hovered
 - Made the cards of the portfolio page have a "glowing spotlight" effects when hovered
 - Made the full project pages responsive
+
+<br.>
+
+**0.7.5:**
+- Made the footer on all the pages stay in a fixed position on the user's screen
+- Changed some styling properties on the footer
+- Changed some styling options on the "/ProjectCard" component

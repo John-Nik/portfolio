@@ -1,11 +1,6 @@
 @import '@/app/color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
-    footer {
-        position: fixed;
-        top: calc(100vh - 58px);
-    }
-    
     .full-page-project {
         margin-bottom: calc(58px * 3);
         width: 100%;

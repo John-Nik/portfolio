@@ -8,7 +8,7 @@ import FlagIcon from '../icons-components/FlagIcon.jsx';
 
 export default function Footer() {
     return ( 
-        <footer>
+        <footer id={'homepage-footer'}>
             <div className={'toggle-background'}>
 
             </div>
