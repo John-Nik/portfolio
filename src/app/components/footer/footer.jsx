@@ -1,34 +1,9 @@
-'use client';
-import React from 'react';
 import './footer.scss';
 import CallIcon from '../icons-components/CallIcon.jsx';
 import EmailIcon from '../icons-components/EmailIcon.jsx';
 import GithubIcon from '../icons-components/GithubIcon.jsx';
-import { useEffect } from 'react';
 
 export default function Footer() {
-
-    function getFooterHeight() {
-        const footer = document.querySelector('footer');
-        return footer.offsetHeight;
-    }
-
-    function changeFooterPosition() {
-        const footer = document.querySelector('footer');
-
-        footer.style.top = `calc(${window.innerHeight}px - ${getFooterHeight()}px)`;
-    }
-
-    useEffect(() => {
-        const footer = document.querySelector('footer');
-        
-        footer.style.top = `calc(${window.innerHeight}px - ${getFooterHeight()}px)`;
-
-        window.addEventListener('scroll', changeFooterPosition)
-        window.addEventListener('resize', changeFooterPosition)
-    }, [])
-
-
     return ( 
         <footer>
             <div className={'toggle-background'}>

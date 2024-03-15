@@ -46,7 +46,7 @@ export default function Header() {
     }
 
     return (
-        <header>
+        <header className={'header-navigation'}>
             <nav>
                 <div className={'container'}>
                     <div className={'logo-container'}>

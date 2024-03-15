@@ -236,3 +236,23 @@
 <br>
 
 **0.7.6:** Fixed an issue with the footer being completely see-through and moved the logic of the footer changing colors from the "/about/sections/SkillsSection" to "/about/sections/IntroductorySection"
+
+<br>
+
+**0.8.0:** 
+- Added the theme-color meta tag
+- Removed the repositioning javascript of the footer, and instead used CSS to make the footer's position fixed  on the user's screen without being hidden from browser's UI
+- Changed some styling properties for the footer
+- Made the icons and text of the footer have an opacity from 0.6 to 0.8
+- Made the minesweeper-container on the home page resize using the css unit "dvh", making it faster to load and have less layout shift compared to before
+- Fixed the footer of the home page not hiding and not showing the icons when clicking on the socials icon on the down left corner
+- Fixed an issue with the navigation bar shifting styling properties when switching between the home page and any other page
+- Removed the setBoltsPosition function from "/minesweeper/content.jsx" and instead used CSS to adjust them
+- Added a small function that makes the footer position style be relative if the user is using Safari
+- Made the "Start-Game" button finally blink in the Safari browser
+- Added a back arrow on each full page project, which helps the user navigate back to the other projects on the portfolio page
+- Added the hovering spotlight effect that the project cards of the portfolio page have into their respective full pages aswell
+- Added meta tags
+- Added robots.txt
+- Added sitemap.xml
+- Made the desktop version of the contact page. Will proceed with making it function as visualized in the next update

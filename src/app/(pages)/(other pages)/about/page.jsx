@@ -13,3 +13,10 @@ export default function() {
         </>
     )
 }
+
+export const metadata = {
+    title: 'Giannis N. | About Me',
+    alternates: {
+        canonical: '/about'
+    },
+}

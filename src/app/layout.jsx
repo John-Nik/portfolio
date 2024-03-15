@@ -19,3 +19,70 @@ export default function heads({children}) {
         </html>
     )
 }
+
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    minimumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+    themeColor: '#011627',
+    colorScheme: '#011627'
+}
+
+export const metadata = {
+    keywords: ['Portfolio', 'Giannis', 'Nikolaou', 'N.', 'NextJS', 'React', 'SCSS', 'Decap', 'CMS', 'Minesweeper', 'About', 'Contact', 'Me'],
+    description: 'The portfolio of Giannis N. It was made using NextJS, React, SCSS, and Decap CMS',
+    authors: [{name: 'Giannis Nikolaou'}],
+    creator: 'Giannis Nikolaou',
+    metadataBase: new URL('https://john-nik.com'),
+    openGraph: {
+        title: 'Giannis Nikolaou | Portfolio',
+        description: 'This portfolio was made using NextJS, React, SCSS and Decap as the CMS. It has a page describing me, a projects page to see everything I\'ve built up until now, and a contact page',
+        url: 'https://john-nik.com',
+        siteName: 'Giannis Nikolaou | Portfolio',
+        locale: 'en_US',
+        type: 'website',
+        authors: ['Giannis Nikolaou'],
+        robots: {
+            index: true,
+            follow: true,
+            nocache: true,
+            translate: false,
+            archive: false,
+            snippet: false,
+            indexifembedded: true,
+        },
+        images: [
+            {
+                url: 'https://nextjs.org/og.png', // Must be an absolute URL
+                width: 800,
+                height: 600,
+            },
+            {
+                url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
+                width: 1800,
+                height: 1600,
+                alt: 'My custom alt',
+            },
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Giannis Nikolaou | Portfolio',
+        description: 'This portfolio was made using NextJS, React, SCSS and Decap as the CMS. It has a page describing me, a projects page to see everything I\'ve built up until now, and a contact page'
+    },
+    verification: {
+        google: '',
+        bing: '',
+        yahoo: '',
+        yandex: '',
+        other: {
+            example: ['example1', 'example2']
+        }
+    },
+    other: {
+        custom: 'metadata'
+    }
+}

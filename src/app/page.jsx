@@ -20,5 +20,9 @@ export default function page() {
 }
 
 export const metadata = {
-    title: 'Giannis N.'
+    title: 'Giannis N. | Home',
+    description: 'The portfolio of Giannis N. It was made using NextJS, React, SCSS, and Decap CMS',
+    alternates: {
+        canonical: '/'
+    },
 }

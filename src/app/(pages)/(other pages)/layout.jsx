@@ -14,3 +14,11 @@ export default function({children}) {
         </>
     )
 }
+
+
+export const metadata = {
+    title: 'Giannis N. | Portfolio',
+    alternates: {
+        canonical: '/portfolio'
+    },
+}

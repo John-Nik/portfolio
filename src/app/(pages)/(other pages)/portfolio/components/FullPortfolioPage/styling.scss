@@ -6,6 +6,32 @@
         width: 100%;
         display: flex;
         justify-content: center;
+
+        .back-arrow {
+            width: 40px;
+            position: absolute;
+            top: 80px;
+            left: 8px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+
+            img {
+                width: inherit;
+                height: auto;
+                top: 0px;
+                left: 0px;
+                position: relative;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:active {
+                transform: scale(1.05);
+            }
+        }
     
         .container {
             margin-top: 64px;
@@ -46,6 +72,25 @@
                 .background {
                     filter: brightness(0.4);
                 }
+
+                &:before {
+                    opacity: 1;
+                }
+            }
+
+            &:before {
+                background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 40%);
+                content: '';
+                border-radius: inherit;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 2;
+                transition: all 0.5s;
+                opacity: 0;
+                pointer-events: none;
             }
         }
 
@@ -118,11 +163,22 @@
 @media only screen and (min-width: 800px) {
     .full-page-project {
         margin-bottom: calc(56px * 3);
+
+        .back-arrow {
+            top: 100px;
+        }
     }
 }
 
 @media only screen and (min-width: 1200px) {
     .full-page-project {
+
+        .back-arrow {
+            position: relative;
+            top: 0px;
+            left: -8px;
+            margin-right: 8px;
+        }
 
         .title {
             padding-left: 32px;

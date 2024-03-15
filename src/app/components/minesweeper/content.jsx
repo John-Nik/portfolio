@@ -1,16 +1,23 @@
 'use client'
 import { useEffect } from 'react';
+import DownloadCVButton from '../buttons/DownloadCVButton.jsx';
 
 export default function Content() {
     function startGame() {
-        const container = document.querySelector('.container');
-        const containerWidth = container.offsetWidth;
         const gameStart = document.querySelector('.user-initiated-game-start');
-        const textContentWrapper = document.querySelector('.textContent');
-        const gameControlPanel = document.querySelector('.gameSettings');
         const smileyFace = document.querySelector('.dead-smiley-wrapper');
 
         smileyFace.style.display = 'none';
+        gameStart.innerHTML = '<div></div>';
+
+        hidePanels();
+    }
+
+
+
+    function hidePanels() {
+        const textContentWrapper = document.querySelector('.textContent');
+        const gameControlPanel = document.querySelector('.gameSettings');
 
         textContentWrapper.style.opacity = '0';
         gameControlPanel.style.opacity = '0';
@@ -18,50 +25,6 @@ export default function Content() {
             textContentWrapper.style.display = 'none';
             gameControlPanel.style.display = 'none';
         }, 500)
-
-
-        gameStart.innerHTML = '<div></div>';
-        console.log('game begun')
-    }
-
-
-
-    function placeBoltsInCorrectPositions() {
-        const bolt2 = document.querySelector('#bolt2');
-        const bolt4 = document.querySelector('#bolt4');
-        const gameSettingsPanel = document.querySelector('.game-settings-container');
-        let panelHeight;
-
-        panelHeight = gameSettingsPanel.offsetHeight;
-        let desiredMarginTop = panelHeight * 1 - 35 + 'px';
-
-        bolt2.style.marginTop = desiredMarginTop;
-        bolt4.style.marginTop = desiredMarginTop;
-    }
-
-
-
-    function setBoardHeight() {
-        const minesweeperContainer = document.querySelector('#minesweeper-container');
-        let containerHeight = '';
-
-        if (window.innerWidth < 1200) {
-            containerHeight = window.innerHeight - 64 - 58 -1 + 'px';
-        } else {
-            containerHeight = window.innerHeight - 90 - 58 -1 + 'px';
-        }
-
-        minesweeperContainer.style.height = containerHeight;
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth < 1200) {
-                containerHeight = window.innerHeight - 64 - 58 -1 + 'px';
-            } else {
-                containerHeight = window.innerHeight - 90 - 58 -1 + 'px';
-            }
-
-            minesweeperContainer.style.height = containerHeight;
-        })
     }
 
 
@@ -93,7 +56,6 @@ export default function Content() {
         setTimeout(() => {
             informationPanel.style.display = 'none';
             settingsPanel.style.display = 'flex';
-            placeBoltsInCorrectPositions();
 
             setTimeout(() => {
                 settingsPanel.style.opacity = '1';
@@ -104,8 +66,6 @@ export default function Content() {
 
 
     useEffect(() => {
-        placeBoltsInCorrectPositions();
-        setBoardHeight();
 
 
         const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
@@ -217,12 +177,7 @@ export default function Content() {
                                     <span>Get in touch</span>
                                 </div>
                             </a>
-                            <a href={'/cv/Giannis_Nikolaou_CV.pdf'} download className={'download-cv-button'}>
-                                <div className={'DC-wrapper'}>
-                                    <div className={'background'}></div>
-                                    <span>Download CV</span>
-                                </div>
-                            </a>
+                            <DownloadCVButton />
                             <button onClick={showSettingsPanel} className={'show-settings-panel-button'}>
                                 Start-Game
                             </button>

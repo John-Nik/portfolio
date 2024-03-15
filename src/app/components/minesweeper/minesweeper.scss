@@ -1,8 +1,23 @@
-#minesweeper-container {
-    width: 100%;
-    position: relative;
-    height: calc(100vh - 64px - 58px);
+@media only screen and (min-width: 0px) {
+    #minesweeper-container {
+        width: 100%;
+        position: relative;
+        height: calc(100dvh - 64px - 58px);
+    }
 }
+
+@media only screen and (min-width: 1020px) {
+    #minesweeper-container {
+        height: calc(100dvh - 64px - 58px);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #minesweeper-container {
+        height: calc(100dvh - 90px - 59px);
+    }
+}
+
 
 #game {
     width: 100%;
@@ -90,5 +105,5 @@
 }
 
 .homepage-body {
-    overflow: hidden;
+    overflow: visible;
 }

@@ -14,7 +14,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 64px;
+        margin-bottom: 96px;
     
         .container {
             margin-top: 96px;
@@ -81,8 +81,6 @@
                 transition: all 0.5s;
                 opacity: 0;
                 pointer-events: none;
-
-                
             }
         }
 

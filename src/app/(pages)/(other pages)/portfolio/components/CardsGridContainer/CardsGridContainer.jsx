@@ -1,10 +1,10 @@
 'use client';
-import { useLayoutEffect } from "react";
+import { useEffect } from "react";
 import ProjectCard from "../ProjectCard/ProjectCard";
 
 export default function CardsGridContainer({projects}) {
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const cards = document.querySelectorAll('.item-container');
 
         cards.forEach((card) => {

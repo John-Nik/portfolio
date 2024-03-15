@@ -1,12 +1,22 @@
-import React from 'react';
+'use client';
 import './footer.scss';
 import CallIcon from '../icons-components/CallIcon.jsx';
 import EmailIcon from '../icons-components/EmailIcon.jsx';
 import GithubIcon from '../icons-components/GithubIcon.jsx';
 import SocialsIcon from '../icons-components/SocialsIcon.jsx';
 import FlagIcon from '../icons-components/FlagIcon.jsx';
+import { useEffect } from 'react';
 
 export default function Footer() {
+    useEffect(() => {
+        const footer = document.querySelector('#homepage-footer');
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (isSafari) {
+            footer.style.position = 'relative';
+        }
+    }, [])
+
     return ( 
         <footer id={'homepage-footer'}>
             <div className={'toggle-background'}>
@@ -22,13 +32,13 @@ export default function Footer() {
                 <li>
                     <a href={'https://www.github.com/John-Nik'}>github.com/John-Nik</a>
                 </li>
-                <li>
+                <li className={'phone-icon-wrapper'}>
                     <CallIcon />
                 </li>
-                <li>
+                <li className={'email-icon-wrapper'}>
                     <EmailIcon />
                 </li>
-                <li>
+                <li className={'github-icon-wrapper'}>
                     <GithubIcon link={'https://www.github.com/John-Nik'} />
                 </li>
                 <li className={'socials-icon-wrap'}>

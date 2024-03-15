@@ -3,7 +3,7 @@
 @media only screen and (min-width: 0px) {
     body {
 
-        header {
+        .header-navigation {
             position: fixed;
             width: 100%;
             top: 0;
@@ -40,6 +40,7 @@
                         width: 50%;
                         display: flex;
                         align-items: center;
+                        top: 0px;
                         position: relative;
             
                         .logo {
@@ -213,12 +214,11 @@
 
 @media only screen and (min-width: 1200px) {
     body {
-        header {
+        .header-navigation {
             nav {     
                 height: 90px;
                    
                 .container {
-                    padding: 0px 32px;
                     justify-content: center;
         
                     .logo-container {

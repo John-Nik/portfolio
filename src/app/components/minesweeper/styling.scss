@@ -155,69 +155,7 @@
                     }
                 }
     
-                .download-cv-button {
-                    width: 100%;
-                    max-width: 620px;
-                    font-size: 2rem;
-                    color: white;
-                    background-color: transparent;
-                    border-radius: 24px;
-                    box-shadow: none;
-                    border: solid #406ABF;
-                    cursor: pointer;
-                    text-decoration: none;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                    backdrop-filter: blur(3px);
-                    pointer-events: all;
-    
-                    .DC-wrapper {
-                        display: flex;
-                        position: relative;
-                        justify-content: center;
-                        align-items: center;
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 18px;
-                        padding: 0px 0px;
-                        overflow: hidden;
-    
-                        .background {
-                            transform: scale(0);
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 18px;
-                            background-color: hsl(220, 50%, 30%);
-                            position: absolute;
-                            z-index: 5;
-                            transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-                        }
-    
-                        span {
-                            position: relative;
-                            width: fit-content;
-                            z-index: 10;
-                            display: flex;
-                            align-items: center;
-                            height: clamp(48px, 2vw, 64px);
-                            font-size: clamp(1.5rem, 2vw, 2rem);
-                        }
-                    }
-    
-                    &:hover {
-                        border: solid hsl(220, 50%, 30%);
-    
-                        .background {
-                            transform: scale(1);
-                        }
-                    }
-    
-                    &:active {
-                        scale: 0.95;
-                    }
-                }
+                
 
                 .show-settings-panel-button {
                     font-size: 1.5rem;
@@ -234,17 +172,21 @@
                     pointer-events: all;
                     box-shadow: 0px 0px 5px black;
                     border-radius: 10%;
-                    animation: blink 1.5s steps(1) 0s infinite alternate;
+                    animation: blink 1.5s steps(1) 0s infinite;
 
                     @keyframes blink {
                         0% {
                             text-decoration: none;
+                            // for some reason, without setting the color to be changing, safari will NOT start the animation effect. I have no idea why it does this
+                            color: #83ADE1;
                         }
                         50% {
                             text-decoration: underline;
+                            color: #83ADE2;
                         }
                         100% {
                             text-decoration: none;
+                            color: #83ADE1;
                         }
                     }
                 }
@@ -298,23 +240,23 @@
                         }
     
                         #bolt1 {
-                            margin-top: 13px;
-                            margin-left: 13px;
+                            top: 14px;
+                            left: 14px;
                         }
     
                         #bolt2 {
-                            margin-top: calc(111%);
-                            margin-left: 13px;
+                            bottom: 14px;
+                            left: 14px;
                         }
     
                         #bolt3 {
-                            margin-left: calc(100% - 21px - 13px);
-                            margin-top: 13px;
+                            right: 14px;
+                            top: 14px;
                         }
     
                         #bolt4 {
-                            margin-left: calc(100% - 21px - 13px);
-                            margin-top: calc(111%);
+                            right: 14px;
+                            bottom: 14px;
                         }
                     }
     
@@ -515,15 +457,7 @@
                     }
                 }
     
-                .download-cv-button {
-    
-                    .DC-wrapper {
-    
-                        span {
-                            padding: 16px 0px;
-                        }
-                    }
-                }
+
 
                 .show-settings-panel-button {
                     display: none;
@@ -594,8 +528,6 @@
                     }
                 }
             }
-    
-            
         }
     }    
 }
