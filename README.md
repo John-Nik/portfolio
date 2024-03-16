@@ -260,3 +260,4 @@
 **0.8.1:** Added and testing google tag
 - - **0.8.1.1:** Small change to debug google tag
   - **0.8.1.2:** Removed preserveBehavior as that might be causing issues
+  - **0.8.1.3:** The problem was preserveBehavior. Added preserveBehavior back with different syntax

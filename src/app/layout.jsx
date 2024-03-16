@@ -12,7 +12,7 @@ export default function heads({children}) {
     return (
         <html lang="en">
             <head>
-                <Partytown forward={['dataLayer.push']} />
+                <Partytown forward={[ ['dataLayer.push', {preserveBehavior: true}] ]} />
 
                 {/* <!-- Google Tag Manager --> */}
                 <script type="text/partytown" dangerouslySetInnerHTML={{
