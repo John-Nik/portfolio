@@ -63,19 +63,19 @@ export default function() {
                         </div>
                         <div className={'form-container'}>
                             <div className={'form-wrapper'}>
-                                <form netlify>
+                                <form method="post" data-netlify="true">
                                     <div className={'form-input-box'}>
-                                        <label for="fname">Name</label><br />
+                                        <label htmlFor="fname">Name</label><br />
                                         <input required={true} id="fname" name="fname" type="text" />
                                     </div>
                                     
                                     <div className={'form-input-box'}>
-                                        <label for="femail">Email</label><br />
+                                        <label htmlFor="femail">Email</label><br />
                                         <input required={true} id="femail" name="femail" type="text" />
                                     </div>
 
                                     <div className={'form-input-box'}>
-                                        <label for="fmessage">Message</label><br />
+                                        <label htmlFor="fmessage">Message</label><br />
                                         <textarea required={true} className="fmessage" id="fmessage" name="fmessage" type="text" />
                                     </div>
 
