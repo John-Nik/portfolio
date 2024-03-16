@@ -1,7 +1,6 @@
 import { ZCOOL_QingKe_HuangYou, Fira_Code, Press_Start_2P } from 'next/font/google';
 import './global.scss';
-import { Partytown } from '@builder.io/partytown/react';
-import Script from 'next/script';
+
 
 
 const zcoolFont = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], display: 'swap'})
@@ -12,21 +11,8 @@ const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], prel
 export default function heads({children}) {
     return (
         <html lang="en">
-            <head>
-                <Partytown forward={[ ['dataLayer.push', {preserveBehavior: true}] ]} />
 
-                {/* <!-- Google Tag Manager --> */}
-                <Script strategy='lazyOnload' type="text/partytown" dangerouslySetInnerHTML={{
-                    __html: "!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({'gtm.start':(new Date).getTime(),event:'gtm.js'});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src='https://www.googletagmanager.com/gtm.js?id=GTM-TZNHH5M7',m.parentNode.insertBefore(r,m)}(window,document,'script','dataLayer');console.log('ran gtag')"
-                }} />
-                {/* <!-- Google Tag Manager --> */}
-
-            </head>
             <body className={`${zcoolFont.className} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
-                {/* <-- Google Tag Manager (noscript) --> */}
-                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZNHH5M7"
-                height="0" width="0" style={{display: 'none', visiblity: 'hidden'}}></iframe></noscript>
-                {/* <-- End Google Tag Manager (noscript) --> */}
 
                 {children}
                 
