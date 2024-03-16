@@ -12,11 +12,11 @@ export default function heads({children}) {
     return (
         <html lang="en">
             <head>
-                <Partytown forward={['dataLayer.push', { preserveBehavior: true }]} />
+                <Partytown forward={['dataLayer.push']} />
 
                 {/* <!-- Google Tag Manager --> */}
                 <script type="text/partytown" dangerouslySetInnerHTML={{
-                    __html: "!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({'gtm.start':(new Date).getTime(),event:'gtm.js'});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src='https://www.googletagmanager.com/gtm.js?id=GTM-TZNHH5M7',m.parentNode.insertBefore(r,m)}(window,document,'script','dataLayer');console.log('tag is ran')"
+                    __html: "!function(e,t,a,n,g){e[n]=e[n]||[],e[n].push({'gtm.start':(new Date).getTime(),event:'gtm.js'});var m=t.getElementsByTagName(a)[0],r=t.createElement(a);r.async=!0,r.src='https://www.googletagmanager.com/gtm.js?id=GTM-TZNHH5M7',m.parentNode.insertBefore(r,m)}(window,document,'script','dataLayer');console.log('ran gtag')"
                 }} />
                 {/* <!-- Google Tag Manager --> */}
 
@@ -39,9 +39,7 @@ export default function heads({children}) {
 export const viewport = {
     width: 'device-width',
     initialScale: 1,
-    maximumScale: 1,
     minimumScale: 1,
-    userScalable: false,
     viewportFit: 'cover',
     themeColor: '#011627',
     colorScheme: '#011627'
