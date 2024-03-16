@@ -264,3 +264,4 @@
   - **0.8.1.4:** Tweaked the time when the google tag loads to increase pagespeed score
   - **0.8.1.5:** Set the script loading strategy of the g-tag from "afterInteractive" to "lazyOnload" to track pagespeed stats
   - **0.8.1.6:** Completely removed partyscript and g-tag
+  - **0.8.1.7:** Added g-tag with afterInteractive loading strategy
