@@ -291,3 +291,4 @@
   - **0.9.4.2:** Moved the hidden input to be the first child of the form
   - **0.9.4.3:** Changed the name of the input fields to match the form's name
   - **0.9.4.4:** Handle form submission with AJAX
+  - **0.9.4.5:** Fixed a small issue

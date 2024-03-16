@@ -8,7 +8,6 @@ import CodeWrapper from "./components/CodeWrapper/CodeWrapper";
 
 export default async function() {
     const handleSubmit = (event) => {
-        event.preventDefault();
       
         const myForm = event.target;
         const formData = new FormData(myForm);
@@ -18,7 +17,7 @@ export default async function() {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams(formData).toString(),
         })
-          .then(() => navigate("/thank-you/"))
+          .then(console.log('form submitted'))
           .catch((error) => alert(error));
       };
 
