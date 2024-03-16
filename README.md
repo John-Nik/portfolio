@@ -286,4 +286,6 @@
 
 **0.9.3:** Added a hidden input area to help fix the form not being detected in netlify
 
-**0.9.4:** Moved the code-wrapper from the the page.jsx to its own component, so as to pre-render the page and detect the netlify form
+**0.9.4:** Debugging netlify forms
+- - **0.9.4.1:** Moved the code-wrapper from the the page.jsx to its own component, so as to pre-render the page and detect the netlify form
+  - **0.9.4.2:** Moved the hidden input to be the first child of the form
