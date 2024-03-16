@@ -11,14 +11,8 @@ const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], prel
 export default function heads({children}) {
     return (
         <html lang="en">
-            <head>
-                <GoogleTagManager gtmId="GTM-TZNHH5M7" />
-            </head>
             <body className={`${zcoolFont.className} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
-                {/* <-- Google Tag Manager (noscript) --> */}
-                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TZNHH5M7"
-                height="0" width="0" style={{display: 'none', visiblity: 'hidden'}}></iframe></noscript>
-                {/* <-- End Google Tag Manager (noscript) --> */}
+                <GoogleTagManager gtmId="GTM-TZNHH5M7" />
 
                 {children}
                 
