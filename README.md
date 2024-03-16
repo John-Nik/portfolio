@@ -262,3 +262,4 @@
   - **0.8.1.2:** Removed preserveBehavior as that might be causing issues
   - **0.8.1.3:** The problem was preserveBehavior. Added preserveBehavior back with different syntax
   - **0.8.1.4:** Tweaked the time when the google tag loads to increase pagespeed score
+  - **0.8.1.5:** Set the script loading strategy of the g-tag from "afterInteractive" to "lazyOnload" to track pagespeed stats
