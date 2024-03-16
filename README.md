@@ -261,3 +261,4 @@
 - - **0.8.1.1:** Small change to debug google tag
   - **0.8.1.2:** Removed preserveBehavior as that might be causing issues
   - **0.8.1.3:** The problem was preserveBehavior. Added preserveBehavior back with different syntax
+  - **0.8.1.4:** Tweaked the time when the google tag loads to increase pagespeed score
