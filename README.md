@@ -292,3 +292,4 @@
   - **0.9.4.3:** Changed the name of the input fields to match the form's name
   - **0.9.4.4:** Handle form submission with AJAX
   - **0.9.4.5:** Fixed a small issue
+  - **0.9.4.6:** Added a title and canonical tag on the contact page. Will proceed with fixing the form on the next update

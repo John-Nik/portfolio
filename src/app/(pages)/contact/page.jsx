@@ -1,4 +1,3 @@
-'use client'
 import Header from "@/app/components/header/Header";
 import Footer from "@/app/components/footer/footer";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -6,21 +5,7 @@ import './styling.scss';
 import CodeWrapper from "./components/CodeWrapper/CodeWrapper";
 
 
-export default async function() {
-    const handleSubmit = (event) => {
-      
-        const myForm = event.target;
-        const formData = new FormData(myForm);
-      
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString(),
-        })
-          .then(console.log('form submitted'))
-          .catch((error) => alert(error));
-      };
-
+export default function() {
     return (
         <>
             <Header />
@@ -34,7 +19,7 @@ export default async function() {
                         </div>
                         <div className={'form-container'}>
                             <div className={'form-wrapper'}>
-                                <form onSubmit={handleSubmit} name="contact" method="post" data-netlify="true">
+                                <form name="contact" method="post" data-netlify="true">
                                     <input type="hidden" name="form-name" value="contact" />
                                     <div className={'form-input-box'}>
                                         <label htmlFor="fname">Name</label><br />
@@ -64,4 +49,11 @@ export default async function() {
             <Footer />
         </>
     )
+}
+
+export const metadata = {
+    title: 'Giannis N. | Contact',
+    alternates: {
+        canonical: '/contact'
+    },
 }
