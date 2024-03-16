@@ -268,3 +268,10 @@
   - **0.8.1.8:** Changed g-tag to lazyOnload loading strategy
   - **0.8.1.9:** Instead of directly loading google tag using 'nextjs/script', I'm using '@next/third-parties/google'. There is an issue where half the times google tag wont track
   - **0.8.1.10:** Changed the position of \<GoogleTagManager> from the \<head> to \<body>
+
+**0.9.0:** 
+- Uninstalled Partytown
+- Imported the NextJS Image component and used it for the images
+- Made the entire website completely accessible via only keyboard usage
+- Made the form in the contact page functional
+- Made the contact page responsive

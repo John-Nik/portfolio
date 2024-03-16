@@ -1,5 +1,6 @@
 'use client';
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import { useEffect } from "react";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import './styling.scss';
@@ -21,15 +22,17 @@ export default function FullPortfolioPage({projects}) {
             const rect = card.getBoundingClientRect();
             const mouseOnCardPosX = mouse.clientX - rect.left;
             const mouseOnCardPosY = mouse.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`)
-            card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`)
+
+            setTimeout(() => {
+                card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`)
+                card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`)
+            }, 100)
         })
 
 
 
         const titleTag = document.querySelector('title');
-        titleTag.innerHTML = `Giannis N. | ${projectAttributes.title} Project`;
+        titleTag.innerHTML = `Giannis N. | ${projectAttributes.name} Project`;
     }, [])
 
     function sendToPortfolioPage() {
@@ -39,12 +42,12 @@ export default function FullPortfolioPage({projects}) {
     return (
         <section className={'full-page-project'}>
             <div className={'container full-page-card'}>
-                <div onClick={sendToPortfolioPage} className={'back-arrow'}>
-                    <img src="/icons/back-arrow.svg" />
+                <div tabIndex="0" role="button" onKeyDown={(e) => {if (e.key === "Enter") { sendToPortfolioPage() }}} onClick={sendToPortfolioPage} className={'back-arrow'}>
+                    <Image src="/icons/back-arrow.svg" width={40} height={40} alt="" priority={true} />
                 </div>
                 <ProjectCard project={dataToPull[0]} />
                 <div className={'text-wrapper'}>
-                    <h1 className={'title'}>// {projectAttributes.title}</h1>
+                    <h1 className={'title'}>// {projectAttributes.name}</h1>
                     <div className={'body'} dangerouslySetInnerHTML={{__html: dataToPull[0].html}} />
                 </div>
             </div>

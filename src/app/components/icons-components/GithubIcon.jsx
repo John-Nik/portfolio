@@ -6,6 +6,6 @@ export default function GithubIcon({link}) {
     }
 
     return (
-        <img className={'github-icon icon'} title={`Visit ${link}`} onClick={userWantsGithub} src="/icons/github.svg" alt={`redirect to ${link}`} />
+        <img tabIndex="0" role="button" className={'github-icon icon'} title={`Visit ${link}`} onClick={userWantsGithub} onKeyDown={(e) => {if (e.key === "Enter") { userWantsGithub() }}} src="/icons/github.svg" alt={`redirect to ${link}`} />
     )
 }

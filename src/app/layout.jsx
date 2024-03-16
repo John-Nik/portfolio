@@ -3,7 +3,7 @@ import './global.scss';
 import { GoogleTagManager } from '@next/third-parties/google'
 
 
-const zcoolFont = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], display: 'swap'})
+const zcoolFont = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], variable: '--zcool-font', display: 'swap'})
 const firaCodeFont = Fira_Code({subsets: ['latin'], preload: true, variable: '--fira-code', display: 'swap'})
 const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], preload: true, variable: '--press-start-font', display: 'swap'})
 
@@ -11,13 +11,13 @@ const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], prel
 export default function heads({children}) {
     return (
         <html lang="en">
-            <body className={`${zcoolFont.className} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
+            <body className={`${zcoolFont.className} ${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
                 <GoogleTagManager gtmId="GTM-TZNHH5M7" />
 
                 {children}
                 
-                <div className={'is-minesweeper-playing-in-homepage'} />
-                <div className={'is-minesweeper-playing-in-about-page'} />
+                <div aria-hidden="true" className={'is-minesweeper-playing-in-homepage'} />
+                <div aria-hidden="true" className={'is-minesweeper-playing-in-about-page'} />
             </body>
         </html>
     )
@@ -57,15 +57,15 @@ export const metadata = {
         },
         images: [
             {
-                url: 'https://nextjs.org/og.png', // Must be an absolute URL
+                url: 'https://john-nik.com/images/portfolio.webp',
                 width: 800,
                 height: 600,
             },
             {
-                url: 'https://nextjs.org/og-alt.png', // Must be an absolute URL
+                url: 'https://john-nik.com/images/portfolio.webp', // Must be an absolute URL
                 width: 1800,
                 height: 1600,
-                alt: 'My custom alt',
+                alt: 'Giannis Nikolaou | Personal Portfolio',
             },
         ],
     },

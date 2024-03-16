@@ -1,13 +1,14 @@
 ---
 title: Portfolio
-img: images/about-me-picture.png
-siteLink: john-nik.com
+name: Personal Project Portfolio
+img: images/portfolio.webp
+siteLink: https://www.john-nik.com
 githubLink: https://github.com/John-Nik/portfolio
 ---
-* 1
-* 2
-* 3
-* 4
-* 5
+##### *Design UI & UX, SEO Handle, Only Developer, HTML5, SCSS / Sass, NextJS, React, Javascript, Headless CMS Setup*
 
-Fun responsibitilies
+###### Jan. 2024 - Mar. 2024
+
+* Managed the DNS and hosting services, ensuring optimal website perfomance and availability
+* Designed and coded everything
+* Set up a backend to easily add new projects in the future

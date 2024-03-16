@@ -6,6 +6,6 @@ export default function WebsiteIcon({link}) {
     }
 
     return (
-        <img className={'website-icon icon'} onClick={redirectUserToWebsite} title={`Visit ${link}`} src="/icons/website.svg" alt={`redirect to ${link}`} />
+        <img tabIndex="0" role="button" className={'website-icon icon'} onClick={redirectUserToWebsite} onKeyDown={(e) => {if (e.key === "Enter") { redirectUserToWebsite() }}} title={`Visit ${link}`} src="/icons/website.svg" alt={`redirect to ${link}`} />
     )
 }

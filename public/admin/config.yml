@@ -8,7 +8,7 @@ publish_mode: editorial_workflow
 
 media_folder: images
 
-public_folder: public
+public_folder: images
 
 collections:
   - name: "projects"
@@ -17,7 +17,8 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Project Name", name: "title", widget: "string"}
+      - {label: "Short Name", name: "title", widget: "string"}
+      - {label: "Full Name", name: "name", widget: "string"}
       - {label: "Picture", name: "img", widget: "image"}
       - {label: "Site Link", name: "siteLink", widget: "string"}
       - {label: "Github Repo", name: "githubLink", widget: "string"}

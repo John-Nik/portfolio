@@ -12,9 +12,11 @@ export default function CardsGridContainer({projects}) {
                 const rect = card.getBoundingClientRect();
                 const mouseOnCardPosX = mouse.clientX - rect.left;
                 const mouseOnCardPosY = mouse.clientY - rect.top;
-                
-                card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`)
-                card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`)
+
+                setTimeout(() => {
+                    card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`)
+                    card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`)
+                }, 100)
             })
         })
     }, [])

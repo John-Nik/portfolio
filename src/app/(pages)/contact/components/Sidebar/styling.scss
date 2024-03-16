@@ -1,87 +1,169 @@
-#sidebar {
-    width: 20%;
-    max-width: 428px;
-    border-right: 2px solid white;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-width: 250px;
-
-    .download-cv-button-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-top: 96px;
-    }
-
-    .download-cv-button {
-        width: calc(100% - 32px);
-
-        .DC-wrapper {
-            span {
-                padding: 0px;
+@media only screen and (min-width: 0px) {
+    #sidebar {
+        width: 20%;
+        max-width: 428px;
+        border-right: 2px solid white;
+        height: 100%;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 250px;
+    
+        .download-cv-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 96px;
+        }
+    
+        .download-cv-button {
+            width: calc(100% - 32px);
+    
+            .DC-wrapper {
+                span {
+                    padding: 0px;
+                }
             }
         }
+    
+        .contact-info-container {
+            display: flex;
+            width: 100%;
+            padding-left: 16px;
+        }
+    
+        .contact-info-wrapper {
+            list-style: none;
+            display: flex;
+            gap: 16px;
+            flex-direction: column;
+            margin-bottom: 64px;
+        }
+    
+        .icon {
+            opacity: 0.8;
+            transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            cursor: pointer;
+    
+            &:hover {
+                opacity: 1;
+            }
+        }
+    
+        .phone-icon {
+            margin-right: 26px;
+        }
+    
+        .github-icon {
+            margin-right: 26px;
+        }
+    
+        .email-icon {
+            margin-right: 16px;
+            left: -4px;
+            position: relative;
+        }
+    
+        a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            font-size: clamp(16px, 1.2vw, 20px);
+    
+            &:hover {
+                opacity: 1;
+            }
+        }
+    
+        .contact {
+            display: flex;
+            align-items: center;
+        }
     }
+}
 
-    .contact-info-container {
+@media only screen and (min-width: 700px) {
+    #sidebar {
+        width: 20%;
+        max-width: 428px;
+        border-right: 2px solid white;
+        height: 100%;
         display: flex;
-        width: 100%;
-        padding-left: 16px;
-    }
-
-    .contact-info-wrapper {
-        list-style: none;
-        display: flex;
-        gap: 16px;
         flex-direction: column;
-        margin-bottom: 64px;
-    }
-
-    .icon {
-        opacity: 0.8;
-        transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        cursor: pointer;
-
-        &:hover {
-            opacity: 1;
+        justify-content: space-between;
+        min-width: 250px;
+    
+        .download-cv-button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 96px;
+        }
+    
+        .download-cv-button {
+            width: calc(100% - 32px);
+    
+            .DC-wrapper {
+                span {
+                    padding: 0px;
+                }
+            }
+        }
+    
+        .contact-info-container {
+            display: flex;
+            width: 100%;
+            padding-left: 16px;
+        }
+    
+        .contact-info-wrapper {
+            list-style: none;
+            display: flex;
+            gap: 16px;
+            flex-direction: column;
+            margin-bottom: 64px;
+        }
+    
+        .icon {
+            opacity: 0.8;
+            transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            cursor: pointer;
+    
+            &:hover {
+                opacity: 1;
+            }
+        }
+    
+        .phone-icon {
+            margin-right: 26px;
+        }
+    
+        .github-icon {
+            margin-right: 26px;
+        }
+    
+        .email-icon {
+            margin-right: 16px;
+            left: -4px;
+            position: relative;
+        }
+    
+        a {
+            color: white;
+            opacity: 0.8;
+            text-decoration: none;
+            transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            font-size: clamp(16px, 1.2vw, 20px);
+    
+            &:hover {
+                opacity: 1;
+            }
+        }
+    
+        .contact {
+            display: flex;
+            align-items: center;
         }
     }
-
-    .phone-icon {
-        margin-right: 26px;
-    }
-
-    .github-icon {
-        margin-right: 26px;
-    }
-
-    .email-icon {
-        margin-right: 16px;
-        left: -4px;
-        position: relative;
-    }
-
-    a {
-        color: white;
-        opacity: 0.8;
-        text-decoration: none;
-        transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-        font-size: clamp(16px, 1.2vw, 20px);
-
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    .contact {
-        display: flex;
-        align-items: center;
-    }
 }
-
-@media only screen and (min-width: 0px) {
-
-}
-

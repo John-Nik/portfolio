@@ -10,6 +10,6 @@ export default function SocialsIcon() {
     }
 
     return (
-        <img className={'socials-icon'} onClick={userTriggersSocialsMenu} src="/icons/socials.svg" alt="" />
+        <img tabIndex="0" role="button" className={'socials-icon'} onClick={userTriggersSocialsMenu} onKeyDown={(e) => {if (e.key === "Enter") { userTriggersSocialsMenu() }}} src="/icons/socials.svg" alt="" />
     )
 }

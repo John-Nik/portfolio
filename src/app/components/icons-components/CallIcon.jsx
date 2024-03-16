@@ -6,6 +6,6 @@ export default function CallIcon() {
     }
 
     return (
-        <img className={'phone-icon icon'} onClick={userWantsCall} src="/icons/phone.svg" alt="" />
+        <img tabIndex="0" role="button" className={'phone-icon icon'} onClick={userWantsCall} onKeyDown={(e) => {if (e.key === "Enter") { userWantsCall() }}} src="/icons/phone.svg" alt="" />
     )
 }

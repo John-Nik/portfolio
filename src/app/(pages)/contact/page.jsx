@@ -1,11 +1,55 @@
-'use server' // most important page to prerender, so I'm ensuring a prerender with this
+'use client'
 import Header from "@/app/components/header/Header";
 import Footer from "@/app/components/footer/footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import './styling.scss';
+import { useEffect } from "react";
 
 
-export default async function() {
+export default function() {
+    useEffect(() => {
+        let nameOutput = document.querySelector('.name-js-input'),
+            emailOutput = document.querySelector('.email-js-input'),
+            messageOutput = document.querySelector('.message-js-input'),
+            nameInput = document.querySelector('#fname'),
+            emailInput = document.querySelector('#femail'),
+            messageInput = document.querySelector('#fmessage');
+
+        nameInput.addEventListener('input', changeNamePseudoCode);
+        emailInput.addEventListener('input', changeEmailPseudoCode);
+        messageInput.addEventListener('input', changeMessagePseudoCode);
+
+        nameInput.addEventListener('touchstart', () => {
+            nameInput.removeEventListener('input', changeNamePseudoCode);
+            nameInput.addEventListener('keyup', changeNamePseudoCode);
+        });
+
+        emailInput.addEventListener('touchstart', () => {
+            emailInput.removeEventListener('input', changeEmailPseudoCode);
+            emailInput.addEventListener('keyup', changeEmailPseudoCode);
+        });
+
+        messageInput.addEventListener('touchstart', () => {
+            messageInput.removeEventListener('input', changeMessagePseudoCode);
+            messageInput.addEventListener('keyup', changeMessagePseudoCode);
+        });
+
+        function changeNamePseudoCode() {
+            let query = nameInput.value;
+            nameOutput.innerHTML = `"${query}"`;
+        }
+
+        function changeEmailPseudoCode() {
+            let query = emailInput.value
+            emailOutput.innerHTML = `"${query}"`;
+        }
+
+        function changeMessagePseudoCode() {
+            let query = messageInput.value
+            messageOutput.innerHTML = `"${query}"`;
+        }
+    }, [])
+
     return (
         <>
              <Header />
@@ -19,24 +63,28 @@ export default async function() {
                         </div>
                         <div className={'form-container'}>
                             <div className={'form-wrapper'}>
-                                <form>
+                                <form netlify="true">
                                     <div className={'form-input-box'}>
                                         <label for="fname">Name</label><br />
-                                        <input id="fname" name="fname" type="text" />
+                                        <input required={true} id="fname" name="fname" type="text" />
                                     </div>
                                     
                                     <div className={'form-input-box'}>
                                         <label for="femail">Email</label><br />
-                                        <input id="femail" name="femail" type="text" />
+                                        <input required={true} id="femail" name="femail" type="text" />
                                     </div>
 
                                     <div className={'form-input-box'}>
                                         <label for="fmessage">Message</label><br />
-                                        <textarea id="fmessage" name="fmessage" type="text" />
+                                        <textarea required={true} className="fmessage" id="fmessage" name="fmessage" type="text" />
+                                    </div>
+
+                                    <div className="submit-button-container">
+                                        <button type="submit" className={'start-game-button'}>Submit</button>
                                     </div>
                                 </form>
                             </div>
-                            <div className={'code-wrapper'}>
+                            <div aria-hidden="true" className={'code-wrapper'}>
                                 <ol className={'code'}>
                                     <li className={'codeline codeline1'}>
                                         <span className={'white'}>
