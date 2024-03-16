@@ -1,4 +1,4 @@
-'use server'
+'use client'
 import Header from "@/app/components/header/Header";
 import Footer from "@/app/components/footer/footer";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -7,6 +7,21 @@ import CodeWrapper from "./components/CodeWrapper/CodeWrapper";
 
 
 export default async function() {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+      
+        const myForm = event.target;
+        const formData = new FormData(myForm);
+      
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(formData).toString(),
+        })
+          .then(() => navigate("/thank-you/"))
+          .catch((error) => alert(error));
+      };
+
     return (
         <>
             <Header />
@@ -20,7 +35,7 @@ export default async function() {
                         </div>
                         <div className={'form-container'}>
                             <div className={'form-wrapper'}>
-                                <form name="contact" method="post" data-netlify="true">
+                                <form onSubmit={handleSubmit} name="contact" method="post" data-netlify="true">
                                     <input type="hidden" name="form-name" value="contact" />
                                     <div className={'form-input-box'}>
                                         <label htmlFor="fname">Name</label><br />

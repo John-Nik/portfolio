@@ -290,3 +290,4 @@
 - - **0.9.4.1:** Moved the code-wrapper from the the page.jsx to its own component, so as to pre-render the page and detect the netlify form
   - **0.9.4.2:** Moved the hidden input to be the first child of the form
   - **0.9.4.3:** Changed the name of the input fields to match the form's name
+  - **0.9.4.4:** Handle form submission with AJAX
