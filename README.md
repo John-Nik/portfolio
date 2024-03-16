@@ -266,3 +266,4 @@
   - **0.8.1.6:** Completely removed partyscript and g-tag
   - **0.8.1.7:** Added g-tag with afterInteractive loading strategy
   - **0.8.1.8:** Changed g-tag to lazyOnload loading strategy
+  - **0.8.1.9:** Instead of directly loading google tag using 'nextjs/script', I'm using '@next/third-parties/google'. There is an issue where half the times google tag wont track
