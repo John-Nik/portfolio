@@ -63,7 +63,7 @@ export default function() {
                         </div>
                         <div className={'form-container'}>
                             <div className={'form-wrapper'}>
-                                <form method="post" data-netlify="true">
+                                <form name="contact" method="post" data-netlify="true">
                                     <div className={'form-input-box'}>
                                         <label htmlFor="fname">Name</label><br />
                                         <input required={true} id="fname" name="fname" type="text" />
@@ -78,7 +78,7 @@ export default function() {
                                         <label htmlFor="fmessage">Message</label><br />
                                         <textarea required={true} className="fmessage" id="fmessage" name="fmessage" type="text" />
                                     </div>
-
+                                    <input type="hidden" name="form-name" value="contact" />
                                     <div className="submit-button-container">
                                         <button type="submit" className={'start-game-button'}>Submit</button>
                                     </div>

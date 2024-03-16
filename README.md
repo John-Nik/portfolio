@@ -283,3 +283,5 @@
 **0.9.1:** In the form, removed the "netlify="true"" for plain "netlify"
 
 **0.9.2:** Formatted the form tag from \<form netlify> to \<form method="post" data-netlify="true">, and also changed the "for" the label tags had to "htmlFor"
+
+**0.9.3:** Added a hidden input area to help fix the form not being detected in netlify
