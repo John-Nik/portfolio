@@ -63,7 +63,7 @@ export default function() {
                         </div>
                         <div className={'form-container'}>
                             <div className={'form-wrapper'}>
-                                <form netlify="true">
+                                <form netlify>
                                     <div className={'form-input-box'}>
                                         <label for="fname">Name</label><br />
                                         <input required={true} id="fname" name="fname" type="text" />
