@@ -256,3 +256,5 @@
 - Added robots.txt
 - Added sitemap.xml
 - Made the desktop version of the contact page. Will proceed with making it function as visualized in the next update
+
+**0.8.1:** Added and testing google tag
