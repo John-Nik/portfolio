@@ -296,3 +296,4 @@
   - **0.9.4.5:** Tried to handle the form using a simple fetch api call
   - **0.9.4.6:** Changed the names of the inputs to have their own unique names
   - **0.9.4.7:** Added a hidden form in the page, as per netlify instructions
+  - **0.9.4.8:** Added a "FormWrapper.html" file with the form in there, and also removed the manually added event listeners of the code wrapper and instead are using react features to detect input changes and display them on the code to the right
