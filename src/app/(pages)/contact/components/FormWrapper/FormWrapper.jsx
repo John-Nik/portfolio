@@ -1,10 +1,10 @@
 'use client'
 export default function FormWrapper() {
     function handleSubmit(formEvent) {
-        formEvent.preventDefault();
 
-        const form = document.querySelector('form');
+        const form = document.querySelector('.form');
         const formData = new FormData(form);
+
 
         fetch('/', {
             method: 'POST',
@@ -32,8 +32,9 @@ export default function FormWrapper() {
 
     return (
         <div className={'form-wrapper'}>
-            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify={true}>
+            <form className="form" onSubmit={handleSubmit} name="contact" method="POST" data-netlify={true}>
                 <input type="hidden" name="form-name" value="contact" />
+
                 <div className={'form-input-box'}>
                     <label htmlFor="fname">Name</label><br />
                     <input onInput={handleNameInput} required={true} id="fname" name="nameInput" type="text" />
