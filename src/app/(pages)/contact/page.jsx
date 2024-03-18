@@ -11,6 +11,15 @@ export default function() {
         <>
             <Header />
 
+            <form name="contact" method="POST" data-netlify="true" hidden>
+                <input type="hidden" name="form-name" value="contact" />
+                <input required={true} id="fname" name="nameInput" type="text" />
+
+                <input required={true} id="femail" name="emailInput" type="text" />
+
+                <textarea required={true} className="fmessage" id="fmessage" name="messageInput" type="text" />
+            </form>
+
             <main id={'contact-me-main'}>
                 <Sidebar />
                 <div className={'main-content-container'}>
