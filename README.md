@@ -294,3 +294,4 @@
   - **0.9.4.5:** Fixed a small issue
   - **0.9.4.6:** Added a title and canonical tag on the contact page. Will proceed with fixing the form on the next update
   - **0.9.4.5:** Tried to handle the form using a simple fetch api call
+  - **0.9.4.6:** Changed the names of the inputs to have their own unique names

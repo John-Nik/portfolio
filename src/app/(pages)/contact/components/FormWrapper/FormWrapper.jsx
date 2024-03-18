@@ -17,21 +17,21 @@ export default function FormWrapper() {
 
     return (
         <div className={'form-wrapper'}>
-            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true">
+            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify={true}>
                 <input type="hidden" name="form-name" value="contact" />
                 <div className={'form-input-box'}>
                     <label htmlFor="fname">Name</label><br />
-                    <input required={true} id="fname" name="contact" type="text" />
+                    <input required={true} id="fname" name="nameInput" type="text" />
                 </div>
                 
                 <div className={'form-input-box'}>
                     <label htmlFor="femail">Email</label><br />
-                    <input required={true} id="femail" name="contact" type="text" />
+                    <input required={true} id="femail" name="emailInput" type="text" />
                 </div>
 
                 <div className={'form-input-box'}>
                     <label htmlFor="fmessage">Message</label><br />
-                    <textarea required={true} className="fmessage" id="fmessage" name="contact" type="text" />
+                    <textarea required={true} className="fmessage" id="fmessage" name="messageInput" type="text" />
                 </div>
                 <div className="submit-button-container">
                     <button type="submit" className={'start-game-button'}>Submit</button>
