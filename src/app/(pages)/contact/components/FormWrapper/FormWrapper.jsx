@@ -17,7 +17,7 @@ export default function FormWrapper() {
 
     return (
         <div className={'form-wrapper'}>
-            <form onSubmit={handleSubmit} name="contact" method="post" data-netlify="true">
+            <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true">
                 <input type="hidden" name="form-name" value="contact" />
                 <div className={'form-input-box'}>
                     <label htmlFor="fname">Name</label><br />
