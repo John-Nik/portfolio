@@ -5,6 +5,22 @@
     padding: 0;
 }
 
+/* Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 30px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(229, 244, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #83ade2;
+    border-radius: 30px;
+    border: 1px solid #ffffff;
+}
+
 @media only screen and (min-width: 0px) {
     body {
         background-color: $base-color;
@@ -16,8 +32,6 @@
             height: min-content;
         }
     }
-    
-    
 }
 
 @media only screen and (min-width: 1200px) {

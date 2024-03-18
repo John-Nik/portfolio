@@ -1,12 +1,38 @@
+'use client'
 import DownloadCVButton from "@/app/components/buttons/DownloadCVButton";
 import CallIcon from "@/app/components/icons-components/CallIcon";
 import EmailIcon from "@/app/components/icons-components/EmailIcon";
 import GithubIcon from "@/app/components/icons-components/GithubIcon";
 import './styling.scss';
+import { useEffect } from "react";
 
 export default function Sidebar() {
+    // useEffect(() => {
+    //     const aside = document.querySelector('aside');
+    //     const main = document.querySelector('.main-content-container');
+
+        
+    //     setAsideHeight();
+    //     function setAsideHeight() {
+    //         if (aside.offsetHeight < main.offsetHeight) {
+    //             const mainHeight = main.offsetHeight;
+    //             aside.style.height = `${mainHeight}px`;
+    //         } else if (window.innerWidth < 800) {
+    //             aside.style.height = 'calc(100dvh - 90px)'
+    //         } else if (window.innerWidth < 700) {
+    //             aside.style.height = 'calc(100dvh - 64px)'
+    //         } else {
+    //             aside.style.height = 'calc(100dvh - 90px)'
+    //         }
+    //     }
+
+    //     window.addEventListener('resize', setAsideHeight);
+    // }, [])
+
+
     return (
         <aside id={'sidebar'}>
+        <div className="container">
             <div className={'download-cv-button-container'}>
                 <DownloadCVButton />
             </div>
@@ -26,6 +52,7 @@ export default function Sidebar() {
                     </li>
                 </ul>
             </div>
+        </div>
         </aside>
     )
 }

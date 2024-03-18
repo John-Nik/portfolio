@@ -1,4 +1,10 @@
 export default function CodeWrapper() {
+    let date = new Date(),
+        year = date.getFullYear(),
+        month = date.getMonth() + 1,
+        day = date.getDate(),
+        fullDate = day + '/' + month + '/' + year;
+
     return (
         <div aria-hidden="true" className={'code-wrapper'}>
             <ol className={'code'}>
@@ -23,7 +29,7 @@ export default function CodeWrapper() {
                     &nbsp;&nbsp;<span className="light-blue">message</span><span className="gray">: </span><span className="orange message-js-input">""</span><span className="white">,</span>
                 </li>
                 <li className={'codeline codeline7'}>
-                    &nbsp;&nbsp;<span className="light-blue">date</span><span className="gray">: </span><span className="orange date-js-input">"22/01/2024"</span>
+                    &nbsp;&nbsp;<span className="light-blue">date</span><span className="gray">: </span><span className="orange date-js-input">"{fullDate}"</span>
                 </li>
                 <li className={'codeline codeline8'}>
                     <span className="dark-blue">{'}'}</span><span className="white">;</span>

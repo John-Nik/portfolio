@@ -35,7 +35,7 @@ export default function() {
                 </div>
             </main>
 
-            <Footer />
+            <Footer className="contact-page-footer" />
         </>
     )
 }

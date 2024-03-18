@@ -9,7 +9,7 @@
         flex-direction: row;
     }
     
-    footer {
+    .contact-page-footer {
         display: flex !important;
     }
     
@@ -17,6 +17,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
+        height: fit-content;
     }
     
     .content-wrapper{
@@ -25,6 +26,7 @@
         display: flex;
         flex-direction: column;
         padding: 0px 24px;
+        height: fit-content;
     
         h1 {
             color: $tint-2;
@@ -92,7 +94,7 @@
         }
     
         .form-input-box {
-            margin-top: 40px;
+            margin-top: 24px;
         }
     
         .form-input-box:nth-child(4) {
@@ -139,10 +141,11 @@
             font-weight: 400;
             background-color: #83ADE2;
             cursor: pointer;
+            margin-bottom: 90px;
 
 
             &:hover {
-                background-color: hsl(213, 62%, 60%);
+                background-color: $tint-4;
             }
 
             &:active {
@@ -212,7 +215,7 @@
         margin-top: 64px;
     }
     
-    footer {
+    .contact-page-footer {
         display: none !important;
     }
     
@@ -233,6 +236,11 @@
             textarea {
                 height: calc(48px * 2.5);
             }
+        }
+
+        
+        button {
+            margin-bottom: 32px;
         }
     }
 }

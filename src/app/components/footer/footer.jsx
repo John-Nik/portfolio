@@ -3,9 +3,9 @@ import CallIcon from '../icons-components/CallIcon.jsx';
 import EmailIcon from '../icons-components/EmailIcon.jsx';
 import GithubIcon from '../icons-components/GithubIcon.jsx';
 
-export default function Footer() {
+export default function Footer({className}) {
     return ( 
-        <footer>
+        <footer className={className}>
             <div className={'toggle-background'}>
 
             </div>

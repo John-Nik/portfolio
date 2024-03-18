@@ -1,17 +1,19 @@
 'use client'
 export default function FormWrapper() {
     function handleSubmit(formEvent) {
+        formEvent.preventDefault();
 
         const form = document.querySelector('.form');
         const formData = new FormData(form);
 
+        console.log(formData)
 
         fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: encodeURI( {'form-name': 'contact', ...formData })
+            body: encodeURI( {'form-name': 'contact', name: 'name' })
         })
-        .then((res) => console.log(res))
+        .then((res) => console.log(res.json()))
         .catch(error => console.log(error))
     }
 
@@ -34,7 +36,6 @@ export default function FormWrapper() {
         <div className={'form-wrapper'}>
             <form className="form" onSubmit={handleSubmit} name="contact" method="POST" data-netlify={true}>
                 <input type="hidden" name="form-name" value="contact" />
-
                 <div className={'form-input-box'}>
                     <label htmlFor="fname">Name</label><br />
                     <input onInput={handleNameInput} required={true} id="fname" name="nameInput" type="text" />
