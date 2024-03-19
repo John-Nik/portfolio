@@ -102,12 +102,13 @@ function autoplayGameAboutMePage() {
             let position = condensedMatrixAboutMePage[randomGeneratedNumber].position;
             let Y = position.split('_')[0];
             let X = position.split('_')[1];
+            let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
             
             if (condensedMatrixAboutMePage[randomGeneratedNumber].hasBomb) {
                 matrixAboutMePage[Y][X].isFlagged = true;
-                let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
                 squareToUpdate.innerHTML = flagSvgAboutMePage;
                 condensedMatrixAboutMePage.splice(randomGeneratedNumber, 1);
+                dropSquare(Y, X);
                 return;
             }
 
@@ -125,7 +126,6 @@ function autoplayGameAboutMePage() {
 function startGameAboutMePage() {
     populateBoardAboutMePage();  
 }
-
 
 function userLeftClickAboutMePage(clickedSquare) {
     if (!clickedSquare.currentTarget.classList.contains('revealed')) {
@@ -153,11 +153,13 @@ function digSquareAboutMePage(Y, X) {
             if (countBombsAboutMePage(Y, X) == 0) {
                 emptySquareAboutMePage(Y, X);
             } else {
+                
                 squareToUpdate.innerHTML = countBombsAboutMePage(Y, X);
                 squareToUpdate.classList.add(`B${countBombsAboutMePage(Y, X)}`);
             }
         }
 
+        dropSquare(Y, X);
         squareToUpdate.classList.add('revealed');
     }
 }
@@ -223,6 +225,16 @@ function checkSurroundingSquaresAboutMePage(Y, X) {
     return surroundingSquares;
 }
 
+function dropSquare(Y, X) {
+    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
+    let randomInterval = Math.random();
+
+    squareToUpdate.style.zIndex = '2';
+    setTimeout(() => {
+        squareToUpdate.style.top = `calc(${Math.random() * 200}vh + 100vh)`;
+    }, randomInterval * 100)
+}
+
 
 function emptySquareAboutMePage(Y, X) {
     let surroundingSquares = checkSurroundingSquaresAboutMePage(Y, X);
@@ -239,6 +251,9 @@ function emptySquareAboutMePage(Y, X) {
             matrixAboutMePage[Y][X].isRevealed = true;
             squareToUpdate.classList.add('revealed');
             squareToUpdate.classList.add(`B${bombsAround}`);
+
+            dropSquare(Y, X);
+
             if (bombsAround != 0) {
                 squareToUpdate.innerHTML = bombsAround
             } else {

@@ -1,7 +1,37 @@
+'use client'
 import './styling.scss';
+import { useEffect } from 'react';
 
 
 export default function SkillsSection() {
+    useEffect(() => {
+        const html5Icon = document.querySelector('.html5');
+        const css3Icon = document.querySelector('.css3');
+        const scssAndJsIcon = document.querySelectorAll('#tridiv');
+        let windowWidth = window.innerWidth;
+
+        window.addEventListener('resize', setIconSize)
+
+        setIconSize();
+        function setIconSize() {
+            windowWidth = window.innerWidth;
+
+            if (windowWidth < 800) {
+                html5Icon.style.scale = `${windowWidth * 0.002}`;
+                css3Icon.style.scale = `${windowWidth * 0.0020}`;
+                scssAndJsIcon.forEach((icon) => {
+                    icon.style.scale = `${windowWidth * 0.0003}`;
+                })
+            } else {
+                html5Icon.style.scale = `1.596`;
+                css3Icon.style.scale = `1.596`;
+                scssAndJsIcon.forEach((icon) => {
+                    icon.style.scale = `0.3192`;
+                })
+            }
+        }
+    }, [])
+
     return (
         <section id={'skills-section'}>
             <div className={'container'}>

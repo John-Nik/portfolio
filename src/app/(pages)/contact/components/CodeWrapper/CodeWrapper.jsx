@@ -38,7 +38,7 @@ export default function CodeWrapper() {
                     &nbsp;
                 </li>
                 <li className={'codeline codeline10'}>
-                    <span className="dark-blue">button</span><span className="white">.</span><span className="light-red">addEventListener</span><span className="yellow-green">(</span><span className="yellow">"click"</span><span className="dark-blue">, </span><span className="pink">{'()'} </span><span className="dark-blue">{'=>'} </span><span className="green">{'{'}</span>
+                    <span className="dark-blue">button</span><span className="white">.</span><span className="light-red">addEventListener</span><span className="yellow-green">(</span><span className="yellow">"click"</span><span className="gray">, </span><span className="pink">{'()'} </span><span className="light-red">{'=>'} </span><span className="green">{'{'}</span>
                 </li>
                 <li className={'codeline codeline11'}>
                     &nbsp;&nbsp;<span className="white">form.</span><span className="light-red">send</span><span className="pink">(</span><span className="dark-blue">message</span><span className="pink">)</span><span className="white">;</span>

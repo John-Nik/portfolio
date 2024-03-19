@@ -9,6 +9,8 @@
     max-height: 800px;
     align-items: flex-start;
     justify-content: center;
+    position: relative;
+    z-index: 0;
 
     .background-game {
         position: absolute;

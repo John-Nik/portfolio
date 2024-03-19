@@ -31,6 +31,8 @@
     align-items: center;
     font-size: 1.25rem;
     font-family: var(--fira-code);
+    position: relative;
+    transition: all 4s cubic-bezier(.58,.53,.32,1);
 }
 
 .square.revealed {
@@ -42,7 +44,6 @@
         width: 24px;
         height: 24px;
     }
-
 }
 
 .B1 {

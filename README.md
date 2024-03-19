@@ -298,8 +298,17 @@
   - **0.9.4.7:** Added a hidden form in the page, as per netlify instructions
   - **0.9.4.8:** Added a "FormWrapper.html" file with the form in there, and also removed the manually added event listeners of the code wrapper and instead are using react features to detect input changes and display them on the code to the right
 
+<br>
+
 **0.10.0:**
 - Adjusted the mobile layout of the contact page to not hide the submit button behind the footer
 - Added a custom attribute to the footer component to enable me to change its class whenever it's needed
 - Added a stylized scrollbar
 - Half-done responsive about page
+
+<br>
+
+**0.11.0:**
+- Made the 4 icons in the skills section better looking when resizing
+- Made the about us minesweeper game drop down when squares are revealed
+- Fixed the styling of the contact page
