@@ -312,3 +312,8 @@
 - Made the 4 icons in the skills section better looking when resizing
 - Made the about us minesweeper game drop down when squares are revealed
 - Fixed the styling of the contact page
+
+<br>
+
+**0.11.1:**
+- Added the git icon on the skills section

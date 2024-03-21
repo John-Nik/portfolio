@@ -33,6 +33,7 @@
     font-family: var(--fira-code);
     position: relative;
     transition: all 4s cubic-bezier(.58,.53,.32,1);
+    will-change: transform;
 }
 
 .square.revealed {

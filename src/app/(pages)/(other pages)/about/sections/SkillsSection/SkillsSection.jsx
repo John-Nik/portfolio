@@ -17,10 +17,10 @@ export default function SkillsSection() {
             windowWidth = window.innerWidth;
 
             if (windowWidth < 800) {
-                html5Icon.style.scale = `${windowWidth * 0.002}`;
-                css3Icon.style.scale = `${windowWidth * 0.0020}`;
+                html5Icon.style.scale = `${windowWidth * 0.003}`;
+                css3Icon.style.scale = `${windowWidth * 0.003}`;
                 scssAndJsIcon.forEach((icon) => {
-                    icon.style.scale = `${windowWidth * 0.0003}`;
+                    icon.style.scale = `${windowWidth * 0.0005}`;
                 })
             } else {
                 html5Icon.style.scale = `1.596`;
@@ -186,10 +186,47 @@ export default function SkillsSection() {
                     </p>
 
                     <div className={'threeD-icons-container'}>
+                        <div className={'threeD-icon'}>
+                            <div className="git">
+                                <div id="tridiv">
+                                    <div className="scene">
+                                        <div className="shape cuboid-1 cub-1">
+                                            <div className="face ft"></div>
+                                            <div className="face bk"></div>
+                                            <div className="face rt"></div>
+                                            <div className="face lt"></div>
+                                            <div className="face bm">
+                                                <img src="/icons/git-icon.svg" />
+                                            </div>
+                                            <div className="face tp"></div>
+                                            <div className="cr cr-0">
+                                                <div className="face side s0"></div>
+                                                <div className="face side s1"></div>
+                                                <div className="face side s2"></div>
+                                            </div>
+                                            <div className="cr cr-1">
+                                                <div className="face side s0"></div>
+                                                <div className="face side s1"></div>
+                                                <div className="face side s2"></div>
+                                            </div>
+                                            <div className="cr cr-2">
+                                                <div className="face side s0"></div>
+                                                <div className="face side s1"></div>
+                                                <div className="face side s2"></div>
+                                            </div>
+                                            <div className="cr cr-3">
+                                                <div className="face side s0"></div>
+                                                <div className="face side s1"></div>
+                                                <div className="face side s2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div className={'nunjucks threeD-icon'}></div>
                         <div className={'react threeD-icon'}></div>
                         <div className={'nextjs threeD-icon'}></div>
-                        <div className={'git threeD-icon'}></div>
                     </div>
             </div>
         </section>
