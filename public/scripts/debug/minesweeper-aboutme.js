@@ -232,13 +232,13 @@ function dropSquare(Y, X) {
     if (squaresDropped <= squaresInBoardAboutMePage * 0.3) {
         squareToUpdate.style.zIndex = '2';
         setTimeout(() => {
-            squareToUpdate.style.top = `calc(${Math.random() * 200}vh + 100vh)`;
+            squareToUpdate.style.top = `calc(${Math.random() * 150}vh + 100vh)`;
         }, randomInterval * 100)
     } else {
 
         squareToUpdate.style.zIndex = '2';
         setTimeout(() => {
-            squareToUpdate.style.top = `250vh`;
+            squareToUpdate.style.top = `200vh`;
             squareToUpdate.style.opacity = '0';
         }, randomInterval * 100)
     }

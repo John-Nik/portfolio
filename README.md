@@ -318,3 +318,5 @@
 **0.11.1:** Added the git icon on the skills section
 
 **0.12.0:** Finished the about me page. The minesweeper game drops down and doesn't clip through the text, and all the icons are finished, with the page being responsive to any screen size
+
+**0.12.1:** Changed the vh the squares will drop down to, so it doesn't overflow the page
