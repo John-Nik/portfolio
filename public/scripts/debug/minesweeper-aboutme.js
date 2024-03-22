@@ -232,7 +232,7 @@ function dropSquare(Y, X) {
     if (squaresDropped <= squaresInBoardAboutMePage * 0.3) {
         squareToUpdate.style.zIndex = '2';
         setTimeout(() => {
-            squareToUpdate.style.top = `calc(${Math.random() * 100}vh + 100vh)`;
+            squareToUpdate.style.top = `calc(${Math.random() * 80}vh + 100vh)`;
         }, randomInterval * 100)
     } else {
 
