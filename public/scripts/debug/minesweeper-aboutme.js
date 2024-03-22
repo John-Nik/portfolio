@@ -120,7 +120,7 @@ function autoplayGameAboutMePage() {
         }
     }
 
-    autoplayIntervalToDigSquareAboutMePage = setInterval(randomlySelectSquare, 20);
+    autoplayIntervalToDigSquareAboutMePage = setInterval(randomlySelectSquare, 1100);
 }
 
 function startGameAboutMePage() {
