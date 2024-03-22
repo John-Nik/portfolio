@@ -108,7 +108,7 @@ function autoplayGameAboutMePage() {
                 matrixAboutMePage[Y][X].isFlagged = true;
                 squareToUpdate.innerHTML = flagSvgAboutMePage;
                 condensedMatrixAboutMePage.splice(randomGeneratedNumber, 1);
-                dropSquare(Y, X);
+                // dropSquare(Y, X);
                 return;
             }
 
@@ -159,7 +159,7 @@ function digSquareAboutMePage(Y, X) {
             }
         }
 
-        dropSquare(Y, X);
+        // dropSquare(Y, X);
         squareToUpdate.classList.add('revealed');
     }
 }
@@ -252,7 +252,7 @@ function emptySquareAboutMePage(Y, X) {
             squareToUpdate.classList.add('revealed');
             squareToUpdate.classList.add(`B${bombsAround}`);
 
-            dropSquare(Y, X);
+            // dropSquare(Y, X);
 
             if (bombsAround != 0) {
                 squareToUpdate.innerHTML = bombsAround
