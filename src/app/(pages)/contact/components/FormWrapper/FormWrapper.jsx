@@ -50,8 +50,9 @@ export default function FormWrapper() {
                     <label htmlFor="fmessage">Message</label><br />
                     <textarea onInput={handleMessageInput} required={true} className="fmessage" id="fmessage" name="messageInput" type="text" />
                 </div>
+                
                 <div className="submit-button-container">
-                    <button type="submit" className={'start-game-button'}>Submit</button>
+                    <input type="submit" value="Submit" className={'start-game-button'} />
                 </div>
             </form>
         </div>

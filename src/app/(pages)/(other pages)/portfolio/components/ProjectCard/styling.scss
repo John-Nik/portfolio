@@ -14,11 +14,11 @@
 
         .icons-wrapper {
             position: absolute;
-            top: 82%;
+            top: 75%;
             display: flex;
             justify-content: space-between;
             width: calc(100% - 36px);
-            height: 30px;
+            height: 48px;
         }
     
         .card {
@@ -31,7 +31,6 @@
         }
     
         .icon {
-            scale: 1.1;
             backdrop-filter: blur(20px) brightness(0.8);
         }
     

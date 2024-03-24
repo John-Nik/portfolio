@@ -6,9 +6,7 @@ export default function({children}) {
         <>
             <Header />
 
-            <main>
-                {children}
-            </main>
+            {children}
 
             <Footer />
         </>

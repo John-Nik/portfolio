@@ -32,7 +32,7 @@ export default function Header() {
                         <span onClick={() => router.push('/')} className={'logo'}>Giannis</span>
                     </div>
 
-                    <ul className={navMenuState === 1 ? 'open-menu' : ''}>
+                    <menu className={navMenuState === 1 ? 'open-menu' : ''}>
                         <li>
                             <Link href="/" className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
                         </li>
@@ -45,7 +45,7 @@ export default function Header() {
                         <li>
                             <Link href="/contact" onClick={turnOffMinesweeperGames} className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
                         </li>
-                    </ul>
+                    </menu>
                     
                     <div className={'burger-icon-wrapper'}>
                         <div className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`} onClick={triggerNavMenu} focusable>

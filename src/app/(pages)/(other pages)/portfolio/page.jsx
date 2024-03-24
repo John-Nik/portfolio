@@ -7,7 +7,7 @@ export default async function({}) {
     let projects = content.keys().map((filename) => content(filename));
 
     return (
-      <>
+        <main>
             <section className={'portfolio-page-section'}>
                 <div className={'container'}>
                     <h1 className={'title'}>// Portfolio</h1>
@@ -16,6 +16,6 @@ export default async function({}) {
                     </div>
                 </div>
             </section>
-      </>
+        </main> 
     )
 }

@@ -62,7 +62,7 @@ export const metadata = {
                 height: 600,
             },
             {
-                url: 'https://john-nik.com/images/portfolio.webp', // Must be an absolute URL
+                url: 'https://john-nik.com/images/portfolio.webp',
                 width: 1800,
                 height: 1600,
                 alt: 'Giannis Nikolaou | Personal Portfolio',

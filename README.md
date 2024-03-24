@@ -320,3 +320,13 @@
 **0.12.0:** Finished the about me page. The minesweeper game drops down and doesn't clip through the text, and all the icons are finished, with the page being responsive to any screen size
 
 **0.12.1:** Changed the vh the squares will drop down to, so it doesn't overflow the page
+
+**0.13.0:**
+- Added the favicon
+- Made the about me page not overflow on bigger screen heights when the minesweeper blocks fall off screen bounds
+- Changed the navigation bar's \<ul> to a more semantic \<menu>
+- Changed the home page's footer \<ul> to a more semantic \<menu>
+- Changed some minor transition timings of the homepage mobile footer
+- Improved SEO for all sites
+- Improved accessibility for all sites
+- Changed the button of the form from \<button> to \<input>

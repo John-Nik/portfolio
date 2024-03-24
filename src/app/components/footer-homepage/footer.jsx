@@ -19,10 +19,9 @@ export default function Footer() {
 
     return ( 
         <footer id={'homepage-footer'}>
-            <div className={'toggle-background'}>
-
-            </div>
-            <ul className={'footer-links-container'}>
+            <div className={'toggle-background'} />
+            
+            <menu className={'footer-links-container'}>
                 <li>
                     <a href={'tel:0035799475294'}>+357 99475294</a>
                 </li>
@@ -47,7 +46,7 @@ export default function Footer() {
                 <li className={'flag-icon-wrap'}>
                     <FlagIcon />
                 </li>
-            </ul>
+            </menu>
         </footer>
     )
 }

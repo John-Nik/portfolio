@@ -109,7 +109,7 @@
                         }
                     }
         
-                    ul {
+                    menu {
                         display: flex;
                         flex-direction: column;
                         justify-content: flex-start;
@@ -156,7 +156,7 @@
                         }
                     }
         
-                    ul.open-menu {
+                    menu.open-menu {
                         display: flex;
                         flex-direction: column;
                         position: fixed;
@@ -235,7 +235,7 @@
                         display: none;
                     }
             
-                    ul {
+                    menu {
                         display: flex;
                         margin-top: 0px;
                         margin-left: 0px;

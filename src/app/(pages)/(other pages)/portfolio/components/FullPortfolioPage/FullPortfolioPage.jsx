@@ -40,17 +40,19 @@ export default function FullPortfolioPage({projects}) {
     }
 
     return (
-        <section className={'full-page-project'}>
-            <div className={'container full-page-card'}>
-                <div tabIndex="0" role="button" onKeyDown={(e) => {if (e.key === "Enter") { sendToPortfolioPage() }}} onClick={sendToPortfolioPage} className={'back-arrow'}>
-                    <Image src="/icons/back-arrow.svg" width={40} height={40} alt="" priority={true} />
+        <main>
+            <section className={'full-page-project'}>
+                <div className={'container full-page-card'}>
+                    <div tabIndex="0" role="button" onKeyDown={(e) => {if (e.key === "Enter") { sendToPortfolioPage() }}} onClick={sendToPortfolioPage} className={'back-arrow'}>
+                        <Image src="/icons/back-arrow.svg" width={40} height={40} alt="" priority={true} />
+                    </div>
+                    <ProjectCard project={dataToPull[0]} />
+                    <div className={'text-wrapper'}>
+                        <h1 className={'title'}>// {projectAttributes.name}</h1>
+                        <div className={'body'} dangerouslySetInnerHTML={{__html: dataToPull[0].html}} />
+                    </div>
                 </div>
-                <ProjectCard project={dataToPull[0]} />
-                <div className={'text-wrapper'}>
-                    <h1 className={'title'}>// {projectAttributes.name}</h1>
-                    <div className={'body'} dangerouslySetInnerHTML={{__html: dataToPull[0].html}} />
-                </div>
-            </div>
-        </section>
+            </section>
+        </main>
     )
 }
