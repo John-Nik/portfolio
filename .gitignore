@@ -6,3 +6,6 @@
 /.next/
 
 .env*.local
+# Local Netlify folder
+.netlify
+.env

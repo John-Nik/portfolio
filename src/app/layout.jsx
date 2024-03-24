@@ -12,7 +12,7 @@ export default function heads({children}) {
     return (
         <html lang="en">
             <body className={`${zcoolFont.className} ${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
-                <GoogleTagManager gtmId="GTM-TZNHH5M7" />
+                <GoogleTagManager gtmId={process.env.google_tag_key} />
 
                 {children}
                 

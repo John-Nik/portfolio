@@ -334,3 +334,5 @@
 <br>
 
 **0.13.1:** Changed the button of the form into a fixed 100px width, and changed the form names to see which form netlify is detecting
+
+**0.13.2:** Added netlify CLI to debug in a local environment server along side testing other things

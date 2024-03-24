@@ -6,7 +6,7 @@ import CodeWrapper from "./components/CodeWrapper/CodeWrapper";
 import FormWrapper from "./components/FormWrapper/FormWrapper";
 
 
-export default function() {
+export default async function() {
     return (
         <>
             <Header />
