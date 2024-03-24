@@ -330,3 +330,7 @@
 - Improved SEO for all sites
 - Improved accessibility for all sites
 - Changed the button of the form from \<button> to \<input>
+
+<br>
+
+**0.13.1:** Changed the button of the form into a fixed 100px width, and changed the form names to see which form netlify is detecting
