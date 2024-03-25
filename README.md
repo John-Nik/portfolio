@@ -336,3 +336,8 @@
 **0.13.1:** Changed the button of the form into a fixed 100px width, and changed the form names to see which form netlify is detecting
 
 **0.13.2:** Added netlify CLI to debug in a local environment server along side testing other things
+
+**1.0.0:** 
+- Added a formspree form, since it fixes all the issues netlify and nextjs 14.0 have. Each of them tries to handle the form in their own way causing them to conflict and not do anything in the end
+- Updated the CV file
+- Made the icons in the about me, skills section more accessible

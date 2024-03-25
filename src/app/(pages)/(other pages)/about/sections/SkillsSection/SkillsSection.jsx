@@ -41,14 +41,14 @@ export default function SkillsSection() {
                         <div className={'threeD-icon'}>
                             <div className={'html5'}>
                                 <div className={'img-wrapper'}>
-                                    <img src="icons/html5-logo.svg" />
+                                    <img src="icons/html5-logo.svg" alt="" />
                                 </div>
                             </div>
                         </div>
                         <div className={'threeD-icon'}>
                             <div className={'css3'}>
                                 <div className={'img-wrapper'}>
-                                    <img src="icons/css3-logo.svg" />
+                                    <img src="icons/css3-logo.svg" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@ export default function SkillsSection() {
                                     <div className="scene">
                                         <div className="shape cylinder-1 cyl-1">
                                             <div className="face bm">
-                                                <img src='/icons/sass.svg' />
+                                                <img src='/icons/sass.svg' alt="" />
                                             </div>
                                             <div className="face side s0" />
                                             <div className="face side s1" />
@@ -180,7 +180,7 @@ export default function SkillsSection() {
                                         <div className="shape cuboid-1 cub-1">
                                             <div className="face ft" />
                                             <div className="face bm">
-                                                <img src="/icons/git-icon.svg" />
+                                                <img src="/icons/git-icon.svg" alt="" />
                                             </div>
                                             <div className="cr cr-0">
                                                 <div className="face side s0" />
@@ -206,7 +206,7 @@ export default function SkillsSection() {
                                             <div className="face rt" />
                                             <div className="face lt" />
                                             <div className="face bm">
-                                                <img src="icons/nunjucks-icon.svg" />
+                                                <img src="icons/nunjucks-icon.svg" alt="" />
                                             </div>
                                             <div className="cr cr-0">
                                                 <div className="face side s0" />
@@ -247,7 +247,7 @@ export default function SkillsSection() {
                                     <div className="scene">
                                         <div className="shape cylinder-1 cyl-1">
                                             <div className="face bm">
-                                                <img src="icons/react-icon.svg" />
+                                                <img src="icons/react-icon.svg" alt="" />
                                             </div>
                                             <div className="face side s0" />
                                             <div className="face side s1" />
@@ -268,7 +268,7 @@ export default function SkillsSection() {
                                     <div className="scene">
                                         <div className="shape cylinder-1 cyl-1">
                                         <div className="face bm">
-                                            <img src="icons/next-js.svg" />
+                                            <img src="icons/next-js.svg" alt="" />
                                         </div>
                                         <div className="face side s0"></div>
                                         <div className="face side s1"></div>
