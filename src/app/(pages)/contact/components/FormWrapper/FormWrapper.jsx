@@ -5,13 +5,11 @@ import { useState } from 'react';
 export default function FormWrapper() {
     const [state, handleSubmit] = useForm("mnqebkea");
     const [isTerminalWriting, setIsTerminalWriting] = useState(true);
-    const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false);
 
     if (state.succeeded) {
         if (isTerminalWriting == false) {
             displayThankYouMessage();
             successfulRequest();
-            setIsSubmitButtonDisabled(true);
         }
     } else if (state.errors != null) {
         unsuccessfulRequest();
@@ -162,14 +160,6 @@ export default function FormWrapper() {
         terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
     }
 
-    function disableButtonLogic() {
-        if (isSubmitButtonDisabled || state.submitting) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     return (
         <div className={'form-wrapper'}>
@@ -194,7 +184,7 @@ export default function FormWrapper() {
                 </div>
                 
                 <div className="submit-button-container">
-                    <input type="submit" value="Submit" onClick={() => {displayTerminal(); removeCharactersFromInputs()}} disabled={disableButtonLogic} className={'start-game-button'} />
+                    <input type="submit" value="Submit" onClick={() => {displayTerminal(); removeCharactersFromInputs()}} disabled={state.submitting} className={'start-game-button'} />
                     <span className='thankYou'></span>
                 </div>
             </form>
