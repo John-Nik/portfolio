@@ -117,7 +117,6 @@ export default function FormWrapper() {
         const firstLine = 'curl --json {message} -X POST https://john-nik.com/'
         let indexPosition = 0;
         let interval = '';
-        terminalText.lastElementChild.textContent = '';
         
         terminal.style.width = '70%';
         terminal.style.display = 'flex';
