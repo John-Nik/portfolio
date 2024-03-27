@@ -141,13 +141,10 @@ export default function FormWrapper() {
         const forthLine = 'Your request was successful';
         const fifthLine = '';
 
-        setTimeout(() => {
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${secondLine}</li>`);
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${thirdLine}</li>`);
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${forthLine}</li>`);
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
-            displayThankYouMessage();
-        }, 1500)
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${secondLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${thirdLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${forthLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
     }
 
     function unsuccessfulRequest() {
@@ -157,13 +154,10 @@ export default function FormWrapper() {
         const forthLine = 'Your request was unsuccessful';
         const fifthLine = '';
 
-        setTimeout(() => {
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${secondLine}</li>`);
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${thirdLine}</li>`);
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${forthLine}</li>`);
-            terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
-            displayErrorMessage();
-        }, 1500)
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${secondLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${thirdLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${forthLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
     }
 
 
