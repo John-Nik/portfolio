@@ -47,6 +47,12 @@ export default function CodeWrapper() {
                     <span className="green">{'}'}</span><span className="yellow-green">)</span>
                 </li>
             </ol>
+
+            <div className="terminal">
+                <ul className="terminalText">
+                    <li></li>
+                </ul>
+            </div>
         </div>
     )
 }

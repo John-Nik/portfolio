@@ -64,7 +64,20 @@
             margin-top: 2.7rem;
             display: none;
             width: 50%;
-            justify-content: center;
+        }
+
+        .thankYou  {
+            color: white;
+            margin-left: 8rem;
+            font-size: clamp(0.75rem, 1vw, 1rem);
+            margin-top: 4px;
+            height: 48px;
+            font-weight: 300;
+            font-family: var(--fira-code);
+            display: flex;
+            align-items: center;
+            width: clamp(100px, 30vw, 250px);
+            position: absolute;
         }
     
         .form-input-box {
@@ -127,6 +140,7 @@
         .submit-button-container {
             width: 65%;
             display: flex;
+            position: relative;
             align-items: flex-start;
         }
 
@@ -266,6 +280,54 @@
     
         .code-wrapper {
             display: flex;
+            flex-direction: column;
+        }
+
+        .terminal {
+            margin-top: 1rem;
+            width: 0%;
+            background-color: black;
+            transition: width 0.25s ease-in-out;
+            display: none;
+            height: fit-content;
+            min-height: 2rem;
+            position: relative;
+            left: -2rem;
+            font-family: var(--fira-code);
+
+            ul {
+                list-style: none;
+                padding: 0px 4px 0px calc(8px + 1ch);
+                color: white;
+                font-size: 12px;
+
+                li:last-child:before {
+                    padding: 0px 4px 0px 0px;
+                    margin-left: calc(-4px - 1ch);
+                    content: '>';
+                    color: white;
+                }
+
+                li:last-child:after {
+                    content: '|';
+                    color: white;
+                    animation: blink 1.25s linear 0s 30 alternate;
+                    
+                    @keyframes blink {
+                        0% {
+                            content: '';
+                        }
+
+                        50% {
+                            content: '|';
+                        }
+
+                        100% {
+                            content: '';
+                        }
+                    }
+                }
+            }
         }
 
         .form-wrapper {

@@ -10,16 +10,6 @@ export default async function() {
     return (
         <>
             <Header />
-
-            <form name="contact2" method="POST" data-netlify="true" hidden>
-                <input type="hidden" name="form-name" value="contact2" />
-                <input required={true} id="fname" name="nameInput2" type="text" />
-
-                <input required={true} id="femail" name="emailInput2" type="text" />
-
-                <textarea required={true} className="fmessage" id="fmessage" name="messageInput2" type="text" />
-            </form>
-
             <main id={'contact-me-main'}>
                 <Sidebar />
                 <div className={'main-content-container'}>

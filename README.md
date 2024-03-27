@@ -341,3 +341,7 @@
 - Added a formspree form, since it fixes all the issues netlify and nextjs 14.0 have. Each of them tries to handle the form in their own way causing them to conflict and not do anything in the end
 - Updated the CV file
 - Made the icons in the about me, skills section more accessible
+
+<br>
+
+**1.1.0:** Added feedback to the form to inform the user if the form was received or not
