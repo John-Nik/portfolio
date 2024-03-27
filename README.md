@@ -351,3 +351,5 @@
 **1.1.2:** Made the typing indicator blink out instead of staying frozen on the screen
 
 **1.1.3:** Once successfully submitted a form, the user cannot submit another one until he refreshes the page
+
+**1.1.4:** Adjusted the text position indicator's styling in the terminal of the contact page
