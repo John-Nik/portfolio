@@ -349,3 +349,5 @@
 **1.1.1:** Fixed a small bug with the feedback of the form
 
 **1.1.2:** Made the typing indicator blink out instead of staying frozen on the screen
+
+**1.1.3:** Once successfully submitted a form, the user cannot submit another one until he refreshes the page

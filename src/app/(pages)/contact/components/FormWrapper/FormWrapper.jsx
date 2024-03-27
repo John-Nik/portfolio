@@ -5,9 +5,11 @@ import { useState } from 'react';
 export default function FormWrapper() {
     const [state, handleSubmit] = useForm("mnqebkea");
     const [isTerminalWriting, setIsTerminalWriting] = useState(true);
+    const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false);
 
     if (state.succeeded) {
         if (isTerminalWriting == false) {
+            setIsSubmitButtonDisabled(true);
             displayThankYouMessage();
             successfulRequest();
         }
@@ -72,11 +74,11 @@ export default function FormWrapper() {
 
     function displayThankYouMessage() {
         const thankYouSpan = document.querySelector('.thankYou');
+        thankYouSpan.textContent = ''; //reset the previous values if it had any
         let string = 'Thank you! I will get back to you as soon as possible';
         let placeCharInterval = setInterval(placeChar, 75);
         let indexPosition = 0;
 
-        thankYouSpan.textContent = ''; //reset the previous values if it had any
         
         function placeChar() {
             if (string.charAt(indexPosition) != undefined ) {
@@ -91,11 +93,11 @@ export default function FormWrapper() {
 
     function displayErrorMessage() {
         const thankYouSpan = document.querySelector('.thankYou');
+        thankYouSpan.textContent = ''; //reset the previous values if it had any
         let string = 'Something unexpected happened and caused an error. Try again later';
         let placeCharInterval = setInterval(placeChar, 75);
         let indexPosition = 0;
 
-        thankYouSpan.textContent = ''; //reset the previous values if it had any
         
         function placeChar() {
             if (string.charAt(indexPosition) != undefined ) {
@@ -115,6 +117,7 @@ export default function FormWrapper() {
         const firstLine = 'curl --json {message} -X POST https://john-nik.com/'
         let indexPosition = 0;
         let interval = '';
+        terminalText.lastElementChild.textContent = '';
         
         terminal.style.width = '70%';
         terminal.style.display = 'flex';
@@ -160,6 +163,14 @@ export default function FormWrapper() {
         terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
     }
 
+    function disableButtonLogic() {
+        if (isSubmitButtonDisabled || state.submitting) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     return (
         <div className={'form-wrapper'}>
@@ -184,7 +195,7 @@ export default function FormWrapper() {
                 </div>
                 
                 <div className="submit-button-container">
-                    <input type="submit" value="Submit" onClick={() => {displayTerminal(); removeCharactersFromInputs()}} disabled={state.submitting} className={'start-game-button'} />
+                    <input type="submit" value="Submit" onClick={() => {displayTerminal(); removeCharactersFromInputs()}} disabled={disableButtonLogic} className={'start-game-button'} />
                     <span className='thankYou'></span>
                 </div>
             </form>
