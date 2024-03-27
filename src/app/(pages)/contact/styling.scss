@@ -311,7 +311,7 @@
                 li:last-child:after {
                     content: '|';
                     color: white;
-                    animation: blink 1.25s linear 0s 30 alternate;
+                    animation: blink 1.25s linear 0s 30 alternate backwards;
                     
                     @keyframes blink {
                         0% {

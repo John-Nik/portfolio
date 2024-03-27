@@ -346,6 +346,6 @@
 
 **1.1.0:** Added feedback to the form to inform the user if the form was received or not
 
-<br>
-
 **1.1.1:** Fixed a small bug with the feedback of the form
+
+**1.1.2:** Made the typing indicator blink out instead of staying frozen on the screen
