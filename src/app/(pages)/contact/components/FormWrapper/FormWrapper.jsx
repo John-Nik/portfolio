@@ -9,9 +9,9 @@ export default function FormWrapper() {
 
     if (state.succeeded) {
         if (isTerminalWriting == false) {
-            setIsSubmitButtonDisabled(true);
             displayThankYouMessage();
             successfulRequest();
+            setIsSubmitButtonDisabled(true);
         }
     } else if (state.errors != null) {
         unsuccessfulRequest();
