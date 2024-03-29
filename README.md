@@ -359,3 +359,9 @@
 - Uploaded a profile picture of vioekseliksi
 - Minor changes in some full site project sites
 - Slight change in the pdf CV
+
+<br>
+
+**1.1.6:** 
+- Added 'alt=""' in the bolts svg of the homepage to improve SEO slightly
+- Added yandex site verification

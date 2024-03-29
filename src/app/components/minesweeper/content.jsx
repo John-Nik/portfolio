@@ -191,10 +191,10 @@ export default function Content() {
                     <div className={'gameSettings'}>
                         <div className={'wrapper game-settings-container'}>
                             <div className={'bolt-container'} aria-hidden={'true'}>
-                                <img id={'bolt1'} src='/icons/bolt.svg' />
-                                <img id={'bolt2'} src='/icons/bolt.svg' />
-                                <img id={'bolt3'} src='/icons/bolt.svg' />
-                                <img id={'bolt4'} src='/icons/bolt.svg' />
+                                <img id={'bolt1'} src='/icons/bolt.svg' alt="" />
+                                <img id={'bolt2'} src='/icons/bolt.svg' alt="" />
+                                <img id={'bolt3'} src='/icons/bolt.svg' alt="" />
+                                <img id={'bolt4'} src='/icons/bolt.svg' alt="" />
                             </div>
 
                             <div className={'game-settings-wrapper'}>

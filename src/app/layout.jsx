@@ -75,15 +75,6 @@ export const metadata = {
         description: 'This portfolio was made using NextJS, React, SCSS and Decap as the CMS. It has a page describing me, a projects page to see everything I\'ve built up until now, and a contact page'
     },
     verification: {
-        google: '',
-        bing: '',
-        yahoo: '',
-        yandex: '',
-        other: {
-            example: ['example1', 'example2']
-        }
-    },
-    other: {
-        custom: 'metadata'
+        yandex: 'dd62fbfabae69625',
     }
 }
