@@ -353,3 +353,8 @@
 **1.1.3:** Once successfully submitted a form, the user cannot submit another one until he refreshes the page
 
 **1.1.4:** Adjusted the text position indicator's styling in the terminal of the contact page
+
+**1.1.5:** 
+- Minor adjustments on the minesweeper scripts for better readability and made the homepage have a small scroll after it loads for android devices (it seems they don't play nicely with dvh unless the page is scrolled, which it then snaps the minesweeper game into its proper position)
+- Uploaded a profile picture of vioekseliksi
+- Minor changes in some full site project sites

@@ -23,13 +23,15 @@ let squaresDropped = 0;
 
 
 
-
 containerAboutMePage.addEventListener('contextmenu', (e) => {
     e.preventDefault();
 })
 
 
 populateBoardAboutMePage();
+autoplayGameAboutMePage();
+
+
 function populateBoardAboutMePage() {
     matrixAboutMePage = [];
     containerAboutMePage.innerHTML = '';
@@ -37,7 +39,7 @@ function populateBoardAboutMePage() {
     squaresInterractedWithAboutMePage = 0;
     bombsPlacedAboutMePage = 0;
 
-    difficultyAboutMePage = 0.35;
+    difficultyAboutMePage = 0.3;
 
 
     containerAboutMePage.style.gridTemplateRows = `repeat(${rowsToFitAboutMePage}, minmax(24px, 1fr))`;
@@ -82,9 +84,6 @@ function generateSquareAboutMePage(htmlRow, matrixRowIndex, squareColumn) {
 }
 
 
-autoplayGameAboutMePage();
-
-
 function autoplayGameAboutMePage() {
     let condensedMatrixAboutMePage = matrixAboutMePage.reduce((accumulator, currentValue) => {
         return accumulator.concat(currentValue);
@@ -102,11 +101,10 @@ function autoplayGameAboutMePage() {
             let position = condensedMatrixAboutMePage[randomGeneratedNumber].position;
             let Y = position.split('_')[0];
             let X = position.split('_')[1];
-            let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`);
             
             if (condensedMatrixAboutMePage[randomGeneratedNumber].hasBomb) {
                 matrixAboutMePage[Y][X].isFlagged = true;
-                squareToUpdate.innerHTML = flagSvgAboutMePage;
+                getSquareAtPositionAboutMePage(Y, X).innerHTML = flagSvgAboutMePage;
                 condensedMatrixAboutMePage.splice(randomGeneratedNumber, 1);
                 dropSquare(Y, X);
                 return;
@@ -122,6 +120,13 @@ function autoplayGameAboutMePage() {
 
     autoplayIntervalToDigSquareAboutMePage = setInterval(randomlySelectSquare, 1100);
 }
+
+
+function getSquareAtPositionAboutMePage(Y = 0, X = 0) {
+    return document.querySelector(`[data-position="${Y}_${X}"]`);
+}
+
+
 
 function startGameAboutMePage() {
     populateBoardAboutMePage();  
@@ -139,28 +144,26 @@ function userLeftClickAboutMePage(clickedSquare) {
 
 
 function digSquareAboutMePage(Y, X) {
-    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
-
     if (matrixAboutMePage[Y][X].isFlagged == false) {
         matrixAboutMePage[Y][X].isRevealed = true;
         squaresInterractedWithAboutMePage++;
 
         if (matrixAboutMePage[Y][X].hasBomb) {
-            squareToUpdate.innerHTML = '<img src="/icons/bomb.svg"></img>';
-            squareToUpdate.classList.add('revealed');
+            getSquareAtPositionAboutMePage(Y, X).innerHTML = '<img src="/icons/bomb.svg"></img>';
+            getSquareAtPositionAboutMePage(Y, X).classList.add('revealed');
             userDugBombPosition = `${Y}_${X}`;
         } else {
             if (countBombsAboutMePage(Y, X) == 0) {
                 emptySquareAboutMePage(Y, X);
             } else {
                 
-                squareToUpdate.innerHTML = countBombsAboutMePage(Y, X);
-                squareToUpdate.classList.add(`B${countBombsAboutMePage(Y, X)}`);
+                getSquareAtPositionAboutMePage(Y, X).innerHTML = countBombsAboutMePage(Y, X);
+                getSquareAtPositionAboutMePage(Y, X).classList.add(`B${countBombsAboutMePage(Y, X)}`);
             }
         }
 
         dropSquare(Y, X);
-        squareToUpdate.classList.add('revealed');
+        getSquareAtPositionAboutMePage(Y, X).classList.add('revealed');
     }
 }
 
@@ -194,7 +197,7 @@ function userRightClickAboutMePage(rightClickedSquare) {
 
 function countBombsAboutMePage(Y, X) {
     let bombsCounted = 0;
-    let surroundingSquares = checkSurroundingSquaresAboutMePage(Y, X);
+    let surroundingSquares = getSurroundingSquaresAboutMePage(Y, X);
 
     surroundingSquares.forEach((square) => {
         if (square.hasBomb) {
@@ -206,7 +209,7 @@ function countBombsAboutMePage(Y, X) {
 }
 
 
-function checkSurroundingSquaresAboutMePage(Y, X) {
+function getSurroundingSquaresAboutMePage(Y, X) {
     let surroundingSquares = [];
 
     // checks to see if the line above or below the clicked line is outside of the matrixAboutMePage bounds. If not, it does the same test to the left and right columns. If they are within bounds, it pushes the square to the surroundingSquares Array with the positional information in it
@@ -225,21 +228,21 @@ function checkSurroundingSquaresAboutMePage(Y, X) {
     return surroundingSquares;
 }
 
+
 function dropSquare(Y, X) {
-    let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
     let randomInterval = Math.random();
 
     if (squaresDropped <= squaresInBoardAboutMePage * 0.3) {
-        squareToUpdate.style.zIndex = '2';
+        getSquareAtPositionAboutMePage(Y, X).style.zIndex = '2';
         setTimeout(() => {
-            squareToUpdate.style.top = `calc(${Math.random() * 80}vh + 100vh)`;
+            getSquareAtPositionAboutMePage(Y, X).style.top = `calc(${Math.random() * 80}vh + 100vh)`;
         }, randomInterval * 100)
     } else {
 
-        squareToUpdate.style.zIndex = '2';
+        getSquareAtPositionAboutMePage(Y, X).style.zIndex = '2';
         setTimeout(() => {
-            squareToUpdate.style.top = `200vh`;
-            squareToUpdate.style.opacity = '0';
+            getSquareAtPositionAboutMePage(Y, X).style.top = `200vh`;
+            getSquareAtPositionAboutMePage(Y, X).style.opacity = '0';
         }, randomInterval * 100)
     }
 
@@ -248,25 +251,24 @@ function dropSquare(Y, X) {
 
 
 function emptySquareAboutMePage(Y, X) {
-    let surroundingSquares = checkSurroundingSquaresAboutMePage(Y, X);
+    let surroundingSquares = getSurroundingSquaresAboutMePage(Y, X);
 
     surroundingSquares.forEach((square) => {
         let Y = square.position.split('_')[0];
         let X = square.position.split('_')[1];
 
         if (matrixAboutMePage[Y][X].isRevealed == false && matrixAboutMePage[Y][X].isFlagged == false) {
-            let squareToUpdate = document.querySelector(`[data-position="${Y}_${X}"]`)
             let bombsAround = countBombsAboutMePage(Y, X);
 
             squaresInterractedWithAboutMePage++;
             matrixAboutMePage[Y][X].isRevealed = true;
-            squareToUpdate.classList.add('revealed');
-            squareToUpdate.classList.add(`B${bombsAround}`);
+            getSquareAtPositionAboutMePage(Y, X).classList.add('revealed');
+            getSquareAtPositionAboutMePage(Y, X).classList.add(`B${bombsAround}`);
 
             dropSquare(Y, X);
 
             if (bombsAround != 0) {
-                squareToUpdate.innerHTML = bombsAround
+                getSquareAtPositionAboutMePage(Y, X).innerHTML = bombsAround
             } else {
                 emptySquareAboutMePage(Y, X);
             }
