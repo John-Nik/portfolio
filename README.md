@@ -365,3 +365,7 @@
 **1.1.6:** 
 - Added 'alt=""' in the bolts svg of the homepage to improve SEO slightly
 - Added yandex site verification
+
+<br>
+
+**1.1.7:** Removed the metatag for yandex site verification
