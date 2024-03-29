@@ -358,3 +358,4 @@
 - Minor adjustments on the minesweeper scripts for better readability and made the homepage have a small scroll after it loads for android devices (it seems they don't play nicely with dvh unless the page is scrolled, which it then snaps the minesweeper game into its proper position)
 - Uploaded a profile picture of vioekseliksi
 - Minor changes in some full site project sites
+- Slight change in the pdf CV
