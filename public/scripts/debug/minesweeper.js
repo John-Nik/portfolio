@@ -33,7 +33,8 @@ containerHomepage.addEventListener('contextmenu', (e) => {
 })
 
 setTimeout(() => {
-    window.scroll(0, 100);
+    const main = document.querySelector('main');
+    main.scroll(0, 100);
 }, 16)
 
 

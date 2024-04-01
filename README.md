@@ -369,3 +369,7 @@
 <br>
 
 **1.1.7:** Removed the metatag for yandex site verification
+
+<br>
+
+**1.1.8:** Fixed a small bug where the home page doesn't scroll when loading the minesweeper container on some samsung phones
