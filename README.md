@@ -373,3 +373,7 @@
 <br>
 
 **1.1.8:** Fixed a small bug where the home page doesn't scroll when loading the minesweeper container on some samsung phones
+
+<br>
+
+**1.1.9:** Removed the picture placeholder from the about me page
