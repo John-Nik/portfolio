@@ -377,3 +377,7 @@
 <br>
 
 **1.1.9:** Removed the picture placeholder from the about me page
+
+<br>
+
+**1.1.10:** Small styling changes on the footer of the homepage
