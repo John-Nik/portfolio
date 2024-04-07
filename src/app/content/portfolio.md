@@ -5,7 +5,7 @@ img: images/portfolio.webp
 siteLink: https://www.john-nik.com
 githubLink: https://github.com/John-Nik/portfolio
 ---
-##### *Design UI & UX, SEO Handle, Only Developer, HTML5, SCSS / Sass, NextJS, React, Javascript, Headless CMS Setup*
+##### *Design UI & UX, SEO Handle, Only Developer, HTML5, SCSS / Sass, NextJS, React, Javascript, Typescript, Headless CMS Setup*
 
 ###### Jan. 2024 - Mar. 2024
 

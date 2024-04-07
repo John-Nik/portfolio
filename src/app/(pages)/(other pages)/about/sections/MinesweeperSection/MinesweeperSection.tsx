@@ -1,14 +1,14 @@
 'use client'
-import { useEffect } from "react"
+import { ReactElement, useEffect } from "react"
 import './styling.scss'
 import Script from 'next/script'
 import './minesweeper.scss'
 
 
-export default function MinesweeperSection() {
-    useEffect(() => {
-        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+export default function MinesweeperSection(): ReactElement {
+    useEffect((): void => {
+        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
 
         aboutMePageMinesweeper.innerHTML = '<div></div>';
         homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';

@@ -1,9 +1,10 @@
 import './footer.scss';
-import CallIcon from '../icons-components/CallIcon.jsx';
-import EmailIcon from '../icons-components/EmailIcon.jsx';
-import GithubIcon from '../icons-components/GithubIcon.jsx';
+import CallIcon from '../icons-components/CallIcon';
+import EmailIcon from '../icons-components/EmailIcon';
+import GithubIcon from '../icons-components/GithubIcon';
+import { ReactElement } from 'react';
 
-export default function Footer({className}) {
+export default function Footer({className} : {className: string}): ReactElement {
     return ( 
         <footer className={className}>
             <div className={'toggle-background'}>

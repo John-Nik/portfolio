@@ -1,10 +1,10 @@
 'use client'
 import { useForm, ValidationError } from '@formspree/react';
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 
-export default function FormWrapper() {
+export default function FormWrapper(): ReactElement {
     const [state, handleSubmit] = useForm("mnqebkea");
-    const [isTerminalWriting, setIsTerminalWriting] = useState(true);
+    const [isTerminalWriting, setIsTerminalWriting] = useState<boolean>(true);
 
     if (state.succeeded) {
         if (isTerminalWriting == false) {
@@ -17,34 +17,34 @@ export default function FormWrapper() {
     }
 
 
-    function handleNameInput(event) {
-        let nameOutput = document.querySelector('.name-js-input');
+    function handleNameInput(event): void {
+        let nameOutput: HTMLSpanElement = document.querySelector('.name-js-input');
         nameOutput.innerHTML = `"${event.target.value}"`;
     }
 
 
-    function handleEmailInput(event) {
+    function handleEmailInput(event): void {
         let emailOutput = document.querySelector('.email-js-input');
         emailOutput.innerHTML = `"${event.target.value}"`;
     }
 
 
-    function handleMessageInput(event) {
+    function handleMessageInput(event): void {
         let messageOutput = document.querySelector('.message-js-input');
         messageOutput.innerHTML = `"${event.target.value}"`;
     }
 
 
-    function removeCharactersFromInputs() {
-        let nameInput = document.querySelector('.nameInput'),
-            emailInput = document.querySelector('.emailInput'),
-            messageInput = document.querySelector('.fmessage'),
-            isNameInputEmpty = false,
-            isEmailInputEmpty = false,
-            isMessageInputEmpty = false,
-            interval = setInterval(removeChar, 50);
+    function removeCharactersFromInputs(): void {
+        let nameInput: HTMLInputElement = document.querySelector('.nameInput'),
+            emailInput: HTMLInputElement = document.querySelector('.emailInput'),
+            messageInput: HTMLInputElement = document.querySelector('.fmessage'),
+            isNameInputEmpty: boolean = false,
+            isEmailInputEmpty: boolean = false,
+            isMessageInputEmpty: boolean = false,
+            interval: NodeJS.Timeout = setInterval(removeChar, 50);
 
-        function removeChar() {
+        function removeChar(): void {
             if (isNameInputEmpty && isEmailInputEmpty && isMessageInputEmpty) {
                 clearInterval(interval);
                 return;
@@ -70,51 +70,49 @@ export default function FormWrapper() {
         }
     }
 
-    function displayThankYouMessage() {
-        const thankYouSpan = document.querySelector('.thankYou');
+    function displayThankYouMessage(): void {
+        const thankYouSpan: HTMLSpanElement = document.querySelector('.thankYou');
         thankYouSpan.textContent = ''; //reset the previous values if it had any
-        let string = 'Thank you! I will get back to you as soon as possible';
-        let placeCharInterval = setInterval(placeChar, 75);
-        let indexPosition = 0;
+        let string: string = 'Thank you! I will get back to you as soon as possible';
+        let placeCharInterval: NodeJS.Timeout = setInterval(placeChar, 75);
+        let indexPosition: number = 0;
 
         
-        function placeChar() {
+        function placeChar(): void {
             if (string.charAt(indexPosition) != undefined ) {
                 thankYouSpan.textContent = thankYouSpan.textContent + string.charAt(indexPosition);
                 indexPosition++;
             } else {
                 clearInterval(placeCharInterval);
-                isDisplayingTextWriting = false;
             }
         }
     }
 
-    function displayErrorMessage() {
-        const thankYouSpan = document.querySelector('.thankYou');
+    function displayErrorMessage(): void {
+        const thankYouSpan: HTMLSpanElement = document.querySelector('.thankYou');
         thankYouSpan.textContent = ''; //reset the previous values if it had any
-        let string = 'Something unexpected happened and caused an error. Try again later';
-        let placeCharInterval = setInterval(placeChar, 75);
-        let indexPosition = 0;
+        let string: string = 'Something unexpected happened and caused an error. Try again later';
+        let placeCharInterval: NodeJS.Timeout = setInterval(placeChar, 75);
+        let indexPosition: number = 0;
 
         
-        function placeChar() {
+        function placeChar(): void {
             if (string.charAt(indexPosition) != undefined ) {
                 thankYouSpan.textContent = thankYouSpan.textContent + string.charAt(indexPosition);
                 indexPosition++;
             } else {
                 clearInterval(placeCharInterval);
-                isDisplayingTextWriting = false;
             }
         }
     }
 
 
-    function displayTerminal() {
-        const terminal = document.querySelector('.terminal');
-        const terminalText = document.querySelector('.terminalText');
-        const firstLine = 'curl --json {message} -X POST https://john-nik.com/'
-        let indexPosition = 0;
-        let interval = '';
+    function displayTerminal(): void {
+        const terminal: HTMLDivElement = document.querySelector('.terminal');
+        const terminalText: HTMLUListElement = document.querySelector('.terminalText');
+        const firstLine: string = 'curl --json {message} -X POST https://john-nik.com/'
+        let indexPosition: number = 0;
+        let interval: NodeJS.Timeout;
         
         terminal.style.width = '70%';
         terminal.style.display = 'flex';
@@ -134,30 +132,30 @@ export default function FormWrapper() {
         }
     }
 
-    function successfulRequest() {
-        const terminalText = document.querySelector('.terminalText');
-        const secondLine = 'HTTP/2.0 200 OK';
-        const thirdLine = '&nbsp;';
-        const forthLine = 'Your request was successful';
-        const fifthLine = '';
+    function successfulRequest(): void {
+        const terminalText: HTMLUListElement = document.querySelector('.terminalText');
+        const secondLine: string = 'HTTP/2.0 200 OK';
+        const thirdLine: string = '&nbsp;';
+        const forthLine: string = 'Your request was successful';
+        const fifthLine: string = '';
 
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${secondLine}</li>`);
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${thirdLine}</li>`);
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${forthLine}</li>`);
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${secondLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${thirdLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${forthLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${fifthLine}</li>`);
     }
 
-    function unsuccessfulRequest() {
-        const terminalText = document.querySelector('.terminalText');
-        const secondLine = 'HTTP/2.0 500 Internal Server Error';
-        const thirdLine = '&nbsp;';
-        const forthLine = 'Your request was unsuccessful';
-        const fifthLine = '';
+    function unsuccessfulRequest(): void {
+        const terminalText: HTMLUListElement = document.querySelector('.terminalText');
+        const secondLine: string = 'HTTP/2.0 500 Internal Server Error';
+        const thirdLine: string = '&nbsp;';
+        const forthLine: string = 'Your request was unsuccessful';
+        const fifthLine: string = '';
 
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${secondLine}</li>`);
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${thirdLine}</li>`);
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${forthLine}</li>`);
-        terminalText.insertAdjacentHTML('beforeEnd', `<li>${fifthLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${secondLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${thirdLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${forthLine}</li>`);
+        terminalText.insertAdjacentHTML('beforeend', `<li>${fifthLine}</li>`);
     }
 
 
@@ -179,7 +177,7 @@ export default function FormWrapper() {
 
                 <div className={'form-input-box'}>
                     <label htmlFor="fmessage">Message</label><br />
-                    <textarea onInput={handleMessageInput} required={true} className="fmessage" id="fmessage" name="messageInput" type="text" />
+                    <textarea onInput={handleMessageInput} required={true} className="fmessage" id="fmessage" name="messageInput" />
                     <ValidationError prefix="Message" field="fmessage" errors={state.errors} />
                 </div>
                 

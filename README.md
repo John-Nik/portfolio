@@ -370,14 +370,10 @@
 
 **1.1.7:** Removed the metatag for yandex site verification
 
-<br>
-
 **1.1.8:** Fixed a small bug where the home page doesn't scroll when loading the minesweeper container on some samsung phones
-
-<br>
 
 **1.1.9:** Removed the picture placeholder from the about me page
 
-<br>
-
 **1.1.10:** Small styling changes on the footer of the homepage
+
+**1.1.11:** Migrated the entire app to typescript and updated the CV

@@ -1,12 +1,12 @@
 'use client'
-import DownloadCVButton from "@/app/components/buttons/DownloadCVButton";
-import CallIcon from "@/app/components/icons-components/CallIcon";
-import EmailIcon from "@/app/components/icons-components/EmailIcon";
-import GithubIcon from "@/app/components/icons-components/GithubIcon";
+import DownloadCVButton from "../../../../components/buttons/DownloadCVButton";
+import CallIcon from "../../../../components/icons-components/CallIcon";
+import EmailIcon from "../../../../components/icons-components/EmailIcon";
+import GithubIcon from "../../../../components/icons-components/GithubIcon";
 import './styling.scss';
-import { useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 
-export default function Sidebar() {
+export default function Sidebar(): ReactElement {
     // useEffect(() => {
     //     const aside = document.querySelector('aside');
     //     const main = document.querySelector('.main-content-container');

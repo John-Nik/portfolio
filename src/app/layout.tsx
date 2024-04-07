@@ -1,14 +1,16 @@
 import { ZCOOL_QingKe_HuangYou, Fira_Code, Press_Start_2P } from 'next/font/google';
 import './global.scss';
 import { GoogleTagManager } from '@next/third-parties/google'
+import { NextFontWithVariable } from 'next/dist/compiled/@next/font';
+import { ReactElement, ReactNode } from 'react';
 
 
-const zcoolFont = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], variable: '--zcool-font', display: 'swap'})
-const firaCodeFont = Fira_Code({subsets: ['latin'], preload: true, variable: '--fira-code', display: 'swap'})
-const pressStartFont = Press_Start_2P({subsets: ['latin'], weight: ['400'], preload: true, variable: '--press-start-font', display: 'swap'})
+const zcoolFont: NextFontWithVariable = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], variable: '--zcool-font', display: 'swap'})
+const firaCodeFont: NextFontWithVariable = Fira_Code({subsets: ['latin'], preload: true, variable: '--fira-code', display: 'swap'})
+const pressStartFont: NextFontWithVariable = Press_Start_2P({subsets: ['latin'], weight: ['400'], preload: true, variable: '--press-start-font', display: 'swap'})
 
 
-export default function heads({children}) {
+export default function heads({ children }: {children: ReactNode}): ReactElement {
     return (
         <html lang="en">
             <body className={`${zcoolFont.className} ${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
@@ -23,7 +25,16 @@ export default function heads({children}) {
     )
 }
 
-export const viewport = {
+type viewPortType = {
+    width: string,
+    initialScale: number,
+    minimumScale: number,
+    viewportFit: string,
+    themeColor: string,
+    colorScheme: string
+}
+
+export const viewport: viewPortType = {
     width: 'device-width',
     initialScale: 1,
     minimumScale: 1,

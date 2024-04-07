@@ -1,9 +1,11 @@
-export default function CodeWrapper() {
-    let date = new Date(),
-        year = date.getFullYear(),
-        month = date.getMonth() + 1,
-        day = date.getDate(),
-        fullDate = day + '/' + month + '/' + year;
+import { ReactElement } from "react";
+
+export default function CodeWrapper(): ReactElement {
+    let date: Date = new Date(),
+        year: number = date.getFullYear(),
+        month: number = date.getMonth() + 1,
+        day: number = date.getDate(),
+        fullDate: string = day + '/' + month + '/' + year;
 
     return (
         <div aria-hidden="true" className={'code-wrapper'}>

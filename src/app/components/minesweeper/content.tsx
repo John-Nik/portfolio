@@ -1,11 +1,11 @@
 'use client'
-import { useEffect } from 'react';
-import DownloadCVButton from '../buttons/DownloadCVButton.jsx';
+import { ReactElement, useEffect } from 'react';
+import DownloadCVButton from '../buttons/DownloadCVButton';
 
-export default function Content() {
-    function startGame() {
-        const gameStart = document.querySelector('.user-initiated-game-start');
-        const smileyFace = document.querySelector('.dead-smiley-wrapper');
+export default function Content(): ReactElement {
+    function startGame(): void {
+        const gameStart: HTMLDivElement = document.querySelector('.user-initiated-game-start');
+        const smileyFace: HTMLDivElement = document.querySelector('.dead-smiley-wrapper');
 
         smileyFace.style.display = 'none';
         gameStart.innerHTML = '<div></div>';
@@ -15,13 +15,13 @@ export default function Content() {
 
 
 
-    function hidePanels() {
-        const textContentWrapper = document.querySelector('.textContent');
-        const gameControlPanel = document.querySelector('.gameSettings');
+    function hidePanels(): void {
+        const textContentWrapper: HTMLDivElement = document.querySelector('.textContent');
+        const gameControlPanel: HTMLDivElement = document.querySelector('.gameSettings');
 
         textContentWrapper.style.opacity = '0';
         gameControlPanel.style.opacity = '0';
-        setTimeout(() => {
+        setTimeout((): void => {
             textContentWrapper.style.display = 'none';
             gameControlPanel.style.display = 'none';
         }, 500)
@@ -29,9 +29,12 @@ export default function Content() {
 
 
 
-    function changeDifficulty(clickedbutton) {
-        const buttons = document.querySelectorAll('.difficulty-feedback');
-        buttons.forEach((button) => {
+    function changeDifficulty(clickedbutton: { 
+        currentTarget: HTMLSpanElement, 
+        clickedbutton: HTMLElementEventMap 
+    }): void {
+        const buttons: HTMLSpanElement[] = Array.from(document.querySelectorAll('.difficulty-feedback'));
+        buttons.forEach((button): void => {
             button.classList.remove('active');
         })
 
@@ -40,12 +43,12 @@ export default function Content() {
 
 
 
-    function showSettingsPanel() {
-        const informationPanel = document.querySelector('.textContent');
-        const settingsPanel = document.querySelector('.gameSettings');
-        const footerIconsContainer = document.querySelector('.footer-links-container');
-        const socialsIcon = document.querySelector('.socials-icon-wrap');
-        const flagIcon = document.querySelector('.flag-icon-wrap');
+    function showSettingsPanel(): void {
+        const informationPanel: HTMLDivElement = document.querySelector('.textContent');
+        const settingsPanel: HTMLDivElement = document.querySelector('.gameSettings');
+        const footerIconsContainer: HTMLUListElement = document.querySelector('.footer-links-container');
+        const socialsIcon: HTMLLIElement = document.querySelector('.socials-icon-wrap');
+        const flagIcon: HTMLLIElement = document.querySelector('.flag-icon-wrap');
 
         footerIconsContainer.classList.toggle('hide-icons');
         socialsIcon.classList.toggle('show');
@@ -53,11 +56,11 @@ export default function Content() {
 
 
         informationPanel.style.opacity = '0';
-        setTimeout(() => {
+        setTimeout((): void => {
             informationPanel.style.display = 'none';
             settingsPanel.style.display = 'flex';
 
-            setTimeout(() => {
+            setTimeout((): void => {
                 settingsPanel.style.opacity = '1';
             }, 20)
         }, 200)
@@ -65,50 +68,48 @@ export default function Content() {
 
 
 
-    useEffect(() => {
-
-
-        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+    useEffect((): void => {
+        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
 
         homepageMinesweeper.innerHTML = '<div></div>';
         aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
 
 
         // cannot place it in its own function since the values aren't stored unless I use useState, and the problem with that is that it will continuously loop over the other 2 functions, putting unnecessary strain on the cpu, so writing the code inside the useEffect, and making it more difficult to understand is the better solution
-        let timer = 70;
-        let titles = [' a UI Designer', ' a UX Des', ' a front-end developer'];
-        let arrayIndex = 0;
-        let charAtIndex = 0;
-        let stringPrintedArray = [];
-        let stringPrinted = '';
-        let isFuncAddingChars = true;
+        let timer: number = 70;
+        let titles: string[] = [' a UI Designer', ' a UX Des', ' a front-end developer'];
+        let arrayIndex: number = 0;
+        let charAtIndex: number = 0;
+        let stringPrintedArray: string[] = [];
+        let stringPrinted: string = '';
+        let isFuncAddingChars: boolean = true;
         let interval = setInterval(animateTitle, timer);
-        const workTitle = document.querySelector('.work');
+        const workTitle: HTMLHeadingElement = document.querySelector('.work');
         
 
         animateTitle();
-        function animateTitle() {
+        function animateTitle(): void {
             if ( arrayIndex == titles.length - 1) {
                 if ( stringPrintedArray.length == titles[arrayIndex].length + 1 ) {
-                    popCharacter();
-                    stringPrinted = stringPrintedArray.join('');
-                    workTitle.textContent = stringPrinted;
-                    clearInterval(interval);
-                    
-                    function popCharacter() {
+                    const popCharacter = (): void => {
                         stringPrintedArray.pop();
                         stringPrinted = stringPrintedArray.join('');
                         workTitle.textContent = stringPrinted;
                         setTimeout(pushCharacter, 1000);
                     }
 
-                    function pushCharacter() {
+                    const pushCharacter = (): void => {
                         stringPrintedArray.push('|')
                         stringPrinted = stringPrintedArray.join('');
                         workTitle.textContent = stringPrinted;
                     }
 
+                    popCharacter();
+                    stringPrinted = stringPrintedArray.join('');
+                    workTitle.textContent = stringPrinted;
+                    clearInterval(interval);
+                    
                     let interval2 = setInterval(popCharacter, 2000);
 
                     setTimeout(() => {

@@ -1,9 +1,10 @@
-import Header from "@/app/components/header/Header";
-import Footer from "@/app/components/footer/footer";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import './styling.scss';
 import CodeWrapper from "./components/CodeWrapper/CodeWrapper";
 import FormWrapper from "./components/FormWrapper/FormWrapper";
+import { metadataType } from "../../page";
 
 
 export default async function() {
@@ -30,7 +31,7 @@ export default async function() {
     )
 }
 
-export const metadata = {
+export const metadata: metadataType = {
     title: 'Giannis N. | Contact',
     alternates: {
         canonical: '/contact'

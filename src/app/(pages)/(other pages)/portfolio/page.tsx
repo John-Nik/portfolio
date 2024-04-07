@@ -2,7 +2,7 @@
 import './styling.scss';
 import CardsGridContainer from './components/CardsGridContainer/CardsGridContainer';
 
-export default async function({}) {
+export default async function() {
     const content = require.context('../../../content', true);
     let projects = content.keys().map((filename) => content(filename));
 

@@ -1,25 +1,25 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import './styling.scss';
 
 
-export default function Header() {
-    const pathname = usePathname();
-    const [navMenuState, setNavMenuState] = useState(0);
+export default function Header(): ReactElement {
+    const pathname: string = usePathname();
+    const [navMenuState, setNavMenuState] = useState<number>(0);
 
-    function triggerNavMenu() {
+    function triggerNavMenu(): void {
         setNavMenuState((navMenuState + 1) % 2);
     }
 
-    function startGame() {
-        const container = document.querySelector('.container');
-        const containerWidth = container.offsetWidth;
-        const gameStart = document.querySelector('.user-initiated-game-start');
-        const textContentWrapper = document.querySelector('.textContent');
-        const gameControlPanel = document.querySelector('.gameSettings');
-        const smileyFace = document.querySelector('.dead-smiley-wrapper');
+    function startGame(): void {
+        const container: HTMLDivElement = document.querySelector('.container');
+        const containerWidth: number = container.offsetWidth;
+        const gameStart: HTMLDivElement = document.querySelector('.user-initiated-game-start');
+        const textContentWrapper: HTMLDivElement = document.querySelector('.textContent');
+        const gameControlPanel: HTMLDivElement = document.querySelector('.gameSettings');
+        const smileyFace: HTMLDivElement = document.querySelector('.dead-smiley-wrapper');
 
         
         smileyFace.style.display = 'none';
@@ -37,9 +37,9 @@ export default function Header() {
         gameStart.innerHTML = '<div></div>';    
     }
 
-    function turnOffMinesweeperGames() {
-        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+    function turnOffMinesweeperGames(): void {
+        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
 
         homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
         aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';

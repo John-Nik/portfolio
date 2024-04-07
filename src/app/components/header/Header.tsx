@@ -1,23 +1,24 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import './styling.scss';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 
 
-export default function Header() {
-    const pathname = usePathname();
-    const [navMenuState, setNavMenuState] = useState(0);
-    const router = useRouter();
+export default function Header(): ReactElement {
+    const pathname: string = usePathname();
+    const [navMenuState, setNavMenuState] = useState<number>(0);
+    const router: AppRouterInstance = useRouter();
 
-    function triggerNavMenu() {
+    function triggerNavMenu(): void {
         setNavMenuState((navMenuState + 1) % 2);
     }
 
-    function turnOffMinesweeperGames() {
-        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+    function turnOffMinesweeperGames(): void {
+        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
 
         homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
         aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';

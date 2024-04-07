@@ -1,19 +1,19 @@
 'use client';
-import { useEffect } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import ProjectCard from "../ProjectCard/ProjectCard";
 
-export default function CardsGridContainer({projects}) {
+export default function CardsGridContainer({projects}: {projects: ReactNode[]}): ReactElement {
 
-    useEffect(() => {
-        const cards = document.querySelectorAll('.item-container');
+    useEffect((): void => {
+        const cards: HTMLElement[] = Array.from(document.querySelectorAll('.item-container'));
 
-        cards.forEach((card) => {
+        cards.forEach((card: HTMLElement): void => {
             card.addEventListener('mousemove', (mouse) => {
-                const rect = card.getBoundingClientRect();
-                const mouseOnCardPosX = mouse.clientX - rect.left;
-                const mouseOnCardPosY = mouse.clientY - rect.top;
+                const rect: DOMRect = card.getBoundingClientRect();
+                const mouseOnCardPosX: number = mouse.clientX - rect.left;
+                const mouseOnCardPosY: number = mouse.clientY - rect.top;
 
-                setTimeout(() => {
+                setTimeout((): void => {
                     card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`)
                     card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`)
                 }, 100)
@@ -25,7 +25,7 @@ export default function CardsGridContainer({projects}) {
     return (
         <>
             {
-                projects.map((project, key) => {
+                projects.map((project, key: number): ReactElement => {
                     return (
                         <ProjectCard key={key} project={project}>
                             <div className={'card-border'} />

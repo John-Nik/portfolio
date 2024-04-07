@@ -1,11 +1,11 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactElement } from 'react';
 
-export default function SocialsIcon() {
-    let [isFlag, setIsFlag] = useState(1);
+export default function SocialsIcon(): ReactElement {
+    let [isFlag, setIsFlag] = useState<number>(1);
 
-    function changeIcon() {
-        let flagIcon = document.querySelector('.flag-icon');
+    function changeIcon(): void {
+        let flagIcon: HTMLImageElement = document.querySelector('.flag-icon');
         setIsFlag(() => (isFlag + 1) % 2); 
         
         if (isFlag) {
@@ -16,8 +16,8 @@ export default function SocialsIcon() {
 
     }
 
-    useEffect(() =>  {
-        if (('ontouchstart' in window) || (navigator.msMaxTouchPoints > 0)) {
+    useEffect((): void =>  {
+        if (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) {
             let flagIcon = document.querySelector('.flag-icon');
             let flagIconWrap = document.querySelector('.flag-icon-wrap');
             

@@ -1,16 +1,17 @@
 'use client';
 import './footer.scss';
-import CallIcon from '../icons-components/CallIcon.jsx';
-import EmailIcon from '../icons-components/EmailIcon.jsx';
-import GithubIcon from '../icons-components/GithubIcon.jsx';
-import SocialsIcon from '../icons-components/SocialsIcon.jsx';
-import FlagIcon from '../icons-components/FlagIcon.jsx';
+import CallIcon from '../icons-components/CallIcon';
+import EmailIcon from '../icons-components/EmailIcon';
+import GithubIcon from '../icons-components/GithubIcon';
+import SocialsIcon from '../icons-components/SocialsIcon';
+import FlagIcon from '../icons-components/FlagIcon';
 import { useEffect } from 'react';
+import { ReactElement } from 'react';
 
-export default function Footer() {
-    useEffect(() => {
-        const footer = document.querySelector('#homepage-footer');
-        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+export default function Footer(): ReactElement {
+    useEffect((): void => {
+        const footer: HTMLElement = document.querySelector('#homepage-footer');
+        var isSafari: boolean = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
         if (isSafari) {
             footer.style.position = 'relative';

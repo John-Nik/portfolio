@@ -1,7 +1,8 @@
+import { ReactElement } from 'react';
 import './styling.scss';
 import Image from 'next/image';
 
-export default function DescriptionSection() {
+export default function DescriptionSection(): ReactElement {
     return (
         <section id={'description-section'}>
             <div className={'container'}>

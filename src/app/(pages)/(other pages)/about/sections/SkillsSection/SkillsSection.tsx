@@ -1,31 +1,31 @@
 'use client'
 import './styling.scss';
-import { useEffect } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 
-export default function SkillsSection() {
-    useEffect(() => {
-        const html5Icon = document.querySelector('.html5');
-        const css3Icon = document.querySelector('.css3');
-        const scssAndJsIcon = document.querySelectorAll('#tridiv');
-        let windowWidth = window.innerWidth;
+export default function SkillsSection(): ReactElement {
+    useEffect((): void => {
+        const html5Icon: HTMLDivElement = document.querySelector('.html5');
+        const css3Icon: HTMLDivElement = document.querySelector('.css3');
+        const allOtherIcons: HTMLDivElement[] = Array.from(document.querySelectorAll('#tridiv'));
+        let windowWidth: number = window.innerWidth;
 
         window.addEventListener('resize', setIconSize)
 
         setIconSize();
-        function setIconSize() {
+        function setIconSize(): void {
             windowWidth = window.innerWidth;
 
             if (windowWidth < 800) {
                 html5Icon.style.scale = `${windowWidth * 0.003}`;
                 css3Icon.style.scale = `${windowWidth * 0.003}`;
-                scssAndJsIcon.forEach((icon) => {
+                allOtherIcons.forEach((icon): void => {
                     icon.style.scale = `${windowWidth * 0.0005}`;
                 })
             } else {
                 html5Icon.style.scale = `1.596`;
                 css3Icon.style.scale = `1.596`;
-                scssAndJsIcon.forEach((icon) => {
+                allOtherIcons.forEach((icon): void => {
                     icon.style.scale = `0.3192`;
                 })
             }
