@@ -30,8 +30,7 @@ export default function Content(): ReactElement {
 
 
     function changeDifficulty(clickedbutton: { 
-        currentTarget: HTMLSpanElement, 
-        clickedbutton: HTMLElementEventMap 
+        currentTarget: HTMLSpanElement
     }): void {
         const buttons: HTMLSpanElement[] = Array.from(document.querySelectorAll('.difficulty-feedback'));
         buttons.forEach((button): void => {

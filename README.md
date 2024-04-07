@@ -377,3 +377,5 @@
 **1.1.10:** Small styling changes on the footer of the homepage
 
 **1.1.11:** Migrated the entire app to typescript and updated the CV
+
+**1.1.12:** Fixed some small issues preventing build

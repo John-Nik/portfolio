@@ -19,7 +19,7 @@ export default function ProjectCard({project, children}: {project: any, children
             </div>
             <div className={'icons-wrapper'}>
                 <WebsiteIcon link={project.attributes.siteLink} />
-                <GithubIcon link={project.attributes.githubLink} className={'github-icon'} />
+                <GithubIcon link={project.attributes.githubLink} />
             </div>
         </div>
     )

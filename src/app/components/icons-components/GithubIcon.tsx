@@ -1,7 +1,7 @@
 'use client';
 import { ReactElement } from "react";
 
-export default function GithubIcon({link}: {link: string}): ReactElement {
+export default function GithubIcon({link, className}: {link: string, className?: string}): ReactElement {
     function userWantsGithub(): void {
         window.open(link, "_blank");
     }

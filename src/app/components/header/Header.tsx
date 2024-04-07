@@ -49,7 +49,7 @@ export default function Header(): ReactElement {
                     </menu>
                     
                     <div className={'burger-icon-wrapper'}>
-                        <div className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`} onClick={triggerNavMenu} focusable>
+                        <div className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`} onClick={triggerNavMenu}>
                             <div className={'line1'}></div>
                             <div className={'line2'}></div>
                             <div className={'line3'}></div>

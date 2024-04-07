@@ -4,7 +4,7 @@ import EmailIcon from '../icons-components/EmailIcon';
 import GithubIcon from '../icons-components/GithubIcon';
 import { ReactElement } from 'react';
 
-export default function Footer({className} : {className: string}): ReactElement {
+export default function Footer({className} : {className?: string}): ReactElement {
     return ( 
         <footer className={className}>
             <div className={'toggle-background'}>

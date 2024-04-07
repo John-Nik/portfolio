@@ -47,7 +47,7 @@ export default function Sidebar(): ReactElement {
                         <a className={'email-link'} href={'mailto:nikolaou.giannis@yahoo.com?subject=Cool website'}>nikolaou.giannis@yahoo.com</a>
                     </li>
                     <li className={'contact'}>
-                        <GithubIcon />
+                        <GithubIcon link={'https://www.github.com/John-Nik'} />
                         <a className={'github-link'} href={'https://www.github.com/John-Nik'}>github.com/John-Nik</a>
                     </li>
                 </ul>

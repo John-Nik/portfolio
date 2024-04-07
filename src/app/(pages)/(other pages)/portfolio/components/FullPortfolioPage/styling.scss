@@ -164,15 +164,15 @@
             height: 100%;
             aspect-ratio: 5/3;
             max-width: 600px;
-        }
-    
-        .icons-wrapper {
-            position: absolute;
-            top: 82%;
-            display: flex;
-            justify-content: space-between;
-            width: calc(100% - 36px);
-            height: 11.54%;
+
+            .icons-wrapper {
+                position: absolute;
+                top: 82%;
+                display: flex;
+                justify-content: space-between;
+                width: calc(100% - 36px);
+                height: 11.54%;
+            }
         }
     }
 }
