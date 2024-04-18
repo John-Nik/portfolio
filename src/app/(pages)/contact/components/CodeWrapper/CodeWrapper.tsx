@@ -1,11 +1,16 @@
+'use client'
 import { ReactElement } from "react";
+import { useState } from "react";
 
 export default function CodeWrapper(): ReactElement {
     let date: Date = new Date(),
         year: number = date.getFullYear(),
         month: number = date.getMonth() + 1,
         day: number = date.getDate(),
-        fullDate: string = day + '/' + month + '/' + year;
+        fulldate: string = day + '/' + month + '/' + year;
+        
+    let [fullDate, setFullDate] = useState<string>(fulldate);
+
 
     return (
         <div aria-hidden="true" className={'code-wrapper'}>

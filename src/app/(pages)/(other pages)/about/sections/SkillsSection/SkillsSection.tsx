@@ -166,6 +166,130 @@ export default function SkillsSection(): ReactElement {
                                 </div>
                             </div>
                         </div>
+                        <div className={'threeD-icon'}>
+                            <div className={'typescript'}>
+                                <div id="tridiv">
+                                    <div className={"scene"}>
+                                        <div className={"shape cuboid-1 cub-1"}>
+                                            <div className={"face bk"} />
+                                            <div className={"face rt"} />
+                                            <div className={"face lt"} />
+                                            <div className={"face bm"} />
+                                            <div className={"face tp"}><span>TS</span></div>
+                                            <div className={"cr cr-0"}>
+                                                <div className={"face side s0"} />
+                                                <div className={"face side s1"} />
+                                                <div className={"face side s2"} />
+                                                <div className={"face side s3"} />
+                                                <div className={"face side s4"} />
+                                                <div className={"face side s5"} />
+                                                <div className={"face side s6"} />
+                                                <div className={"face side s7"} />
+                                                <div className={"face side s8"} />
+                                                <div className={"face side s9"} />
+                                                <div className={"face side s10"} />
+                                                <div className={"face side s11"} />
+                                                <div className={"face side s12"} />
+                                                <div className={"face side s13"} />
+                                                <div className={"face side s14"} />
+                                                <div className={"face side s15"} />
+                                                <div className={"face side s16"} />
+                                            </div>
+                                            <div className={"cr cr-1"}>
+                                                <div className={"face side s0"} />
+                                                <div className={"face side s1"} />
+                                                <div className={"face side s2"} />
+                                                <div className={"face side s3"} />
+                                                <div className={"face side s4"} />
+                                                <div className={"face side s5"} />
+                                                <div className={"face side s6"} />
+                                                <div className={"face side s7"} />
+                                                <div className={"face side s8"} />
+                                                <div className={"face side s9"} />
+                                                <div className={"face side s10"} />
+                                                <div className={"face side s11"} />
+                                                <div className={"face side s12"} />
+                                                <div className={"face side s13"} />
+                                                <div className={"face side s14"} />
+                                                <div className={"face side s15"} />
+                                                <div className={"face side s16"} />
+                                            </div>
+                                            <div className={"cr cr-2"}>
+                                                <div className={"face side s0"} />
+                                                <div className={"face side s1"} />
+                                                <div className={"face side s2"} />
+                                                <div className={"face side s3"} />
+                                                <div className={"face side s4"} />
+                                                <div className={"face side s5"} />
+                                                <div className={"face side s6"} />
+                                                <div className={"face side s7"} />
+                                                <div className={"face side s8"} />
+                                                <div className={"face side s9"} />
+                                                <div className={"face side s10"} />
+                                                <div className={"face side s11"} />
+                                                <div className={"face side s12"} />
+                                                <div className={"face side s13"} />
+                                                <div className={"face side s14"} />
+                                                <div className={"face side s15"} />
+                                                <div className={"face side s16"} />
+                                            </div>
+                                            <div className={"cr cr-3"}>
+                                                <div className={"face side s0"} />
+                                                <div className={"face side s1"} />
+                                                <div className={"face side s2"} />
+                                                <div className={"face side s3"} />
+                                                <div className={"face side s4"} />
+                                                <div className={"face side s5"} />
+                                                <div className={"face side s6"} />
+                                                <div className={"face side s7"} />
+                                                <div className={"face side s8"} />
+                                                <div className={"face side s9"} />
+                                                <div className={"face side s10"} />
+                                                <div className={"face side s11"} />
+                                                <div className={"face side s12"} />
+                                                <div className={"face side s13"} />
+                                                <div className={"face side s14"} />
+                                                <div className={"face side s15"} />
+                                                <div className={"face side s16"} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={'threeD-icon'}>
+                            <div className="tailwind">
+                                <div id="tridiv">
+                                    <div className="scene">
+                                        <div className="shape cylinder-1 cyl-1">
+                                        <div className="face bm">
+                                            <img src="icons/tailwindcss.svg" alt="" />
+                                        </div>
+                                        <div className="face side s0"></div>
+                                        <div className="face side s1"></div>
+                                        <div className="face side s2"></div>
+                                        <div className="face side s3"></div>
+                                        <div className="face side s4"></div>
+                                        <div className="face side s5"></div>
+                                        <div className="face side s6"></div>
+                                        <div className="face side s7"></div>
+                                        <div className="face side s8"></div>
+                                        <div className="face side s9"></div>
+                                        <div className="face side s10"></div>
+                                        <div className="face side s11"></div>
+                                        <div className="face side s12"></div>
+                                        <div className="face side s13"></div>
+                                        <div className="face side s14"></div>
+                                        <div className="face side s15"></div>
+                                        <div className="face side s16"></div>
+                                        <div className="face side s17"></div>
+                                        <div className="face side s18"></div>
+                                        <div className="face side s19"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <p>

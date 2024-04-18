@@ -379,3 +379,8 @@
 **1.1.11:** Migrated the entire app to typescript and updated the CV
 
 **1.1.12:** Fixed some small issues preventing build
+
+**1.2.0:**
+- Fixed a bug on the contact me page where the date wasn't updating correctly
+- Added TypeScript and Tailwind to the about me page
+- Changed the CV to include new skillset
