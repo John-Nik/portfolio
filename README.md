@@ -404,3 +404,5 @@
 **1.2.9:** Added hotjar as an inline script using lazyOnload to test the perfomance of the site with the script
 
 **1.2.10:** Removed the blue highlighting appearing on android browsers when tapping on clickable elements
+
+**1.2.11:** Fixing a bug with OAuth
