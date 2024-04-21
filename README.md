@@ -392,3 +392,5 @@
 **1.2.3:** Added "runtime: 'experimental-edge'" in the nextjs config
 
 **1.2.4:** moved the const runtime to the first "page.tsx" file
+
+**1.2.5:** Moved the const runtime to "/portfolio/page.tsx" file
