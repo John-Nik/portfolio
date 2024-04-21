@@ -1,6 +1,5 @@
 import { ZCOOL_QingKe_HuangYou, Fira_Code, Press_Start_2P } from 'next/font/google';
 import './global.scss';
-import { GoogleTagManager } from '@next/third-parties/google'
 import { NextFontWithVariable } from 'next/dist/compiled/@next/font';
 import { ReactElement, ReactNode } from 'react';
 
@@ -14,7 +13,6 @@ export default function heads({ children }: {children: ReactNode}): ReactElement
     return (
         <html lang="en">
             <body className={`${zcoolFont.className} ${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
-                <GoogleTagManager gtmId="GTM-TZNHH5M7" />
 
                 {children}
                 
