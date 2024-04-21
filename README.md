@@ -400,3 +400,5 @@
 **1.2.7:** Removed the const runtime and moved it to the layout of the other pages
 
 **1.2.8:** Removed the google tag from nextjs and instead are using Cloudflare's Zaraz. Also migrated the CMS from Netlify ID to OAuth using Github (for cloudflare support)
+
+**1.2.9:** Added hotjar as an inline script using lazyOnload to test the perfomance of the site with the script
