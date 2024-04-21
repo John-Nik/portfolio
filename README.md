@@ -388,3 +388,5 @@
 **1.2.1:** Added "export const runtime = 'edge'" to support cloudflare edge in the attempt of testing and possible migrating to cloudflare
 
 **1.2.2:** Moved the export from "[portfolioId]" to "FullPortfolioPage.tsx"
+
+**1.2.3:** Added "runtime: 'experimental-edge'" in the nextjs config
