@@ -56,3 +56,5 @@ export default function FullPortfolioPage({projects}): ReactNode {
         </main>
     )
 }
+
+export const runtime = 'edge';
