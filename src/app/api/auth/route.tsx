@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 export async function GET(request) {
     const {
         req, // same as existing Worker API
