@@ -11,3 +11,5 @@ export default async function() {
         </>
     )
 }
+
+export const runtime = 'edge';

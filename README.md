@@ -384,3 +384,5 @@
 - Fixed a bug on the contact me page where the date wasn't updating correctly
 - Added TypeScript and Tailwind to the about me page
 - Changed the CV to include new skillset
+
+**1.2.1:** Added "export const runtime = 'edge'" to support cloudflare edge in the attempt of testing and possible migrating to cloudflare
