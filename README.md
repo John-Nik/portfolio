@@ -394,3 +394,5 @@
 **1.2.4:** moved the const runtime to the first "page.tsx" file
 
 **1.2.5:** Moved the const runtime to "/portfolio/page.tsx" file
+
+**1.2.6:** Added the const runtime to the top of the "page.tsx" files in routes "/portfolio" and "/portfolio/[portfolioId]"

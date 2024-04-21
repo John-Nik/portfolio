@@ -2,6 +2,8 @@
 import './styling.scss';
 import CardsGridContainer from './components/CardsGridContainer/CardsGridContainer';
 
+export const runtime = 'edge';
+
 export default async function() {
     const content = require.context('../../../content', true);
     let projects = content.keys().map((filename) => content(filename));
@@ -19,5 +21,3 @@ export default async function() {
         </main> 
     )
 }
-
-export const runtime = 'edge';
