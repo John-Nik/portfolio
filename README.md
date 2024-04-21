@@ -406,3 +406,5 @@
 **1.2.10:** Removed the blue highlighting appearing on android browsers when tapping on clickable elements
 
 **1.2.11:** Fixing a bug with OAuth
+
+**1.2.12:** Fixed a bug with the API routes
