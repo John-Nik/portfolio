@@ -26,8 +26,15 @@ export async function GET(request) {
 
     } catch (error) {
         console.error(error);
-        return new Response(error.message, {
-            status: 500,
-        });
+        const redirectUrl = new URL('https://github.com/login/oauth/authorize');
+        redirectUrl.searchParams.set('client_id', client_id);
+        redirectUrl.searchParams.set('redirect_uri', response.nextUrl.origin + '/api/callback');
+        redirectUrl.searchParams.set('scope', 'repo user');
+        redirectUrl.searchParams.set(
+            'state',
+            crypto.getRandomValues(new Uint8Array(12)).join(''),
+        );
+
+        return new Response(`${redirectUrl.href}, 301`)
     }
 }
