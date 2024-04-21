@@ -30,8 +30,7 @@ const nextConfig = {
             allowedOrigins: ['*.john-nik.com', 'localhost:8888', 'localhost', '192.168.10.2', 'localhost:3000'],
             allowedForwardedHosts: ['*.john-nik.com', 'localhost:8888', 'localhost', '192.168.10.2', 'localhost:3000'],
             serverActions: true
-        },
-        runtime: 'experimental-edge',
+        }
     }
 }
 
