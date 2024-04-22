@@ -416,3 +416,5 @@
 **1.2.15:** Minor fix with OAuth to make it work with cloudflare
 
 **1.2.16:** Added npm package "dotenv" and fixed the syntax problem when trying to read injected variables during build
+
+**1.2.17:** Switched the runtime from edge to nodejs
