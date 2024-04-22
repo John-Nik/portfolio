@@ -9,6 +9,8 @@ backend:
 
 publish_mode: editorial_workflow
 
+logo_url: https://john-nik.com/admin/icon.svg
+
 media_folder: images
 
 public_folder: images

@@ -4,7 +4,6 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
   :root {
     --body-bg-color: #0d1117;
     --primary-text-color: #c9d1d9;
@@ -89,16 +88,20 @@
     --code-line-number-color: #8b949e;
   }
 
-  body {
+  html {
     background-color: var(--body-bg-color);
-    color: var(--primary-text-color);
+  }
+
+  body {
+    background-color: var(--body-bg-color) !important;
+    color: var(--primary-text-color) !important;
   }
   a {
     font-size: inherit;
     color: var(--url-text-color);
   }
   h1, h2, h3, h4, h5, h6, p {
-    color: inherit;
+    color: rgb(231, 231, 231) !important;
   }
   ::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-thumb-color) !important;
@@ -126,13 +129,13 @@
   [class*="StatusButton"],
   [class*="StyledDropdownButton"]:not([class*="grayText"]):not([class*="Publish"])
   {
-    color: var(--primary-text-color);
-    background-color: var(--btn-gray-default-bg);
-    border: 1px solid;
-    border-color: var(--btn-gray-default-border);
-    border-radius: 6px;
-    transition: .2s cubic-bezier(.3,0,.5,1);
-    transition-property: color,background-color,border-color;
+    color: var(--primary-text-color) !important;
+    background-color: var(--btn-gray-default-bg) !important;
+    border: 1px solid !important;
+    border-color: var(--btn-gray-default-border) !important;
+    border-radius: 6px !important;
+    transition: .2s cubic-bezier(.3,0,.5,1) !important;
+    transition-property: color,background-color,border-color !important;
   }
 
   [class*="button-default-gray"]:hover,
@@ -177,13 +180,13 @@
   [class*="FileWidgetButtonRemove-button"],
   [class*="DeleteButton"]
   {
-    color: var(--btn-red-default-text);
-    background-color: var(--btn-red-default-bg);
-    border: 1px solid;
-    border-color: var(--btn-red-default-border);
-    border-radius: 6px;
-    transition: .2s cubic-bezier(.3,0,.5,1);
-    transition-property: color,background-color,border-color;
+    color: var(--btn-red-default-text) !important;
+    background-color: var(--btn-red-default-bg) !important;
+    border: 1px solid !important;
+    border-color: var(--btn-red-default-border) !important;
+    border-radius: 6px !important;
+    transition: .2s cubic-bezier(.3,0,.5,1) !important;
+    transition-property: color,background-color,border-color !important;
   }
 
   [class*="utton-lightRed"]:hover,
@@ -224,13 +227,13 @@
   [class*="PublishButton"],
   [class*="publishedButton"]
   {
-    color: var(--btn-green-default-text);
-    background-color: var(--btn-green-default-bg);
-    border: 1px solid;
-    border-color: var(--btn-green-default-border);
-    border-radius: 6px;
-    transition: .2s cubic-bezier(.3,0,.5,1);
-    transition-property: color,background-color,border-color;
+    color: var(--btn-green-default-text) !important;
+    background-color: var(--btn-green-default-bg) !important;
+    border: 1px solid !important;
+    border-color: var(--btn-green-default-border) !important;
+    border-radius: 6px !important;
+    transition: .2s cubic-bezier(.3,0,.5,1) !important;
+    transition-property: color,background-color,border-color !important;
   }
 
   [class*="button-green"]:hover,
@@ -487,8 +490,8 @@
     background-color: var(--dropdownitem-hover-bg);
   }
   [class*="SidebarNavLink"].sidebar-active, [class*="TreeNavLink"].sidebar-active {
-    color: var(--header-button-text-active);
-    background-color: var(--header-dropdownitem-hover-bg);
+    color: rgba(83, 172, 255, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.2) !important;
   }
   [class*="SearchContainer"] input[class*="SearchInput"] {
     background-color: var(--input-bg-color);
@@ -631,10 +634,30 @@
     text-transform: capitalize;
   }
   .css-83wr9v, .css-2ek3w9, .css-wesa1q-TextControl, .css-182avcw, .css-18h6btn, .css-12fzmby, .css-xa00c7, .css-1d0dxug {
-    color: inherit;
-    background-color: var(--widgets-bg-color);
-    border: 1px solid var(--widgets-border-color);
-    border-radius: 0 6px 6px;
+    color: inherit !important;
+    background-color: var(--widgets-bg-color) !important;
+    border: 1px solid var(--widgets-border-color) !important;
+    border-radius: 0 6px 6px !important;
+  }
+  .css-1mdujl0 {
+    background-color: var(--widgets-bg-color) !important;
+    border: 1px solid var(--widgets-border-color) !important;
+    border-radius: 0 6px 6px !important;
+    color: inherit !important;
+  }
+  .css-lshhuz {
+    background-color: var(--widgets-bg-color) !important;
+    border: 1px solid var(--widgets-border-color) !important;
+    border-radius: 0 6px 6px !important;
+    color: inherit !important;
+  }
+  .css-1qu85o2-FieldLabel-fieldLabel {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 6px !important;
+  }
+  .css-1qu85o2-FieldLabel-fieldLabel::after {
+    background-color: transparent !important;
   }
   [class*="1vur7zs-FieldLabel"] {
     color: var(--header-button-text-active);

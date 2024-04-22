@@ -422,3 +422,5 @@
 **1.2.18:** Reverted the change and added error console logs
 
 **1.2.19:** Changed the "base_url" from http to https
+
+**1.2.20:** Changed the theme of the CMS to dark theme for my own taste, among some other small styling changes
