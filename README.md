@@ -412,3 +412,5 @@
 **1.2.13:** Correctly configured OAuth in the backend
 
 **1.2.14:** Enabled hotjar again
+
+**1.2.15:** Minor fix with OAuth to make it work with cloudflare

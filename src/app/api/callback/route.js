@@ -18,22 +18,12 @@ function renderBody(status, content) {
     return blob;
 }
 
-export async function GET(context) {
-    // const {
-    //     request, // same as existing Worker API
-    //     env, // same as existing Worker API
-    //     params, // if filename includes [id] or [[path]]
-    //     waitUntil, // same as ctx.waitUntil in existing Worker API
-    //     next, // used for middleware or to fetch assets
-    //     data, // arbitrary space for passing data between middlewares
-    // } = context;
-    let res = await context;
-
+export async function GET(request) {
     const client_id = env.GITHUB_CLIENT_ID;
     const client_secret = env.GITHUB_CLIENT_SECRET;
 
     try {
-        const url = new URL(res.nextUrl.origin);
+        const url = new URL(request.url);
         const code = url.searchParams.get('code');
         const response = await fetch(
             'https://github.com/login/oauth/access_token',
@@ -41,7 +31,7 @@ export async function GET(context) {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    'user-agent': 'cloudflare-functions-github-oauth-login-demo',
+                    'user-agent': 'nextJS-github-oauth-login',
                     'accept': 'application/json',
                 },
                 body: JSON.stringify({ client_id, client_secret, code }),
