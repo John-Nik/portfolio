@@ -410,3 +410,5 @@
 **1.2.12:** Fixed a bug with the API routes
 
 **1.2.13:** Correctly configured OAuth in the backend
+
+**1.2.14:** Enabled hotjar again
