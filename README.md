@@ -420,3 +420,5 @@
 **1.2.17:** Switched the runtime from edge to nodejs
 
 **1.2.18:** Reverted the change and added error console logs
+
+**1.2.19:** Changed the "base_url" from http to https
