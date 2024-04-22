@@ -33,7 +33,7 @@ export async function GET(context) {
     const client_secret = env.GITHUB_CLIENT_SECRET;
 
     try {
-        const url = new URL(res.nextUrl.host);
+        const url = new URL(res.nextUrl.origin);
         const code = url.searchParams.get('code');
         const response = await fetch(
             'https://github.com/login/oauth/access_token',

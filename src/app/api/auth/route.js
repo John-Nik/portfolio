@@ -25,7 +25,6 @@ export async function GET(request) {
         return Response.redirect(redirectUrl.href, 301);
 
     } catch (error) {
-        console.error(error);
         return new Response(error.message, {
             status: 500,
         });
