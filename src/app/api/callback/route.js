@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 function renderBody(status, content) {
     const html = `
     <script>
