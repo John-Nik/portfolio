@@ -19,8 +19,8 @@ function renderBody(status, content) {
 }
 
 export async function GET(request) {
-    const client_id = env.GITHUB_CLIENT_ID;
-    const client_secret = env.GITHUB_CLIENT_SECRET;
+    const client_id = process.env.GITHUB_CLIENT_ID;
+    const client_secret = process.env.GITHUB_CLIENT_SECRET;
 
     try {
         const url = new URL(request.url);

@@ -3,7 +3,7 @@ export const runtime = 'edge';
 export async function GET(request) {
     let response = new URL(request.url);
 
-    const client_id = env.GITHUB_CLIENT_ID;
+    const client_id = process.env.GITHUB_CLIENT_ID;
 
     try {
         const redirectUrl = new URL('https://github.com/login/oauth/authorize');
@@ -17,6 +17,7 @@ export async function GET(request) {
         return Response.redirect(redirectUrl.href, 301);
 
     } catch (error) {
+        console.log(error)
         return new Response(error.message, {
             status: 500,
         });
