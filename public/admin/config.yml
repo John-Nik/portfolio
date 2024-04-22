@@ -4,7 +4,7 @@ backend:
   name: github
   repo: John-Nik/portfolio
   branch: master
-  base_url: https://john-nik.com
+  base_url: http://192.168.10.2:3000
   auth_endpoint: /api/auth
 
 publish_mode: editorial_workflow
