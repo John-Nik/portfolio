@@ -1,4 +1,4 @@
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 function renderBody(status, content) {
     const html = `
@@ -39,6 +39,7 @@ export async function GET(request) {
         );
         const result = await response.json();
         if (result.error) {
+            console.log(`Error ocurred while trying to redirect: ${error}`);
             return new Response(renderBody('error', result), {
                 headers: {
                     'content-type': 'text/html;charset=UTF-8',
@@ -52,6 +53,7 @@ export async function GET(request) {
             token,
             provider,
         });
+        console.log('Successful authentication and now redirecting')
         return new Response(responseBody, { 
             headers: {
                 'content-type': 'text/html;charset=UTF-8',
@@ -60,7 +62,7 @@ export async function GET(request) {
         });
 
     } catch (error) {
-        console.error(error);
+        console.error(`Error ocurred while trying to process the request: ${error}`);
         return new Response(error.message, {
             headers: {
                 'content-type': 'text/html;charset=UTF-8',

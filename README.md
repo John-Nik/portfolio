@@ -418,3 +418,5 @@
 **1.2.16:** Added npm package "dotenv" and fixed the syntax problem when trying to read injected variables during build
 
 **1.2.17:** Switched the runtime from edge to nodejs
+
+**1.2.18:** Reverted the change and added error console logs
