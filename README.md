@@ -408,3 +408,5 @@
 **1.2.11:** Fixing a bug with OAuth
 
 **1.2.12:** Fixed a bug with the API routes
+
+**1.2.13:** Correctly configured OAuth in the backend

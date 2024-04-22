@@ -18,6 +18,10 @@ export async function GET(request) {
         redirectUrl.searchParams.set('client_id', client_id);
         redirectUrl.searchParams.set('redirect_uri', response.nextUrl.origin + '/api/callback');
         redirectUrl.searchParams.set('scope', 'repo user');
+        redirectUrl.searchParams.set(
+            'state',
+            crypto.getRandomValues(new Uint8Array(12)).join(''),
+        );
         return Response.redirect(redirectUrl.href, 301);
 
     } catch (error) {
