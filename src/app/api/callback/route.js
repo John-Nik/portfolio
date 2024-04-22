@@ -19,20 +19,21 @@ function renderBody(status, content) {
 }
 
 export async function GET(context) {
-    const {
-        request, // same as existing Worker API
-        env, // same as existing Worker API
-        params, // if filename includes [id] or [[path]]
-        waitUntil, // same as ctx.waitUntil in existing Worker API
-        next, // used for middleware or to fetch assets
-        data, // arbitrary space for passing data between middlewares
-    } = context;
+    // const {
+    //     request, // same as existing Worker API
+    //     env, // same as existing Worker API
+    //     params, // if filename includes [id] or [[path]]
+    //     waitUntil, // same as ctx.waitUntil in existing Worker API
+    //     next, // used for middleware or to fetch assets
+    //     data, // arbitrary space for passing data between middlewares
+    // } = context;
+    let res = await context;
 
     const client_id = env.GITHUB_CLIENT_ID;
     const client_secret = env.GITHUB_CLIENT_SECRET;
 
     try {
-        const url = new URL(request.url);
+        const url = new URL(res.nextUrl.host);
         const code = url.searchParams.get('code');
         const response = await fetch(
             'https://github.com/login/oauth/access_token',
