@@ -429,3 +429,5 @@
 - Added a 404 page
 - Centered the image in the admin page
 - Set up middleware to make all links case insensitive
+
+**1.2.22:** Updated the link of the download cv button
