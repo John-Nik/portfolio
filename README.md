@@ -431,3 +431,5 @@
 - Set up middleware to make all links case insensitive
 
 **1.2.22:** Updated the link of the download cv button
+
+**1.2.23:** Updated the pdf
