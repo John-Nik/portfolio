@@ -17,7 +17,7 @@ export default function Custom404() {
             <Header />
 
             <main className="notFoundMain">
-                <Image src="icons/question-mark.svg" alt="" height="150" width="150" priority={true} />
+                <Image src="/icons/question-mark.svg" alt="" height="150" width="150" priority={true} />
                 <h1 style={{color: 'white'}}>Page Not Found</h1>
             </main>
 
