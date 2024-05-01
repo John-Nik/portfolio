@@ -92,6 +92,11 @@
     background-color: var(--body-bg-color);
   }
 
+  .exus10f4 {
+    display: flex;
+    justify-content: center;
+  }
+
   body {
     background-color: var(--body-bg-color) !important;
     color: var(--primary-text-color) !important;

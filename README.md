@@ -424,3 +424,8 @@
 **1.2.19:** Changed the "base_url" from http to https
 
 **1.2.20:** Changed the theme of the CMS to dark theme for my own taste, among some other small styling changes
+
+**1.2.21:**
+- Added a 404 page
+- Centered the image in the admin page
+- Set up middleware to make all links case insensitive

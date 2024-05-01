@@ -75,7 +75,7 @@ export default function Content(): ReactElement {
         aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
 
 
-        // cannot place it in its own function since the values aren't stored unless I use useState, and the problem with that is that it will continuously loop over the other 2 functions, putting unnecessary strain on the cpu, so writing the code inside the useEffect, and making it more difficult to understand is the better solution
+        // cannot place it in its own function since the values aren't stored unless I use useState, and the problem with that is that it will continuously loop over the other 2 functions, putting unnecessary strain on the cpu, so writing the code inside the useEffect, which by extension makes the code more difficult to understand, is the better solution
         let timer: number = 70;
         let titles: string[] = [' a UI Designer', ' a UX Des', ' a front-end developer'];
         let arrayIndex: number = 0;
