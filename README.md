@@ -433,3 +433,5 @@
 **1.2.22:** Updated the link of the download cv button
 
 **1.2.23:** Updated the pdf
+
+**1.2.24:** Fixed issue with middleware
