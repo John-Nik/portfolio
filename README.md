@@ -437,3 +437,5 @@
 **1.2.24:** Fixed issue with middleware
 
 **1.2.25:** Fixed an issue with the icon in the 404 page not showing up
+
+**1.2.26:** Added page title for the not found page

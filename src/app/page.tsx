@@ -27,7 +27,7 @@ interface alternates {
 export type metadataType = {
     title: string,
     description?: string,
-    alternates: alternates
+    alternates?: alternates
 }
 
 export const metadata: metadataType = {

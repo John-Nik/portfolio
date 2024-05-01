@@ -4,6 +4,7 @@ import Footer from "./components/footer/footer";
 import Image from "next/image";
 import './not-found.scss'
 import { useRouter } from "next/navigation";
+import { metadataType } from "./page";
 
 export default function Custom404() {
     const router = useRouter();
@@ -24,4 +25,8 @@ export default function Custom404() {
             <Footer />
         </>
     )
+}
+
+export const metadata: metadataType = {
+    title: 'Giannis N. | Page Not Found'
 }
