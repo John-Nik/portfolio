@@ -8,4 +8,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL(request.nextUrl.origin + request.nextUrl.pathname.toLowerCase()));
 }
 
+export const config = {
+    matcher: "*"
+}
+
 export default middleware;
