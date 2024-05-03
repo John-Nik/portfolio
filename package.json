@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm-run-all --parallel startNextServer startDecapServer",
-    "build": "npm run  && next build",
+    "dev": "run-p startNextServer startDecapServer",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "startNextServer": "next dev -- -H 192.168.10.2",
-    "startDecapServer": "npx decap-server"
+    "startNextServer": "next dev -H 192.168.10.2",
+    "startDecapServer": "bunx decap-server"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",
@@ -16,7 +16,7 @@
     "dotenv": "^16.4.5",
     "eslint-config-next": "^14.1.0",
     "next": "^14.1.3",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "^6.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

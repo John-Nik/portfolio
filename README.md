@@ -439,3 +439,5 @@
 **1.2.25:** Fixed an issue with the icon in the 404 page not showing up
 
 **1.2.26:** Added page title for the not found page
+
+**1.2.27:** Started to run everything on bun for faster build times
