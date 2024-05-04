@@ -445,3 +445,5 @@
 **1.2.28:** Disabled hotjar in the html for testing purposes to see if pagespeed scores will improve. Will instead move them to Zaraz and run tests
 
 **1.2.29:** Re-enabled hotjar in the html
+
+**1.2.30:** Decided to disable hotjar in the html and instead run it using cloudflare's zaraz
