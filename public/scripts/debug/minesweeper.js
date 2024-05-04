@@ -394,7 +394,7 @@ function lostGame() {
 
     removeUserSquareInterractivity();
 
-    if (screenWidth > 860) {
+    if (screenWidth >= 1023) {
         setTimeout(() => {
             if (autoplayRunning) {
                 informUserBombsPlacedText.fadeOut();
@@ -406,7 +406,7 @@ function lostGame() {
     }
     
 
-    if (screenWidth < 860) {
+    if (screenWidth <= 1023) {
         let showSettingsButton = document.querySelector('.show-settings-panel-button');
 
         showSettingsButton.innerHTML = 'You-lost<br>Play-again?'
