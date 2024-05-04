@@ -441,3 +441,5 @@
 **1.2.26:** Added page title for the not found page
 
 **1.2.27:** Started to run everything on bun for faster build times
+
+**1.2.28:** Disabled hotjar in the html for testing purposes to see if pagespeed scores will improve. Will instead move them to Zaraz and run tests
