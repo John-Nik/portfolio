@@ -1,10 +1,9 @@
-'use client'
 import DownloadCVButton from "../../../../components/buttons/DownloadCVButton";
 import CallIcon from "../../../../components/icons-components/CallIcon";
 import EmailIcon from "../../../../components/icons-components/EmailIcon";
 import GithubIcon from "../../../../components/icons-components/GithubIcon";
 import './styling.scss';
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 
 export default function Sidebar(): ReactElement {
     // useEffect(() => {
