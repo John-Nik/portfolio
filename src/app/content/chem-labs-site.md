@@ -1,5 +1,6 @@
 ---
 title: Vioekseliksi
+link: vioekseliksi
 name: Chem Lab's Website
 img: images/vioekseliksi.webp
 siteLink: https://www.vioekseliksi.netlify.app
