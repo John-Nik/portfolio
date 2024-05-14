@@ -1,5 +1,6 @@
 ---
 title: Persaco
+link: persaco
 name: Personal Dietitian Persa's Website
 img: images/persaco.webp
 siteLink: https://persaco.netlify.app
