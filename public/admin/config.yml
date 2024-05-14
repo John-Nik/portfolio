@@ -23,6 +23,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Short Name", name: "title", widget: "string"}
+      - {label: "Post's Link", name: "link", widget: "string"}
       - {label: "Full Name", name: "name", widget: "string"}
       - {label: "Picture", name: "img", widget: "image"}
       - {label: "Site Link", name: "siteLink", widget: "string"}

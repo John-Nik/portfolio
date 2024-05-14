@@ -451,3 +451,8 @@
 **1.2.31:** Fixed a small bug with the game on the home page where the UI broke if it was between 860px and 1023px
 
 **1.2.32:** Updated CV, among other small changes
+
+**1.2.33:** 
+- Updated the portfolio page to include new ongoing project
+- Adjusted the CMS to allow for custom links to be typed
+- Adjusted the size of the project's listed on the portfolio page
