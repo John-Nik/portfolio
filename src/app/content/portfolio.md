@@ -1,5 +1,6 @@
 ---
 title: Portfolio
+link: portfolio
 name: Personal Project Portfolio
 img: images/portfolio.webp
 siteLink: https://www.john-nik.com
