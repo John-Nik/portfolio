@@ -2,7 +2,7 @@
 title: Resonat (Redesign)
 link: new-resonat
 name: Marketing Agency Website Redesign
-img: images/newresonat.webp
+img: images/new-resonat.webp
 siteLink: https://www.john-nik.com/portfolio
 githubLink: https://www.john-nik.com/portfolio/new-resonat
 ---
