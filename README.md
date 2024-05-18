@@ -464,3 +464,5 @@
 - Used the useRef hook whenever possible
 - Made the active difficulty have a bolder font to stand out more
 - Testing out the cloudflare edge worker to serve my component files aswell
+
+**1.3.1:** Ran bun install to fix a bug with the cloudflare building process
