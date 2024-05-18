@@ -15,7 +15,7 @@ export default function FormWrapper(): ReactElement {
             displayThankYouMessage();
             successfulRequest();
         }
-    } else {
+    } else if (state.errors != null) {
         unsuccessfulRequest();
         displayErrorMessage();
     }

@@ -474,3 +474,5 @@
 **1.3.4:** Removed all the newly added edge runtimes
 
 **1.3.5:** Removed the unnecessary async export function in the /contact/page.tsx file
+
+**1.3.6:** Fixed the minor bug preventing the /contact page from compiling
