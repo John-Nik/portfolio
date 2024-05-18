@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import GameSettings from './components/gameSettings/GameSettings';
 import TextContent from './components/textContent/TextContent';
 import { ReactElement } from 'react';

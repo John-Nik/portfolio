@@ -466,3 +466,5 @@
 - Testing out the cloudflare edge worker to serve my component files aswell
 
 **1.3.1:** Ran bun install to fix a bug with the cloudflare building process
+
+**1.3.2:** Removed the edge runtime from the contact page and minesweeper content in home page, and added one in the page.tsx file and the about us page aswell
