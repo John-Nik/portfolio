@@ -456,3 +456,11 @@
 - Updated the portfolio page to include new ongoing project
 - Adjusted the CMS to allow for custom links to be typed
 - Adjusted the size of the project's listed on the portfolio page
+
+**1.3.0:** 
+- Added smooth animations on some elements of the pages
+- Fixed an issue on the portfolio page
+- Split the home page minesweeper container into multiple child elements to simplify the logic
+- Used the useRef hook whenever possible
+- Made the active difficulty have a bolder font to stand out more
+- Testing out the cloudflare edge worker to serve my component files aswell

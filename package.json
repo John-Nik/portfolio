@@ -19,6 +19,7 @@
     "npm-run-all2": "^6.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-intersection-observer": "^9.10.2",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

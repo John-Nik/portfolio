@@ -1,12 +1,39 @@
 'use client'
 import './styling.scss';
-import { ReactElement, useEffect } from 'react';
+import { ReactElement, useEffect, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 
 export default function SkillsSection(): ReactElement {
-    useEffect((): void => {
-        const html5Icon: HTMLDivElement = document.querySelector('.html5');
-        const css3Icon: HTMLDivElement = document.querySelector('.css3');
+    const html5Icon = useRef(null);
+    const css3Icon = useRef(null);
+    const [firstIconsGrid] = useInView({
+        threshold: 0.4,
+        onChange: (isVisible, intersectionObject) => {
+            const iconsGrid = intersectionObject.target as HTMLDivElement;
+
+            if (isVisible) {
+                iconsGrid.classList.add('show');
+            } else {
+                iconsGrid.classList.remove('show');
+            }
+        }
+    });
+    const [secondIconsGrid] = useInView({
+        threshold: 0.4,
+        onChange: (isVisible, intersectionObject) => {
+            const iconsGrid = intersectionObject.target as HTMLDivElement;
+
+            if (isVisible) {
+                iconsGrid.classList.add('show');
+            } else {
+                iconsGrid.classList.remove('show');
+            }
+        }
+    });
+
+
+    useEffect((): ()=>void => {
         const allOtherIcons: HTMLDivElement[] = Array.from(document.querySelectorAll('#tridiv'));
         let windowWidth: number = window.innerWidth;
 
@@ -17,19 +44,24 @@ export default function SkillsSection(): ReactElement {
             windowWidth = window.innerWidth;
 
             if (windowWidth < 800) {
-                html5Icon.style.scale = `${windowWidth * 0.003}`;
-                css3Icon.style.scale = `${windowWidth * 0.003}`;
+                html5Icon.current.style.scale = `${windowWidth * 0.003}`;
+                css3Icon.current.style.scale = `${windowWidth * 0.003}`;
                 allOtherIcons.forEach((icon): void => {
                     icon.style.scale = `${windowWidth * 0.0005}`;
                 })
             } else {
-                html5Icon.style.scale = `1.596`;
-                css3Icon.style.scale = `1.596`;
+                html5Icon.current.style.scale = `1.596`;
+                css3Icon.current.style.scale = `1.596`;
                 allOtherIcons.forEach((icon): void => {
                     icon.style.scale = `0.3192`;
                 })
             }
         }
+
+        return () => {
+            window.removeEventListener('resize', setIconSize);
+        }
+        
     }, [])
 
     return (
@@ -37,16 +69,16 @@ export default function SkillsSection(): ReactElement {
             <div className={'container'}>
                     <p>Initially, I built personal projects to kickstart my journey. However, I soon felt the need for something <span className={'colored-text'}>more difficult,</span> and the idea of building websites for local businesses came to mind. That's when I decided to design and build websites for local businesses, accommodating all their wants and needs.</p>
 
-                    <div className={'threeD-icons-container'}>
+                    <div className={'threeD-icons-container'} ref={firstIconsGrid}>
                         <div className={'threeD-icon'}>
-                            <div className={'html5'}>
+                            <div className={'html5'} ref={html5Icon}>
                                 <div className={'img-wrapper'}>
                                     <img src="icons/html5-logo.svg" alt="" />
                                 </div>
                             </div>
                         </div>
                         <div className={'threeD-icon'}>
-                            <div className={'css3'}>
+                            <div className={'css3'} ref={css3Icon}>
                                 <div className={'img-wrapper'}>
                                     <img src="icons/css3-logo.svg" alt="" />
                                 </div>
@@ -296,7 +328,7 @@ export default function SkillsSection(): ReactElement {
                     This decision pushed me much faster to learn uncharted territories in the field, and even dwelling outside of it, and sometimes, delve deep into the outside parts of it. The experience I have gotten there escalated my <span className={'colored-text'}>sophistication</span> in the field.
                     </p>
 
-                    <div className={'threeD-icons-container'}>
+                    <div className={'threeD-icons-container'} ref={secondIconsGrid}>
                         <div className={'threeD-icon'}>
                             <div className="git">
                                 <div id="tridiv">

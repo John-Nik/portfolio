@@ -1,17 +1,21 @@
 'use client'
 import { useForm, ValidationError } from '@formspree/react';
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState, useRef } from 'react';
 
 export default function FormWrapper(): ReactElement {
     const [state, handleSubmit] = useForm("mnqebkea");
     const [isTerminalWriting, setIsTerminalWriting] = useState<boolean>(true);
+    const nameInput = useRef(null);
+    const emailInput = useRef(null);
+    const messageInput = useRef(null);
+    const thankYouSpan = useRef(null);
 
     if (state.succeeded) {
         if (isTerminalWriting == false) {
             displayThankYouMessage();
             successfulRequest();
         }
-    } else if (state.errors != null) {
+    } else {
         unsuccessfulRequest();
         displayErrorMessage();
     }
@@ -36,10 +40,7 @@ export default function FormWrapper(): ReactElement {
 
 
     function removeCharactersFromInputs(): void {
-        let nameInput: HTMLInputElement = document.querySelector('.nameInput'),
-            emailInput: HTMLInputElement = document.querySelector('.emailInput'),
-            messageInput: HTMLInputElement = document.querySelector('.fmessage'),
-            isNameInputEmpty: boolean = false,
+        let isNameInputEmpty: boolean = false,
             isEmailInputEmpty: boolean = false,
             isMessageInputEmpty: boolean = false,
             interval: NodeJS.Timeout = setInterval(removeChar, 50);
@@ -50,20 +51,20 @@ export default function FormWrapper(): ReactElement {
                 return;
             }
 
-            if (nameInput.value.length != 0) {
-                nameInput.value = nameInput.value.slice(0, -1);
+            if (nameInput.current.value.length != 0) {
+                nameInput.current.value = nameInput.current.value.slice(0, -1);
             } else {
                 isNameInputEmpty = true;
             }
 
-            if (emailInput.value.length != 0) {
-                emailInput.value = emailInput.value.slice(0, -1);
+            if (emailInput.current.value.length != 0) {
+                emailInput.current.value = emailInput.current.value.slice(0, -1);
             } else {
                 isEmailInputEmpty = true;
             }
 
-            if (messageInput.value.length != 0) {
-                messageInput.value = messageInput.value.slice(0, -1);
+            if (messageInput.current.value.length != 0) {
+                messageInput.current.value = messageInput.current.value.slice(0, -1);
             } else {
                 isMessageInputEmpty = true;
             }
@@ -89,8 +90,7 @@ export default function FormWrapper(): ReactElement {
     }
 
     function displayErrorMessage(): void {
-        const thankYouSpan: HTMLSpanElement = document.querySelector('.thankYou');
-        thankYouSpan.textContent = ''; //reset the previous values if it had any
+        thankYouSpan.current.textContent = ''; //reset the previous values if it had any
         let string: string = 'Something unexpected happened and caused an error. Try again later';
         let placeCharInterval: NodeJS.Timeout = setInterval(placeChar, 75);
         let indexPosition: number = 0;
@@ -98,7 +98,7 @@ export default function FormWrapper(): ReactElement {
         
         function placeChar(): void {
             if (string.charAt(indexPosition) != undefined ) {
-                thankYouSpan.textContent = thankYouSpan.textContent + string.charAt(indexPosition);
+                thankYouSpan.current.textContent = thankYouSpan.current.textContent + string.charAt(indexPosition);
                 indexPosition++;
             } else {
                 clearInterval(placeCharInterval);
@@ -166,24 +166,24 @@ export default function FormWrapper(): ReactElement {
 
                 <div className={'form-input-box'}>
                     <label htmlFor="fname">Name</label><br />
-                    <input className='nameInput' onInput={handleNameInput} required={true} id="fname" name="nameInput" type="text" />
+                    <input className='nameInput' ref={nameInput} onInput={handleNameInput} required={true} id="fname" name="nameInput" type="text" />
                 </div>
                 
                 <div className={'form-input-box'}>
                     <label htmlFor="femail">Email</label><br />
-                    <input className='emailInput' onInput={handleEmailInput} required={true} id="femail" name="emailInput" type="email" />
+                    <input className='emailInput' ref={emailInput} onInput={handleEmailInput} required={true} id="femail" name="emailInput" type="email" />
                     <ValidationError prefix="Email" field="femail" errors={state.errors} />
                 </div>
 
                 <div className={'form-input-box'}>
                     <label htmlFor="fmessage">Message</label><br />
-                    <textarea onInput={handleMessageInput} required={true} className="fmessage" id="fmessage" name="messageInput" />
+                    <textarea onInput={handleMessageInput} required={true} className="fmessage" ref={messageInput} id="fmessage" name="messageInput" />
                     <ValidationError prefix="Message" field="fmessage" errors={state.errors} />
                 </div>
                 
                 <div className="submit-button-container">
                     <input type="submit" value="Submit" onClick={() => {displayTerminal(); removeCharactersFromInputs()}} disabled={state.submitting} className={'start-game-button'} />
-                    <span className='thankYou'></span>
+                    <span className='thankYou' ref={thankYouSpan}></span>
                 </div>
             </form>
         </div>
