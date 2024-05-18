@@ -1,6 +1,6 @@
 'use client'
 import { ReactElement } from "react";
-import { useState } from "react";
+import { useRef } from "react";
 
 export default function CodeWrapper(): ReactElement {
     let date: Date = new Date(),
@@ -9,7 +9,7 @@ export default function CodeWrapper(): ReactElement {
         day: number = date.getDate(),
         fulldate: string = day + '/' + month + '/' + year;
         
-    let [fullDate, setFullDate] = useState<string>(fulldate);
+    let fullDate = useRef(fulldate);
 
 
     return (
@@ -36,7 +36,7 @@ export default function CodeWrapper(): ReactElement {
                     &nbsp;&nbsp;<span className="light-blue">message</span><span className="gray">: </span><span className="orange message-js-input">""</span><span className="white">,</span>
                 </li>
                 <li className={'codeline codeline7'}>
-                    &nbsp;&nbsp;<span className="light-blue">date</span><span className="gray">: </span><span className="orange date-js-input">"{fullDate}"</span>
+                    &nbsp;&nbsp;<span className="light-blue">date</span><span className="gray">: </span><span className="orange date-js-input">"{fullDate.current}"</span>
                 </li>
                 <li className={'codeline codeline8'}>
                     <span className="dark-blue">{'}'}</span><span className="white">;</span>

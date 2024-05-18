@@ -7,7 +7,7 @@ import FormWrapper from "./components/FormWrapper/FormWrapper";
 import { metadataType } from "../../page";
 
 
-export default async function() {
+export default function() {
     return (
         <>
             <Header />

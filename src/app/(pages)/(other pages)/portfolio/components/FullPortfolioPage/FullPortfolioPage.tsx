@@ -1,7 +1,7 @@
 'use client';
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import './styling.scss';
 
@@ -11,6 +11,7 @@ export default function FullPortfolioPage({projects}): ReactNode {
     .split("/")
     .slice(2)[0]
     .toLowerCase();
+    const titleTag = useRef(null);
 
     let dataToPull = projects.filter((project) => project.attributes.title.toLowerCase().includes(pathname))
     let projectAttributes = dataToPull[0].attributes;
@@ -31,8 +32,7 @@ export default function FullPortfolioPage({projects}): ReactNode {
 
 
 
-        const titleTag: HTMLTitleElement = document.querySelector('title');
-        titleTag.innerHTML = `Giannis N. | ${projectAttributes.name} Project`;
+        titleTag.current.textContent = `Giannis N. | ${projectAttributes.name} Project`;
     }, [])
 
     function sendToPortfolioPage(): void {
@@ -48,7 +48,7 @@ export default function FullPortfolioPage({projects}): ReactNode {
                     </div>
                     <ProjectCard project={dataToPull[0]} />
                     <div className={'text-wrapper'}>
-                        <h1 className={'title'}>// {projectAttributes.name}</h1>
+                        <h1 className={'title'} ref={titleTag}>// {projectAttributes.name}</h1>
                         <div className={'body'} dangerouslySetInnerHTML={{__html: dataToPull[0].html}} />
                     </div>
                 </div>

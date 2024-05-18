@@ -23,6 +23,9 @@
                 align-items: center;
                 padding-left: 24px;
                 padding-right: 24px;
+                
+                
+
     
                 p {
                     width: 100%;
@@ -30,6 +33,14 @@
                     font-size: clamp(1.25rem, 2vw, 1.75rem);
                     font-family: var(--fira-code);
                     text-align: center;
+                    opacity: 0;
+
+                    &.show {
+                        transform: translateY(0px);
+                        opacity: 1;
+                        transition: transform cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.35s 0.15s, opacity cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.4s 0.15s;
+                        will-change: auto;
+                    }
     
                     .colored-text {
                         color: $secondary-tint-1;

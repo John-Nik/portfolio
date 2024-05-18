@@ -456,3 +456,23 @@
 - Updated the portfolio page to include new ongoing project
 - Adjusted the CMS to allow for custom links to be typed
 - Adjusted the size of the project's listed on the portfolio page
+
+**1.3.0:** 
+- Added smooth animations on some elements of the pages
+- Fixed an issue on the portfolio page
+- Split the home page minesweeper container into multiple child elements to simplify the logic
+- Used the useRef hook whenever possible
+- Made the active difficulty have a bolder font to stand out more
+- Testing out the cloudflare edge worker to serve my component files aswell
+
+**1.3.1:** Ran bun install to fix a bug with the cloudflare building process
+
+**1.3.2:** Removed the edge runtime from the contact page and minesweeper content in home page, and added one in the page.tsx file and the about us page aswell
+
+**1.3.3:** Added the edge runtime back to the contact page
+
+**1.3.4:** Removed all the newly added edge runtimes
+
+**1.3.5:** Removed the unnecessary async export function in the /contact/page.tsx file
+
+**1.3.6:** Fixed the minor bug preventing the /contact page from compiling
