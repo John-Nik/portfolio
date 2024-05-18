@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import IntroductorySection from "./sections/IntroductorySection/IntroductorySection";
 import DescriptionSection from "./sections/DescriptionSection/DescriptionSection";
 import MinesweeperSection from "./sections/MinesweeperSection/MinesweeperSection";

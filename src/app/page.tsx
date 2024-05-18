@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import Footer from './components/footer-homepage/footer';
 import MinesweeperContainer from './components/minesweeper/minesweeperContainer'
 import Header from './components/header-homepage/Header';

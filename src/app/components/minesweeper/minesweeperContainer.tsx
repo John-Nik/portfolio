@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import Script from 'next/script'
 import Content from './content'
 import './styling.scss'
