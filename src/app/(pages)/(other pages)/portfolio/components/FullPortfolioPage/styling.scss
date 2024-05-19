@@ -82,6 +82,11 @@
             cursor: default;
             border: 2px solid rgba(0, 0, 0, 0.5);
 
+            .icons-wrapper {
+                height: 20%;
+                max-height: 48px;
+            }
+
             &:hover {
                 transform: translateY(-4px);
 
@@ -111,8 +116,15 @@
         }
 
         .card {
-            width: calc(100% + 4px);
+            width: 100%;
             height: 100%;
+        }
+
+        .card-wrapper {
+            width: calc(100% + 4px);
+            height: fit-content;
+            display: flex;
+            justify-content: center;
         }
     
         .text-wrapper {
@@ -167,11 +179,9 @@
 
             .icons-wrapper {
                 position: absolute;
-                top: 82%;
                 display: flex;
                 justify-content: space-between;
                 width: calc(100% - 36px);
-                height: 11.54%;
             }
         }
     }
@@ -179,6 +189,10 @@
 
 @media only screen and (min-width: 715px) {
     .full-page-project {
+        .full-page-card {
+            margin-top: 24px;
+        }
+
         .back-arrow {
             position: fixed;
         }
@@ -189,8 +203,12 @@
     .full-page-project {
         margin-bottom: calc(56px * 3);
 
+        .full-page-card {
+            margin-top: 48px;
+        }
+
         .back-arrow {
-            top: 100px;
+            top: 110px;
         }
     }
 }
@@ -201,8 +219,17 @@
         .back-arrow {
             position: relative;
             top: 0px;
-            left: -8px;
-            margin-right: 8px;
+            left: -16px;
+        }
+
+        .card-wrapper {
+            width: calc(50% - 64px);
+            height: fit-content;
+            display: flex;
+            position: sticky;
+            justify-content: center;
+            top: 210px;
+            left: 24px;
         }
 
         .title {
@@ -216,20 +243,25 @@
 
         .item-container {
             aspect-ratio: 4/3;
-            height: auto;
+            height: fit-content;
+            position: relative;
+            width: 100%;
         }
 
         .full-page-card {
             margin-top: 120px;
             flex-direction: row;
-            justify-content: space-evenly;
+            justify-content: flex-end;
             align-items: flex-start;
+            height: fit-content;
+            overflow-y: visible;
         }
 
         .text-wrapper {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            width: 50%;
         }
 
         .background {

@@ -3,8 +3,9 @@ title: Vioekseliksi
 link: vioekseliksi
 name: Chem Lab's Website
 img: images/vioekseliksi.webp
-siteLink: https://www.vioekseliksi.netlify.app
+siteLink: https://vioekseliksi.netlify.app
 githubLink: https://github.com/John-Nik/Vioekseliksi-website
+isEnabled: true
 ---
 ##### *Design UI & UX, Handled SEO, Lead Dev, HTML5 / CSS3, Nunjucks, Javascript, 11ty, Headless CMS Setup*
 

@@ -11,13 +11,19 @@ export default function FullPortfolioPage({projects}): ReactNode {
     .split("/")
     .slice(2)[0]
     .toLowerCase();
-    const titleTag = useRef(null);
 
-    let dataToPull = projects.filter((project) => project.attributes.title.toLowerCase().includes(pathname))
+    let dataToPull = projects.filter((project) => project.attributes.title.toLowerCase().includes(pathname));
+
+    if ((dataToPull.length === 0) || (dataToPull[0].attributes.isEnabled === false)) {
+        sendToPortfolioPage();
+        return;
+    }
+
     let projectAttributes = dataToPull[0].attributes;
 
     useEffect((): void => {
         const card: HTMLDivElement = document.querySelector('.item-container');
+        const titleTag: HTMLTitleElement = document.querySelector('title');
 
         card.addEventListener('mousemove', (mouse: MouseEvent): void => {
             const rect: DOMRect = card.getBoundingClientRect();
@@ -32,7 +38,7 @@ export default function FullPortfolioPage({projects}): ReactNode {
 
 
 
-        titleTag.current.textContent = `Giannis N. | ${projectAttributes.name} Project`;
+        titleTag.textContent = `Giannis N. | ${projectAttributes.name} Project`;
     }, [])
 
     function sendToPortfolioPage(): void {
@@ -43,12 +49,24 @@ export default function FullPortfolioPage({projects}): ReactNode {
         <main>
             <section className={'full-page-project'}>
                 <div className={'container full-page-card'}>
-                    <div tabIndex={0} role="button" onKeyDown={(e) => {if (e.key === "Enter") { sendToPortfolioPage() }}} onClick={sendToPortfolioPage} className={'back-arrow'}>
-                        <Image src="/icons/back-arrow.svg" width={40} height={40} alt="" priority={true} />
+                    <div className='card-wrapper'>
+                        <div
+                            tabIndex={0}
+                            role="button"
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    sendToPortfolioPage()
+                                }
+                            }}
+                            onClick={sendToPortfolioPage}
+                            className={'back-arrow'}
+                        >
+                            <Image src="/icons/back-arrow.svg" width={40} height={40} alt="" priority={true} />
+                        </div>
+                        <ProjectCard project={dataToPull[0]} />
                     </div>
-                    <ProjectCard project={dataToPull[0]} />
                     <div className={'text-wrapper'}>
-                        <h1 className={'title'} ref={titleTag}>// {projectAttributes.name}</h1>
+                        <h1 className={'title'}>// {projectAttributes.name}</h1>
                         <div className={'body'} dangerouslySetInnerHTML={{__html: dataToPull[0].html}} />
                     </div>
                 </div>

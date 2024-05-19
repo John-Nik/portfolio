@@ -480,3 +480,10 @@
 **1.3.7:** Updated the middleware to make the admin page url from '/admin/index.html' to just '/admin'
 
 **1.3.8:** Added a new field in the CMS panel which enables or disables links of posts
+
+**1.3.9:** 
+- Made minor changes to the logic of the cards component
+- Reformatted the code to make it more readable
+- Changed the styling of the cards to support the new changes
+- Made the title more readable when hovering the cards
+- Prepared the project cards for the new "In Dev" option, where a card will be shown, but no click functions will be enabled. The card will showcase what I'm currently working on

@@ -5,6 +5,7 @@ name: Personal Dietitian Persa's Website
 img: images/persaco.webp
 siteLink: https://persaco.netlify.app
 githubLink: https://github.com/John-Nik/Persa-v1
+isEnabled: true
 ---
 ##### *Design UI & UX, SEO Handle, Lead Developer, HTML5 / CSS3*
 

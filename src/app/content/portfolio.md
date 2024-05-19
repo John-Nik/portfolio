@@ -5,6 +5,7 @@ name: Personal Project Portfolio
 img: images/portfolio.webp
 siteLink: https://www.john-nik.com
 githubLink: https://github.com/John-Nik/portfolio
+isEnabled: true
 ---
 ##### *Design UI & UX, SEO Handle, Only Developer, HTML5, SCSS / Sass, NextJS, React, Javascript, Typescript, Headless CMS Setup*
 

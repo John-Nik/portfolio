@@ -5,6 +5,7 @@ name: Marketing Agency Website
 img: images/resonat.webp
 siteLink: https://www.resonat.net
 githubLink: https://www.john-nik.com/portfolio/resonat
+isEnabled: true
 ---
 ##### *Wix, AWS, SMTP Server Setup, Enhanced Email Spoofing Protection*
 
