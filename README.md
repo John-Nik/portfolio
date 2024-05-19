@@ -487,3 +487,5 @@
 - Changed the styling of the cards to support the new changes
 - Made the title more readable when hovering the cards
 - Prepared the project cards for the new "In Dev" option, where a card will be shown, but no click functions will be enabled. The card will showcase what I'm currently working on
+
+**1.4.0:** Added a new project

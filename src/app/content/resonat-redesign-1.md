@@ -2,7 +2,7 @@
 title: Resonat Redesign
 link: resonat-redesign
 name: Marketing Agency Website Redesign
-img: images/newresonat.webp
+img: images/new-resonat.webp
 siteLink: no-link
 githubLink: no-link
 isEnabled: false
