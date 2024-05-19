@@ -478,3 +478,5 @@
 **1.3.6:** Fixed the minor bug preventing the /contact page from compiling
 
 **1.3.7:** Updated the middleware to make the admin page url from '/admin/index.html' to just '/admin'
+
+**1.3.8:** Added a new field in the CMS panel which enables or disables links of posts

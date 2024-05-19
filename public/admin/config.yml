@@ -20,12 +20,13 @@ collections:
     label: "Projects"
     folder: "src/app/content"
     create: true
-    slug: "{{slug}}"
+    slug: "{{link}}"
     fields:
-      - {label: "Short Name", name: "title", widget: "string"}
-      - {label: "Post's Link", name: "link", widget: "string"}
-      - {label: "Full Name", name: "name", widget: "string"}
-      - {label: "Picture", name: "img", widget: "image"}
-      - {label: "Site Link", name: "siteLink", widget: "string"}
-      - {label: "Github Repo", name: "githubLink", widget: "string"}
-      - {label: "Responsibilities", name: "body", widget: "markdown"}
+      - {label: "Short Name", name: "title", widget: "string", required: true}
+      - {label: "Post's Link", name: "link", widget: "string", required: true}
+      - {label: "Full Name", name: "name", widget: "string", required: true}
+      - {label: "Picture", name: "img", widget: "image", required: true}
+      - {label: "Site Link", name: "siteLink", widget: "string", required: false}
+      - {label: "Github Repo", name: "githubLink", widget: "string", required: false}
+      - {label: "Enabled", name: "enabled", widget: "boolean"}
+      - {label: "Responsibilities", name: "body", widget: "markdown", required: false}
