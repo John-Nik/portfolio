@@ -5,6 +5,8 @@
       "dom.iterable",
       "esnext"
     ],
+    "target": "ES6",
+    "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -28,7 +30,8 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/not-found.tsx",
-    "src/middleware.ts"
+    "src/middleware.ts",
+    "public/scripts/minesweeper-aboutme.ts"
   ],
   "exclude": [
     "node_modules"
