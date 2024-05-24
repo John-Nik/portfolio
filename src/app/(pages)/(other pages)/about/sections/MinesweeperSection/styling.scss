@@ -12,15 +12,6 @@
     position: relative;
     z-index: 0;
 
-    .background-game {
-        position: absolute;
-        z-index: 0;
-        width: 100%;
-        height: 80vh;
-        display: grid;
-        filter: blur(3px);
-    }
-
     .text-content {
         position: relative;
         width: 100%;

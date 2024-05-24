@@ -5,4 +5,10 @@
     height: 80vh;
     display: grid;
     filter: blur(3px);
+    min-height: 600px;
+    max-height: 800px;
+
+    .konvajs-content {
+        mask-image: linear-gradient(rgba(0, 6, 10, 1) 70%, transparent 90%);
+    }
 }

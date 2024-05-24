@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "startNextServer": "next dev -H 192.168.10.2",
+    "startNextServer": "next dev",
     "startDecapServer": "bunx decap-server"
   },
   "dependencies": {

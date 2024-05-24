@@ -4,141 +4,157 @@
 
 **0.2.0:** Started development, experimented with Next.js and React
 
-**0.3.0:** Created the navigation bar for all pages
+<details>
+  <summary>0.3.x | added navigation bar + small changes</summary>
+  
+- **0.3.0:** Created the navigation bar for all pages
 
-**0.3.1:** Changed the horizontal padding of the navigation bar's container from 32px to 24px
+- **0.3.1:** Changed the horizontal padding of the navigation bar's container from 32px to 24px
 
-**0.3.2:** Changed the burger icon lines' thickness from 1px to 2px
+- **0.3.2:** Changed the burger icon lines' thickness from 1px to 2px
 
-**0.3.3:** Adjusted the height of the mobile navigation bar from 68px to 80px
+- **0.3.3:** Adjusted the height of the mobile navigation bar from 68px to 80px
+</details>
 
-**0.4.0:** Added the footer
+<details>
+  <summary>0.4.x | added footer + small fixes</summary>
+  
+- **0.4.0:** Added the footer
 
-**0.4.1:** Made the icons of the footer from 40px to 30px
+- **0.4.1:** Made the icons of the footer from 40px to 30px
 
-**0.4.2:** In the footer, fixed the github icon's redirect from the mailto to the correct github link
+- **0.4.2:** In the footer, fixed the github icon's redirect from the mailto to the correct github link
 
-**0.4.3:** Added the Minesweeper background game using react's capabilities. It's interactive, but not playable
+- **0.4.3:** Added the Minesweeper background game using react's capabilities. It's interactive, but not playable
 
-**0.4.4:** Fixed up the Minesweeper game to show the bombs around each dug up block
+- **0.4.4:** Fixed up the Minesweeper game to show the bombs around each dug up block
+</details>
 
-**0.5.0:** Finished the Minesweeper game. Although fun to challenging and fun to develop in react, the framework's limitations make the game feel slow to respond, and make the codebase too difficult to nagivate and understand. The game is only playable in desktops for now
+<details>
+  <summary>0.5.x versions | Finished the minesweeper game, small changes and bug fixes</summary>
+  
+- **0.5.0:** Finished the Minesweeper game. Although fun to challenging and fun to develop in react, the framework's limitations make the game feel slow to respond, and make the codebase too difficult to nagivate and understand. The game is only playable in desktops for now
 
-**0.5.1:** Fixed the bug where the splash text of how many bombs are placed suddenly appearing in the middle of the screen instead of fading in when attempting to replay after a win 
+- **0.5.1:** Fixed the bug where the splash text of how many bombs are placed suddenly appearing in the middle of the screen instead of fading in when attempting to replay after a win 
 
-<br>
-
-**0.5.2:**
-- Made the game create new squares if the user resizes the window
-- Added a more intelligent way to determine if a game is finished, without the user cheating by resizing the window into a smaller resolution
-- Rename the files to the correct game, from "Tetris" to "Minesweeper"
-- Optimized the game to not request the server the "flag.svg" file whenever there is a flag placed on the board
-
-<br>
-
-**0.5.3:**
-- Half completed the mobile and tablet version of the page
-- Optimized the code for more readability and speed
-- Changed the UI of the information panel to make it more readable
-
-
-**0.5.4:** Greatly made progress towards the mobile version of the home page
-
-**0.5.5:** Finished the main page
-
-**0.5.6:** Made the gap between the squares bigger for the phone version, as they were stuck together
-
-**0.5.7:** Fixed the problem where on mobile browsers the footer would not be within the viewer's viewport due to the browser's ui hiding it
-
-**0.5.8:** Testing the "minimal-ui" meta tag to remove safari's UI when on mobile version, making it a better user experience
-
-**0.5.9:** Changed the styling for the mobile version and made everything mode compact
-
-**0.5.10:** Made the opened navigation bar on mobile version have a background filter in Safari
-
-**0.5.11:** Removed the -webkit-backdrop-filter
-
-**0.5.12:** Increased the square size of mobile devices to make it easier for the user to play the game without any frustration and mistaps
+- **0.5.2:**
+    - Made the game create new squares if the user resizes the window
+    - Added a more intelligent way to determine if a game is finished, without the user cheating by resizing the window into a smaller resolution
+    - Rename the files to the correct game, from "Tetris" to "Minesweeper"
+    - Optimized the game to not request the server the "flag.svg" file whenever there is a flag placed on the board
 
 <br>
 
-**0.5.13:**
-- Fixed an issue where the board height's was going out of the intended bounds.
-- Fixed the footer's call and email buttons not working on mobile
-- Fixed the footer's styling cropping over the board
-- Debloated the css for the minesweeper game
-- Slight optimization on the minesweeper.js for more readability and minimal perfomance gains
+- **0.5.3:**
+  - Half completed the mobile and tablet version of the page
+  - Optimized the code for more readability and speed
+  - Changed the UI of the information panel to make it more readable
 
 <br>
 
-**0.5.14:**
-- Moved the resizing board's height logic from minesweeper.js to set-board-height.js
-- Fixed the issue with the Giannis clipping into the board
-- Fixed the issue where the flag/shovel icons and the socials icons were being hidden
-- Removed the \<head\> tag from the layout.js
+- **0.5.4:** Greatly made progress towards the mobile version of the home page
+
+- **0.5.5:** Finished the main page
+
+- **0.5.6:** Made the gap between the squares bigger for the phone version, as they were stuck together
+
+- **0.5.7:** Fixed the problem where on mobile browsers the footer would not be within the viewer's viewport due to the browser's ui hiding it
+
+- **0.5.8:** Testing the "minimal-ui" meta tag to remove safari's UI when on mobile version, making it a better user experience
+
+- **0.5.9:** Changed the styling for the mobile version and made everything mode compact
+
+- **0.5.10:** Made the opened navigation bar on mobile version have a background filter in Safari
+
+- **0.5.11:** Removed the -webkit-backdrop-filter
+
+- **0.5.12:** Increased the square size of mobile devices to make it easier for the user to play the game without any frustration and mistaps
+
+- **0.5.13:**
+  - Fixed an issue where the board height's was going out of the intended bounds.
+  - Fixed the footer's call and email buttons not working on mobile
+  - Fixed the footer's styling cropping over the board
+  - Debloated the css for the minesweeper game
+  - Slight optimization on the minesweeper.js for more readability and minimal perfomance gains
 
 <br>
 
-**0.5.15:**
-- Finished the entire UI of the home page
-- Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping
-- Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish
+- **0.5.14:**
+  - Moved the resizing board's height logic from minesweeper.js to set-board-height.js
+  - Fixed the issue with the Giannis clipping into the board
+  - Fixed the issue where the flag/shovel icons and the socials icons were being hidden
+  - Removed the \<head\> tag from the layout.js
 
 <br>
 
-**0.5.16:**
-- Minor change in the mobile navigation bar
-- minified the js scripts, and added a "debug" folder which contains their unminified versions
-- Added a fancy typing effect to the my title on page load
+- **0.5.15:**
+  - Finished the entire UI of the home page
+  - Made the shovel/flag icon at the bottom middle of the footer make itself visible only if the device is touch-enabled, this way even laptops with touch enabled screens will be able to play the game with tapping
+  - Fixed a bug with the win game condition. Before, when all the blocks were interracted with, the game didn't finish
 
 <br>
 
-**0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices
-
-**0.6.0:**
-- Added the about me page
-- Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page
-- Split the icons of of the footer into their own components for future re-usage
-- Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"
+- **0.5.16:**
+  - Minor change in the mobile navigation bar
+  - minified the js scripts, and added a "debug" folder which contains their unminified versions
+  - Added a fancy typing effect to the my title on page load
 
 <br>
 
-**0.6.1:**
-- Removed the unnecessary javascript that sets the board height and instead used css for it
-- Fixed a bug with the footer-homepage where it doesn't overflows the viewport of mobile devices causing the icons of it to not be visible
+- **0.5.17:** Fixed a bug where laptops with touchscreens weren't being detected as touch screen enabled devices
+</details>
+
+<details>
+  <summary>0.6.x | added about me page + small changes and fixes</summary>
+
+- **0.6.0:**
+  - Added the about me page
+  - Added multiple footers and navigation bars, one to be used on the homepage and one to be used on every other page
+  - Split the icons of of the footer into their own components for future re-usage
+  - Moved the color-scheme profiles from "global.scss" into its own "color-scheme.scss"
 
 <br>
 
-**0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
-
-**0.6.3:** Undid the changes due to vh/vb not accounting for the mobile browser's UI into its calculation
-
-**0.6.4:** Adjusted the height styling properties of the < main > element as that seems to be the culprit for the bug where the footer overflows both from tablet devices and mobile phones
-
-**0.6.5:** Added more sections in the about me page, and also removed some leftover console.logs from the Header components
-
-**0.6.6:** Added partytown
-
-**0.6.7:** 
-- Added a new color-scheme profile
-- Added a new unfinished section to the about me page
-- Made the Minesweeper section's text on the About me page hyphenate
-- Added a library that forces hyphenation if the user's browser agent doesn't support it
-- Made the title of the page from a max of 96px to 64px
-- Made the speed of the autoplay on the about me page from 1.5 seconds intervals to 1.1 seconds
+- **0.6.1:**
+  - Removed the unnecessary javascript that sets the board height and instead used css for it
+  - Fixed a bug with the footer-homepage where it doesn't overflows the viewport of mobile devices causing the icons of it to not be visible
 
 <br>
 
-**0.6.8:** Added an unfinished skills section on the about me page
+- **0.6.2:** Changed the unit of the minesweeper-container inside of "minesweeper.scss" from vh to vb
 
-**0.6.9:** Changed the filetype of all components and pages from .js to .jsx to start getting into a better habit, and added 4/8 3D icons on the about me skills section. Only works for desktops for now
+- **0.6.3:** Undid the changes due to vh/vb not accounting for the mobile browser's UI into its calculation
 
-**0.6.10:** Made progress in making the icons on the skills section mobile compatible
+- **0.6.4:** Adjusted the height styling properties of the < main > element as that seems to be the culprit for the bug where the footer overflows both from tablet devices and mobile phones
 
-**0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari<br><br>
+- **0.6.5:** Added more sections in the about me page, and also removed some leftover console.logs from the Header components
 
-**0.6.12:** Trying more webkit changes to optimize the animation effect for Safari
-- - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
+- **0.6.6:** Added partytown
+
+- **0.6.7:** 
+  - Added a new color-scheme profile
+  - Added a new unfinished section to the about me page
+  - Made the Minesweeper section's text on the About me page hyphenate
+  - Added a library that forces hyphenation if the user's browser agent doesn't support it
+  - Made the title of the page from a max of 96px to 64px
+  - Made the speed of the autoplay on the about me page from 1.5 seconds intervals to 1.1 seconds
+
+<br>
+
+- **0.6.8:** Added an unfinished skills section on the about me page
+
+- **0.6.9:** Changed the filetype of all components and pages from .js to .jsx to start getting into a better habit, and added 4/8 3D icons on the about me skills section. Only works for desktops for now
+
+- **0.6.10:** Made progress in making the icons on the skills section mobile compatible
+
+- **0.6.11:** Trying adding -webkit-transition in the animation of the icons from the skills section placed in the about me page to fix a delay with the animation for the sides of the icons in safari<br><br>
+
+  <details>
+    <summary>0.6.12.x | Numerous changes to make the 3D icons work with Safari</summary>
+
+      0.6.12: Trying more webkit changes to optimize the animation effect for Safari
+    
+  - 0.6.12.1: Moved the "scale" property from its own standalone css property to a "transform" and "-webkit-transform" one
   - 0.6.12.2: Added a 0s transition-delay to all the animations
   - 0.6.12.3: Did some changes to see the end result in webkit browsers and debug from there
   - 0.6.12.4: Added a small delay in the picture to test a theory
@@ -177,128 +193,149 @@
   - 0.6.12.37: Changed the orientation of the circle again
   - 0.6.12.38: Will stop writing changes due to the overwhelming amount of them for this 1 issue
   - 0.6.12.39: Finally found the issue. The issue is that Safari tries to optimize browser perfomance by not drawing flat planes/elements. During all the previous attempts at the icons being drawn in three dimensions, javascript and scss had their planes completely flat to the user when hovered. The issue of the previous versions can be seen on https://codepen.io/Giannis-Nikolaou/pen/RwOWLLP
+  </details>
 
-**0.6.13:**
-- Changed the html icon's positioning to absolute
-- Made all of the icons render in bigger resolutions but scale down to make it easier to resize them later on when making the page responsive
 
-**0.7.0:**
-- Optimized the minesweeper scripts to prevent lag spikes when autoplay is turned on
-- Added the portfolio page
-- Added an npm package to load markdown files
-- Added @babel/core and @babel/preset-react npm packages
-- Added DecapCMS
-- Added npm-run-all npm package
+- **0.6.13:**
+  - Changed the html icon's positioning to absolute
+  - Made all of the icons render in bigger resolutions but scale down to make it easier to resize them later on when making the page responsive
+</details>
+
+<details>
+  <summary>0.7.x | Added the portfolio page, Decap CMS + small changes and bug fixes</summary>
+<br>
+
+- **0.7.0:**
+  - Optimized the minesweeper scripts to prevent lag spikes when autoplay is turned on
+  - Added the portfolio page
+  - Added an npm package to load markdown files
+  - Added @babel/core and @babel/preset-react npm packages
+  - Added DecapCMS
+  - Added npm-run-all npm package
 
 <br>
 
-**0.7.1:** Fixed an issue that prevented the latest version from being build on netlify
+- **0.7.1:** Fixed an issue that prevented the latest version from being build on netlify
+
+- **0.7.2:** 
+  - Added an absolute path importing the "color-scheme.scss" file in all the styling files, instead of the old relative path 
+  - Changed all the font size values from pixels to rem to improve accessibility
+  - Removed the red background the minesweeper game on the home page had
+  - Added the /portfolio redirect in the navigation bars
+  - Removed the unused useEffect and next/navigation imports from the navigation bars
+  - Added the ability to view the full pages of my projects from the portfolio page
+  - In the process of making the home page and aboutMe page have seemless page transitions instead of the current redirection. Will take time to implement and fix all the bugs that come along with this
 
 <br>
 
-**0.7.2:** 
-- Added an absolute path importing the "color-scheme.scss" file in all the styling files, instead of the old relative path 
-- Changed all the font size values from pixels to rem to improve accessibility
-- Removed the red background the minesweeper game on the home page had
-- Added the /portfolio redirect in the navigation bars
-- Removed the unused useEffect and next/navigation imports from the navigation bars
-- Added the ability to view the full pages of my projects from the portfolio page
-- In the process of making the home page and aboutMe page have seemless page transitions instead of the current redirection. Will take time to implement and fix all the bugs that come along with this
+- **0.7.3:**
+  - Removed the "set-board-height.js", "bolts.js" and "front-end-title-animation.js" scripts and instead moved that logic to the "minesweeper/content.jsx" component, and use the "useEffect" hook for them
+  - Instead of setting "overflow: hidden" on the \<body\> tag, it was instead set on the "homepage-body" class of the \<main\> tag located in the home page. This makes it easy to work with the other pages without breaking them
+  - Moved the font variables on "/app/layout.jsx" from the \<html\> tag to the \<body\> tag. The reason was to stop the console warning from popping up
+  - Made the "home" page and "about me" not refresh, but instead offer a seamless transition between all of the pages
+  - Changed some small styling in the "about me" and "portfolio" page to make them more uniform
+  - Added some logic in the minesweeper-containing components to make them detect when they're not in the page, thus stopping their execution
+  - Made the "portfolio" and "contact" navigation links turn off both games
+  - Enabled react's strict mode in NextJS config settings
 
 <br>
 
-**0.7.3:**
-- Removed the "set-board-height.js", "bolts.js" and "front-end-title-animation.js" scripts and instead moved that logic to the "minesweeper/content.jsx" component, and use the "useEffect" hook for them
-- Instead of setting "overflow: hidden" on the \<body\> tag, it was instead set on the "homepage-body" class of the \<main\> tag located in the home page. This makes it easy to work with the other pages without breaking them
-- Moved the font variables on "/app/layout.jsx" from the \<html\> tag to the \<body\> tag. The reason was to stop the console warning from popping up
-- Made the "home" page and "about me" not refresh, but instead offer a seamless transition between all of the pages
-- Changed some small styling in the "about me" and "portfolio" page to make them more uniform
-- Added some logic in the minesweeper-containing components to make them detect when they're not in the page, thus stopping their execution
-- Made the "portfolio" and "contact" navigation links turn off both games
-- Enabled react's strict mode in NextJS config settings
+- **0.7.4:**
+  - Minified "handle-about-me-minesweeper-section-text-screen-resize.js"
+  - Made the github and website link on the portfolio cards enlarge when hovered
+  - Made the project title invisible on the "FullPortfolioPage.jsx" when hovered
+  - Made the cards of the portfolio page have a "glowing spotlight" effects when hovered
+  - Made the full project pages responsive
 
 <br>
 
-**0.7.4:**
-- Minified "handle-about-me-minesweeper-section-text-screen-resize.js"
-- Made the github and website link on the portfolio cards enlarge when hovered
-- Made the project title invisible on the "FullPortfolioPage.jsx" when hovered
-- Made the cards of the portfolio page have a "glowing spotlight" effects when hovered
-- Made the full project pages responsive
-
-<br.>
-
-**0.7.5:**
-- Made the footer on all the pages stay in a fixed position on the user's screen
-- Changed some styling properties on the footer
-- Changed some styling options on the "/ProjectCard" component
+- **0.7.5:**
+  - Made the footer on all the pages stay in a fixed position on the user's screen
+  - Changed some styling properties on the footer
+  - Changed some styling options on the "/ProjectCard" component
 
 <br>
 
-**0.7.6:** Fixed an issue with the footer being completely see-through and moved the logic of the footer changing colors from the "/about/sections/SkillsSection" to "/about/sections/IntroductorySection"
+- **0.7.6:** Fixed an issue with the footer being completely see-through and moved the logic of the footer changing colors from the "/about/sections/SkillsSection" to "/about/sections/IntroductorySection"
+</details>
+
+<details>
+  <summary>0.8.x | Added contact page and other small additions + small changes and bug fixes</summary>
+
+- **0.8.0:** 
+  - Added the theme-color meta tag
+  - Removed the repositioning javascript of the footer, and instead used CSS to make the footer's position fixed  on the user's screen without being hidden from browser's UI
+  - Changed some styling properties for the footer
+  - Made the icons and text of the footer have an opacity from 0.6 to 0.8
+  - Made the minesweeper-container on the home page resize using the css unit "dvh", making it faster to load and have less layout shift compared to before
+  - Fixed the footer of the home page not hiding and not showing the icons when clicking on the socials icon on the down left corner
+  - Fixed an issue with the navigation bar shifting styling properties when switching between the home page and any other page
+  - Removed the setBoltsPosition function from "/minesweeper/content.jsx" and instead used CSS to adjust them
+  - Added a small function that makes the footer position style be relative if the user is using Safari
+  - Made the "Start-Game" button finally blink in the Safari browser
+  - Added a back arrow on each full page project, which helps the user navigate back to the other projects on the portfolio page
+  - Added the hovering spotlight effect that the project cards of the portfolio page have into their respective full pages aswell
+  - Added meta tags
+  - Added robots.txt
+  - Added sitemap.xml
+  - Made the desktop version of the contact page. Will proceed with making it function as visualized in the next update
+
+  <br>
+
+  <details>
+    <summary>0.8.1.x | Added and testing google tag</summary>
+    <br>
+
+    - **0.8.1.0:** Added and testing google tag
+    - **0.8.1.1:** Small change to debug google tag
+    - **0.8.1.2:** Removed preserveBehavior as that might be causing issues
+    - **0.8.1.3:** The problem was preserveBehavior. Added preserveBehavior back with different syntax
+    - **0.8.1.4:** Tweaked the time when the google tag loads to increase pagespeed score
+    - **0.8.1.5:** Set the script loading strategy of the g-tag from "afterInteractive" to "lazyOnload" to track pagespeed stats
+    - **0.8.1.6:** Completely removed partyscript and g-tag
+    - **0.8.1.7:** Added g-tag with afterInteractive loading strategy
+    - **0.8.1.8:** Changed g-tag to lazyOnload loading strategy
+    - **0.8.1.9:** Instead of directly loading google tag using 'nextjs/script', I'm using '@next/third-parties/google'. There is an issue where half the times google tag wont track
+    - **0.8.1.10:** Changed the position of \<GoogleTagManager> from the \<head> to \<body>
+  </details>
+</details>
+
+<details>
+  <summary>0.9.x | Made the contact page responsive, added the form + small changes and bug fixes</summary>
+<br>
+
+- **0.9.0:** 
+  - Uninstalled Partytown
+  - Imported the NextJS Image component and used it for the images
+  - Made the entire website completely accessible via only keyboard usage
+  - Made the form in the contact page functional
+  - Made the contact page responsive
 
 <br>
 
-**0.8.0:** 
-- Added the theme-color meta tag
-- Removed the repositioning javascript of the footer, and instead used CSS to make the footer's position fixed  on the user's screen without being hidden from browser's UI
-- Changed some styling properties for the footer
-- Made the icons and text of the footer have an opacity from 0.6 to 0.8
-- Made the minesweeper-container on the home page resize using the css unit "dvh", making it faster to load and have less layout shift compared to before
-- Fixed the footer of the home page not hiding and not showing the icons when clicking on the socials icon on the down left corner
-- Fixed an issue with the navigation bar shifting styling properties when switching between the home page and any other page
-- Removed the setBoltsPosition function from "/minesweeper/content.jsx" and instead used CSS to adjust them
-- Added a small function that makes the footer position style be relative if the user is using Safari
-- Made the "Start-Game" button finally blink in the Safari browser
-- Added a back arrow on each full page project, which helps the user navigate back to the other projects on the portfolio page
-- Added the hovering spotlight effect that the project cards of the portfolio page have into their respective full pages aswell
-- Added meta tags
-- Added robots.txt
-- Added sitemap.xml
-- Made the desktop version of the contact page. Will proceed with making it function as visualized in the next update
+- **0.9.1:** In the form, removed the "netlify="true"" for plain "netlify"
 
-**0.8.1:** Added and testing google tag
-- - **0.8.1.1:** Small change to debug google tag
-  - **0.8.1.2:** Removed preserveBehavior as that might be causing issues
-  - **0.8.1.3:** The problem was preserveBehavior. Added preserveBehavior back with different syntax
-  - **0.8.1.4:** Tweaked the time when the google tag loads to increase pagespeed score
-  - **0.8.1.5:** Set the script loading strategy of the g-tag from "afterInteractive" to "lazyOnload" to track pagespeed stats
-  - **0.8.1.6:** Completely removed partyscript and g-tag
-  - **0.8.1.7:** Added g-tag with afterInteractive loading strategy
-  - **0.8.1.8:** Changed g-tag to lazyOnload loading strategy
-  - **0.8.1.9:** Instead of directly loading google tag using 'nextjs/script', I'm using '@next/third-parties/google'. There is an issue where half the times google tag wont track
-  - **0.8.1.10:** Changed the position of \<GoogleTagManager> from the \<head> to \<body>
+- **0.9.2:** Formatted the form tag from \<form netlify> to \<form method="post" data-netlify="true">, and also changed the "for" the label tags had to "htmlFor"
 
-<br>
+- **0.9.3:** Added a hidden input area to help fix the form not being detected in netlify
 
-**0.9.0:** 
-- Uninstalled Partytown
-- Imported the NextJS Image component and used it for the images
-- Made the entire website completely accessible via only keyboard usage
-- Made the form in the contact page functional
-- Made the contact page responsive
+  <details>
+    <summary>0.9.4.x | Debugging netlify forms</summary>
 
-<br>
+    - **0.9.4:** Debugging netlify forms
+    - **0.9.4.1:** Moved the code-wrapper from the the page.jsx to its own component, so as to pre-render the page and detect the netlify form
+    - **0.9.4.2:** Moved the hidden input to be the first child of the form
+    - **0.9.4.3:** Changed the name of the input fields to match the form's name
+    - **0.9.4.4:** Handle form submission with AJAX
+    - **0.9.4.5:** Fixed a small issue
+    - **0.9.4.6:** Added a title and canonical tag on the contact page. Will proceed with fixing the form on the next update
+    - **0.9.4.5:** Tried to handle the form using a simple fetch api call
+    - **0.9.4.6:** Changed the names of the inputs to have their own unique names
+    - **0.9.4.7:** Added a hidden form in the page, as per netlify instructions
+    - **0.9.4.8:** Added a "FormWrapper.html" file with the form in there, and also removed the manually added event listeners of the code wrapper and instead are using react features to detect input changes and display them on the code to the right
+  </details>
+</details>
 
-**0.9.1:** In the form, removed the "netlify="true"" for plain "netlify"
-
-**0.9.2:** Formatted the form tag from \<form netlify> to \<form method="post" data-netlify="true">, and also changed the "for" the label tags had to "htmlFor"
-
-**0.9.3:** Added a hidden input area to help fix the form not being detected in netlify
-
-**0.9.4:** Debugging netlify forms
-- - **0.9.4.1:** Moved the code-wrapper from the the page.jsx to its own component, so as to pre-render the page and detect the netlify form
-  - **0.9.4.2:** Moved the hidden input to be the first child of the form
-  - **0.9.4.3:** Changed the name of the input fields to match the form's name
-  - **0.9.4.4:** Handle form submission with AJAX
-  - **0.9.4.5:** Fixed a small issue
-  - **0.9.4.6:** Added a title and canonical tag on the contact page. Will proceed with fixing the form on the next update
-  - **0.9.4.5:** Tried to handle the form using a simple fetch api call
-  - **0.9.4.6:** Changed the names of the inputs to have their own unique names
-  - **0.9.4.7:** Added a hidden form in the page, as per netlify instructions
-  - **0.9.4.8:** Added a "FormWrapper.html" file with the form in there, and also removed the manually added event listeners of the code wrapper and instead are using react features to detect input changes and display them on the code to the right
-
-<br>
 
 **0.10.0:**
 - Adjusted the mobile layout of the contact page to not hide the submit button behind the footer
@@ -306,16 +343,19 @@
 - Added a stylized scrollbar
 - Half-done responsive about page
 
+<details>
+  <summary>0.11.x | Small changes and additions in the about me page</summary>
 <br>
 
-**0.11.0:**
-- Made the 4 icons in the skills section better looking when resizing
-- Made the about us minesweeper game drop down when squares are revealed
-- Fixed the styling of the contact page
+- **0.11.0:**
+  - Made the 4 icons in the skills section better looking when resizing
+  - Made the about us minesweeper game drop down when squares are revealed
+  - Fixed the styling of the contact page
 
 <br>
 
-**0.11.1:** Added the git icon on the skills section
+- **0.11.1:** Added the git icon on the skills section
+</details>
 
 **0.12.0:** Finished the about me page. The minesweeper game drops down and doesn't clip through the text, and all the icons are finished, with the page being responsive to any screen size
 
@@ -491,3 +531,9 @@
 **1.4.0:** Added a new project
 
 **1.5.0:** Changed the minesweeper game in the about me page from plain HTML elements to a drawn canvas
+
+**1.6.0:**
+- Finished the minesweeper game in the about me page. Completed it using the useEffect hook and made it responsive for mobile devices aswell
+- Small changes in the CSS of the about me page's minesweeper game and skills section
+- Added the PHP icon in the about page
+- Optimized the font's downloaded to help with the speed of the page
