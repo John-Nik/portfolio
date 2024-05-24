@@ -1,11 +1,12 @@
-'use client'
-import { ReactElement, useEffect, useState } from "react"
-import './styling.scss'
-import Script from 'next/script'
-import './minesweeper.scss'
+'use client';
+import { ReactElement, useEffect, useState } from "react";
+import './styling.scss';
+import Script from 'next/script';
+import './minesweeper.scss';
 import { useInView } from 'react-intersection-observer';
-import Canvas from "./Canvas"
+import dynamic from "next/dynamic";
 
+const Canvas = dynamic(() => import('./Canvas'), {})
 
 interface Direction {
     direction: 'DOWN' | 'UP';

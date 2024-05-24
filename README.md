@@ -537,3 +537,5 @@
 - Small changes in the CSS of the about me page's minesweeper game and skills section
 - Added the PHP icon in the about page
 - Optimized the font's downloaded to help with the speed of the page
+
+**1.6.1:** Made the minesweeper game in the about me page dynamically import to improve pagespeed score
