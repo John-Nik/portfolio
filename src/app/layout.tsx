@@ -2,26 +2,43 @@ import { ZCOOL_QingKe_HuangYou, Fira_Code, Press_Start_2P } from 'next/font/goog
 import './global.scss';
 import { NextFontWithVariable } from 'next/dist/compiled/@next/font';
 import { ReactElement, ReactNode } from 'react';
-import Script from 'next/script';
 
 
-const zcoolFont: NextFontWithVariable = ZCOOL_QingKe_HuangYou({subsets: ['latin'], weight: ['400'], variable: '--zcool-font', display: 'swap'})
-const firaCodeFont: NextFontWithVariable = Fira_Code({subsets: ['latin'], preload: true, variable: '--fira-code', display: 'swap'})
-const pressStartFont: NextFontWithVariable = Press_Start_2P({subsets: ['latin'], weight: ['400'], preload: true, variable: '--press-start-font', display: 'swap'})
+const zcoolFont: NextFontWithVariable = ZCOOL_QingKe_HuangYou({
+    subsets: ['latin'],
+    style: 'normal',
+    preload: true,
+    weight: ['400'],
+    variable: '--zcool-font',
+    display: 'swap'
+})
+const firaCodeFont: NextFontWithVariable = Fira_Code({
+    subsets: ['latin'],
+    weight: ['300', '400', '500'],
+    preload: true,
+    variable: '--fira-code',
+    display: 'swap'
+})
+const pressStartFont: NextFontWithVariable = Press_Start_2P({
+    subsets: ['latin'],
+    style: 'normal',
+    weight: ['400'],
+    preload: true,
+    variable: '--press-start-font',
+    display: 'swap'
+})
 
 
 export default function heads({ children }: {children: ReactNode}): ReactElement {
     return (
-        <html lang="en">
-            <body className={`${zcoolFont.className} ${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
+        <html lang="en" suppressHydrationWarning>
+            <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
 
                 {children}
                 
                 <div aria-hidden="true" className={'is-minesweeper-playing-in-homepage'} />
                 <div aria-hidden="true" className={'is-minesweeper-playing-in-about-page'} />
 
-                {/* <Script strategy="lazyOnload" dangerouslySetInnerHTML={{__html: `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:3908306,hjsv:6};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}}>
-                </Script> */}
             </body>
         </html>
     )

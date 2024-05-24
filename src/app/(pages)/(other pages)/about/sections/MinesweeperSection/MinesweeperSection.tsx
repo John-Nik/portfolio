@@ -4,6 +4,7 @@ import './styling.scss'
 import Script from 'next/script'
 import './minesweeper.scss'
 import { useInView } from 'react-intersection-observer';
+import Canvas from "./Canvas"
 
 
 interface Direction {
@@ -12,7 +13,7 @@ interface Direction {
 
 export default function MinesweeperSection(): ReactElement {
     const [exitPosition, setExitPosition] = useState<Direction>({direction: 'DOWN'});
-    const { ref, inView, entry } = useInView({
+    const [ref] = useInView({
         threshold: 0.3,
         onChange: (isVisible, intersectionObject) => {
             const textContent = intersectionObject.target as HTMLParagraphElement;
@@ -65,13 +66,12 @@ export default function MinesweeperSection(): ReactElement {
 
     return (
         <section id={'minesweeper-section'}>
-            <div className={'background-game'} />
+            <Canvas />
 
             <div className={'text-content'}>
                 <p lang="en-us" className={'hyphenate'} ref={ref}>I had found myself in a situation that pushed me to learn web development. <span className={'break-line'}></span>Without knowing, this experience ignited a passion within me for the whole process, from building simple HTML to learning complex algorithms, connecting backend with frontend, figuring how networks work and setting them up, all in the efforts of continually seeking <span className={'colored-text'}>more</span> knowledge, <span className={'colored-text'}>more</span> challenges, <span className={'colored-text'}>more</span> unknowns, leading to <span className={'colored-text'}>more proficiency</span> in the field.</p>
             </div>
             
-            <Script src="scripts/minesweeper-aboutme.js" strategy="lazyOnload" />
             <Script src="scripts/handle-about-me-minesweeper-section-text-screen-resize.js" strategy="afterInteractive" />
         </section>
     )
