@@ -357,7 +357,7 @@ export default function SkillsSection(): ReactElement {
                                         <div className={"face lt"} />
                                         <div className={"face bm"} />
                                         <div className={"face tp"}>
-                                            <img src="/icons/php.svg" />
+                                            <img src="/icons/php.svg" alt="php icon" />
                                         </div>
                                         <div className={"cr cr-0"}>
                                             <div className={"face side s0"} />
