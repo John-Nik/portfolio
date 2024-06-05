@@ -539,3 +539,5 @@
 - Optimized the font's downloaded to help with the speed of the page
 
 **1.6.1:** Made the minesweeper game in the about me page dynamically import to improve pagespeed score
+
+**1.6.2:** Updated the .pdf and .docx CVs to include the new 3D Globe Fork
