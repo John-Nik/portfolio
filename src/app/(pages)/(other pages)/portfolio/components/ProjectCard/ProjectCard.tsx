@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { ReactElement, useRef } from 'react';
 
-export default function ProjectCard({project, children, key}: {project: any, children?: any, key: number}): ReactElement {
+export default function ProjectCard({project, children, key}: {project: any, children?: any, key?: number}): ReactElement {
     const router: AppRouterInstance = useRouter();
     let isEnabled = useRef(project.attributes.isEnabled);
     
