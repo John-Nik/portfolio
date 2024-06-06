@@ -48,7 +48,7 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
                         src={'/images/globe-perf.webp'}
                         width={376}
                         height={376}
-                        priority={false}
+                        priority={true}
                         quality={100}
                         sizes="50vw"
                         style={{

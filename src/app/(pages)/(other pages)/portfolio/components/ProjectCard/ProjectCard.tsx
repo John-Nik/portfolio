@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { ReactElement, useRef } from 'react';
 
-export default function ProjectCard({project, children}: {project: any, children?: any}): ReactElement {
+export default function ProjectCard({project, children, key}: {project: any, children?: any, key: number}): ReactElement {
     const router: AppRouterInstance = useRouter();
     let isEnabled = useRef(project.attributes.isEnabled);
     
@@ -44,7 +44,7 @@ export default function ProjectCard({project, children}: {project: any, children
                     src={`/${project.attributes.img}`}
                     width={376}
                     height={376}
-                    priority={false}
+                    priority={key <= 1 ? true : false}
                     quality={100}
                     sizes="50vw"
                     style={{
