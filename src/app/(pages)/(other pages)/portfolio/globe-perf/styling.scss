@@ -1,0 +1,275 @@
+@import 'src/app/color-scheme.scss';
+
+@media only screen and (min-width: 0px) {
+    .globe-portfolio {
+        margin-bottom: calc(58px * 3);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .back-arrow {
+            width: 40px;
+            position: absolute;
+            top: 80px;
+            left: 8px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+
+            img {
+                width: inherit;
+                height: auto;
+                top: 0px;
+                left: 0px;
+                position: relative;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &:active {
+                transform: scale(1.05);
+            }
+        }
+
+        h5 {
+            font-size: 0.9rem;
+        }
+        
+        h6 {
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-bottom: 48px;
+            margin-top: 4px;
+            opacity: 0.7;
+        }
+
+        ul {
+            margin-bottom: 64px;
+        }
+    
+        .container {
+            margin-top: 64px;
+            width: 100%;
+            padding: 0px 32px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+    
+        .full-page-card {
+            max-width: 1480px;
+    
+            h2 {
+                opacity: 0 !important;
+            }
+        }
+
+        .icon {
+            cursor: pointer;
+            transition: box-shadow 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+            &:hover {
+                transform: scale(1.13);
+            }
+        }
+    
+        .item-container {
+            transition: box-shadow 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            width: 100%;
+            max-width: 600px;
+            cursor: default;
+            border: 2px solid rgba(0, 0, 0, 0.5);
+
+            .icons-wrapper {
+                height: 20%;
+                max-height: 48px;
+            }
+
+            &:hover {
+                transform: translateY(-4px);
+
+                .background {
+                    filter: brightness(0.4);
+                }
+
+                &:before {
+                    opacity: 1;
+                }
+            }
+
+            &:before {
+                background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 40%);
+                content: '';
+                border-radius: inherit;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 2;
+                transition: all 0.5s;
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-wrapper {
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+        }
+    
+        .text-wrapper {
+            width: 100%;
+            max-width: 600px;
+            padding: 0px 24px;
+    
+            .body {
+                color: white;
+                font-family: var(--fira-code);
+
+                ul {
+                    padding-left: 20px;
+                    font-size: 1.25rem;
+                }
+
+                li {
+                    text-wrap: wrap;
+                    font-weight: 300;
+                    max-width: 60ch;
+                    margin-bottom: 16px;
+                    opacity: 0.9;
+                }
+    
+                p {
+                    font-size: 1.5rem;
+                    margin-top: 24px;
+                }
+            }
+        }
+    
+        .title {
+            padding: 0px;
+            margin-top: 32px;
+            color: $tint-2;
+            font-size: clamp(3.125rem, 6vw, 4rem);
+            margin-bottom: 32px;
+            text-align: center;
+            font-weight: 400;
+        }
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .globe-portfolio {
+
+        .item-container {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 5/3;
+            max-width: 600px;
+
+            .icons-wrapper {
+                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                width: calc(100% - 36px);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 715px) {
+    .globe-portfolio {
+        .full-page-card {
+            margin-top: 24px;
+        }
+
+        .back-arrow {
+            position: fixed;
+        }
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .globe-portfolio {
+        margin-bottom: calc(56px * 3);
+
+        .full-page-card {
+            margin-top: 48px;
+        }
+
+        .back-arrow {
+            top: 110px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .globe-portfolio {
+
+        .back-arrow {
+            position: relative;
+            top: 0px;
+            left: -16px;
+        }
+
+        .card-wrapper {
+            width: calc(50% - 64px);
+            height: 500px;
+            display: flex;
+            position: sticky;
+            justify-content: center;
+            top: 210px;
+            left: 24px;
+        }
+
+        .title {
+            padding-left: 32px;
+            text-align: left;
+        }
+
+        .body {
+            padding-left: 32px;
+        }
+
+        .item-container {
+            aspect-ratio: 4/3;
+            height: fit-content;
+            position: relative;
+            width: 100%;
+        }
+
+        .full-page-card {
+            margin-top: 120px;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: flex-start;
+            height: fit-content;
+            overflow-y: visible;
+        }
+
+        .text-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: 50%;
+        }
+
+        .background {
+            aspect-ratio: 4/3;
+        }
+
+        .icons-wrapper {
+            top: 85%;
+        }
+    }
+}

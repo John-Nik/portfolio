@@ -541,3 +541,5 @@
 **1.6.1:** Made the minesweeper game in the about me page dynamically import to improve pagespeed score
 
 **1.6.2:** Updated the .pdf and .docx CVs to include the new 3D Globe Fork
+
+**1.7.0:** Added a new entry in the portfolio page for my globe-perf package fork
