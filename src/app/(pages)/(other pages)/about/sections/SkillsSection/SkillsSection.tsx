@@ -1,10 +1,10 @@
 'use client'
 import './styling.scss';
-import { ReactElement, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 
-export default function SkillsSection(): ReactElement {
+export default function SkillsSection() {
     const html5Icon = useRef(null);
     const css3Icon = useRef(null);
     const [firstIconsGrid] = useInView({

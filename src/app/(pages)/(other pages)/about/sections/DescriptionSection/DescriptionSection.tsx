@@ -1,5 +1,5 @@
 'use client'
-import { ReactElement, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './styling.scss';
 import { useInView } from 'react-intersection-observer';
 
@@ -8,7 +8,7 @@ interface Direction {
     direction: 'DOWN' | 'UP';
 }
 
-export default function DescriptionSection(): ReactElement {
+export default function DescriptionSection() {
     const [exitPosition, setExitPosition] = useState<Direction>({direction: 'DOWN'});
     const { ref, inView, entry } = useInView({
         threshold: 0.3,

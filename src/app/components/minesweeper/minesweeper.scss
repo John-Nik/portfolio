@@ -3,6 +3,10 @@
         width: 100%;
         position: relative;
         height: calc(100dvh - 64px - 58px);
+
+        svg {
+            pointer-events: none;
+        }
     }
 }
 

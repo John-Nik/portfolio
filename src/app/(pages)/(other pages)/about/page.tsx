@@ -1,10 +1,12 @@
 import IntroductorySection from "./sections/IntroductorySection/IntroductorySection";
 import DescriptionSection from "./sections/DescriptionSection/DescriptionSection";
 import MinesweeperSection from "./sections/MinesweeperSection/MinesweeperSection";
-import SkillsSection from "./sections/SkillsSection/SkillsSection";
 import './styling.scss';
 import { ReactElement } from "react";
 import { metadataType } from "../../../page";
+import dynamic from "next/dynamic";
+
+const SkillsSection = dynamic(() => import('./sections/SkillsSection/SkillsSection'));
 
 export default function(): ReactElement {
     return (

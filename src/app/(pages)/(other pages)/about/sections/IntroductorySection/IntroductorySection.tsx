@@ -1,7 +1,6 @@
-import { ReactElement } from 'react';
 import './styling.scss';
 
-export default function IntroductorySection(): ReactElement {
+export default function IntroductorySection() {
     return (
         <section id="introduction">
             <div className={"container"}>

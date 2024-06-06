@@ -538,8 +538,10 @@
 - Added the PHP icon in the about page
 - Optimized the font's downloaded to help with the speed of the page
 
-**1.6.1:** Made the minesweeper game in the about me page dynamically import to improve pagespeed score
+**1.6.1:** Made the minesweeper game in the about me page dynamically import to improve Lighthouse score
 
 **1.6.2:** Updated the .pdf and .docx CVs to include the new 3D Globe Fork
 
 **1.7.0:** Added a new entry in the portfolio page for my globe-perf package fork
+
+**1.7.1:** Changed the code of the minesweeper game at the home page. This has made the source code more readable, and has drastically improved performance of the page, using more optimal ways of coding the code. This has both increased the speed or rendering the page, and cut the memory usage more than *HALF* the amount it had prior to the changes. Also made some small changes to dynamically import some sections of the website and improve Lighthouse score

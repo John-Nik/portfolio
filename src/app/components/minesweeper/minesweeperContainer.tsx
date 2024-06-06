@@ -1,9 +1,8 @@
 import Script from 'next/script'
 import Content from './content'
 import './styling.scss'
-import { ReactElement } from 'react'
 
-export default function MinesweeperContainer(): ReactElement {
+export default function MinesweeperContainer() {
     return (
         <section id={'minesweeper-container'}>
             <Content />

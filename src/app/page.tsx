@@ -1,9 +1,10 @@
 import Footer from './components/footer-homepage/footer';
-import MinesweeperContainer from './components/minesweeper/minesweeperContainer'
 import Header from './components/header-homepage/Header';
 import './components/minesweeper/minesweeper.scss';
 import { ReactElement } from 'react';
+import dynamic from 'next/dynamic';
 
+const MinesweeperContainer = dynamic(() => import('./components/minesweeper/minesweeperContainer'));
 
 
 export default function page(): ReactElement {
