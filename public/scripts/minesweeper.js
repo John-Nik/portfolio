@@ -41,7 +41,6 @@ var Square = /** @class */ (function () {
             this.hasBomb = true;
         }
         squaresInBoard++;
-        squaresInViewport++;
     }
     Square.prototype.digSquare = function () {
         var _this = this;

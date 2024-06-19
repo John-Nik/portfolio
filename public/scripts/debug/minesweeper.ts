@@ -52,7 +52,6 @@ class Square {
         }
 
         squaresInBoard++;
-        squaresInViewport++;
     }
 
     digSquare() {
