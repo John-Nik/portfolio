@@ -128,7 +128,7 @@ export default function TextContent(): ReactElement {
                 <h1 className={'title'}>Giannis Nikolaou</h1>
                 <h2 className={'work'} ref={workTitle}></h2>
                 <div className={'buttons-container'}>
-                    <a href={'/contactMe.html'} className={'get-in-touch-button'}>
+                    <a href={'/contact.html'} className={'get-in-touch-button'}>
                         <div className={'GIT-wrapper'}>
                             <span>Get in touch</span>
                         </div>
