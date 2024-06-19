@@ -549,3 +549,5 @@
 **1.7.2:** Made some more small changes to improve Lighthouse score in the About and Portfolio pages
 
 **1.7.3:** Fixed the get in touch button's redirect location, and updated the pdf CV
+
+**1.7.4:** Tiny changes in the minesweeper script of the home page

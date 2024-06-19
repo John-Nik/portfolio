@@ -35,18 +35,16 @@ triggerTapFlagIcon.addEventListener('click', () => {
 
 
 class Square {
-    isRevealed: boolean;
-    hasBomb: boolean;
-    isFlagged: boolean;
-    position: number[];
-    isWithinViewport: boolean;
+    public isRevealed: boolean;
+    public hasBomb: boolean;
+    public isFlagged: boolean;
+    public position: number[];
 
     constructor(position: number[]) {
         this.isRevealed = false;
         this.hasBomb = false;
         this.isFlagged = false;
         this.position = position;
-        this.isWithinViewport = true;
 
         if (Math.random() < difficulty) {
             bombsPlaced++;
