@@ -553,3 +553,5 @@
 **1.7.4:** Tiny changes in the minesweeper script of the home page
 
 **1.8.0:** Changed the portfolio page to make it more visually appealing
+
+**1.8.1:** Deleted unused PNGs
