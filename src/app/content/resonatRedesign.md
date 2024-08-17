@@ -1,6 +1,6 @@
 ---
 title: Resonat Redesign
-link: resonat-redesign
+link: resonatredesign
 name: Marketing Agency Website Redesign
 img: images/new-resonat.webp
 backgroundColor: 000a15
