@@ -3,6 +3,7 @@ title: Portfolio
 link: portfolio
 name: Personal Project Portfolio
 img: images/portfolio.webp
+backgroundColor: 010a11
 siteLink: https://www.john-nik.com
 githubLink: https://github.com/John-Nik/portfolio
 isEnabled: true

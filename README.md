@@ -551,3 +551,5 @@
 **1.7.3:** Fixed the get in touch button's redirect location, and updated the pdf CV
 
 **1.7.4:** Tiny changes in the minesweeper script of the home page
+
+**1.8.0:** Changed the portfolio page to make it more visually appealing

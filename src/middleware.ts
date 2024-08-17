@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-    let lowercaseLink = request.nextUrl.pathname.toLowerCase();
+    const lowercaseLink = request.nextUrl.pathname.toLowerCase();
 
     switch (lowercaseLink) {
         case '/admin':

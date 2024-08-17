@@ -3,8 +3,9 @@ title: Resonat
 link: resonat
 name: Marketing Agency Website
 img: images/resonat.webp
+backgroundColor: "002030"
 siteLink: https://www.resonat.net
-githubLink: https://www.john-nik.com/portfolio/resonat
+githubLink: no-link
 isEnabled: true
 ---
 ##### *Wix, AWS, SMTP Server Setup, Enhanced Email Spoofing Protection*

@@ -3,6 +3,7 @@ title: Vioekseliksi
 link: vioekseliksi
 name: Chem Lab's Website
 img: images/vioekseliksi.webp
+backgroundColor: 010d27
 siteLink: https://vioekseliksi.netlify.app
 githubLink: https://github.com/John-Nik/Vioekseliksi-website
 isEnabled: true

@@ -3,6 +3,7 @@ title: Persaco
 link: persaco
 name: Personal Dietitian Persa's Website
 img: images/persaco.webp
+backgroundColor: 1b1300
 siteLink: https://persaco.netlify.app
 githubLink: https://github.com/John-Nik/Persa-v1
 isEnabled: true

@@ -428,8 +428,7 @@ export default function page() {
                             </h5>
                             <h6>May 2024 release date</h6>
                             <ul>
-                                <li>Read the source code of the three-globe NPM package</li>
-                                <li>Edited the source code to make the necessary changes and allow for the definition of how may polygons the globe will have</li>
+                                <li>Edited the source code to make the necessary changes and allow for the manipulation of the polygons count</li>
                                 <li>Published the code on NPM so anyone can use this package freely, however they see fit</li>
                             </ul>
                         </div>
