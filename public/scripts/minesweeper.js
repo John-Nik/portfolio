@@ -44,13 +44,17 @@ var Square = /** @class */ (function () {
     }
     Square.prototype.digSquare = function () {
         var _this = this;
+        if (this.isRevealed) {
+            return;
+            var surroundingSquares = this.getSurroundingSquares();
+            surroundingSquares.forEach(function (square) { return square.simpleDig(); });
+        }
+        ;
         if (mobileUserWantsToFlag) {
             this.flagSquare();
             isGameFinished();
             return;
         }
-        if (this.isRevealed)
-            return;
         var _a = this.position, Y = _a[0], X = _a[1];
         var htmlSquare = getHtmlSquare(Y, X);
         if (this.isFlagged == false) {
@@ -71,9 +75,7 @@ var Square = /** @class */ (function () {
                 var countedBombs = this.countSurroundingBombs();
                 if (countedBombs == 0) {
                     var surroundingSquares = this.getSurroundingSquares();
-                    surroundingSquares.forEach(function (square) {
-                        square.digSquare();
-                    });
+                    surroundingSquares.forEach(function (square) { return square.digSquare(); });
                 }
                 else {
                     htmlSquare.innerHTML = String(countedBombs);
@@ -89,6 +91,40 @@ var Square = /** @class */ (function () {
             this.isFlagged = false;
             htmlSquare.innerHTML = '';
         }
+    };
+    Square.prototype.simpleDig = function () {
+        var _this = this;
+        if (this.isFlagged)
+            return;
+        if (this.isRevealed)
+            return;
+        var _a = this.position, Y = _a[0], X = _a[1];
+        var htmlSquare = getHtmlSquare(Y, X);
+        var countedBombs = this.countSurroundingBombs();
+        if (this.hasBomb) {
+            htmlSquare.classList.add('revealed');
+            htmlSquare.innerHTML = '<image src="/icons/bomb.svg" alt="">';
+            lostGame();
+            setTimeout(function () {
+                _this.isRevealed = false;
+                _this.isFlagged = true;
+                htmlSquare.innerHTML = flagSvg;
+                htmlSquare.classList.remove('revealed');
+            }, 5000);
+        }
+        if (countedBombs == 0) {
+            var surroundingSquares = this.getSurroundingSquares();
+            surroundingSquares.forEach(function (square) { return square.digSquare(); });
+        }
+        else {
+            htmlSquare.innerHTML = String(countedBombs);
+            htmlSquare.classList.add("B".concat(countedBombs));
+        }
+        squaresInterractedWith = squaresInterractedWith - 1;
+        bombsPlaced++;
+        tellUserBombsPlaced.textContent = "// ".concat(bombsPlaced);
+        this.isFlagged = false;
+        htmlSquare.innerHTML = '';
     };
     Square.prototype.flagSquare = function () {
         var _a = this.position, Y = _a[0], X = _a[1];

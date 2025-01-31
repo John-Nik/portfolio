@@ -55,14 +55,19 @@ class Square {
     }
 
     digSquare() {
+        if (this.isRevealed) {
+            return;
+            const surroundingSquares = this.getSurroundingSquares();
+            surroundingSquares.forEach((square) => square.simpleDig());
+        };
+
         if (mobileUserWantsToFlag) {
             this.flagSquare();
             isGameFinished();
             return;
         }
         
-        if (this.isRevealed) return;
-        
+
         
         let [Y, X] = this.position;
         let htmlSquare = getHtmlSquare(Y, X)
@@ -87,9 +92,7 @@ class Square {
                 if (countedBombs == 0) {
                     let surroundingSquares = this.getSurroundingSquares();
 
-                    surroundingSquares.forEach((square) => {
-                        square.digSquare();
-                    })
+                    surroundingSquares.forEach((square) => square.digSquare())
                 } else {
                     htmlSquare.innerHTML = String(countedBombs);
                     htmlSquare.classList.add(`B${countedBombs}`);
@@ -104,6 +107,42 @@ class Square {
             this.isFlagged = false;
             htmlSquare.innerHTML = '';
         }
+    }
+
+    simpleDig() {
+        if (this.isFlagged) return;
+        if (this.isRevealed) return;
+
+        const [Y, X] = this.position;
+        const htmlSquare = getHtmlSquare(Y, X)
+        const countedBombs = this.countSurroundingBombs();
+
+        if (this.hasBomb) {
+            htmlSquare.classList.add('revealed');
+            htmlSquare.innerHTML = '<image src="/icons/bomb.svg" alt="">';
+            lostGame();
+            
+            setTimeout(() => {
+                this.isRevealed = false;
+                this.isFlagged = true;
+                htmlSquare.innerHTML = flagSvg;
+                htmlSquare.classList.remove('revealed');
+            }, 5000)
+        }
+        
+        if (countedBombs == 0) {
+            const surroundingSquares = this.getSurroundingSquares();
+            surroundingSquares.forEach((square) => square.digSquare())
+        } else {
+            htmlSquare.innerHTML = String(countedBombs);
+            htmlSquare.classList.add(`B${countedBombs}`);
+        }
+
+        squaresInterractedWith = squaresInterractedWith - 1;
+        bombsPlaced++;
+        tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
+        this.isFlagged = false;
+        htmlSquare.innerHTML = '';
     }
 
     flagSquare() {
@@ -142,7 +181,7 @@ class Square {
         return bombsCounted;
     }
 
-    getSurroundingSquares() {
+    getSurroundingSquares(): Square[] {
         let surroundingSquares = [];
         let [Y, X] = this.position;
 
