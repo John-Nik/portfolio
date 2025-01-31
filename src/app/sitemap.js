@@ -23,6 +23,6 @@ export default function sitemap() {
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.6
-        },
+        }
     ]
 }
