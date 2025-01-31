@@ -19,7 +19,7 @@
     "eslint-config-next": "^14.1.0",
     "globe-perf": "^2.31.1",
     "konva": "^9.3.8",
-    "next": "^14.1.3",
+    "next": "14.1.3",
     "npm-run-all2": "^6.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
