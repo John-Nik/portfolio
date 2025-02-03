@@ -11,7 +11,7 @@ let difficulty: number;
 let squares: NodeList;
 let rows: NodeList;
 let squaresInBoard = 0;
-let squaresInterractedWith = 0;
+let squaresInteractedWith = 0;
 let squaresInViewport = 0;
 let autoplayRunning = true;
 let userDugBombPosition = '';
@@ -54,26 +54,47 @@ class Square {
         squaresInBoard++;
     }
 
+    // The difference between simpleDig and digSquare is that digSquare checks the surrounding squares aswell, while the simpleDig does not, and so there isn't an infinite recursion going on
     digSquare() {
         if (this.isRevealed) {
-            return;
             const surroundingSquares = this.getSurroundingSquares();
-            surroundingSquares.forEach((square) => square.simpleDig());
-        };
+            let flaggedSquaresCount = 0;
+            let bombsCount = 0;
+
+            surroundingSquares.forEach((square) => {
+                if (square.isFlagged) flaggedSquaresCount++;
+                if (square.hasBomb) bombsCount++;
+            })
+
+            if (bombsCount === 0) return;
+
+            if (bombsCount === flaggedSquaresCount) {
+                surroundingSquares.forEach((square) => {
+                    if (!square.isFlagged && !square.isRevealed) {
+                        square.digSquare();
+                    }
+                })
+            } else {
+                this.getHtmlSquare().animate([
+                    { scale: '0.9' },
+                    { scale: '1' }
+                ], {
+                    duration: 250,
+                    iterations: 1,
+                    easing: 'ease-in-out',
+                })
+            };
+        }
 
         if (mobileUserWantsToFlag) {
             this.flagSquare();
             isGameFinished();
             return;
         }
-        
 
-        
-        let [Y, X] = this.position;
-        let htmlSquare = getHtmlSquare(Y, X)
+        let htmlSquare = this.getHtmlSquare();
         if (this.isFlagged == false) {
-            this.isRevealed = true;
-            squaresInterractedWith++;
+            squaresInteractedWith++;
     
             if (this.hasBomb) {
                 htmlSquare.classList.add('revealed');
@@ -87,21 +108,22 @@ class Square {
                 }, 5000)
                 lostGame();
             } else {
+                if (this.isRevealed) return;
+
                 let countedBombs = this.countSurroundingBombs();
+                this.isRevealed = true;
 
                 if (countedBombs == 0) {
-                    let surroundingSquares = this.getSurroundingSquares();
-
-                    surroundingSquares.forEach((square) => square.digSquare())
+                    this.getSurroundingSquares().forEach((square) => square.digSquare())
                 } else {
                     htmlSquare.innerHTML = String(countedBombs);
                     htmlSquare.classList.add(`B${countedBombs}`);
-                }
+                }   
             }
     
             htmlSquare.classList.add('revealed');
         } else {
-            squaresInterractedWith = squaresInterractedWith - 1;
+            squaresInteractedWith = squaresInteractedWith - 1;
             bombsPlaced++;
             tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
             this.isFlagged = false;
@@ -112,55 +134,45 @@ class Square {
     simpleDig() {
         if (this.isFlagged) return;
         if (this.isRevealed) return;
+        if (this.hasBomb) return;
 
-        const [Y, X] = this.position;
-        const htmlSquare = getHtmlSquare(Y, X)
+        const htmlSquare = this.getHtmlSquare();
         const countedBombs = this.countSurroundingBombs();
-
-        if (this.hasBomb) {
-            htmlSquare.classList.add('revealed');
-            htmlSquare.innerHTML = '<image src="/icons/bomb.svg" alt="">';
-            lostGame();
-            
-            setTimeout(() => {
-                this.isRevealed = false;
-                this.isFlagged = true;
-                htmlSquare.innerHTML = flagSvg;
-                htmlSquare.classList.remove('revealed');
-            }, 5000)
-        }
+        this.isRevealed = true;
         
-        if (countedBombs == 0) {
+        if (countedBombs === 0) {
             const surroundingSquares = this.getSurroundingSquares();
-            surroundingSquares.forEach((square) => square.digSquare())
+            surroundingSquares.forEach((square) => {
+                square.digSquare()
+            })
         } else {
+            console.log('hello world');
             htmlSquare.innerHTML = String(countedBombs);
             htmlSquare.classList.add(`B${countedBombs}`);
         }
 
-        squaresInterractedWith = squaresInterractedWith - 1;
+        squaresInteractedWith = squaresInteractedWith - 1;
         bombsPlaced++;
         tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
-        this.isFlagged = false;
         htmlSquare.innerHTML = '';
     }
 
     flagSquare() {
         let [Y, X] = this.position;
-        let htmlSquare = getHtmlSquare(Y, X);
+        let htmlSquare = this.getHtmlSquare();
         
         if (htmlSquare.classList.contains('revealed') == false) {
             if (this.isFlagged) {
     
                 this.isFlagged = false;
-                squaresInterractedWith = squaresInterractedWith - 1;
+                squaresInteractedWith = squaresInteractedWith - 1;
                 bombsPlaced++;
                 htmlSquare.innerHTML = '';
                 tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
             } else {
     
                 this.isFlagged = true;
-                squaresInterractedWith++;
+                squaresInteractedWith++;
                 bombsPlaced = bombsPlaced - 1;
                 htmlSquare.innerHTML = flagSvg;
                 tellUserBombsPlaced.textContent = `// ${bombsPlaced}`
@@ -199,6 +211,11 @@ class Square {
         }
     
         return surroundingSquares;
+    }
+
+    getHtmlSquare() {
+        const [Y, X] = this.position;
+        return containerHomepage.childNodes[Y].childNodes[X] as HTMLDivElement;
     }
 }
 
@@ -239,7 +256,7 @@ function populateBoard() {
     matrix = [];
     containerHomepage.innerHTML = '';
     squaresInBoard = 0;
-    squaresInterractedWith = 0;
+    squaresInteractedWith = 0;
     bombsPlaced = 0;
 
     if (autoplayRunning) {
@@ -277,12 +294,6 @@ function populateBoard() {
 
 
 
-function getHtmlSquare(Y: number, X: number) {
-    return containerHomepage.childNodes[Y].childNodes[X] as HTMLDivElement;
-}
-
-
-
 function autoplayGame() {
     let condensedMatrix: Square[] = matrix.reduce((accumulator, currentValue) => {
         return accumulator.concat(currentValue);
@@ -303,7 +314,7 @@ function autoplayGame() {
             
             if (randomSelectedSquare.hasBomb) {
                 randomSelectedSquare.isFlagged = true;
-                getHtmlSquare(Y, X).innerHTML = flagSvg;
+                randomSelectedSquare.getHtmlSquare().innerHTML = flagSvg;
                 condensedMatrix.splice(randomGeneratedNumber, 1);
                 return;
             }
@@ -513,9 +524,9 @@ function lostGame() {
 
             matrix[Y][X].isRevealed = false;
             matrix[Y][X].isFlagged = true;
-            getHtmlSquare(Y, X).innerHTML = flagSvg;
-            getHtmlSquare(Y, X).classList.remove('revealed');
-            squaresInterractedWith++;
+            matrix[Y][X].getHtmlSquare().innerHTML = flagSvg;
+            matrix[Y][X].getHtmlSquare().classList.remove('revealed');
+            squaresInteractedWith++;
         }
     }, 5000)
 
@@ -543,7 +554,7 @@ function lostGame() {
 
 
 function isGameFinished() {
-    if (squaresInViewport === squaresInterractedWith) {
+    if (squaresInViewport === squaresInteractedWith) {
         if (autoplayRunning) {
             populateBoard();
         } else {
@@ -794,7 +805,7 @@ function watchIfUserSwitchesPage() {
             clearInterval(autoplayIntervalToDigSquare);
             matrix = [];
             squaresInBoard = 0;
-            squaresInterractedWith = 0;
+            squaresInteractedWith = 0;
             bombsPlaced = 0;
             boardWidth = 0;
             boardHeight = 0;
@@ -806,7 +817,7 @@ function watchIfUserSwitchesPage() {
             squares;
             rows;
             squaresInBoard = 0;
-            squaresInterractedWith = 0;
+            squaresInteractedWith = 0;
             squaresInViewport = 0;
             autoplayRunning = false;
             userDugBombPosition = '';

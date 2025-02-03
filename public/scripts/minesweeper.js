@@ -11,7 +11,7 @@ var difficulty;
 var squares;
 var rows;
 var squaresInBoard = 0;
-var squaresInterractedWith = 0;
+var squaresInteractedWith = 0;
 var squaresInViewport = 0;
 var autoplayRunning = true;
 var userDugBombPosition = '';
@@ -42,24 +42,48 @@ var Square = /** @class */ (function () {
         }
         squaresInBoard++;
     }
+    // The difference between simpleDig and digSquare is that digSquare checks the surrounding squares aswell, while the simpleDig does not, and so there isn't an infinite recursion going on
     Square.prototype.digSquare = function () {
         var _this = this;
         if (this.isRevealed) {
-            return;
             var surroundingSquares = this.getSurroundingSquares();
-            surroundingSquares.forEach(function (square) { return square.simpleDig(); });
+            var flaggedSquaresCount_1 = 0;
+            var bombsCount_1 = 0;
+            surroundingSquares.forEach(function (square) {
+                if (square.isFlagged)
+                    flaggedSquaresCount_1++;
+                if (square.hasBomb)
+                    bombsCount_1++;
+            });
+            if (bombsCount_1 === 0)
+                return;
+            if (bombsCount_1 === flaggedSquaresCount_1) {
+                surroundingSquares.forEach(function (square) {
+                    if (!square.isFlagged && !square.isRevealed) {
+                        square.digSquare();
+                    }
+                });
+            }
+            else {
+                this.getHtmlSquare().animate([
+                    { scale: '0.9' },
+                    { scale: '1' }
+                ], {
+                    duration: 250,
+                    iterations: 1,
+                    easing: 'ease-in-out',
+                });
+            }
+            ;
         }
-        ;
         if (mobileUserWantsToFlag) {
             this.flagSquare();
             isGameFinished();
             return;
         }
-        var _a = this.position, Y = _a[0], X = _a[1];
-        var htmlSquare = getHtmlSquare(Y, X);
+        var htmlSquare = this.getHtmlSquare();
         if (this.isFlagged == false) {
-            this.isRevealed = true;
-            squaresInterractedWith++;
+            squaresInteractedWith++;
             if (this.hasBomb) {
                 htmlSquare.classList.add('revealed');
                 htmlSquare.innerHTML = '<image src="/icons/bomb.svg" alt="">';
@@ -72,10 +96,12 @@ var Square = /** @class */ (function () {
                 lostGame();
             }
             else {
+                if (this.isRevealed)
+                    return;
                 var countedBombs = this.countSurroundingBombs();
+                this.isRevealed = true;
                 if (countedBombs == 0) {
-                    var surroundingSquares = this.getSurroundingSquares();
-                    surroundingSquares.forEach(function (square) { return square.digSquare(); });
+                    this.getSurroundingSquares().forEach(function (square) { return square.digSquare(); });
                 }
                 else {
                     htmlSquare.innerHTML = String(countedBombs);
@@ -85,7 +111,7 @@ var Square = /** @class */ (function () {
             htmlSquare.classList.add('revealed');
         }
         else {
-            squaresInterractedWith = squaresInterractedWith - 1;
+            squaresInteractedWith = squaresInteractedWith - 1;
             bombsPlaced++;
             tellUserBombsPlaced.textContent = "// ".concat(bombsPlaced);
             this.isFlagged = false;
@@ -93,53 +119,45 @@ var Square = /** @class */ (function () {
         }
     };
     Square.prototype.simpleDig = function () {
-        var _this = this;
         if (this.isFlagged)
             return;
         if (this.isRevealed)
             return;
-        var _a = this.position, Y = _a[0], X = _a[1];
-        var htmlSquare = getHtmlSquare(Y, X);
+        if (this.hasBomb)
+            return;
+        var htmlSquare = this.getHtmlSquare();
         var countedBombs = this.countSurroundingBombs();
-        if (this.hasBomb) {
-            htmlSquare.classList.add('revealed');
-            htmlSquare.innerHTML = '<image src="/icons/bomb.svg" alt="">';
-            lostGame();
-            setTimeout(function () {
-                _this.isRevealed = false;
-                _this.isFlagged = true;
-                htmlSquare.innerHTML = flagSvg;
-                htmlSquare.classList.remove('revealed');
-            }, 5000);
-        }
-        if (countedBombs == 0) {
+        this.isRevealed = true;
+        if (countedBombs === 0) {
             var surroundingSquares = this.getSurroundingSquares();
-            surroundingSquares.forEach(function (square) { return square.digSquare(); });
+            surroundingSquares.forEach(function (square) {
+                square.digSquare();
+            });
         }
         else {
+            console.log('hello world');
             htmlSquare.innerHTML = String(countedBombs);
             htmlSquare.classList.add("B".concat(countedBombs));
         }
-        squaresInterractedWith = squaresInterractedWith - 1;
+        squaresInteractedWith = squaresInteractedWith - 1;
         bombsPlaced++;
         tellUserBombsPlaced.textContent = "// ".concat(bombsPlaced);
-        this.isFlagged = false;
         htmlSquare.innerHTML = '';
     };
     Square.prototype.flagSquare = function () {
         var _a = this.position, Y = _a[0], X = _a[1];
-        var htmlSquare = getHtmlSquare(Y, X);
+        var htmlSquare = this.getHtmlSquare();
         if (htmlSquare.classList.contains('revealed') == false) {
             if (this.isFlagged) {
                 this.isFlagged = false;
-                squaresInterractedWith = squaresInterractedWith - 1;
+                squaresInteractedWith = squaresInteractedWith - 1;
                 bombsPlaced++;
                 htmlSquare.innerHTML = '';
                 tellUserBombsPlaced.textContent = "// ".concat(bombsPlaced);
             }
             else {
                 this.isFlagged = true;
-                squaresInterractedWith++;
+                squaresInteractedWith++;
                 bombsPlaced = bombsPlaced - 1;
                 htmlSquare.innerHTML = flagSvg;
                 tellUserBombsPlaced.textContent = "// ".concat(bombsPlaced);
@@ -173,6 +191,10 @@ var Square = /** @class */ (function () {
         }
         return surroundingSquares;
     };
+    Square.prototype.getHtmlSquare = function () {
+        var _a = this.position, Y = _a[0], X = _a[1];
+        return containerHomepage.childNodes[Y].childNodes[X];
+    };
     return Square;
 }());
 chooseDifficulty();
@@ -200,7 +222,7 @@ function populateBoard() {
     matrix = [];
     containerHomepage.innerHTML = '';
     squaresInBoard = 0;
-    squaresInterractedWith = 0;
+    squaresInteractedWith = 0;
     bombsPlaced = 0;
     if (autoplayRunning) {
         difficulty = 0.2;
@@ -228,9 +250,6 @@ function populateBoard() {
     rows = document.querySelectorAll('.row');
     squares = document.querySelectorAll('.square');
 }
-function getHtmlSquare(Y, X) {
-    return containerHomepage.childNodes[Y].childNodes[X];
-}
 function autoplayGame() {
     var condensedMatrix = matrix.reduce(function (accumulator, currentValue) {
         return accumulator.concat(currentValue);
@@ -249,7 +268,7 @@ function autoplayGame() {
             var _a = randomSelectedSquare.position, Y = _a[0], X = _a[1];
             if (randomSelectedSquare.hasBomb) {
                 randomSelectedSquare.isFlagged = true;
-                getHtmlSquare(Y, X).innerHTML = flagSvg;
+                randomSelectedSquare.getHtmlSquare().innerHTML = flagSvg;
                 condensedMatrix.splice(randomGeneratedNumber, 1);
                 return;
             }
@@ -421,9 +440,9 @@ function lostGame() {
             var X = Number(userDugBombPosition.split('_')[1]);
             matrix[Y][X].isRevealed = false;
             matrix[Y][X].isFlagged = true;
-            getHtmlSquare(Y, X).innerHTML = flagSvg;
-            getHtmlSquare(Y, X).classList.remove('revealed');
-            squaresInterractedWith++;
+            matrix[Y][X].getHtmlSquare().innerHTML = flagSvg;
+            matrix[Y][X].getHtmlSquare().classList.remove('revealed');
+            squaresInteractedWith++;
         }
     }, 5000);
     containerHomepage.style.scale = "1.01";
@@ -447,7 +466,7 @@ function lostGame() {
     }, 30);
 }
 function isGameFinished() {
-    if (squaresInViewport === squaresInterractedWith) {
+    if (squaresInViewport === squaresInteractedWith) {
         if (autoplayRunning) {
             populateBoard();
         }
@@ -648,7 +667,7 @@ function watchIfUserSwitchesPage() {
             clearInterval(autoplayIntervalToDigSquare);
             matrix = [];
             squaresInBoard = 0;
-            squaresInterractedWith = 0;
+            squaresInteractedWith = 0;
             bombsPlaced = 0;
             boardWidth = 0;
             boardHeight = 0;
@@ -660,7 +679,7 @@ function watchIfUserSwitchesPage() {
             squares;
             rows;
             squaresInBoard = 0;
-            squaresInterractedWith = 0;
+            squaresInteractedWith = 0;
             squaresInViewport = 0;
             autoplayRunning = false;
             userDugBombPosition = '';

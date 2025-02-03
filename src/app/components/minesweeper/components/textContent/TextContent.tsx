@@ -11,7 +11,7 @@ export default function TextContent(): ReactElement {
 
     useEffect(() => {
         let timer: number = 70;
-        let titles: string[] = [' a UI/UX Designer', ' a website builder', ' a front-end developer'];
+        let titles: string[] = [' a Front-End Devel', ' a Back-End Dev', ' a Full-Stack Developer'];
         let arrayIndex: number = 0;
         let charAtIndex: number = 0;
         let stringPrintedArray: string[] = [];
