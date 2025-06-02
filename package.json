@@ -33,6 +33,7 @@
     "@types/node": "20.12.5",
     "@types/react": "18.2.74",
     "@types/webpack-env": "^1.18.4",
+    "esbuild": "^0.25.5",
     "frontmatter-markdown-loader": "^3.7.0",
     "postcss": "^8.4.38",
     "sass": "^1.70.0",
