@@ -555,3 +555,5 @@
 **1.8.0:** Changed the portfolio page to make it more visually appealing
 
 **1.8.1:** Deleted unused PNGs
+
+**1.9.0:** Refactored the minesweeper game on the homepage. Now rewritten with cleaner code in mind, and minifying the file, making it load faster and perform better. This has the added benefit of easier debugging. The game board and game UI have been split into separate classes, each responsible for their own tasks

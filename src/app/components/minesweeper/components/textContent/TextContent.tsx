@@ -3,127 +3,89 @@ import { ReactElement, useRef, useEffect } from "react";
 import DownloadCVButton from "../../../buttons/DownloadCVButton";
 
 export default function TextContent(): ReactElement {
-    const informationPanel = useRef(null);
     const workTitle = useRef(null);
 
-
-
-
     useEffect(() => {
-        let timer: number = 70;
-        let titles: string[] = [' a Front-End Devel', ' a Back-End Dev', ' a Full-Stack Developer'];
-        let arrayIndex: number = 0;
-        let charAtIndex: number = 0;
-        let stringPrintedArray: string[] = [];
-        let stringPrinted: string = '';
-        let isFuncAddingChars: boolean = true;
-        let interval = setInterval(() => animateTitle(workTitle.current), timer);
-        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
-    
-        homepageMinesweeper.innerHTML = '<div></div>';
-        aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
+        const timer = 70;
+        const titles = [' a Front-End Devel', ' a Back-End Dev', ' a Full-Stack Developer'];
+        let arrayIndex = 0;
+        let charAtIndex = 0;
+        let strArr: string[] = [];
+        let addingChars = true;
+        let interval: NodeJS.Timeout;
 
-        function animateTitle(title: any): void {
-            if ( arrayIndex == titles.length - 1) {
-                if ( stringPrintedArray.length == titles[arrayIndex].length + 1 ) {
-                    const popCharacter = (): void => {
-                        stringPrintedArray.pop();
-                        stringPrinted = stringPrintedArray.join('');
-                        title.textContent = stringPrinted;
-                        setTimeout(pushCharacter, 1000);
-                    }
-    
-                    const pushCharacter = (): void => {
-                        stringPrintedArray.push('|')
-                        stringPrinted = stringPrintedArray.join('');
-                        title.textContent = stringPrinted;
-                    }
-    
-                    popCharacter();
-                    stringPrinted = stringPrintedArray.join('');
-                    title.textContent = stringPrinted;
-                    clearInterval(interval);
-                    
-                    let interval2 = setInterval(popCharacter, 2000);
-    
+        const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
+        const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
+        
+        homepageMinesweeper.innerHTML = '<div></div>';
+        aboutMePageMinesweeper.innerHTML = '';
+
+        const updateTitle = (title: HTMLSpanElement) => (title.textContent = strArr.join(''));
+
+        function animateTitle(title: any) {
+            const currentTitle = titles[arrayIndex];
+
+            if (arrayIndex === titles.length - 1 && strArr.length === currentTitle.length + 1) {
+                clearInterval(interval);
+
+                const popChar = () => {
+                    strArr.pop();
+                    updateTitle(title);
                     setTimeout(() => {
-                        clearInterval(interval2)
-    
-                        setTimeout(() => {
-                            stringPrintedArray.pop();
-                            stringPrinted = stringPrintedArray.join('');
-                            title.textContent = stringPrinted;
-                        }, 1000)
-                    }, 4000)
-                    return;
-                }
+                        strArr.push('|');
+                        updateTitle(title);
+                    }, 1000);
+                };
+
+                popChar();
+                let interval2 = setInterval(popChar, 2000);
+
+                setTimeout(() => {
+                    clearInterval(interval2);
+                    setTimeout(() => {
+                        strArr.pop();
+                        updateTitle(title);
+                    }, 1000);
+                }, 4000);
+                return;
             }
-    
-            if (isFuncAddingChars) {
-                if ( charAtIndex != titles[arrayIndex].length) {
-                    stringPrintedArray.pop();
-                    stringPrintedArray.push(titles[arrayIndex].charAt(charAtIndex));
-                    stringPrintedArray.push('|');
-                    stringPrinted = stringPrintedArray.join('');
-                    title.textContent = stringPrinted;
+
+            if (addingChars) {
+                if (charAtIndex < currentTitle.length) {
+                    strArr.pop();
+                    strArr.push(currentTitle[charAtIndex], '|');
+                    updateTitle(title);
                     charAtIndex++;
                 } else {
                     clearInterval(interval);
-                    isFuncAddingChars = false;
+                    addingChars = false;
                     setTimeout(() => {
                         interval = setInterval(() => animateTitle(title), timer);
-                    }, 250)
+                    }, 250);
                 }
             } else {
-                if ( charAtIndex == 2 ) {
+                if (charAtIndex === 2) {
                     arrayIndex++;
-                    isFuncAddingChars = true;
+                    addingChars = true;
                     return;
                 }
-    
-                stringPrintedArray.pop();
-                stringPrintedArray.pop();
-                stringPrintedArray.push('|');
-                stringPrinted = stringPrintedArray.join('');
-                title.textContent = stringPrinted;
-                charAtIndex = charAtIndex - 1;
+                strArr.pop();
+                strArr.pop();
+                strArr.push('|');
+                updateTitle(title);
+                charAtIndex--;
             }
         }
-    }, [])
-    
 
+        interval = setInterval(() => animateTitle(workTitle.current), timer);
 
-
-    function showSettingsPanel(): void {
-        const settingsPanel: HTMLDivElement = document.querySelector('.gameSettings');
-        const footerIconsContainer: HTMLUListElement = document.querySelector('.footer-links-container');
-        const socialsIcon: HTMLLIElement = document.querySelector('.socials-icon-wrap');
-        const flagIcon: HTMLLIElement = document.querySelector('.flag-icon-wrap');
-
-        footerIconsContainer.classList.toggle('hide-icons');
-        socialsIcon.classList.toggle('show');
-        flagIcon.classList.toggle('show');
-
-
-        informationPanel.current.style.opacity = '0';
-        setTimeout((): void => {
-            informationPanel.current.style.display = 'none';
-            settingsPanel.style.display = 'flex';
-
-            setTimeout((): void => {
-                settingsPanel.style.opacity = '1';
-            }, 20)
-        }, 200)
-    }
-
-    
-
-
+        // Cleanup on unmount
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <>
-            <div className={'textContent'} ref={informationPanel}>
+            <div className={'textContent'}>
                 <span className={'topper'}>Hello, my name is</span>
                 <h1 className={'title'}>Giannis Nikolaou</h1>
                 <h2 className={'work'} ref={workTitle}></h2>
@@ -134,7 +96,7 @@ export default function TextContent(): ReactElement {
                         </div>
                     </a>
                     <DownloadCVButton />
-                    <button onClick={showSettingsPanel} className={'show-settings-panel-button'}>
+                    <button className={'show-settings-panel-button'}>
                         Start-Game
                     </button>
                 </div>

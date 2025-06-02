@@ -5,7 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "target": "ES6",
+    "target": "es2020",
     "sourceMap": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,7 +13,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -31,7 +31,7 @@
     "**/*.tsx",
     "src/app/not-found.tsx",
     "src/middleware.ts",
-    "public/scripts/minesweeper-aboutme.ts"
+    "public/scripts/**/*"
   ],
   "exclude": [
     "node_modules"
