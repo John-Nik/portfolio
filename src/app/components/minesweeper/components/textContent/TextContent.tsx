@@ -3,8 +3,6 @@ import { ReactElement, useRef, useEffect } from "react";
 import DownloadCVButton from "../../../buttons/DownloadCVButton";
 import Link from "next/link";
 import { sleep } from "../../../../../../public/scripts/minesweeper/helpers";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
-import { time } from "console";
 
 export default function TextContent(): ReactElement {
     const isWritingChars = useRef<boolean>(false);
