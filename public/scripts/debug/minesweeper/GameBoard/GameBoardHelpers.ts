@@ -1,4 +1,4 @@
-import Square from "../Square/Square";
+import Square, { SquaresArray } from "../Square/Square";
 import GameBoard from "./GameBoard";
 
 
@@ -27,38 +27,45 @@ const GameBoardHelpers = {
     chooseDifficulty(difficulty: typeof GameBoard.prototype.ALLOWED_DIFFICULTIES[number] = this.ALLOWED_DIFFICULTIES[0]) {
         this.difficulty = difficulty;
     },
-    createRow(): {row: Square[]; rowElem: HTMLDivElement; } {
-        const row: Square[] = [];
+    createRow(): SquaresArray {
+        const row: SquaresArray = [];
         this.matrix.push(row);
 
         const rowElem = document.createElement('div');
         rowElem.classList.add('row');
 
-        return {
-            row,
-            rowElem,
-        };
+        row.elem = rowElem;
+
+        return row;
     },
-    createRows(count: number): { rows: Square[][]; elemRows: HTMLDivElement[]; } {
+    createRows(count: number): SquaresArray[] {
         const elemRows: HTMLDivElement[] = [];
-        const rows: Square[][] = [];
+        const rows: SquaresArray[] = [];
 
         for (let i = 0; i < count; i++) {
-            const { row, rowElem } = this.createRow();
-            elemRows.push(rowElem);
+            const row = this.createRow();
+            elemRows.push(row.elem);
             rows.push(row);
         }
 
-        return {
-            rows,
-            elemRows,
-        };
+        return rows;
+    },
+    createSquare([y, x]): Square {
+        const square = new Square([y, x], this, this.gameUI);
+
+        if (square.hasBomb) {
+            this.bombsPresent.value++;
+        }
+
+        this.squaresInBoard++;
+
+        return square;
     },
     createSquares(count: number, rowIndex: number): Square[] {
         const squares: Square[] = [];
 
         for (let i = 0; i < count; i++) {
-            const square = new Square([rowIndex, i], this, this.gameUI);
+            const square = this.createSquare([rowIndex, i]);
             squares.push(square);
         }
 
@@ -72,7 +79,7 @@ const GameBoardHelpers = {
         const clickedSquare = clickEvent.target as HTMLDivElement;
         const [Y, X] = clickedSquare.dataset.position.split('_').map(Number);
         return this.matrix[Y][X];
-    }
+    },
 }
 
 export default GameBoardHelpers;

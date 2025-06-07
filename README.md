@@ -557,3 +557,5 @@
 **1.8.1:** Deleted unused PNGs
 
 **1.9.0:** Refactored the minesweeper game on the homepage. Now rewritten with cleaner code in mind, and minifying the file, making it load faster and perform better. This has the added benefit of easier debugging. The game board and game UI have been split into separate classes, each responsible for their own tasks
+
+**1.10.0:** Added the resize functionality of the minesweeper game, and updated the CV to include wargaming's certificate

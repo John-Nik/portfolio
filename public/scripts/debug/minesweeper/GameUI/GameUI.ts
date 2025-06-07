@@ -27,8 +27,10 @@ class GameUI {
     gameBoard: GameBoard;
     difficultySelectors: HTMLButtonElement[] = Array.from(document.querySelectorAll('.difficulty-feedback'));
     showGameSettingsButton: HTMLButtonElement = document.querySelector('.show-settings-panel-button'); // only displayed on mobile view
+    toggleBackgroundElem: HTMLDivElement = document.querySelector('.toggle-background');
     lastShownPanel: 'heroSection' | 'gameSettings' = 'heroSection';
     isDesktopResolution: boolean;
+    resizeObserver: ResizeObserver | null = null;
 
     // Explicitly defined types for GameUIHelpers methods
     bombsPlacedTextAnim: typeof GameUIHelpers.bombsPlacedTextAnim;
@@ -46,7 +48,6 @@ class GameUI {
     minesweeperSessionIndicator: typeof GameUIHelpers.minesweeperSessionIndicator;
     removeDifficultySelectorsActiveStatus: typeof GameUIHelpers.removeDifficultySelectorsActiveStatus;
     setEventListenersToDifficultySelectors: typeof GameUIHelpers.setEventListenersToDifficultySelectors;
-    goToNextPanel: typeof GameUIHelpers.goToNextPanel;
     
 
 
@@ -65,6 +66,8 @@ class GameUI {
         this.setEventListenersToDifficultySelectors();
 
         this.isDesktopResolution = !this.isTablet();
+
+        this.attachResizeObserver();
     }
 
     adaptGameUserInstructionsToWidth(width = window.innerWidth) {
@@ -82,6 +85,7 @@ class GameUI {
         this.shakeBoard();
         this.hideBombsCountText();
         this.adaptGameUserInstructionsToWidth();
+        this.unpackFooter();
         this.lastShownPanel = 'heroSection';
     }
 
@@ -89,6 +93,7 @@ class GameUI {
         this.resetBombsCountElemPosition();
         this.displayWinGameText();
         this.adaptGameUserInstructionsToWidth();
+        this.unpackFooter();
         this.lastShownPanel = 'heroSection';
     }
 
@@ -112,12 +117,14 @@ class GameUI {
     }
 
     shakeBoard(times = 10) {
-        this.gameBoardElem.style.scale = "1.01";
+        this.gameBoardElem.style.scale = "1.005";
 
         const intervalShakeGameBoard = setInterval(() => {
             if (times === 0) {
                 clearInterval(intervalShakeGameBoard);
                 this.gameBoardElem.style.scale = "1";
+                this.gameBoardElem.style.left = '0px';
+                this.gameBoardElem.style.top = '0px';
                 return;
             }
 
@@ -219,6 +226,62 @@ class GameUI {
         
         this.displayHeroSection();
         this.displayGameSettings();
+    }
+
+    async goToNextPanel() {
+        this.lastShownPanel = 'gameSettings';
+
+        this.compactFooter();
+
+        this.heroSection.style.opacity = '0';
+
+        await sleep(200);
+
+        this.heroSection.style.display = 'none';
+        this.gameSettings.style.display = 'flex';
+
+        await sleep(5);
+
+        this.gameSettings.style.opacity = '1';
+    }
+
+    compactFooter() {
+        this.footerIconsContainer.classList.add('hide-icons');
+        this.socialsIcon.classList.add('show');
+        this.flagIcon.classList.add('show');
+    }
+
+    unpackFooter() {
+        this.toggleBackgroundElem.classList.remove('open');
+        this.footerIconsContainer.classList.remove('show-icons');
+        this.footerIconsContainer.classList.remove('hide-icons');
+        this.socialsIcon.classList.remove('show');
+        this.flagIcon.classList.remove('show');
+    }
+
+    attachResizeObserver() {
+        this.resizeObserver = new ResizeObserver(entries => {
+            const { width } = entries[0].contentRect;
+
+            if (width >= this.DESKTOP_BREAKPOINT) {
+                this.isDesktopResolution = true;
+                this.displayHeroSection();
+                this.displayGameSettings();
+                return;
+            }
+
+            this.isDesktopResolution = false;
+
+            if (this.lastShownPanel === 'heroSection') {
+                this.hideGameSettings();
+                this.displayHeroSection();
+            } else {
+                this.hideHeroSection();
+                this.displayGameSettings();
+            }
+        });
+
+        this.resizeObserver.observe(this.gameBoardElem);
     }
 }
 

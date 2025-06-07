@@ -1,4 +1,4 @@
-import Square from '../Square/Square';
+import Square, { SquaresArray } from '../Square/Square';
 import GameUI from '../GameUI/GameUI';
 import { sleep } from '../helpers';
 import GameBoardHelpers from './GameBoardHelpers';
@@ -6,14 +6,13 @@ import GameBoardHelpers from './GameBoardHelpers';
 
 class GameBoard {
     readonly ALLOWED_DIFFICULTIES: number[] = [0.12, 0.15, 0.20, 0.25];
-    
-    matrix: Square[][] = [];
+
+    matrix: SquaresArray[] = [];
     gameBoardElem: HTMLDivElement = document.querySelector('#game') as HTMLDivElement;
     squareSize: number = 32;
     difficulty: typeof GameBoard.prototype.ALLOWED_DIFFICULTIES[number] = 0.12;
     squaresInteractedWith: number = 0;
     squaresInBoard: number = 0;
-    squaresInViewport: number = 0;
     autoplayRunning: boolean = true;
     autoplayIntervalToDigSquare: NodeJS.Timeout;
     lastDugBombPosition: string = '';
@@ -38,6 +37,9 @@ class GameBoard {
     });
     isGameFinished: boolean = false;
     minesweeperSessionIndicatorElem: HTMLDivElement = document.querySelector('.user-initiated-game-start');
+    rows: number = 0;
+    columns: number = 0;
+    resizeObserver: ResizeObserver | null = null;
     leftClickFnReference: (e: MouseEvent) => void;
     rightClickFnReference: (e: MouseEvent) => void;
 
@@ -53,6 +55,7 @@ class GameBoard {
     createSquares: typeof GameBoardHelpers.createSquares;
     unwatchIfUserStartedGame: typeof GameBoardHelpers.unwatchIfUserStartedGame;
     getSquareFromEvent: typeof GameBoardHelpers.getSquareFromEvent;
+    createSquare: typeof GameBoardHelpers.createSquare;
 
 
     constructor() {
@@ -66,32 +69,32 @@ class GameBoard {
 
         this.populateBoard();
         this.startGameAutoplay();
+        this.beginHandlingResizeEvents();
     }
 
     populateBoard() {
-        const { width, height } = this.gameBoardElem.getBoundingClientRect();
-        const rowsToFit = Math.floor(height / this.squareSize);
-        const columnsToFit = Math.floor(width / this.squareSize);
-        const gameGrid = new DocumentFragment();
-        const { rows, elemRows } = this.createRows(rowsToFit);
-        
-        for (let i = 0; i < rows.length; i++) {
-            const row = rows[i];
-            const elemRow = elemRows[i];
-            const squares = this.createSquares(columnsToFit, i);
-            
-            squares.forEach(square => {
-                elemRow.appendChild(square.elem);
-                this.squaresInViewport++;
-            });
-            row.push(...squares);
-            
-            elemRow.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
-        }
-        
-        this.gameBoardElem.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
+        const width = this.gameBoardElem.clientWidth;
+        const height = this.gameBoardElem.clientHeight;
 
-        gameGrid.append(...elemRows);
+        this.rows = Math.floor(height / this.squareSize);
+        this.columns = Math.floor(width / this.squareSize);
+
+        const gameGrid = new DocumentFragment();
+        const rows = this.createRows(this.rows);
+
+        rows.forEach((row, index) => {
+            const squares = this.createSquares(this.columns, index);
+
+            squares.forEach(square => row.elem.appendChild(square.elem));
+
+            row.push(...squares);
+            gameGrid.appendChild(row.elem);
+
+            row.elem.style.gridTemplateColumns = `repeat(${this.columns}, minmax(24px, 1fr))`;
+        });
+
+        this.gameBoardElem.style.gridTemplateRows = `repeat(${this.rows}, minmax(24px, 1fr))`;
+
         this.gameBoardElem.appendChild(gameGrid);
     }
 
@@ -139,8 +142,8 @@ class GameBoard {
     }
 
     addInteractionToSquares() {
-        const leftClick = (e) => this.userLeftClick(e);
-        const rightClick = (e) => this.userRightClick(e);
+        const leftClick = (e: MouseEvent) => this.userLeftClick(e);
+        const rightClick = (e: MouseEvent) => this.userRightClick(e);
 
         this.leftClickFnReference = leftClick;
         this.rightClickFnReference = rightClick;
@@ -163,7 +166,7 @@ class GameBoard {
     }
 
     startGameAutoplay() {
-        let flatBoard: Square[] = this.matrix.flat(2);
+        let flatBoard: SquaresArray = this.matrix.flat(2);
 
         const removeSquareFromFlatBoard = (index: number) => flatBoard.splice(index, 1);
         const refilterFlatBoard = () => flatBoard = flatBoard.filter(square => !square.isRevealed && !square.isFlagged); // used to refilter the flatBoard after a recursive dig has happened
@@ -196,7 +199,7 @@ class GameBoard {
             if (randomSquare.countSurroundingBombs() === 0) {
                 refilterFlatBoard();
             }
-        }, 250);
+        }, 2500);
     }
 
     resetGameAutoplayBoard() {
@@ -221,7 +224,7 @@ class GameBoard {
     }
 
     checkIfGameIsFinished() {
-        if (this.squaresInViewport !== this.squaresInteractedWith) return;
+        if (this.squaresInBoard !== this.squaresInteractedWith) return;
 
         if (this.autoplayRunning) {
             this.resetBoard();
@@ -247,6 +250,90 @@ class GameBoard {
     removeInteractionFromSquares() {
         this.gameBoardElem.removeEventListener('click', this.leftClickFnReference);
         this.gameBoardElem.removeEventListener('contextmenu', this.rightClickFnReference);
+    }
+
+    beginHandlingResizeEvents() {
+        this.resizeObserver = new ResizeObserver(() => {
+            this.handleResizeEvent();
+        });
+        this.resizeObserver.observe(this.gameBoardElem);
+    }
+
+    handleResizeEvent() {
+        const width = this.gameBoardElem.clientWidth;
+        const height = this.gameBoardElem.clientHeight;
+        const rowsToFit = Math.floor(height / this.squareSize);
+        const columnsToFit = Math.floor(width / this.squareSize);
+        const shouldAddRows = (rowsToFit - this.rows) > 0;
+        const shouldAddColumns = (columnsToFit - this.columns) > 0;
+
+        if (!shouldAddRows && !shouldAddColumns) return;
+
+        if (shouldAddColumns) {
+            const colsToAdd = columnsToFit - this.columns;
+            const oldBombsCount = this.bombsPresent.value;
+            const lastCol = this.matrix.map(row => row.at(-1));
+
+            this.matrix.forEach((row, rowIndex) => {
+                for (let i = 0; i < colsToAdd; i++) {
+                    const x = this.columns + i;
+                    const square = this.createSquare([rowIndex, x]);
+
+                    row.push(square);
+                    row.elem.appendChild(square.elem);
+                }
+
+                row.elem.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
+            });
+
+            lastCol.forEach(square => {
+                if (!square.isRevealed) return;
+
+                const surroundingBombs = square.countSurroundingBombs();
+                if (surroundingBombs === 0) return;
+
+                square.displayBombCount(surroundingBombs);
+            });
+
+            this.columns = columnsToFit;
+
+            this.gameUI.displayBombsPlacedText(this.bombsPresent.value - oldBombsCount);
+        }
+
+        if (shouldAddRows) {
+            const lastRow = this.matrix.at(-1);
+            const oldBombsCount = this.bombsPresent.value;
+            const newRows = this.createRows(rowsToFit - this.rows);
+            const tempRowsGrid = new DocumentFragment();
+
+            newRows.forEach((row, index) => {
+                const y = this.rows + index;                
+                const squares = this.createSquares(this.columns, y);
+
+                squares.forEach(square => row.elem.appendChild(square.elem));
+
+                row.push(...squares);
+                tempRowsGrid.appendChild(row.elem);
+                row.elem.style.gridTemplateColumns = `repeat(${this.columns}, minmax(24px, 1fr))`;
+            });
+
+            this.matrix.push(...newRows);
+            this.gameBoardElem.append(tempRowsGrid);
+            this.gameBoardElem.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
+
+            lastRow.forEach(square => {
+                if (!square.isRevealed) return;
+
+                const surroundingBombs = square.countSurroundingBombs();
+                if (surroundingBombs === 0) return;
+
+                square.displayBombCount(surroundingBombs);
+            });
+
+            this.rows = rowsToFit;
+
+            this.gameUI.displayBombsPlacedText(this.bombsPresent.value - oldBombsCount);
+        }
     }
 }
 

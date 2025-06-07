@@ -128,24 +128,6 @@ const GameUIHelpers = {
             });
         });
     },
-    async goToNextPanel() {
-        this.lastShownPanel = 'gameSettings';
-        
-        this.footerIconsContainer.classList.toggle('hide-icons');
-        this.socialsIcon.classList.toggle('show');
-        this.flagIcon.classList.toggle('show');
-
-        this.heroSection.style.opacity = '0';
-
-        await sleep(200);
-
-        this.heroSection.style.display = 'none';
-        this.gameSettings.style.display = 'flex';
-
-        await sleep(5);
-
-        this.gameSettings.style.opacity = '1';
-    }
 }
 
 export default GameUIHelpers;

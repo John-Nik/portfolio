@@ -3,6 +3,10 @@ import GameUI from "../GameUI/GameUI";
 import { sleep } from "../helpers";
 import SquareHelpers from "./SquareHelpers";
 
+export type SquaresArray = Square[] & {
+    elem?: HTMLDivElement;
+};
+
 class Square {
     isRevealed: boolean = false;
     hasBomb: boolean = false;
@@ -40,11 +44,6 @@ class Square {
 
     init() {
         this.hasBomb = Math.random() < this.gameBoard.difficulty;
-
-        if (this.hasBomb) {
-            this.gameBoard.bombsPresent.value++;
-        }
-
         this.createElem();
     }
 
@@ -55,21 +54,6 @@ class Square {
         square.classList.add('square');
         square.dataset.position = `${y}_${x}`;
         this.elem = square;
-    }
-
-    individualDig() {
-        const countedBombs = this.countSurroundingBombs();
-        this.isRevealed = true;
-        
-        if (countedBombs === 0) {
-            const surroundingSquares = this.getSurroundingSquares();
-            surroundingSquares.forEach(square => square.digSquare());
-        } else {
-            this.displayBombCount(countedBombs);
-        }
-
-        this.gameBoard.bombsPresent.value++;
-        this.elem.innerHTML = '';
     }
 
     floorRevealIfSafe() {
@@ -127,25 +111,25 @@ class Square {
 
         this.revealSquare();
 
-        const countedBombs = this.countSurroundingBombs()
-        
-        if (countedBombs !== 0) {
-            this.displayBombCount(countedBombs);
+        const surroundingBombs = this.countSurroundingBombs()
+
+        if (surroundingBombs !== 0) {
+            this.displayBombCount(surroundingBombs);
             return;
         }
         
         const surroundingSquares = this.getSurroundingSquares();
         surroundingSquares.forEach(square => {
-            const countedBombs = square.countSurroundingBombs();
+            const surroundingBombs = square.countSurroundingBombs();
 
-            if (countedBombs === 0 && !square.isFlagged) {
+            if (surroundingBombs === 0 && !square.isFlagged) {
                 square.digSquare();
                 return;
             }
 
             if (square.isFlagged) return;
 
-            square.displayBombCount(countedBombs);
+            square.displayBombCount(surroundingBombs);
             square.revealSquare();
         });
     }

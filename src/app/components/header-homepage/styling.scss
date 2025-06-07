@@ -24,7 +24,9 @@
                     .dead-smiley-wrapper {
                         display: none;
                         position: absolute;
-                        margin-top: 24px;
+                        // margin-top: 24px;
+                        height: 100%;
+                        align-items: center;
                         cursor: pointer;
                         z-index: 10;
                         
@@ -220,6 +222,10 @@
                    
                 .container {
                     justify-content: center;
+
+                    .dead-smiley-wrapper {
+                        align-items: center;
+                    }
         
                     .logo-container {
                         display: flex;
