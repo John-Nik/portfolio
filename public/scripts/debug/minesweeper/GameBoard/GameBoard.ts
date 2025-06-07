@@ -199,7 +199,7 @@ class GameBoard {
             if (randomSquare.countSurroundingBombs() === 0) {
                 refilterFlatBoard();
             }
-        }, 2500);
+        }, 750);
     }
 
     resetGameAutoplayBoard() {
