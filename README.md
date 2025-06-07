@@ -561,3 +561,5 @@
 **1.10.0:** Added the resize functionality of the minesweeper game, and updated the CV to include wargaming's certificate
 
 **1.10.1:** Reduced minesweeper autoplay interval
+
+**1.10.2:** Adjusted the minesweeper's autoplay interval again, and refactored the code in the TextContent.tsx component

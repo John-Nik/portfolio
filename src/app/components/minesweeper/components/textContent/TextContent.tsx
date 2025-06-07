@@ -1,86 +1,80 @@
 'use client';
 import { ReactElement, useRef, useEffect } from "react";
 import DownloadCVButton from "../../../buttons/DownloadCVButton";
+import Link from "next/link";
+import { sleep } from "../../../../../../public/scripts/minesweeper/helpers";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
+import { time } from "console";
 
 export default function TextContent(): ReactElement {
+    const isWritingChars = useRef<boolean>(false);
     const workTitle = useRef(null);
+    const timeInterval = 70;
+    const titles = [' a Front-End Devel', ' a Back-End Dev', ' a Full-Stack Developer'];
+
+    async function startWritingChars() {
+        isWritingChars.current = true;
+        let timeout: NodeJS.Timeout | null = null;
+
+        for (let i = 0; i < titles.length; i++) {
+            if (!isWritingChars.current) return; // this is used to stop the writing of characters. See implementation in useEffect
+
+            const title = titles[i];
+            let string = '';
+
+            while (string.length < title.length) {
+                const index = string.length;
+                
+                string += title[index];
+                workTitle.current.textContent = string + '|';
+
+                await sleep(timeInterval);
+            }
+
+            await sleep(500);
+            workTitle.current.textContent = string; // remove the last character (the pipe)
+            await sleep(500);
+
+            // if this is the last title, we stop reversing the string, and start blinking the pipe
+            if (i === titles.length - 1) {
+                workTitle.current.textContent = string + '|'; // add the pipe again
+
+                let shouldAddPipe = 0;
+
+                timeout = setInterval(async () => {
+                    workTitle.current.textContent = !!shouldAddPipe ? string + '|' : string;
+                    shouldAddPipe = (shouldAddPipe + 1) % 2; // toggle between 0 and 1
+                }, 500);
+
+                await sleep(2500);
+                clearInterval(timeout);
+                timeout = null;
+                return;
+            }
+
+            while (string !== '') {
+                string = string.slice(0, -1);
+                workTitle.current.textContent = string + '|';
+
+                await sleep(timeInterval);
+            }
+        }
+
+        isWritingChars.current = false;
+    }
 
     useEffect(() => {
-        const timer = 70;
-        const titles = [' a Front-End Devel', ' a Back-End Dev', ' a Full-Stack Developer'];
-        let arrayIndex = 0;
-        let charAtIndex = 0;
-        let strArr: string[] = [];
-        let addingChars = true;
-        let interval: NodeJS.Timeout;
-
         const homepageMinesweeper = document.querySelector('.is-minesweeper-playing-in-homepage');
         const aboutMePageMinesweeper = document.querySelector('.is-minesweeper-playing-in-about-page');
         
         homepageMinesweeper.innerHTML = '<div></div>';
         aboutMePageMinesweeper.innerHTML = '';
 
-        const updateTitle = (title: HTMLSpanElement) => (title.textContent = strArr.join(''));
-
-        function animateTitle(title: any) {
-            const currentTitle = titles[arrayIndex];
-
-            if (arrayIndex === titles.length - 1 && strArr.length === currentTitle.length + 1) {
-                clearInterval(interval);
-
-                const popChar = () => {
-                    strArr.pop();
-                    updateTitle(title);
-                    setTimeout(() => {
-                        strArr.push('|');
-                        updateTitle(title);
-                    }, 1000);
-                };
-
-                popChar();
-                let interval2 = setInterval(popChar, 2000);
-
-                setTimeout(() => {
-                    clearInterval(interval2);
-                    setTimeout(() => {
-                        strArr.pop();
-                        updateTitle(title);
-                    }, 1000);
-                }, 4000);
-                return;
-            }
-
-            if (addingChars) {
-                if (charAtIndex < currentTitle.length) {
-                    strArr.pop();
-                    strArr.push(currentTitle[charAtIndex], '|');
-                    updateTitle(title);
-                    charAtIndex++;
-                } else {
-                    clearInterval(interval);
-                    addingChars = false;
-                    setTimeout(() => {
-                        interval = setInterval(() => animateTitle(title), timer);
-                    }, 250);
-                }
-            } else {
-                if (charAtIndex === 2) {
-                    arrayIndex++;
-                    addingChars = true;
-                    return;
-                }
-                strArr.pop();
-                strArr.pop();
-                strArr.push('|');
-                updateTitle(title);
-                charAtIndex--;
-            }
-        }
-
-        interval = setInterval(() => animateTitle(workTitle.current), timer);
-
-        // Cleanup on unmount
-        return () => clearInterval(interval);
+        startWritingChars();
+        
+        return () => {
+            isWritingChars.current = false
+        };
     }, []);
 
     return (
@@ -90,11 +84,11 @@ export default function TextContent(): ReactElement {
                 <h1 className={'title'}>Giannis Nikolaou</h1>
                 <h2 className={'work'} ref={workTitle}></h2>
                 <div className={'buttons-container'}>
-                    <a href={'/contact.html'} className={'get-in-touch-button'}>
+                    <Link href={'/contact'} className={'get-in-touch-button'}>
                         <div className={'GIT-wrapper'}>
                             <span>Get in touch</span>
                         </div>
-                    </a>
+                    </Link>
                     <DownloadCVButton />
                     <button className={'show-settings-panel-button'}>
                         Start-Game
