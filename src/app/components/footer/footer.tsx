@@ -3,6 +3,7 @@ import CallIcon from '../icons-components/CallIcon';
 import EmailIcon from '../icons-components/EmailIcon';
 import GithubIcon from '../icons-components/GithubIcon';
 import { ReactElement } from 'react';
+import Link from 'next/link';
 
 export default function Footer({className} : {className?: string}): ReactElement {
     return ( 
@@ -12,13 +13,19 @@ export default function Footer({className} : {className?: string}): ReactElement
             </div>
             <ul className={'footer-links-container'}>
                 <li>
-                    <a href={'tel:0035799475294'}>+357 99475294</a>
+                    <Link href={'tel:0035799475294'}>
+                        +357 99475294
+                    </Link>
                 </li>
                 <li>
-                    <a href={'mailto:nikolaou.giannis@yahoo.com?subject=Cool website'}>nikolaou.giannis@yahoo.com</a>
+                    <Link href={'mailto:nikolaou.giannis@yahoo.com?subject=Cool website'}>
+                        nikolaou.giannis@yahoo.com
+                    </Link>
                 </li>
                 <li>
-                    <a href={'https://www.github.com/John-Nik'}>github.com/John-Nik</a>
+                    <Link href={'https://www.github.com/John-Nik'}>
+                        github.com/John-Nik
+                    </Link>
                 </li>
                 <li>
                     <CallIcon />

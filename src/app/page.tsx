@@ -4,23 +4,6 @@ import './components/minesweeper/minesweeper.scss';
 import { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
 
-const MinesweeperContainer = dynamic(() => import('./components/minesweeper/minesweeperContainer'));
-
-
-export default function page(): ReactElement {
-    return (
-        <>
-            <Header />
-
-            <main className={'homepage-body'}>
-                <MinesweeperContainer />
-            </main>
-            
-            <Footer />
-        </>
-    )
-}
-
 interface alternates {
     canonical: string
 }
@@ -37,4 +20,20 @@ export const metadata: metadataType = {
     alternates: {
         canonical: '/'
     },
+}
+
+const MinesweeperContainer = dynamic(() => import('./components/minesweeper/minesweeperContainer'));
+
+export default function page(): ReactElement {
+    return (
+        <>
+            <Header />
+
+            <main className={'homepage-body'}>
+                <MinesweeperContainer />
+            </main>
+            
+            <Footer />
+        </>
+    )
 }

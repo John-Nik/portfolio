@@ -3,6 +3,14 @@ import './global.scss';
 import { NextFontWithVariable } from 'next/dist/compiled/@next/font';
 import { ReactElement, ReactNode } from 'react';
 
+type viewPortType = {
+    width: string,
+    initialScale: number,
+    minimumScale: number,
+    viewportFit: string,
+    themeColor: string,
+    colorScheme: string
+}
 
 const zcoolFont: NextFontWithVariable = ZCOOL_QingKe_HuangYou({
     subsets: ['latin'],
@@ -44,15 +52,6 @@ export default function heads({ children }: {children: ReactNode}): ReactElement
     )
 }
 
-type viewPortType = {
-    width: string,
-    initialScale: number,
-    minimumScale: number,
-    viewportFit: string,
-    themeColor: string,
-    colorScheme: string
-}
-
 export const viewport: viewPortType = {
     width: 'device-width',
     initialScale: 1,
@@ -65,7 +64,9 @@ export const viewport: viewPortType = {
 export const metadata = {
     keywords: ['Portfolio', 'Giannis', 'Nikolaou', 'N.', 'NextJS', 'React', 'SCSS', 'Decap', 'CMS', 'Minesweeper', 'About', 'Contact', 'Me'],
     description: 'The portfolio of Giannis N. It was made using NextJS, React, SCSS, and Decap CMS',
-    authors: [{name: 'Giannis Nikolaou'}],
+    authors: [
+        { name: 'Giannis Nikolaou' }
+    ],
     creator: 'Giannis Nikolaou',
     metadataBase: new URL('https://john-nik.com'),
     openGraph: {

@@ -7,6 +7,7 @@ import SocialsIcon from '../icons-components/SocialsIcon';
 import FlagIcon from '../icons-components/FlagIcon';
 import { useEffect } from 'react';
 import { ReactElement } from 'react';
+import Link from 'next/link';
 
 export default function Footer(): ReactElement {
     useEffect((): void => {
@@ -24,13 +25,19 @@ export default function Footer(): ReactElement {
             
             <menu className={'footer-links-container'}>
                 <li>
-                    <a href={'tel:0035799475294'}>+357 99475294</a>
+                    <Link href={'tel:0035799475294'}>
+                        +357 99475294
+                    </Link>
                 </li>
                 <li>
-                    <a href={'mailto:nikolaou.giannis@yahoo.com?subject=Cool website'}>nikolaou.giannis@yahoo.com</a>
+                    <Link href={'mailto:nikolaou.giannis@yahoo.com?subject=Cool website'}>
+                        nikolaou.giannis@yahoo.com
+                    </Link>
                 </li>
                 <li>
-                    <a href={'https://www.github.com/John-Nik'}>github.com/John-Nik</a>
+                    <Link href={'https://www.github.com/John-Nik'}>
+                        github.com/John-Nik
+                    </Link>
                 </li>
                 <li className={'phone-icon-wrapper'}>
                     <CallIcon />

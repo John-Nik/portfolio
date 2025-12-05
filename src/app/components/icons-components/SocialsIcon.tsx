@@ -10,7 +10,20 @@ export default function SocialsIcon(): ReactElement {
         toggleBackground.classList.toggle('open');
     }
 
+    function handleKeyDown(e: React.KeyboardEvent<HTMLImageElement>): void {
+        if (e.key !== "Enter") return;
+        userTriggersSocialsMenu();
+    }
+
     return (
-        <img tabIndex={0} role="button" className={'socials-icon'} onClick={userTriggersSocialsMenu} onKeyDown={(e) => {if (e.key === "Enter") { userTriggersSocialsMenu() }}} src="/icons/socials.svg" alt="" />
+        <img
+            tabIndex={0}
+            role="button"
+            className={'socials-icon'}
+            onClick={userTriggersSocialsMenu}
+            onKeyDown={handleKeyDown}
+            src="/icons/socials.svg"
+            alt=""
+        />
     )
 }

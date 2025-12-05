@@ -7,16 +7,23 @@ export default function Content(): ReactElement {
         <>
             <div className={'bombs-placed-container'}>
                 <div className={'wrapper'}>
-                    <span className={'bombs-placed-title'}>// Bombs Placed</span>
-                    <span className={'bombs-placed-text'}>// 465</span>
+                    <span className={'bombs-placed-title'}>
+                        // Bombs Placed
+                    </span>
+                    <span className={'bombs-placed-text'}>
+                        // 465
+                    </span>
                 </div>
             </div>
+
             <div id={'content'}>
                 <div className={'container'}>
-
                     <TextContent />
 
-                    <div className={'user-initiated-game-start'} aria-hidden={'true'}></div>
+                    <div
+                        className={'user-initiated-game-start'}
+                        aria-hidden={'true'}
+                    />
 
                     <GameSettings />
                 </div>

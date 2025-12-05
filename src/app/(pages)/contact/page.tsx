@@ -11,16 +11,19 @@ export default function() {
     return (
         <>
             <Header />
+
             <main id={'contact-me-main'}>
                 <Sidebar />
+
                 <div className={'main-content-container'}>
                     <div className={'content-wrapper'}>
                         <div className={'title-wrapper'}>
                             <h1>// ContactMe</h1>
                         </div>
+
                         <div className={'form-container'}>
-                        <FormWrapper />
-                        <CodeWrapper />
+                            <FormWrapper />
+                            <CodeWrapper />
                         </div>
                     </div>
                 </div>

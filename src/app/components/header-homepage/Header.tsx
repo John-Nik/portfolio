@@ -50,32 +50,66 @@ export default function Header(): ReactElement {
             <nav>
                 <div className={'container'}>
                     <div className={'logo-container'}>
-                        <span className={'logo'}>Giannis</span>
+                        <span className={'logo'}>
+                            Giannis
+                        </span>
                     </div>
 
-                    <div onClick={startGame} className={'dead-smiley-wrapper'}>
-                        <img onClick={startGame} src='/icons/dead-smiley.png' />
+                    <div
+                        onClick={startGame}
+                        className={'dead-smiley-wrapper'}
+                    >
+                        <img
+                            onClick={startGame}
+                            src='/icons/dead-smiley.png'
+                        />
                     </div>
 
                     <menu className={navMenuState === 1 ? 'open-menu' : ''}>
                         <li>
-                            <Link href="/" className={pathname === '/' || '' ? 'activeLink' : ''}>home</Link>
+                            <Link
+                                href="/"
+                                className={pathname === '/' || '' ? 'activeLink' : ''}
+                            >
+                                home
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/about" className={pathname === '/about' ? 'activeLink' : ''}>aboutMe</Link>
+                            <Link
+                                href="/about"
+                                className={pathname === '/about' ? 'activeLink' : ''}
+                            >
+                                aboutMe
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/portfolio" onClick={turnOffMinesweeperGames} className={pathname.includes('/portfolio') ? 'activeLink' : ''}>portfolio</Link>
+                            <Link
+                                href="/portfolio"
+                                onClick={turnOffMinesweeperGames}
+                                className={pathname.includes('/portfolio') ? 'activeLink' : ''}
+                            >
+                                portfolio
+                            </Link>
                         </li>
                         <li>
-                            <Link href="/contact" onClick={turnOffMinesweeperGames} className={pathname === '/contact' ? 'activeLink' : ''}>contactMe</Link>
+                            <Link
+                                href="/contact"
+                                onClick={turnOffMinesweeperGames}
+                                className={pathname === '/contact' ? 'activeLink' : ''}
+                            >
+                                contactMe
+                            </Link>
                         </li>
                     </menu>
+
                     <div className={'burger-icon-wrapper'}>
-                        <div className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`} onClick={triggerNavMenu}>
-                            <div className={'line1'}></div>
-                            <div className={'line2'}></div>
-                            <div className={'line3'}></div>
+                        <div
+                            className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`}
+                            onClick={triggerNavMenu}
+                        >
+                            <div className={'line1'} />
+                            <div className={'line2'} />
+                            <div className={'line3'} />
                         </div>
                     </div>
                 </div>

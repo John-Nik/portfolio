@@ -1,12 +1,15 @@
-'use client';
-import { ReactElement } from "react";
+import Link from "next/link";
 
-export default function CallIcon(): ReactElement {
-    function userWantsCall(): void {
-        window.location.href = 'tel:0035799475294';
-    }
-
+export default async function CallIcon() {
     return (
-        <img tabIndex={0} role="button" className={'phone-icon icon'} onClick={userWantsCall} onKeyDown={(e) => {if (e.key === "Enter" || e.key === " ") { userWantsCall() }}} src="/icons/phone.svg" alt="" />
+        <Link href="tel:0035799475294">
+            <img
+                tabIndex={0}
+                role="button"
+                className={'phone-icon icon'}
+                src="/icons/phone.svg"
+                alt=""
+            />
+        </Link>
     )
 }
