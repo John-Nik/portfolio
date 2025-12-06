@@ -1,4 +1,4 @@
-@import 'src/app/color-scheme.scss';
+@import './color-scheme.scss';
 
 * {
     margin: 0;
@@ -38,7 +38,7 @@
 
 @media only screen and (min-width: 1200px) {
     body {
-        
+
         main {
             margin-top: 90px;
         }

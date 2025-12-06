@@ -12,16 +12,16 @@ export default function page() {
         <>
             <Header />
 
-            <main id={'contact-me-main'}>
+            <main id="contact-me-main">
                 <Sidebar />
 
-                <div className={'main-content-container'}>
-                    <div className={'content-wrapper'}>
-                        <div className={'title-wrapper'}>
+                <div className="main-content-container">
+                    <div className="content-wrapper">
+                        <div className="title-wrapper">
                             <h1>// ContactMe</h1>
                         </div>
 
-                        <div className={'form-container'}>
+                        <div className="form-container">
                             <FormWrapper />
                             <CodeWrapper />
                         </div>

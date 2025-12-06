@@ -1,5 +1,5 @@
 'use client';
-import { ReactElement } from "react";
+import { ReactElement } from 'react';
 
 export default function SocialsIcon(): ReactElement {
     function userTriggersSocialsMenu(): void {
@@ -11,7 +11,7 @@ export default function SocialsIcon(): ReactElement {
     }
 
     function handleKeyDown(e: React.KeyboardEvent<HTMLImageElement>): void {
-        if (e.key !== "Enter") return;
+        if (e.key !== 'Enter') return;
         userTriggersSocialsMenu();
     }
 
@@ -19,11 +19,11 @@ export default function SocialsIcon(): ReactElement {
         <img
             tabIndex={0}
             role="button"
-            className={'socials-icon'}
+            className="socials-icon"
             onClick={userTriggersSocialsMenu}
             onKeyDown={handleKeyDown}
             src="/icons/socials.svg"
             alt=""
         />
-    )
+    );
 }

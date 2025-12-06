@@ -1,6 +1,6 @@
 'use client';
-import { useEffect } from "react";
-import Konva from "konva";
+import { useEffect } from 'react';
+import Konva from 'konva';
 
 export default function() {
 
@@ -18,14 +18,12 @@ export default function() {
         let interval;
         let droppedSquares = 0;
 
-
-
-        // define the canvas stage and layers
+        // Define the canvas stage and layers
         let canvasStage = new Konva.Stage({
             container: 'background-game',
             width: canvasWidth,
             height: canvasHeight * 2.2
-        })
+        });
 
         let backgroundLayer = new Konva.Layer({ listening: false });
         let animLayer = new Konva.Layer({ listening: false });
@@ -40,7 +38,7 @@ export default function() {
             position: [Y: number, X: number];
             Square: Konva.Group;
 
-            constructor (position: [Y: number, X: number]) {
+            constructor(position: [Y: number, X: number]) {
                 this.isRevealed = false;
                 this.hasBomb = false;
                 this.isFlagged = false;
@@ -48,12 +46,12 @@ export default function() {
 
                 if (Math.random() < 0.3) this.hasBomb = true;
 
-                this.drawSquare()
+                this.drawSquare();
             }
 
             private drawSquare() {
-                let [Y, X] = this.position;
-                let square = new Konva.Rect({
+                const [Y, X] = this.position;
+                const square = new Konva.Rect({
                     x: 0,
                     y: 0,
                     width: squareWidth,
@@ -64,28 +62,28 @@ export default function() {
                     shadowForStrokeEnabled: false,
                     perfectDrawEnabled: false,
                     hitStrokeWidth: 0
-                })
+                });
 
-                let lighting = new Konva.Line({
+                const lighting = new Konva.Line({
                     x: 2,
                     y: 32,
                     stroke: '#ffffff1a',
                     strokeWidth: 2,
                     points: [0, 0, 0, -30, 30, -30]
-                })
+                });
 
-                let shadows = new Konva.Line({
+                const shadows = new Konva.Line({
                     x: 4,
                     y: 31,
                     stroke: '#03030380',
                     strokeWidth: 1,
                     points: [0, 0, 28, 0, 28, -31]
-                })
+                });
 
                 this.Square = new Konva.Group({
                     x: X * squareWidth,
                     y: Y * squareHeight
-                })
+                });
 
 
                 this.Square.add(square);
@@ -105,7 +103,7 @@ export default function() {
                 if (this.isRevealed) return;
 
                 
-                let bombsCounted = this.countBombs();
+                const bombsCounted = this.countBombs();
                 if (bombsCounted === 0) {
                     this.Square.destroy();
                     this.revealNeighboringSquares();
@@ -127,15 +125,15 @@ export default function() {
                         y: this.Square.children[0].attrs.height / 5,
                         width: squareWidth / 1.5,
                         height: squareWidth / 1.5
-                    })
+                    });
 
                     this.Square.add(image);
-                })
+                });
                 return;
             }
 
             private revealSquare(bombsCounted: number) {
-                let textColor = ['#26D980', '#62D926', '#269DD9', '#4426D9', '#D926D9', '#D9BB26', '#D98026', '#D92644'];
+                const textColor = ['#26D980', '#62D926', '#269DD9', '#4426D9', '#D926D9', '#D9BB26', '#D98026', '#D92644'];
 
                 this.isRevealed = true;
 
@@ -145,7 +143,7 @@ export default function() {
 
                 if (bombsCounted === 0) return;
                 
-                let numberOfBombs = new Konva.Text({
+                const numberOfBombs = new Konva.Text({
                     x: 0,
                     y: 2,
                     width: this.Square.children[0].attrs.width,
@@ -156,14 +154,14 @@ export default function() {
                     align: 'center',
                     verticalAlign: 'middle',
                     fontStyle: '500'
-                })
+                });
                 
                 this.Square.add(numberOfBombs);
                 return;
             }
 
             private revealNeighboringSquares() {
-                let surroundingSquares = this.getSurroundingSquaresAboutMePage();
+                const surroundingSquares = this.getSurroundingSquaresAboutMePage();
 
                 this.revealSquare(0);
 
@@ -171,37 +169,37 @@ export default function() {
                     square.digSquare();
                 });
 
-                flatMatrix = []; //reset the flat matrix
+                flatMatrix = []; //Reset the flat matrix
                 matrix.forEach((line) => {
                     line.forEach((square: square) => {
                         if (square.isRevealed) return;
                         if (square.isFlagged) return;
 
                         flatMatrix.push(square);
-                    })
-                })
+                    });
+                });
                 return;
             }
 
             private countBombs() {
                 let bombsCounted = 0;
-                let surroundingSquares = this.getSurroundingSquaresAboutMePage();
+                const surroundingSquares = this.getSurroundingSquaresAboutMePage();
             
                 surroundingSquares.forEach((square) => {
                     if (square.hasBomb) {
                         bombsCounted++;
                     }
-                })
+                });
             
                 return bombsCounted;
             }
 
             private dropSquare() {
                 droppedSquares++;
-                let randomPixels = Math.floor(Math.random() * canvasStage.height() / 2);
+                const randomPixels = Math.floor(Math.random() * canvasStage.height() / 2);
                 let endGoal = randomPixels + canvasStage.height() / 2.2;
-                let startPosition = this.Square.y();
-                let timeToAnim = droppedSquares > 100 ? 4000 : 2300;
+                const startPosition = this.Square.y();
+                const timeToAnim = droppedSquares > 100 ? 4000 : 2300;
 
                 if (droppedSquares > 100) {
                     endGoal = canvasStage.height();
@@ -214,29 +212,29 @@ export default function() {
                 setTimeout(() => {
                     animation.stop();
                     if (droppedSquares > 100) this.Square.destroy();
-                }, timeToAnim)
+                }, timeToAnim);
 
-                let animation = new Konva.Animation((frame) => {
-                    let time = frame.time / (timeToAnim / 1000);
+                const animation = new Konva.Animation((frame) => {
+                    const time = frame.time / (timeToAnim / 1000);
 
                     this.Square.y(bezier(time / 1000, startPosition, endGoal, endGoal, endGoal));
                 }, animLayer);
 
                 setTimeout(() => {
                     animation.start();
-                }, Math.random() * 50)
+                }, Math.random() * 50);
             }
 
             private getSurroundingSquaresAboutMePage() {
-                let surroundingSquares = [];
-                let [Y, X] = this.position;
+                const surroundingSquares = [];
+                const [Y, X] = this.position;
             
                 for (let i = -1; i < 2; i++) {
                     if (matrix[Number(Y) + Number(i)] != undefined) {
                         for (let j = -1; j < 2; j++) {
                             if (matrix[Number(Y) + Number(i)][Number(X) + Number(j)] != undefined) {
                                 if (Number(Y) + Number(i) != Y || Number(X) + Number(j) != X) {
-                                    surroundingSquares.push( matrix[Number(Y) + Number(i)][Number(X) + Number(j)] )
+                                    surroundingSquares.push( matrix[Number(Y) + Number(i)][Number(X) + Number(j)] );
                                 }
                             }
                         }
@@ -257,7 +255,7 @@ export default function() {
                 for (let i = 0; i <= canvasColumns; i++) {
                     row.push(new square([rowIndex, i]));
                 }
-            })
+            });
         }
 
 
@@ -277,10 +275,10 @@ export default function() {
             canvasStage.width(canvasWidth);
 
             if (canvasLines < Math.floor(canvasHeight / squareSize)) {
-                let dY = Math.floor(canvasHeight / squareSize) - canvasLines;
+                const dY = Math.floor(canvasHeight / squareSize) - canvasLines;
 
                 for (let i = 0; i < dY; i++) {
-                    let row = [];
+                    const row = [];
                     for (let j = 0; j < canvasColumns; j++) {
                         row.push(new square([canvasLines + i, j]));
                     }
@@ -293,18 +291,18 @@ export default function() {
             }
         
             if (canvasColumns < Math.floor(canvasWidth / squareSize)) {
-                let dX = Math.floor(canvasWidth / squareSize) - canvasColumns;
+                const dX = Math.floor(canvasWidth / squareSize) - canvasColumns;
 
                 matrix.forEach((row, rowIndex) => {
                     for (let i = 0; i <= dX; i++) {
                         row.push(new square([rowIndex, i + canvasColumns]));
                     }
-                })
+                });
 
                 canvasColumns += dX;
                 flatMatrix = matrix.flat();
             }
-        })
+        });
         resizeObserver.observe(canvasElement);
 
 
@@ -313,7 +311,7 @@ export default function() {
 
         interval = setInterval(autoplayGame, 1500);
         function autoplayGame() {
-            let randomNumber = Math.floor(Math.random() * flatMatrix.length);
+            const randomNumber = Math.floor(Math.random() * flatMatrix.length);
 
             if (flatMatrix.length === 0) {
                 clearInterval(interval);
@@ -345,15 +343,18 @@ export default function() {
             droppedSquares = null;
             resizeObserver.disconnect();
             initialPopulation = null;
-        }
-    }, [])
+        };
+    }, []);
 
 
 
 
     return (
         <>
-            <div aria-hidden="true" id={'background-game'} />
+            <div
+                aria-hidden="true"
+                id="background-game"
+            />
         </>
-    )
+    );
 }

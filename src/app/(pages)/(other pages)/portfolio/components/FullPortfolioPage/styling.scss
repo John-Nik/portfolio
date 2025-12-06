@@ -1,4 +1,4 @@
-@import 'src/app/color-scheme.scss';
+@import '../../../../../color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
     .full-page-project {
@@ -36,7 +36,7 @@
         h5 {
             font-size: 0.9rem;
         }
-        
+
         h6 {
             font-size: 0.9rem;
             font-weight: 300;
@@ -48,7 +48,7 @@
         ul {
             margin-bottom: 64px;
         }
-    
+
         .container {
             margin-top: 64px;
             width: 100%;
@@ -57,10 +57,10 @@
             align-items: center;
             flex-direction: column;
         }
-    
+
         .full-page-card {
             max-width: 1480px;
-    
+
             h2 {
                 opacity: 0 !important;
             }
@@ -74,7 +74,7 @@
                 transform: scale(1.13);
             }
         }
-    
+
         .item-container {
             transition: box-shadow 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955), transform 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955);
             width: 100%;
@@ -126,12 +126,12 @@
             display: flex;
             justify-content: center;
         }
-    
+
         .text-wrapper {
             width: 100%;
             max-width: 600px;
             padding: 0px 24px;
-    
+
             .body {
                 color: white;
                 font-family: var(--fira-code);
@@ -148,14 +148,14 @@
                     margin-bottom: 16px;
                     opacity: 0.9;
                 }
-    
+
                 p {
                     font-size: 1.5rem;
                     margin-top: 24px;
                 }
             }
         }
-    
+
         .title {
             padding: 0px;
             margin-top: 32px;

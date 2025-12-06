@@ -1,17 +1,21 @@
-'use client'
-import Header from "./components/header/Header";
-import Footer from "./components/footer/footer";
-import Image from "next/image";
-import './not-found.scss'
-import { useRouter } from "next/navigation";
-import { metadataType } from "./page";
+'use client';
+import Header from './components/header/Header';
+import Footer from './components/footer/footer';
+import Image from 'next/image';
+import './not-found.scss';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Custom404() {
     const router = useRouter();
 
-    setTimeout(() => {
-        router.push('/');
-    }, 5000)
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            router.push('/');
+        }, 5000);
+
+        return () => clearTimeout(timer);
+    }, [router]);
 
     return (
         <>
@@ -25,14 +29,10 @@ export default function Custom404() {
                     width="150"
                     priority={true}
                 />
-                <h1 style={{color: 'white'}}>Page Not Found</h1>
+                <h1 style={{ color: 'white' }}>Page Not Found</h1>
             </main>
 
             <Footer />
         </>
-    )
-}
-
-export const metadata: metadataType = {
-    title: 'Giannis N. | Page Not Found'
+    );
 }

@@ -1,17 +1,16 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-    swcMinify: true,
     reactStrictMode: true,
-    webpack: (cfg) => {
-        cfg.module.rules.push(
-            {
-                test: /\.md$/,
-                loader: 'frontmatter-markdown-loader'
-            }
-        )
-        return cfg
+    turbopack: {
+        rules: {
+            '*.md': {
+                loaders: ['frontmatter-markdown-loader'],
+                as: '*.js',
+            },
+        },
     },
+    // eslint-disable-next-line require-await
     async headers() {
         return [
             {
@@ -23,7 +22,7 @@ const nextConfig = {
                     }
                 ]
             }
-        ]
+        ];
     },
     experimental: {
         serverActions: {
@@ -32,6 +31,6 @@ const nextConfig = {
             serverActions: true
         }
     }
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

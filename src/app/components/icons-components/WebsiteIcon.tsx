@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function WebsiteIcon({
     link = 'no-link',
@@ -16,11 +16,11 @@ export default function WebsiteIcon({
             <img 
                 tabIndex={0}
                 role="button"
-                className={'website-icon icon'}
+                className="website-icon icon"
                 title={`Visit ${link}`}
                 src="/icons/website.svg"
                 alt={`redirect to ${link}`}
             />
         </Link>
-    )
+    );
 }

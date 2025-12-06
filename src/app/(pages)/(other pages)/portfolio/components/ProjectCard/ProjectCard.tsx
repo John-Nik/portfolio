@@ -28,7 +28,7 @@ export default function ProjectCard({ project, children, projectIndex }: { proje
     }
 
     return (
-        <div className={'item-container'}>
+        <div className="item-container">
             {children}
 
             <div 
@@ -36,10 +36,10 @@ export default function ProjectCard({ project, children, projectIndex }: { proje
                 role="button"
                 onKeyDown={handleKeyDown}
                 onClickCapture={handleClick}
-                className={'card'}
+                className="card"
             >
                 <Image 
-                    className={'background'}
+                    className="background"
                     src={`/${project.attributes.img}`}
                     width={376}
                     height={376}
@@ -54,9 +54,10 @@ export default function ProjectCard({ project, children, projectIndex }: { proje
                     }}
                     alt={`${project.attributes.title} Profile Picture`}
                 />
+
                 <h2>{project.attributes.title}</h2>
 
-                <div className={'icons-wrapper'}>
+                <div className="icons-wrapper">
                     {isEnabled.current ? 
                         <>
                             <WebsiteIcon link={project.attributes.siteLink} />

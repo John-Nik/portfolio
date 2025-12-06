@@ -139,7 +139,7 @@ export default function FormWrapper(): ReactElement {
     }
 
     return (
-        <div className={'form-wrapper'}>
+        <div className="form-wrapper">
             <form
                 className="form"
                 onSubmit={handleSubmit}
@@ -153,7 +153,7 @@ export default function FormWrapper(): ReactElement {
                     value="contact"
                 />
 
-                <div className={'form-input-box'}>
+                <div className="form-input-box">
                     <label htmlFor="fname">Name</label>
                     <br />
                     <input
@@ -167,7 +167,7 @@ export default function FormWrapper(): ReactElement {
                     />
                 </div>
 
-                <div className={'form-input-box'}>
+                <div className="form-input-box">
                     <label htmlFor="femail">Email</label>
                     <br />
                     <input
@@ -186,7 +186,7 @@ export default function FormWrapper(): ReactElement {
                     />
                 </div>
 
-                <div className={'form-input-box'}>
+                <div className="form-input-box">
                     <label htmlFor="fmessage">Message</label>
                     <br />
                     <textarea
@@ -213,7 +213,7 @@ export default function FormWrapper(): ReactElement {
                             removeCharactersFromInputs();
                         }}
                         disabled={state.submitting}
-                        className={'start-game-button'}
+                        className="start-game-button"
                     />
                     <span
                         className="thankYou"

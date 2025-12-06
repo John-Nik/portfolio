@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function EmailIcon() {
     return (
@@ -6,10 +6,10 @@ export default function EmailIcon() {
             <img
                 tabIndex={0}
                 role="button"
-                className={'email-icon icon'}
+                className="email-icon icon"
                 src="/icons/email.svg"
                 alt=""
             />
         </Link>
-    )
+    );
 }

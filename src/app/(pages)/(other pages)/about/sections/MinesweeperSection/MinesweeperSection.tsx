@@ -1,19 +1,20 @@
+/* eslint-disable @stylistic/jsx-child-element-spacing */
 'use client';
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from 'react';
 import './styling.scss';
 import Script from 'next/script';
 import './minesweeper.scss';
 import { useInView } from 'react-intersection-observer';
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 
-const Canvas = dynamic(() => import('./Canvas'))
+const Canvas = dynamic(() => import('./Canvas'));
 
 interface Direction {
     direction: 'DOWN' | 'UP';
 }
 
 export default function MinesweeperSection() {
-    const [exitPosition, setExitPosition] = useState<Direction>({direction: 'DOWN'});
+    const [exitPosition, setExitPosition] = useState<Direction>({ direction: 'DOWN' });
     const [ref] = useInView({
         threshold: 0.3,
         onChange: (isVisible, intersectionObject) => {
@@ -37,16 +38,16 @@ export default function MinesweeperSection() {
             }
 
             if (viewportOffset < 0) {
-                setExitPosition({direction: 'UP'});
+                setExitPosition({ direction: 'UP' });
             } else {
-                setExitPosition({direction: 'DOWN'});
+                setExitPosition({ direction: 'DOWN' });
             }    
         }
-    })
+    });
     const [canvasRef, inView] = useInView({
         threshold: 0.3,
         triggerOnce: true
-    }) 
+    }); 
 
     useEffect((): ()=>void => {
         const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
@@ -56,28 +57,44 @@ export default function MinesweeperSection() {
             if (element[0].isIntersecting) {
                 element[0].target.classList.add('show');
             }
-        })
-
+        });
 
         aboutMePageMinesweeper.innerHTML = '<div></div>';
-        homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
+
+        if (aboutMePageMinesweeper !== null) {
+            homepageMinesweeper.innerHTML = '';
+        }
 
         textContentObserver.observe(textContent);
 
         return () => {
             textContentObserver.unobserve(textContent);
-        }
-    }, [])
+        };
+    }, []);
 
     return (
-        <section id={'minesweeper-section'} ref={canvasRef}>
+        <section
+            id="minesweeper-section"
+            ref={canvasRef}
+        >
             {inView && <Canvas />}
 
-            <div className={'text-content'}>
-                <p lang="en-us" className={'hyphenate'} ref={ref}>I had found myself in a situation that pushed me to learn web development. <span className={'break-line'}></span>Without knowing, this experience ignited a passion within me for the whole process, from building simple HTML to learning complex algorithms, connecting backend with frontend, figuring how networks work and setting them up, all in the efforts of continually seeking <span className={'colored-text'}>more</span> knowledge, <span className={'colored-text'}>more</span> challenges, <span className={'colored-text'}>more</span> unknowns, leading to <span className={'colored-text'}>more proficiency</span> in the field.</p>
+            <div className="text-content">
+                <p
+                    lang="en-us"
+                    className="hyphenate"
+                    ref={ref}
+                >
+                    I had found myself in a situation that pushed me to learn web development. 
+                    <span className="break-line" />
+                    Without knowing, this experience ignited a passion within me for the whole process, from building simple HTML to learning complex algorithms, connecting backend with frontend, figuring how networks work and setting them up, all in the efforts of continually seeking <span className="colored-text">more</span> knowledge, <span className="colored-text">more</span> challenges, <span className="colored-text">more</span> unknowns, leading to <span className="colored-text">more proficiency</span> in the field.
+                </p>
             </div>
             
-            <Script src="scripts/handle-about-me-minesweeper-section-text-screen-resize.js" strategy="lazyOnload" />
+            <Script
+                src="scripts/handle-about-me-minesweeper-section-text-screen-resize.js"
+                strategy="lazyOnload"
+            />
         </section>
-    )
+    );
 }

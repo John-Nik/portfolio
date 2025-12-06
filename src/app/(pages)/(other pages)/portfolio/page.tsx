@@ -9,10 +9,10 @@ export default async function page() {
 
     return (
         <main>
-            <section className={'portfolio-page-section'}>
-                <div className={'container'}>
-                    <h1 className={'title'}>// Portfolio</h1>
-                    <div className={'cards-container'}>
+            <section className="portfolio-page-section">
+                <div className="container">
+                    <h1 className="title">// Portfolio</h1>
+                    <div className="cards-container">
                         <CardsGridContainer projects={projects} />
                     </div>
                 </div>

@@ -31,8 +31,8 @@ export default function CardsGridContainer({ projects}: { projects: ReactNode[] 
         <>
             <div className="project-card-container">
                 <Image
-                    className={'background'}
-                    src={'/images/globe-perf.webp'}
+                    className="background"
+                    src="/images/globe-perf.webp"
                     width={310}
                     height={224}
                     priority={true}
@@ -46,7 +46,7 @@ export default function CardsGridContainer({ projects}: { projects: ReactNode[] 
                         filter: 'brightness(0.8)',
                         objectFit: 'cover',
                     }}
-                    alt={'Globe-Perf preview picture'}
+                    alt="Globe-Perf preview picture"
                     onKeyDown={(e) => handleKeyDown(e, '/portfolio/globe-perf')}
                     onClickCapture={() => redirect('/portfolio/globe-perf')}
                     onMouseEnter={() => adjustGlobeBrightness('normal')}
@@ -56,8 +56,8 @@ export default function CardsGridContainer({ projects}: { projects: ReactNode[] 
                 <div className="content">
                     <h2>Globe-Perf</h2>
                     <div className="icons-container">
-                        <WebsiteIcon link={'no-link'} />
-                        <GithubIcon link={'https://www.github.com/John-Nik/Globe-perf'} />
+                        <WebsiteIcon link="no-link" />
+                        <GithubIcon link="https://www.github.com/John-Nik/Globe-perf" />
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@ export default function CardsGridContainer({ projects}: { projects: ReactNode[] 
                             key={projectIndex}
                         >
                             <Image
-                                className={'background'}
+                                className="background"
                                 src={`/${project.attributes.img}`}
                                 width={310}
                                 height={224}

@@ -30,7 +30,7 @@ export default function Header(): ReactElement {
             setTimeout(() => {
                 textContentWrapper.style.display = 'none';
                 gameControlPanel.style.display = 'none';
-            }, 500)
+            }, 500);
         }
 
 
@@ -41,27 +41,32 @@ export default function Header(): ReactElement {
         const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
         const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
 
-        homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
-        aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
+        if (homepageMinesweeper !== null) {
+            homepageMinesweeper.innerHTML = '';
+        }
+
+        if (aboutMePageMinesweeper !== null) {
+            aboutMePageMinesweeper.innerHTML = '';
+        }
     }
 
     return (
-        <header className={'header-navigation'}>
+        <header className="header-navigation">
             <nav>
-                <div className={'container'}>
-                    <div className={'logo-container'}>
-                        <span className={'logo'}>
+                <div className="container">
+                    <div className="logo-container">
+                        <span className="logo">
                             Giannis
                         </span>
                     </div>
 
                     <div
                         onClick={startGame}
-                        className={'dead-smiley-wrapper'}
+                        className="dead-smiley-wrapper"
                     >
                         <img
                             onClick={startGame}
-                            src='/icons/dead-smiley.png'
+                            src="/icons/dead-smiley.png"
                         />
                     </div>
 
@@ -102,18 +107,18 @@ export default function Header(): ReactElement {
                         </li>
                     </menu>
 
-                    <div className={'burger-icon-wrapper'}>
+                    <div className="burger-icon-wrapper">
                         <div
                             className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`}
                             onClick={triggerNavMenu}
                         >
-                            <div className={'line1'} />
-                            <div className={'line2'} />
-                            <div className={'line3'} />
+                            <div className="line1" />
+                            <div className="line2" />
+                            <div className="line3" />
                         </div>
                     </div>
                 </div>
             </nav>
         </header>
-    )
+    );
 }

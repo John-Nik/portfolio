@@ -25,11 +25,11 @@ export default function Header(): ReactElement {
     return (
         <header>
             <nav>
-                <div className={'container'}>
-                    <div className={'logo-container'}>
+                <div className="container">
+                    <div className="logo-container">
                         <span
                             onClick={() => router.push('/')}
-                            className={'logo'}
+                            className="logo"
                         >
                             Giannis
                         </span>
@@ -41,7 +41,7 @@ export default function Header(): ReactElement {
                                 href="/"
                                 className={pathname === '/' || '' ? 'activeLink' : ''}
                             >
-                                    home
+                                home
                             </Link>
                         </li>
                         <li>
@@ -72,18 +72,18 @@ export default function Header(): ReactElement {
                         </li>
                     </menu>
                     
-                    <div className={'burger-icon-wrapper'}>
+                    <div className="burger-icon-wrapper">
                         <div
                             className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`}
                             onClick={triggerNavMenu}
                         >
-                            <div className={'line1'} />
-                            <div className={'line2'} />
-                            <div className={'line3'} />
+                            <div className="line1" />
+                            <div className="line2" />
+                            <div className="line3" />
                         </div>
                     </div>
                 </div>
             </nav>
         </header>
-    )
+    );
 }

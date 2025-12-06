@@ -51,15 +51,15 @@ export default function FullPortfolioPage({ projects }): ReactNode {
 
     return (
         <main>
-            <section className={'full-page-project'}>
-                <div className={'container full-page-card'}>
+            <section className="full-page-project">
+                <div className="container full-page-card">
                     <div className="card-wrapper">
                         <div
                             tabIndex={0}
                             role="button"
                             onKeyDown={handleKeyDown}
                             onClick={sendToPortfolioPage}
-                            className={'back-arrow'}
+                            className="back-arrow"
                         >
                             <Image
                                 src="/icons/back-arrow.svg"
@@ -72,10 +72,10 @@ export default function FullPortfolioPage({ projects }): ReactNode {
                         <ProjectCard project={dataToPull[0]} />
                     </div>
 
-                    <div className={'text-wrapper'}>
-                        <h1 className={'title'}>// {projectAttributes.name}</h1>
+                    <div className="text-wrapper">
+                        <h1 className="title">// {projectAttributes.name}</h1>
                         <div
-                            className={'body'}
+                            className="body"
                             dangerouslySetInnerHTML={{ __html: dataToPull[0].html }}
                         />
                     </div>

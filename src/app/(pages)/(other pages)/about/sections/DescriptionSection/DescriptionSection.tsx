@@ -56,10 +56,12 @@ export default function DescriptionSection() {
     }, []);
 
     return (
-        <section id={'description-section'}>
-            <div className={'container'}>
-                <div className={'text-content'}>
-                    <p ref={ref}>I am all about <span className={'colored-text'}>non-stop learning,</span> whether I am tackling difficult subjects or understanding simple concepts</p>
+        <section id="description-section">
+            <div className="container">
+                <div className="text-content">
+                    <p ref={ref}>
+                        I am all about <span className="colored-text">non-stop learning,</span> whether I am tackling difficult subjects or understanding simple concepts
+                    </p>
                 </div>
             </div>
         </section>

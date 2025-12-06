@@ -1,4 +1,4 @@
-@import 'src/app/color-scheme.scss';
+@import '../../../../../color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
     #introduction {
@@ -9,14 +9,14 @@
         max-height: 800px;
         align-items: flex-start;
         justify-content: center;
-    
+
         .container {
             display: flex;
             width: 100%;
             max-width: 1480px;
             flex-direction: column;
             margin-top: 96px;
-    
+
             .title {
                 color: $tint-2;
                 font-size: clamp(3.125rem, 6vw, 4rem);
@@ -25,14 +25,14 @@
                 font-weight: 400;
                 padding: 0px 24px;
             }
-    
+
             .about-me-wrapper {
                 display: flex;
                 width: 100%;
                 align-items: center;
                 flex-direction: column;
                 font-family: var(--fira-code);
-    
+
                 .about-me {
                     color: white;
                     font-size: clamp(1.625rem, 3.4vw, 3rem);
@@ -41,7 +41,7 @@
                     font-weight: 300;
                     padding: 0 32px;
                 }
-    
+
                 .smalltext {
                     color: $tint-1;
                     font-size: clamp(1rem, 1.5vw, 1.5rem);
@@ -51,7 +51,7 @@
             }
         }
     }
-    
+
 }
 
 @media only screen and (min-width: 800px) {

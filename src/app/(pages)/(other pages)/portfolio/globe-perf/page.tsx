@@ -1,28 +1,28 @@
-'use client'
-import Image from "next/image";
+'use client';
+import Image from 'next/image';
 import './styling.scss';
-import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
-const Globe = dynamic(() => import('./Globe').then((globe) => globe.World), { ssr: false })
+const Globe = dynamic(() => import('./Globe').then((globe) => globe.World), { ssr: false });
 
 export default function page() {
     const router = useRouter();
 
     const globeConfig = {
         pointSize: 4,
-        globeColor: "#062056",
+        globeColor: '#062056',
         showAtmosphere: true,
-        atmosphereColor: "#3380cc",
+        atmosphereColor: '#3380cc',
         atmosphereAltitude: 0.24,
-        emissive: "#062056",
+        emissive: '#062056',
         emissiveIntensity: 0.1,
         shininess: 1,
-        polygonColor: "rgba(0,255,0,0.5)",
-        ambientLight: "#3380cc",
-        directionalLeftLight: "#ffffff",
-        directionalTopLight: "#ffffff",
-        pointLight: "#ffffff",
+        polygonColor: 'rgba(0,255,0,0.5)',
+        ambientLight: '#3380cc',
+        directionalLeftLight: '#ffffff',
+        directionalTopLight: '#ffffff',
+        pointLight: '#ffffff',
         arcTime: 1000,
         arcLength: 0.9,
         rings: 1,
@@ -32,7 +32,7 @@ export default function page() {
         autoRotateSpeed: 0.5,
     };
 
-    const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
+    const colors = ['#06b6d4', '#3b82f6', '#6366f1'];
     const sampleArcs = [
         {
             order: 1,
@@ -404,21 +404,30 @@ export default function page() {
         <main>
             <section className={'globe-portfolio'}>
                 <div className={'container full-page-card'}>
-                    <div className='card-wrapper'>
+                    <div className="card-wrapper">
                         <div
                             tabIndex={0}
                             role="button"
                             onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                    sendToPortfolioPage()
+                                if (e.key === 'Enter') {
+                                    sendToPortfolioPage();
                                 }
                             }}
                             onClick={sendToPortfolioPage}
                             className={'back-arrow'}
                         >
-                            <Image src="/icons/back-arrow.svg" width={40} height={40} alt="" priority={true} />
+                            <Image
+                                src="/icons/back-arrow.svg"
+                                width={40}
+                                height={40}
+                                alt=""
+                                priority={true}
+                            />
                         </div>
-                        <Globe data={sampleArcs} globeConfig={globeConfig} />
+                        <Globe
+                            data={sampleArcs}
+                            globeConfig={globeConfig}
+                        />
                     </div>
                     <div className={'text-wrapper'}>
                         <h1 className={'title'}>// Globe-Perf</h1>
@@ -436,5 +445,5 @@ export default function page() {
                 </div>
             </section>
         </main>
-    )
+    );
 }

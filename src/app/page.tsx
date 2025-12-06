@@ -12,7 +12,7 @@ export type metadataType = {
     title: string,
     description?: string,
     alternates?: alternates
-}
+};
 
 export const metadata: metadataType = {
     title: 'Giannis N. | Home',
@@ -20,7 +20,7 @@ export const metadata: metadataType = {
     alternates: {
         canonical: '/'
     },
-}
+};
 
 const MinesweeperContainer = dynamic(() => import('./components/minesweeper/minesweeperContainer'));
 
@@ -29,11 +29,11 @@ export default function page(): ReactElement {
         <>
             <Header />
 
-            <main className={'homepage-body'}>
+            <main className="homepage-body">
                 <MinesweeperContainer />
             </main>
             
             <Footer />
         </>
-    )
+    );
 }

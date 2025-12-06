@@ -5,16 +5,16 @@ import Link from 'next/link';
 export default function DownloadCVButton(): ReactElement {
     return (
         <Link
-            href={'/cv/giannis_nikolaou_cv.pdf'}
+            href="/cv/giannis_nikolaou_cv.pdf"
             download
-            className={'download-cv-button'}
+            className="download-cv-button"
         >
-            <div className={'DC-wrapper'}>
-                <div className={'background'} />
+            <div className="DC-wrapper">
+                <div className="background" />
                 <span>
                     Download CV
                 </span>
             </div>
         </Link>
-    )
+    );
 }

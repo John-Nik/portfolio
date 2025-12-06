@@ -1,4 +1,4 @@
-@import '/src/app/color-scheme.scss';
+@import '../../color-scheme.scss';
 
 @media only screen and (min-width: 0px) {
     footer {
@@ -13,7 +13,7 @@
         background-color: transparentize($color: $base-color, $amount: 0.3);
         backdrop-filter: blur(25px) brightness(0.7);
 
-    
+
         .footer-links-container {
             display: flex;
             width: 100%;
@@ -27,7 +27,7 @@
             position: relative;
             pointer-events: none;
 
-            
+
             li {
                 display: flex;
                 flex-direction: row;
@@ -44,7 +44,7 @@
                     will-change: scroll-position;
                     pointer-events: all;
                 }
-    
+
                 &:after {
                     content: "";
                     height: clamp(2.5rem, 3.75vw, 2.7rem);
@@ -55,7 +55,7 @@
                     margin-left: 1rem;
                     margin-right: -1rem;
                 }
-    
+
                 &:nth-child(3):after {
                     display: none;
                 }
@@ -66,27 +66,27 @@
 
                 @for $i from 1 through 3 {
                     &:nth-child(#{$i}) {
-                      display: none;
+                        display: none;
                     }
                 }
 
                 @for $i from 4 through 6 {
                     &:nth-child(#{$i}) {
-                      display: flex;
-                      padding: 14px 0px;
+                        display: flex;
+                        padding: 14px 0px;
 
-                      &:after {
-                        display: none;
-                      }
+                        &:after {
+                            display: none;
+                        }
                     }
                 }
-    
+
                 a {
                     color: white;
                     opacity: 0.8;
                     text-underline-offset: 4px;
                     transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    
+
                     &:hover {
                         opacity: 1;
                     }
@@ -98,13 +98,13 @@
                     margin-bottom: -11px;
                 }
             }
-            
+
             img {
                 opacity: 0.6;
                 transition: opacity 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                 width: 30px;
                 aspect-ratio: 1/1;
-                
+
                 &:hover {
                     opacity: 1;
                 }
@@ -157,24 +157,24 @@
             width: 50%;
             padding-left: 16px;
             justify-content: flex-start;
-    
+
             li {
                 @for $i from 1 through 3 {
                     &:nth-child(#{$i}) {
-                      display: flex;
+                        display: flex;
                     }
                 }
 
                 @for $i from 4 through 6 {
                     &:nth-child(#{$i}) {
-                      display: none;
+                        display: none;
                     }
                 }
-    
+
                 &:last-child:after {
                     display: none;
                 }
-    
+
                 a {
                     font-size: clamp(1rem, 1.5vw, 1.35rem);
                     text-wrap: nowrap;

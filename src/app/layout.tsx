@@ -1,7 +1,7 @@
 import { ZCOOL_QingKe_HuangYou, Fira_Code, Press_Start_2P } from 'next/font/google';
 import './global.scss';
 import { NextFontWithVariable } from 'next/dist/compiled/@next/font';
-import { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 type viewPortType = {
     width: string,
@@ -10,8 +10,9 @@ type viewPortType = {
     viewportFit: string,
     themeColor: string,
     colorScheme: string
-}
+};
 
+// eslint-disable-next-line new-cap
 const zcoolFont: NextFontWithVariable = ZCOOL_QingKe_HuangYou({
     subsets: ['latin'],
     style: 'normal',
@@ -19,14 +20,16 @@ const zcoolFont: NextFontWithVariable = ZCOOL_QingKe_HuangYou({
     weight: ['400'],
     variable: '--zcool-font',
     display: 'swap'
-})
+});
+// eslint-disable-next-line new-cap
 const firaCodeFont: NextFontWithVariable = Fira_Code({
     subsets: ['latin'],
     weight: ['300', '400', '500'],
     preload: true,
     variable: '--fira-code',
     display: 'swap'
-})
+});
+// eslint-disable-next-line new-cap
 const pressStartFont: NextFontWithVariable = Press_Start_2P({
     subsets: ['latin'],
     style: 'normal',
@@ -34,22 +37,30 @@ const pressStartFont: NextFontWithVariable = Press_Start_2P({
     preload: true,
     variable: '--press-start-font',
     display: 'swap'
-})
+});
 
-
-export default function heads({ children }: {children: ReactNode}): ReactElement {
+export default function heads({ children }: { children: ReactNode }) {
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html
+            lang="en"
+            suppressHydrationWarning
+        >
             <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
 
                 {children}
                 
-                <div aria-hidden="true" className={'is-minesweeper-playing-in-homepage'} />
-                <div aria-hidden="true" className={'is-minesweeper-playing-in-about-page'} />
+                <div
+                    aria-hidden="true"
+                    className="is-minesweeper-playing-in-homepage"
+                />
+                <div
+                    aria-hidden="true"
+                    className="is-minesweeper-playing-in-about-page"
+                />
 
             </body>
         </html>
-    )
+    );
 }
 
 export const viewport: viewPortType = {
@@ -59,7 +70,7 @@ export const viewport: viewPortType = {
     viewportFit: 'cover',
     themeColor: '#011627',
     colorScheme: '#011627'
-}
+};
 
 export const metadata = {
     keywords: ['Portfolio', 'Giannis', 'Nikolaou', 'N.', 'NextJS', 'React', 'SCSS', 'Decap', 'CMS', 'Minesweeper', 'About', 'Contact', 'Me'],
@@ -105,4 +116,4 @@ export const metadata = {
         title: 'Giannis Nikolaou | Portfolio',
         description: 'This portfolio was made using NextJS, React, SCSS and Decap as the CMS. It has a page describing me, a projects page to see everything I\'ve built up until now, and a contact page'
     }
-}
+};

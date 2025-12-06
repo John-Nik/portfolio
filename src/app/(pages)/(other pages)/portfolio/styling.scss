@@ -1,4 +1,4 @@
-@import 'src/app/color-scheme.scss';
+@import '../../../color-scheme.scss';
 
 .title {
     color: $tint-2;
@@ -15,7 +15,7 @@
         display: flex;
         justify-content: center;
         margin-bottom: 96px;
-    
+
         .container {
             margin-top: 96px;
             width: 100%;
@@ -153,7 +153,7 @@
             &:hover {
                 transform: translateY(-4px);
             }
-    
+
             &:active {
                 transform: scale(0.99);
             }

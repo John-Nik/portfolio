@@ -22,12 +22,11 @@ function renderBody(status, content) {
 export async function GET(request) {
     const client_id = process.env.GITHUB_CLIENT_ID;
     const client_secret = process.env.GITHUB_CLIENT_SECRET;
+    const requestUrl = new URL(request.url);
+    const code = requestUrl.searchParams.get('code');
 
     try {
-        const requestUrl = new URL(request.url);
-        const code = requestUrl.searchParams.get('code');
-
-        const response = await fetch('https://github.com/login/oauth/access_token',{
+        const response = await fetch('https://github.com/login/oauth/access_token', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -44,7 +43,7 @@ export async function GET(request) {
                 headers: {
                     'content-type': 'text/html;charset=UTF-8',
                 },
-                status: 401 
+                status: 401
             });
         }
 
@@ -55,12 +54,13 @@ export async function GET(request) {
             provider,
         });
 
-        return new Response(responseBody, { 
+        return new Response(responseBody, {
             headers: {
                 'content-type': 'text/html;charset=UTF-8',
             },
-            status: 200 
+            status: 200
         });
+        // eslint-disable-next-line @stylistic/space-before-function-paren
     } catch (error) {
         return new Response(error.message, {
             headers: {
