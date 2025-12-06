@@ -16,7 +16,6 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
     "dotenv": "^16.4.5",
-    "eslint-config-next": "16.0.7",
     "globe-perf": "^2.31.1",
     "konva": "^9.3.8",
     "next": "16.0.7",
@@ -30,16 +29,24 @@
   "devDependencies": {
     "@babel/core": "^7.24.0",
     "@babel/preset-react": "^7.23.3",
+    "@stylistic/eslint-plugin": "^5.6.1",
     "@types/node": "20.12.5",
     "@types/react": "19.2.7",
     "@types/webpack-env": "^1.18.4",
+    "@typescript-eslint/eslint-plugin": "^8.48.1",
+    "@typescript-eslint/parser": "^8.48.1",
     "esbuild": "^0.25.5",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.7",
+    "eslint-plugin-react": "^7.37.5",
     "frontmatter-markdown-loader": "^3.7.0",
     "postcss": "^8.4.38",
+    "prettier-eslint": "^16.4.2",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "sass": "^1.70.0",
     "tailwindcss": "^3.4.3",
-    "vercel": "39.1.1",
-    "eslint": "^9.39.1"
+    "typescript": "^5.9.3",
+    "vercel": "39.1.1"
   },
   "overrides": {
     "@types/react": "19.2.7"

@@ -1,10 +1,11 @@
-'use server'
+/* eslint-disable react/jsx-no-comment-textnodes */
+'use server';
 import './styling.scss';
 import CardsGridContainer from './components/CardsGridContainer/CardsGridContainer';
 
-export default async function() {
+export default async function page() {
     const content = require.context('../../../content', true);
-    let projects = content.keys().map((filename) => content(filename));
+    const projects = content.keys().map((filename) => content(filename));
 
     return (
         <main>
@@ -17,5 +18,5 @@ export default async function() {
                 </div>
             </section>
         </main> 
-    )
+    );
 }

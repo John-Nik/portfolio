@@ -17,7 +17,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"
@@ -31,7 +31,8 @@
     "**/*.tsx",
     "src/app/not-found.tsx",
     "src/middleware.ts",
-    "public/scripts/**/*"
+    "public/scripts/**/*",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

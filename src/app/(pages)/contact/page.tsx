@@ -1,13 +1,13 @@
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/footer";
-import Sidebar from "./components/Sidebar/Sidebar";
+/* eslint-disable react/jsx-no-comment-textnodes */
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/footer';
+import Sidebar from './components/Sidebar/Sidebar';
 import './styling.scss';
-import CodeWrapper from "./components/CodeWrapper/CodeWrapper";
-import FormWrapper from "./components/FormWrapper/FormWrapper";
-import { metadataType } from "../../page";
+import CodeWrapper from './components/CodeWrapper/CodeWrapper';
+import FormWrapper from './components/FormWrapper/FormWrapper';
+import { metadataType } from '../../page';
 
-
-export default function() {
+export default function page() {
     return (
         <>
             <Header />
@@ -31,7 +31,7 @@ export default function() {
 
             <Footer className="contact-page-footer" />
         </>
-    )
+    );
 }
 
 export const metadata: metadataType = {
@@ -39,4 +39,4 @@ export const metadata: metadataType = {
     alternates: {
         canonical: '/contact'
     },
-}
+};

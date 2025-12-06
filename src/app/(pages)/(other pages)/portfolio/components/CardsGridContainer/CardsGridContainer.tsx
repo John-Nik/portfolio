@@ -1,14 +1,32 @@
 'use client';
-import { ReactElement, ReactNode } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import WebsiteIcon from "../../../../../components/icons-components/WebsiteIcon";
-import GithubIcon from "../../../../../components/icons-components/GithubIcon";
+import { ReactElement, ReactNode } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
+import GithubIcon from '../../../../../components/icons-components/GithubIcon';
 
-export default function CardsGridContainer({projects}: {projects: ReactNode[]}): ReactElement {
+export default function CardsGridContainer({ projects}: { projects: ReactNode[] }): ReactElement {
     const router = useRouter();
 
-    
+    function handleKeyDown(e: React.KeyboardEvent<HTMLImageElement>, link: string, isDisabled = false) {
+        if (e.key !== 'Enter') return;
+        redirect(link, isDisabled);
+    }
+
+    function redirect(link: string, isDisabled = false) {
+        if (isDisabled) return;
+        router.push(link);
+    }
+
+    function adjustGlobeBrightness(mode: 'normal' | 'dim'): void {
+        const globeImage: HTMLImageElement = document.querySelector('#globe-perf');
+        if (mode === 'normal') {
+            globeImage.style.filter = 'brightness(1)';
+        } else {
+            globeImage.style.filter = 'brightness(0.8)';
+        }
+    }
+
     return (
         <>
             <div className="project-card-container">
@@ -19,7 +37,7 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
                     height={224}
                     priority={true}
                     quality={100}
-                    sizes='50vw'
+                    sizes="50vw"
                     id="globe-perf"
                     style={{
                         width: 'calc(100% - 2px)',
@@ -29,20 +47,10 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
                         objectFit: 'cover',
                     }}
                     alt={'Globe-Perf preview picture'}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter")
-                            router.push('/portfolio/globe-perf');
-                    }}
-                    onClickCapture={(e) => {
-                        e.stopPropagation;
-                        router.push('/portfolio/globe-perf');
-                    }}
-                    onMouseEnter={() => {
-                        (document.querySelector('#globe-perf') as HTMLImageElement).style.filter = 'brightness(1)';
-                    }}
-                    onMouseLeave={() => {
-                        (document.querySelector('#globe-perf') as HTMLImageElement).style.filter = 'brightness(0.8)';
-                    }}
+                    onKeyDown={(e) => handleKeyDown(e, '/portfolio/globe-perf')}
+                    onClickCapture={() => redirect('/portfolio/globe-perf')}
+                    onMouseEnter={() => adjustGlobeBrightness('normal')}
+                    onMouseLeave={() => adjustGlobeBrightness('dim')}
                 />
 
                 <div className="content">
@@ -56,7 +64,10 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
             {
                 projects.map((project: any, projectIndex: number): ReactElement => {
                     return (
-                        <div className="project-card-container" key={projectIndex}>
+                        <div
+                            className="project-card-container"
+                            key={projectIndex}
+                        >
                             <Image
                                 className={'background'}
                                 src={`/${project.attributes.img}`}
@@ -64,7 +75,7 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
                                 height={224}
                                 priority={projectIndex <= 2 ? true : false}
                                 quality={100}
-                                sizes='50vw'
+                                sizes="50vw"
                                 style={{
                                     width: 'calc(100% - 2px)',
                                     height: 'calc(100% - 2px)',
@@ -73,16 +84,8 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
                                     cursor: !project.attributes.isEnabled ? 'default' : ''
                                 }}
                                 alt={`${project.attributes.title} Profile Picture`}
-                                onKeyDown={(e) => {
-                                    if ((e.key === "Enter") && (project.attributes.isEnabled))
-                                        router.push(`/portfolio/${project.attributes.link}`);
-                                }}
-                                onClickCapture={(e) => {
-                                    e.stopPropagation;
-                                    if (!project.attributes.isEnabled) return;
-
-                                    router.push(`/portfolio/${project.attributes.title}`, project.attributes.title);
-                                }}
+                                onKeyDown={(e) => handleKeyDown(e, `/portfolio/${project.attributes.link}`, !project.attributes.isEnabled)}
+                                onClickCapture={() => redirect(`/portfolio/${project.attributes.title}`, !project.attributes.isEnabled)}
                             />
 
                             <div className="content">
@@ -97,9 +100,9 @@ export default function CardsGridContainer({projects}: {projects: ReactNode[]}):
                                 }
                             </div>
                         </div>
-					);
+                    );
                 })
             }
         </>
-    )
+    );
 }

@@ -1,18 +1,18 @@
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/footer';
-import { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { metadataType } from '../../page';
 
-export default function({children}: {children: ReactNode}): ReactElement {
+export default function layout({ children }: { children: ReactNode }) {
     return (
         <>
             <Header />
 
-            {children}
+            { children }
 
             <Footer />
         </>
-    )
+    );
 }
 
 
@@ -21,6 +21,6 @@ export const metadata: metadataType = {
     alternates: {
         canonical: '/portfolio'
     },
-}
+};
 
 export const runtime = 'edge';

@@ -1,41 +1,41 @@
-'use client'
+'use client';
 import './styling.scss';
 import GithubIcon from '../../../../../components/icons-components/GithubIcon';
 import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import Image from 'next/image';
-import { useRouter } from "next/navigation";
-import { ReactElement, useRef } from 'react';
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
 
-export default function ProjectCard({project, children, projectIndex}: {project: any, children?: any, projectIndex?: number}): ReactElement {
+export default function ProjectCard({ project, children, projectIndex }: { project: any, children?: any, projectIndex?: number }) {
     const router: AppRouterInstance = useRouter();
-    let isEnabled = useRef(project.attributes.isEnabled);
-    
+    const isEnabled = useRef(project.attributes.isEnabled);
     
     function isCardEnabled() {
-        if (!isEnabled.current) {
-            return 'grayscale(50) brightness(0.75)';
-        } else {
-            return '';
-        }
+        return  isEnabled.current ? '' : 'grayscale(50) brightness(0.75)';
+    }
+
+    function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+        if (e.key !== 'Enter' || !isEnabled.current) return;
+        router.push(`/portfolio/${project.attributes.link}`);
+    }
+
+    function handleClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        e.stopPropagation();
+        if (!isEnabled.current) return;
+
+        router.push(`/portfolio/${project.attributes.title}`, project.attributes.title);
     }
 
     return (
-        <div className={"item-container"}>
+        <div className={'item-container'}>
             {children}
+
             <div 
                 tabIndex={0}
                 role="button"
-                onKeyDown={(e) => {
-                    if ((e.key === "Enter") && (isEnabled.current)) 
-                        router.push(`/portfolio/${project.attributes.link}`);
-                }}
-                onClickCapture={(e) => {
-                    e.stopPropagation;
-                    if (!isEnabled.current) return;
-
-                    router.push(`/portfolio/${project.attributes.title}`, project.attributes.title);
-                }}
+                onKeyDown={handleKeyDown}
+                onClickCapture={handleClick}
                 className={'card'}
             >
                 <Image 
@@ -57,22 +57,26 @@ export default function ProjectCard({project, children, projectIndex}: {project:
                 <h2>{project.attributes.title}</h2>
 
                 <div className={'icons-wrapper'}>
-                {isEnabled.current ? 
-                    <>
-                        <WebsiteIcon link={project.attributes.siteLink} />
-                        <GithubIcon link={project.attributes.githubLink} />
-                    </> 
-                : 
-                    <span style={{
-                        fontSize: '2.25rem',
-                        color: 'white',
-                        backdropFilter: 'blur(5px) brightness(0.5)',
-                        borderRadius: '5px',
-                        padding: '4px 0.5ch 0px 0.5ch'
-                    }}>In Dev</span>
-                }
+                    {isEnabled.current ? 
+                        <>
+                            <WebsiteIcon link={project.attributes.siteLink} />
+                            <GithubIcon link={project.attributes.githubLink} />
+                        </> 
+                        : 
+                        <span
+                            style={{
+                                fontSize: '2.25rem',
+                                color: 'white',
+                                backdropFilter: 'blur(5px) brightness(0.5)',
+                                borderRadius: '5px',
+                                padding: '4px 0.5ch 0px 0.5ch'
+                            }}
+                        >
+                            In Dev
+                        </span>
+                    }
                 </div>
             </div>
         </div>
-    )
+    );
 }

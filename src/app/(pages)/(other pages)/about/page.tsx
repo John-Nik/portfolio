@@ -1,14 +1,13 @@
-import IntroductorySection from "./sections/IntroductorySection/IntroductorySection";
-import DescriptionSection from "./sections/DescriptionSection/DescriptionSection";
-import MinesweeperSection from "./sections/MinesweeperSection/MinesweeperSection";
+import IntroductorySection from './sections/IntroductorySection/IntroductorySection';
+import DescriptionSection from './sections/DescriptionSection/DescriptionSection';
+import MinesweeperSection from './sections/MinesweeperSection/MinesweeperSection';
 import './styling.scss';
-import { ReactElement } from "react";
-import { metadataType } from "../../../page";
-import dynamic from "next/dynamic";
+import { metadataType } from '../../../page';
+import dynamic from 'next/dynamic';
 
 const SkillsSection = dynamic(() => import('./sections/SkillsSection/SkillsSection'));
 
-export default function(): ReactElement {
+export default function page() {
     return (
         <main className="about-me-main">
             <IntroductorySection />
@@ -16,7 +15,7 @@ export default function(): ReactElement {
             <MinesweeperSection />
             <SkillsSection />
         </main> 
-    )
+    );
 }
 
 export const metadata: metadataType = {
@@ -24,4 +23,4 @@ export const metadata: metadataType = {
     alternates: {
         canonical: '/about'
     },
-}
+};
