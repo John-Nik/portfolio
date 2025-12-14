@@ -105,14 +105,6 @@ export default [
                 }
             ],
             'max-depth': ['error', 4],
-            'max-lines': [
-                'warn',
-                {
-                    max: 300,
-                    skipBlankLines: true,
-                    skipComments: true
-                }
-            ],
             'max-params': ['error', 4],
             'new-cap': ['error', { newIsCap: true }],
             'no-alert': 'warn',
@@ -141,6 +133,7 @@ export default [
                 exceptRange: true
             }],
             'no-undef': ['off'],
+            'no-async-promise-executor': 'off'
         }
     },
     {

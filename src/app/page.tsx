@@ -1,7 +1,6 @@
 import Footer from './components/footer-homepage/footer';
 import Header from './components/header-homepage/Header';
 import './components/minesweeper/minesweeper.scss';
-import { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
 
 interface alternates {
@@ -24,7 +23,7 @@ export const metadata: metadataType = {
 
 const MinesweeperContainer = dynamic(() => import('./components/minesweeper/minesweeperContainer'));
 
-export default function page(): ReactElement {
+export default function page() {
     return (
         <>
             <Header />

@@ -1,45 +1,48 @@
 'use client';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import React, { ReactElement, useState } from 'react';
+import { useCallback, useState } from 'react';
 import './styling.scss';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
-export default function Header(): ReactElement {
-    const pathname: string = usePathname();
-    const [navMenuState, setNavMenuState] = useState<number>(0);
-    const router: AppRouterInstance = useRouter();
+export default function Header() {
+    const pathname = usePathname();
+    const [navMenuState, setNavMenuState] = useState(0);
+
+    const isMenuOpen = useCallback(() => {
+        return navMenuState === 1 ? 'open-menu' : '';
+    }, [navMenuState]);
+
+    const activeClassFor = useCallback((path: string, includes = false): 'activeLink' | '' => {
+        const pathnameWithoutSlash = pathname.slice(1);
+
+        if (includes) {
+            return pathnameWithoutSlash.includes(path) ? 'activeLink' : '';
+        }
+        return pathnameWithoutSlash === path ? 'activeLink' : '';
+    }, [pathname]);
 
     function triggerNavMenu(): void {
         setNavMenuState((navMenuState + 1) % 2);
     }
 
-    function turnOffMinesweeperGames(): void {
-        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
-
-        homepageMinesweeper != null ? homepageMinesweeper.innerHTML = '' : '';
-        aboutMePageMinesweeper != null ? aboutMePageMinesweeper.innerHTML = '' : '';
-    }
-    
     return (
         <header>
             <nav>
                 <div className="container">
                     <div className="logo-container">
-                        <span
-                            onClick={() => router.push('/')}
+                        <Link
+                            href="/"
                             className="logo"
                         >
                             Giannis
-                        </span>
+                        </Link>
                     </div>
 
-                    <menu className={navMenuState === 1 ? 'open-menu' : ''}>
+                    <menu className={isMenuOpen()}>
                         <li>
                             <Link
                                 href="/"
-                                className={pathname === '/' || '' ? 'activeLink' : ''}
+                                className={activeClassFor('')}
                             >
                                 home
                             </Link>
@@ -47,7 +50,7 @@ export default function Header(): ReactElement {
                         <li>
                             <Link
                                 href="/about"
-                                className={pathname === '/about' ? 'activeLink' : ''}
+                                className={activeClassFor('about')}
                             >
                                 aboutMe
                             </Link>
@@ -55,8 +58,7 @@ export default function Header(): ReactElement {
                         <li>
                             <Link
                                 href="/portfolio"
-                                onClick={turnOffMinesweeperGames}
-                                className={pathname.includes('/portfolio') ? 'activeLink' : ''}
+                                className={activeClassFor('portfolio', true)}
                             >
                                 portfolio
                             </Link>
@@ -64,17 +66,16 @@ export default function Header(): ReactElement {
                         <li>
                             <Link
                                 href="/contact"
-                                onClick={turnOffMinesweeperGames}
-                                className={pathname === '/contact' ? 'activeLink' : ''}
+                                className={activeClassFor('contact')}
                             >
                                 contactMe
                             </Link>
                         </li>
                     </menu>
-                    
+
                     <div className="burger-icon-wrapper">
                         <div
-                            className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`}
+                            className={`burger-icon ${isMenuOpen()}`}
                             onClick={triggerNavMenu}
                         >
                             <div className="line1" />

@@ -1,8 +1,7 @@
-import { ReactElement } from 'react';
 import './styling.scss';
 import Link from 'next/link';
 
-export default function DownloadCVButton(): ReactElement {
+export default function DownloadCVButton() {
     return (
         <Link
             href="/cv/giannis_nikolaou_cv.pdf"

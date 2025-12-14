@@ -39,7 +39,7 @@ export default function DescriptionSection() {
         }
     });
 
-    useEffect((): ()=>void => {
+    useEffect(() => {
         const textContent = document.querySelector('.text-content p');
         
         const textContentObserver = new IntersectionObserver((element) => {

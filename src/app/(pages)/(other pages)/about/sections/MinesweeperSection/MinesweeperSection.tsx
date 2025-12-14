@@ -50,20 +50,12 @@ export default function MinesweeperSection() {
     }); 
 
     useEffect((): ()=>void => {
-        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
         const textContent = document.querySelector('.hyphenate');
         const textContentObserver = new IntersectionObserver((element) => {
             if (element[0].isIntersecting) {
                 element[0].target.classList.add('show');
             }
         });
-
-        aboutMePageMinesweeper.innerHTML = '<div></div>';
-
-        if (aboutMePageMinesweeper !== null) {
-            homepageMinesweeper.innerHTML = '';
-        }
 
         textContentObserver.observe(textContent);
 

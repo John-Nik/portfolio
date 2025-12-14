@@ -4,36 +4,74 @@ import GameUI from './minesweeper/GameUI/GameUI';
 class Game {
     readonly ALLOWED_DIFFICULTIES: number[] = [0.12, 0.15, 0.20, 0.25];
 
-    gameBoard: GameBoard;
-    gameUI: GameUI;
+    board: GameBoard | null = null;
+    ui: GameUI | null = null;
+
+    abort = new AbortController();
 
     constructor() {
-        this.gameBoard = new GameBoard();
-        this.gameUI = new GameUI();
+        this.board = new GameBoard(this);
+        this.ui = new GameUI(this);
 
         this.init();
     }
 
     init() {
-        this.gameUI.elemToTriggerTapMode.addEventListener('click', () => {
-            const newValue = this.gameBoard.mobileUserWantsToFlag + 1;
-            this.gameBoard.mobileUserWantsToFlag = newValue % 2 as 0 | 1;
-        });
+        this.validateUI();
+        this.validateBoard();
 
-        this.gameBoard.chooseDifficulty(this.ALLOWED_DIFFICULTIES[0]);
-        this.gameUI.gameBoard = this.gameBoard;
-        this.gameBoard.gameUI = this.gameUI;
+        this.board.init();
+        this.ui.init();
+
+        if (!this.ui.elemToTriggerTapMode) {
+            throw new Error('element to trigger tap is not defined. Is the UI instantiated?');
+        }
+
+        this.ui.elemToTriggerTapMode.addEventListener('click', () => {
+            const newValue = this.board.mobileUserWantsToFlag + 1;
+            this.board.mobileUserWantsToFlag = newValue % 2 as 0 | 1;
+        }, { signal: this.abort.signal });
+
+        this.board.chooseDifficulty(this.ALLOWED_DIFFICULTIES[0]);
     }
 
     chooseDifficulty() {
-        const currentDifficulty = this.gameUI.currentlyChosenDifficulty();
-        this.gameBoard.chooseDifficulty(this.ALLOWED_DIFFICULTIES[currentDifficulty]);
+        this.validateBoard();
+        this.validateUI();
+
+        const currentDifficulty = this.ui.currentlyChosenDifficulty();
+        this.board.chooseDifficulty(this.ALLOWED_DIFFICULTIES[currentDifficulty]);
     }
 
-    startGame() {
-        this.gameBoard.startGame();
-        this.gameUI.startGame();
+    start() {
+        this.validateBoard();
+        this.validateUI();
+
+        this.board.startGame();
+        this.ui.startGame();
+    }
+
+    validateUI(): asserts this is Game & { ui: GameUI } {
+        if (this.ui === null) {
+            throw new Error('UI is not instantiated');
+        }
+    }
+
+    validateBoard(): asserts this is Game & { board: GameBoard } {
+        if (this.board === null) {
+            throw new Error('Game board is not instantiated');
+        }
+    }
+
+    destroy() {
+        this.abort.abort();
+
+        this.ui?.destroy();
+        this.board?.destroy();
+
+        this.board = null;
+        this.ui = null;
     }
 }
 
-const game = new Game();
+export default Game;

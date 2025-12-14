@@ -1,1 +1,3 @@
-export const sleep = (time: number, unit: 'ms' | 'sec' = 'ms') => new Promise(resolve => setTimeout(resolve, unit === 'ms' ? time : time * 1000));
+export function sleep(time: number) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}

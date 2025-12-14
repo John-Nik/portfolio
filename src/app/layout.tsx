@@ -39,25 +39,14 @@ const pressStartFont: NextFontWithVariable = Press_Start_2P({
     display: 'swap'
 });
 
-export default function heads({ children }: { children: ReactNode }) {
+export default function mainLayout({ children }: { children: ReactNode }) {
     return (
         <html
             lang="en"
             suppressHydrationWarning
         >
             <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
-
                 {children}
-                
-                <div
-                    aria-hidden="true"
-                    className="is-minesweeper-playing-in-homepage"
-                />
-                <div
-                    aria-hidden="true"
-                    className="is-minesweeper-playing-in-about-page"
-                />
-
             </body>
         </html>
     );

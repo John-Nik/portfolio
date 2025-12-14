@@ -1,53 +1,29 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import React, { ReactElement, useState } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import './styling.scss';
 
-
 export default function Header(): ReactElement {
-    const pathname: string = usePathname();
-    const [navMenuState, setNavMenuState] = useState<number>(0);
+    const pathname = usePathname();
+    const [navMenuState, setNavMenuState] = useState(0);
+
+    const isMenuOpen = useCallback(() => {
+        return navMenuState === 1 ? 'open-menu' : '';
+    }, [navMenuState]);
+
+    const activeClassFor = useCallback((path: string, includes = false): 'activeLink' | '' => {
+        const pathnameWithoutSlash = pathname.slice(1);
+
+        if (includes) {
+            return pathnameWithoutSlash.includes(path) ? 'activeLink' : '';
+        }
+
+        return pathnameWithoutSlash === path ? 'activeLink' : '';
+    }, [pathname]);
 
     function triggerNavMenu(): void {
         setNavMenuState((navMenuState + 1) % 2);
-    }
-
-    function startGame(): void {
-        const container: HTMLDivElement = document.querySelector('.container');
-        const containerWidth: number = container.offsetWidth;
-        const gameStart: HTMLDivElement = document.querySelector('.user-initiated-game-start');
-        const textContentWrapper: HTMLDivElement = document.querySelector('.textContent');
-        const gameControlPanel: HTMLDivElement = document.querySelector('.gameSettings');
-        const smileyFace: HTMLDivElement = document.querySelector('.dead-smiley-wrapper');
-
-        
-        smileyFace.style.display = 'none';
-
-        if (containerWidth >= 720) {
-            textContentWrapper.style.opacity = '0';
-            gameControlPanel.style.opacity = '0';
-            setTimeout(() => {
-                textContentWrapper.style.display = 'none';
-                gameControlPanel.style.display = 'none';
-            }, 500);
-        }
-
-
-        gameStart.innerHTML = '<div></div>';    
-    }
-
-    function turnOffMinesweeperGames(): void {
-        const homepageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-homepage');
-        const aboutMePageMinesweeper: HTMLDivElement = document.querySelector('.is-minesweeper-playing-in-about-page');
-
-        if (homepageMinesweeper !== null) {
-            homepageMinesweeper.innerHTML = '';
-        }
-
-        if (aboutMePageMinesweeper !== null) {
-            aboutMePageMinesweeper.innerHTML = '';
-        }
     }
 
     return (
@@ -60,21 +36,15 @@ export default function Header(): ReactElement {
                         </span>
                     </div>
 
-                    <div
-                        onClick={startGame}
-                        className="dead-smiley-wrapper"
-                    >
-                        <img
-                            onClick={startGame}
-                            src="/icons/dead-smiley.png"
-                        />
+                    <div className="dead-smiley-wrapper">
+                        <img src="/icons/dead-smiley.png" />
                     </div>
 
-                    <menu className={navMenuState === 1 ? 'open-menu' : ''}>
+                    <menu className={isMenuOpen()}>
                         <li>
                             <Link
                                 href="/"
-                                className={pathname === '/' || '' ? 'activeLink' : ''}
+                                className={activeClassFor('')}
                             >
                                 home
                             </Link>
@@ -82,7 +52,7 @@ export default function Header(): ReactElement {
                         <li>
                             <Link
                                 href="/about"
-                                className={pathname === '/about' ? 'activeLink' : ''}
+                                className={activeClassFor('about')}
                             >
                                 aboutMe
                             </Link>
@@ -90,8 +60,7 @@ export default function Header(): ReactElement {
                         <li>
                             <Link
                                 href="/portfolio"
-                                onClick={turnOffMinesweeperGames}
-                                className={pathname.includes('/portfolio') ? 'activeLink' : ''}
+                                className={activeClassFor('portfolio', true)}
                             >
                                 portfolio
                             </Link>
@@ -99,8 +68,7 @@ export default function Header(): ReactElement {
                         <li>
                             <Link
                                 href="/contact"
-                                onClick={turnOffMinesweeperGames}
-                                className={pathname === '/contact' ? 'activeLink' : ''}
+                                className={activeClassFor('contact')}
                             >
                                 contactMe
                             </Link>
@@ -109,7 +77,7 @@ export default function Header(): ReactElement {
 
                     <div className="burger-icon-wrapper">
                         <div
-                            className={`burger-icon ${navMenuState === 1 ? 'open-menu' : ''}`}
+                            className={`burger-icon ${isMenuOpen()}`}
                             onClick={triggerNavMenu}
                         >
                             <div className="line1" />

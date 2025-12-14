@@ -5,15 +5,15 @@ import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 export default function ProjectCard({ project, children, projectIndex }: { project: any, children?: any, projectIndex?: number }) {
     const router: AppRouterInstance = useRouter();
     const isEnabled = useRef(project.attributes.isEnabled);
-    
-    function isCardEnabled() {
-        return  isEnabled.current ? '' : 'grayscale(50) brightness(0.75)';
-    }
+
+    const isCardEnabled = useCallback(() => {
+        return isEnabled.current ? '' : 'grayscale(50) brightness(0.75)';
+    }, [isEnabled]);
 
     function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
         if (e.key !== 'Enter' || !isEnabled.current) return;

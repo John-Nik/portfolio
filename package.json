@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "startNextServer": "next dev",
-    "startDecapServer": "bunx decap-server"
+    "startDecapServer": "bunx decap-server",
+    "compile-minesweeper": "bunx esbuild ./public/scripts/debug/minesweeper.ts --bundle --outfile=./public/scripts/minesweeper.js --minify --format=iife --platform=browser",
+    "watch-minesweeper": "bunx esbuild ./public/scripts/debug/minesweeper.ts --bundle --outfile=./public/scripts/minesweeper.js --minify --format=iife --platform=browser --watch"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

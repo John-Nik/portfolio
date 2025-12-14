@@ -135,21 +135,21 @@
                     margin-right: -1rem;
                 }
 
-                &:nth-child(3):after {
+                &:nth-child(2):after {
                     display: none;
                 }
 
-                &:nth-child(6):after {
+                &:nth-child(4):after {
                     display: none;
                 }
 
-                @for $i from 1 through 3 {
+                @for $i from 1 through 2 {
                     &:nth-child(#{$i}) {
                         display: none;
                     }
                 }
 
-                @for $i from 4 through 8 {
+                @for $i from 3 through 8 {
                     &:nth-child(#{$i}) {
                         display: flex;
                         padding: 14px 0px;
@@ -249,13 +249,13 @@
             justify-content: flex-start;
 
             li {
-                @for $i from 1 through 3 {
+                @for $i from 1 through 2 {
                     &:nth-child(#{$i}) {
                         display: flex;
                     }
                 }
 
-                @for $i from 4 through 8 {
+                @for $i from 3 through 8 {
                     &:nth-child(#{$i}) {
                         display: none;
                     }

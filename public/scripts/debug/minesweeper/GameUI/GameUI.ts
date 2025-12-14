@@ -1,67 +1,55 @@
-import GameBoard from "../GameBoard/GameBoard";
-import { sleep } from "../helpers";
-import GameUIHelpers from "./GameUIHelpers";
+import GameBoard from '../../../minesweeper/GameBoard/GameBoard';
+import Game from '../../minesweeper';
+import { sleep } from '../helpers';
 
 class GameUI {
     readonly DESKTOP_BREAKPOINT: number = 1024;
     readonly MOBILE_BREAKPOINT: number = 720;
 
-    gameBoardElem: HTMLDivElement = document.querySelector('#game') as HTMLDivElement;
-    heroSection: HTMLDivElement = document.querySelector('.textContent');
-    gameSettings: HTMLDivElement = document.querySelector('.gameSettings');
-    smileyFace: HTMLImageElement = document.querySelector('.dead-smiley-wrapper');
-    socialsIcon: HTMLDivElement = document.querySelector('.socials-icon-wrap');
-    flagIcon: HTMLDivElement = document.querySelector('.flag-icon-wrap');
-    footerIconsContainer: HTMLDivElement = document.querySelector('.footer-links-container');
-    gameSettingsSubtitle: HTMLSpanElement = document.querySelector('.end-game-status'); // Visible only on desktop
-    startGameButton: HTMLButtonElement = document.querySelector('.start-game-button');
-    containerElemToInformUserBombCount: HTMLDivElement = document.querySelector('.bombs-placed-container');
-    wrapperElemToInformUserBombCount: HTMLDivElement = document.querySelector('.bombs-placed-container .wrapper');
-    elementToInformUserBombCount: HTMLDivElement = document.querySelector('.bombs-placed-text');
-    instructionsElem: HTMLSpanElement = document.querySelector('.game-instructions-span');
-    elemToTriggerTapMode: HTMLDivElement = document.querySelector('.flag-icon-wrap');
-    gameSettingsElem: HTMLDivElement = document.querySelector('.gameSettings');
-    activeDifficultyElem: HTMLSpanElement = document.querySelector('.difficulty-feedback.active');
+    gameBoardElem: HTMLDivElement | null = document.querySelector('#game');
+    heroSection: HTMLDivElement | null = document.querySelector('.textContent');
+    gameSettings: HTMLDivElement | null = document.querySelector('.gameSettings');
+    smileyFace: HTMLImageElement | null = document.querySelector('.dead-smiley-wrapper');
+    socialsIcon: HTMLDivElement | null = document.querySelector('.socials-icon-wrap');
+    flagIcon: HTMLDivElement | null = document.querySelector('.flag-icon-wrap');
+    footerIconsContainer: HTMLDivElement | null = document.querySelector('.footer-links-container');
+    gameSettingsSubtitle: HTMLSpanElement | null = document.querySelector('.end-game-status'); // Visible only on desktop
+    startGameButton: HTMLButtonElement | null = document.querySelector('.start-game-button');
+    containerElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container');
+    wrapperElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container .wrapper');
+    elementToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-text');
+    instructionsElem: HTMLSpanElement | null = document.querySelector('.game-instructions-span');
+    elemToTriggerTapMode: HTMLDivElement | null = document.querySelector('.flag-icon-wrap');
+    gameSettingsElem: HTMLDivElement | null = document.querySelector('.gameSettings');
+    activeDifficultyElem: HTMLSpanElement | null = document.querySelector('.difficulty-feedback.active');
     isBombsPlacedTextVisible: boolean = false;
     showSettingsButton: HTMLButtonElement | null = document.querySelector('.show-settings-panel-button');
-    gameBoard: GameBoard;
+    game: Game | null = null;
     difficultySelectors: HTMLButtonElement[] = Array.from(document.querySelectorAll('.difficulty-feedback'));
-    showGameSettingsButton: HTMLButtonElement = document.querySelector('.show-settings-panel-button'); // only displayed on mobile view
-    toggleBackgroundElem: HTMLDivElement = document.querySelector('.toggle-background');
+    showGameSettingsButton: HTMLButtonElement | null = document.querySelector('.show-settings-panel-button'); // Only displayed on mobile view
+    toggleBackgroundElem: HTMLDivElement | null = document.querySelector('.toggle-background');
     lastShownPanel: 'heroSection' | 'gameSettings' = 'heroSection';
-    isDesktopResolution: boolean;
+    isDesktopResolution: boolean = false;
     resizeObserver: ResizeObserver | null = null;
-
-    // Explicitly defined types for GameUIHelpers methods
-    bombsPlacedTextAnim: typeof GameUIHelpers.bombsPlacedTextAnim;
-    isMobile: typeof GameUIHelpers.isMobile;
-    isTablet: typeof GameUIHelpers.isTablet;
-    displaySmileyFace: typeof GameUIHelpers.displaySmileyFace;
-    hideSmileyFace: typeof GameUIHelpers.hideSmileyFace;
-    toggleSmileyFace: typeof GameUIHelpers.toggleSmileyFace;
-    displayBombsPlacedText: typeof GameUIHelpers.displayBombsPlacedText;
-    currentlyChosenDifficulty: typeof GameUIHelpers.currentlyChosenDifficulty;
-    displayHeroSection: typeof GameUIHelpers.displayHeroSection;
-    hideHeroSection: typeof GameUIHelpers.hideHeroSection;
-    displayGameSettings: typeof GameUIHelpers.displayGameSettings;
-    hideGameSettings: typeof GameUIHelpers.hideGameSettings;
-    minesweeperSessionIndicator: typeof GameUIHelpers.minesweeperSessionIndicator;
-    removeDifficultySelectorsActiveStatus: typeof GameUIHelpers.removeDifficultySelectorsActiveStatus;
-    setEventListenersToDifficultySelectors: typeof GameUIHelpers.setEventListenersToDifficultySelectors;
+    isBeingDestroyed: boolean = false;
     
-
-
-    constructor() {
-        this.init();
+    constructor(game: Game) {
+        this.game = game;
     };
 
     init() {
-        this.gameBoardElem.addEventListener('contextmenu', e => e.preventDefault());
+        this.validateGameIsLinked();
+        this.validateElem(this.gameBoardElem);
+        this.validateElem(this.smileyFace);
+        this.validateElem(this.startGameButton);
+        this.validateElem(this.showSettingsButton);
+
+        this.gameBoardElem.addEventListener('contextmenu', e => e.preventDefault(), { signal: this.game.abort.signal });
         this.adaptGameUserInstructionsToWidth(this.gameBoardElem.getBoundingClientRect().width);
 
-        this.startGameButton.addEventListener('click', () => this.startGame());
-        this.smileyFace.addEventListener('click', () => this.startGame());
-        this.showSettingsButton.addEventListener('click', () => this.goToNextPanel());
+        this.startGameButton.addEventListener('click', () => this.startGame(), { signal: this.game.abort.signal });
+        this.smileyFace.addEventListener('click', () => this.startGame(), { signal: this.game.abort.signal });
+        this.showSettingsButton.addEventListener('click', () => this.goToNextPanel(), { signal: this.game.abort.signal });
 
         this.setEventListenersToDifficultySelectors();
 
@@ -71,6 +59,8 @@ class GameUI {
     }
 
     adaptGameUserInstructionsToWidth(width = window.innerWidth) {
+        this.validateElem(this.instructionsElem);
+
         if (width < this.DESKTOP_BREAKPOINT) {
             this.instructionsElem.innerHTML = '// Click bottom right flag to switch to flagging or digging squares';
         } else {
@@ -98,31 +88,34 @@ class GameUI {
     }
 
     async resetBombsCountElemPosition() {
-        const animBombsText = this.bombsPlacedTextAnim();
-
         if (this.isMobile()) {
-            animBombsText.reset();
+            this.resetBombsPlacedText();
             return;
         }
 
-        await sleep(4500);
+        if (await this.sleepAndCheckDestroyed(4500)) return;
 
-        if (!this.gameBoard.autoplayRunning) return;
+        this.validateGameBoard();
+        if (!this.game.board.autoplayRunning) return;
 
-        animBombsText.fadeOut();
+        this.fadeOutBombsPlacedText();
 
-        await sleep(1500);
+        if (await this.sleepAndCheckDestroyed(1500)) return;
 
-        animBombsText.reset();
+        this.resetBombsPlacedText();
     }
 
     shakeBoard(times = 10) {
-        this.gameBoardElem.style.scale = "1.005";
+        this.validateElem(this.gameBoardElem);
+
+        this.gameBoardElem.style.scale = '1.005';
 
         const intervalShakeGameBoard = setInterval(() => {
+            this.validateElem(this.gameBoardElem);
+
             if (times === 0) {
                 clearInterval(intervalShakeGameBoard);
-                this.gameBoardElem.style.scale = "1";
+                this.gameBoardElem.style.scale = '1';
                 this.gameBoardElem.style.left = '0px';
                 this.gameBoardElem.style.top = '0px';
                 return;
@@ -136,76 +129,88 @@ class GameUI {
             this.gameBoardElem.style.top = useNegativeShakeCoords ? `-${randomY}px` : `${randomY}px`;
 
             times--;
-        }, 30)
+        }, 30);
     }
 
-    async startGame(bombsCount: number = this.gameBoard.bombsPresent.value) {
-        const animBombsText = this.bombsPlacedTextAnim();
+    async startGame(bombsCount: number | undefined = this.game?.board?.bombsPresent.value) {
+        if (bombsCount === undefined) {
+            throw new Error('Bombs count is undefined. That is unexpected. Is the game initiated?');
+        }
 
-        this.gameBoard.stopGameAutoplay();
-        this.gameBoard.startGame();
-        
+        this.validateGameBoard();
+
+        this.game.board.stopGameAutoplay();
+        this.game.board.startGame();
+
         this.hideSmileyFace();
-        this.minesweeperSessionIndicator('active');
         this.hideGameSettings();
         this.hideHeroSection();
 
         if (this.isBombsPlacedTextVisible) {
-            animBombsText.centerPosition();
-            animBombsText.fullOpacity();
-            animBombsText.resetFontSize();
+            this.centerPositionBombsPlacedText();
+            this.fullOpacityBombsPlacedText();
+            this.resetFontSizeBombsPlacedText();
 
-            await sleep(2000);
+            if (await this.sleepAndCheckDestroyed(2000)) return;
+
+            this.validateElem(this.elementToInformUserBombCount);
 
             this.elementToInformUserBombCount.textContent = '//';
 
-            await sleep(500);
+            if (await this.sleepAndCheckDestroyed(500)) return;
 
-            animBombsText.moveDownRightCorner();
-            animBombsText.reduceOpacity();
-            animBombsText.decreaseFontSize();
+            this.moveDownRightCornerBombsPlacedText();
+            this.reduceOpacityBombsPlacedText();
+            this.decreaseFontSizeBombsPlacedText();
 
-            await sleep(250);
+            if (await this.sleepAndCheckDestroyed(250)) return;
 
             this.displayBombsPlacedText(bombsCount);
         } else {
-            animBombsText.fadeIn();
+            this.fadeInBombsPlacedText();
             this.displayBombsPlacedText(bombsCount);
 
-            await sleep(2000);
+            if (await this.sleepAndCheckDestroyed(2000)) return;
 
-            animBombsText.moveDownRightCorner();
-            animBombsText.reduceOpacity();
-            animBombsText.decreaseFontSize();
+            this.moveDownRightCornerBombsPlacedText();
+            this.reduceOpacityBombsPlacedText();
+            this.decreaseFontSizeBombsPlacedText();
         }
     }
 
     async hideBombsCountText() {
-        const animBombsText = this.bombsPlacedTextAnim();
-
         if (this.isTablet()) {
-            animBombsText.reset()
+            this.resetBombsPlacedText();
             return;
         }
 
-        await sleep(4500);
+        if (await this.sleepAndCheckDestroyed(4500)) return;
+
+        this.validateGameBoard();
 
         // If the user decided to restart the game in those 4500ms timespan, then exit the function early
-        if (!this.gameBoard.autoplayRunning) return;
+        if (!this.game.board.autoplayRunning) return;
 
-        animBombsText.fadeOut();
+        this.fadeOutBombsPlacedText();
 
-        await sleep(1500);
+        if (await this.sleepAndCheckDestroyed(1500)) return;
 
-        animBombsText.reset();
+        this.resetBombsPlacedText();
     }
 
-    async displayLostGameText() {
+    displayLostGameText() {
         if (this.isMobile()) {
+            if (!this.showSettingsButton) {
+                throw new Error('Show settings button not found in DOM.');
+            }
+
             this.showSettingsButton.innerHTML = 'You-lost<br>Play-again?';
             this.displayHeroSection();
             return;
         }
+
+        this.validateElem(this.gameSettingsSubtitle);
+        this.validateElem(this.startGameButton);
 
         this.gameSettingsSubtitle.innerHTML = "You've lost the game";
         this.startGameButton.innerHTML = 'Play-again';
@@ -214,12 +219,19 @@ class GameUI {
         this.displayGameSettings();
     }
 
-    async displayWinGameText() {
+    displayWinGameText() {
         if (this.isMobile()) {
+            if (!this.showSettingsButton) {
+                throw new Error('Show settings button not found in DOM.');
+            }
+
             this.showSettingsButton.innerHTML = 'You-won<br>Play-again?';
             this.displayHeroSection();
             return;
         }
+
+        this.validateElem(this.gameSettingsSubtitle);
+        this.validateElem(this.startGameButton);
 
         this.gameSettingsSubtitle.innerHTML = "You've won!";
         this.startGameButton.innerHTML = 'Play-again';
@@ -229,29 +241,41 @@ class GameUI {
     }
 
     async goToNextPanel() {
+        this.validateElem(this.heroSection);
+        this.validateElem(this.gameSettings);
+
         this.lastShownPanel = 'gameSettings';
 
         this.compactFooter();
 
         this.heroSection.style.opacity = '0';
 
-        await sleep(200);
+        if (await this.sleepAndCheckDestroyed(200)) return;
 
         this.heroSection.style.display = 'none';
         this.gameSettings.style.display = 'flex';
 
-        await sleep(5);
+        if (await this.sleepAndCheckDestroyed(5)) return;
 
         this.gameSettings.style.opacity = '1';
     }
 
     compactFooter() {
+        this.validateElem(this.footerIconsContainer);
+        this.validateElem(this.socialsIcon);
+        this.validateElem(this.flagIcon);
+
         this.footerIconsContainer.classList.add('hide-icons');
         this.socialsIcon.classList.add('show');
         this.flagIcon.classList.add('show');
     }
 
     unpackFooter() {
+        this.validateElem(this.toggleBackgroundElem);
+        this.validateElem(this.footerIconsContainer);
+        this.validateElem(this.socialsIcon);
+        this.validateElem(this.flagIcon);
+
         this.toggleBackgroundElem.classList.remove('open');
         this.footerIconsContainer.classList.remove('show-icons');
         this.footerIconsContainer.classList.remove('hide-icons');
@@ -281,9 +305,219 @@ class GameUI {
             }
         });
 
+        this.validateElem(this.gameBoardElem);
+
         this.resizeObserver.observe(this.gameBoardElem);
+    }
+
+    resetBombsPlacedText() {
+        this.validateElem(this.containerElemToInformUserBombCount);
+        this.validateElem(this.wrapperElemToInformUserBombCount);
+
+        this.containerElemToInformUserBombCount.style.display = 'none';
+        this.wrapperElemToInformUserBombCount.style.left = '0px';
+        this.wrapperElemToInformUserBombCount.style.top = '0px';
+        this.wrapperElemToInformUserBombCount.style.fontSize = '3rem';
+        this.containerElemToInformUserBombCount.style.opacity = '0';
+        this.isBombsPlacedTextVisible = false;
+    };
+
+    fadeOutBombsPlacedText() {
+        this.validateElem(this.containerElemToInformUserBombCount);
+
+        this.containerElemToInformUserBombCount.style.opacity = '0';
+        this.isBombsPlacedTextVisible = false;
+    };
+
+    async fadeInBombsPlacedText() {
+        this.validateElem(this.containerElemToInformUserBombCount);
+
+        this.containerElemToInformUserBombCount.style.display = 'flex';
+        this.isBombsPlacedTextVisible = true;
+
+        if (await this.sleepAndCheckDestroyed(100)) return;
+
+        this.containerElemToInformUserBombCount.style.opacity = '1';
+    };
+
+    reduceOpacityBombsPlacedText() {
+        this.validateElem(this.containerElemToInformUserBombCount);
+
+        this.containerElemToInformUserBombCount.style.opacity = '0.7';
+    };
+
+    fullOpacityBombsPlacedText() {
+        this.validateElem(this.containerElemToInformUserBombCount);
+
+        this.containerElemToInformUserBombCount.style.opacity = '1';
+    };
+
+    centerPositionBombsPlacedText() {
+        this.validateElem(this.wrapperElemToInformUserBombCount);
+
+        this.wrapperElemToInformUserBombCount.style.left = '0px';
+        this.wrapperElemToInformUserBombCount.style.top = '0px';
+    };
+
+    resetFontSizeBombsPlacedText() {
+        this.validateElem(this.wrapperElemToInformUserBombCount);
+
+        this.wrapperElemToInformUserBombCount.style.fontSize = '3rem';
+    };
+
+    decreaseFontSizeBombsPlacedText() {
+        this.validateElem(this.wrapperElemToInformUserBombCount);
+
+        this.wrapperElemToInformUserBombCount.style.fontSize = '1rem';
+    };
+
+    moveDownRightCornerBombsPlacedText() {
+        this.validateElem(this.wrapperElemToInformUserBombCount);
+
+        this.wrapperElemToInformUserBombCount.style.left = 'calc(50% - 122px + 48px)';
+        this.wrapperElemToInformUserBombCount.style.top = 'calc(50% - 40px + 68px)';
+    }
+
+    isMobile() {
+        this.validateElem(this.gameBoardElem);
+
+        return this.gameBoardElem.getBoundingClientRect().width < this.MOBILE_BREAKPOINT;
+    };
+
+    isTablet() {
+        this.validateElem(this.gameBoardElem);
+        
+        return this.gameBoardElem.getBoundingClientRect().width < this.DESKTOP_BREAKPOINT;
+    };
+
+    displaySmileyFace() {
+        this.validateElem(this.smileyFace);
+
+        this.smileyFace.style.display = 'flex';
+    };
+
+    hideSmileyFace() {
+        this.validateElem(this.smileyFace);
+
+        this.smileyFace.style.display = 'none';
+    };
+
+    toggleSmileyFace() {
+        this.validateElem(this.smileyFace);
+
+        let isSmileyDisplayed = false;
+
+        if (this.smileyFace.style.display === 'flex') {
+            this.hideSmileyFace();
+        } else {
+            this.displaySmileyFace();
+            isSmileyDisplayed = true;
+        }
+
+        return isSmileyDisplayed;
+    };
+
+    displayBombsPlacedText(count: number) {
+        this.validateElem(this.elementToInformUserBombCount);
+
+        this.elementToInformUserBombCount.textContent = `// ${count}`;
+    };
+
+    /**
+     * Get the current difficulty level as an indexed number from the active difficulty element.
+     */
+    currentlyChosenDifficulty() {
+        this.validateElem(this.activeDifficultyElem);
+
+        return Number(this.activeDifficultyElem.dataset.difficulty);
+    };
+
+    async displayHeroSection() {
+        this.validateElem(this.heroSection);
+
+        this.heroSection.style.display = 'flex';
+
+        if (await this.sleepAndCheckDestroyed(5)) return;
+
+        this.heroSection.style.opacity = '1';
+    };
+
+    async hideHeroSection() {
+        this.validateElem(this.heroSection);
+
+        this.heroSection.style.opacity = '0';
+
+        if (await this.sleepAndCheckDestroyed(5)) return;
+
+        this.heroSection.style.display = 'none';
+    };
+
+    async displayGameSettings() {
+        this.validateElem(this.gameSettings);
+
+        this.gameSettings.style.display = 'flex';
+
+        if (await this.sleepAndCheckDestroyed(5)) return;
+
+        this.gameSettings.style.opacity = '1';
+    };
+
+    async hideGameSettings() {
+        this.validateElem(this.gameSettings);
+
+        this.gameSettings.style.opacity = '0';
+
+        if (await this.sleepAndCheckDestroyed(5)) return;
+
+        this.gameSettings.style.display = 'none';
+    };
+
+    removeDifficultySelectorsActiveStatus() {
+        this.difficultySelectors.forEach((selector: HTMLButtonElement) => selector.classList.remove('active'));
+    };
+
+    setEventListenersToDifficultySelectors() {
+        this.validateGameIsLinked();
+
+        this.difficultySelectors.forEach(selector => {
+            selector.addEventListener('click', (e: MouseEvent) => {
+                this.removeDifficultySelectorsActiveStatus();
+
+                const button = e.currentTarget as HTMLButtonElement;
+                button.classList.add('active');
+            }, { signal: this.game.abort.signal });
+        });
+    };
+
+
+    async sleepAndCheckDestroyed(ms: number) {
+        await sleep(ms);
+        return this.isBeingDestroyed;
+    };
+
+    validateGameIsLinked(): asserts this is GameUI & { game: Game } {
+        if (!this.game) {
+            throw new Error('Game instance is not linked to a GameUI instance.');
+        }
+    }
+
+    validateElem(elem: HTMLElement | null): asserts elem is HTMLElement {
+        if (!elem) {
+            throw new Error('Element is not initialized.');
+        }
+    }
+
+    validateGameBoard(): asserts this is GameUI & { game: Game & { board: GameBoard } } {
+        this.validateGameIsLinked();
+
+        if (this.game.board === null) {
+            throw new Error('GameBoard is not instantiated');
+        }
+    }
+
+    destroy() {
+        this.isBeingDestroyed = true;
     }
 }
 
-Object.assign(GameUI.prototype, GameUIHelpers);
 export default GameUI;

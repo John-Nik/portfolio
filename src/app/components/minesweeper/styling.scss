@@ -13,7 +13,7 @@
         transition: all 1s ease-in-out;
         transition-delay: 0.5s;
         z-index: 100001;
-    
+
         .wrapper {
             left: 0%;
             top: 0%;
@@ -29,7 +29,7 @@
             transition-delay: 0.5s;
         }
     }
-    
+
     #content {
         display: flex;
         width: 100%;
@@ -40,7 +40,7 @@
         align-items: center;
         user-select: none;
         pointer-events: none;
-    
+
         .container {
             display: flex;
             top: 0px;
@@ -53,8 +53,8 @@
             flex-direction: column;
             transition: all 0.4s ease-in-out;
             position: relative;
-            
-            
+
+
             .textContent {
                 width: 100%;
                 height: 50%;
@@ -64,7 +64,7 @@
                 align-items: center;
                 opacity: 1;
                 transition: opacity 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    
+
                 .topper {
                     color: white;
                     opacity: 0.7;
@@ -88,8 +88,9 @@
                     text-align: center;
                     text-shadow: 0px 0px 50px black;
                 }
-    
+
                 .work {
+                    display: flex;
                     color: #6ABAFB;
                     font-size: clamp(2.375rem, 5vw, 4rem);
                     margin-bottom: 32px;
@@ -99,12 +100,48 @@
                     backdrop-filter: blur(2px);
                     border-radius: 25px;
                     text-shadow: 0px 0px 50px black;
-    
+
                     &::before {
                         content: '>';
+                        padding-right: 8px;
                     }
                 }
-    
+
+                .work-wrapper {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .work-pipe {
+                    color: #6ABAFB;
+                    font-size: clamp(2.375rem, 5vw, 4rem);
+                    margin-bottom: 32px;
+                    font-weight: 400;
+                    width: max-content;
+                    height: 72px;
+                    backdrop-filter: blur(2px);
+                    border-radius: 25px;
+                    text-shadow: 0px 0px 50px black;
+                    position: relative;
+                    animation: blink-caret 1s steps(1) infinite;
+                    will-change: opacity;
+                }
+
+                @keyframes blink-caret {
+                    0% {
+                        opacity: 1;
+                    }
+
+                    50% {
+                        opacity: 0;
+                    }
+
+                    100% {
+                        opacity: 1;
+                    }
+                }
+
                 .get-in-touch-button {
                     width: 100%;
                     max-width: 620px;
@@ -121,7 +158,7 @@
                     align-items: center;
                     transition: all 0.175s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                     pointer-events: all;
-    
+
                     .GIT-wrapper {
                         display: flex;
                         position: relative;
@@ -131,7 +168,7 @@
                         height: 100%;
                         border-radius: 18px;
                         overflow: hidden;
-    
+
                         span {
                             position: relative;
                             width: fit-content;
@@ -141,21 +178,21 @@
                             height: clamp(48px, 2vw, 64px);
                             font-size: clamp(1.5rem, 2vw, 2rem);
                         }
-    
-                        
+
+
                     }
-    
+
                     &:hover {
                         background-color: hsl(220, 50%, 30%);
                         border: solid hsl(220, 50%, 30%);
                     }
-    
+
                     &:active {
                         scale: 0.95;
                     }
                 }
-    
-                
+
+
 
                 .show-settings-panel-button {
                     font-size: 1.5rem;
@@ -180,17 +217,19 @@
                             // for some reason, without setting the color to be changing, safari will NOT start the animation effect. I have no idea why it does this
                             color: #83ADE1;
                         }
+
                         50% {
                             text-decoration: underline;
                             color: #83ADE2;
                         }
+
                         100% {
                             text-decoration: none;
                             color: #83ADE1;
                         }
                     }
                 }
-    
+
                 .buttons-container {
                     width: 100%;
                     height: fit-content;
@@ -200,7 +239,7 @@
                     align-items: center;
                 }
             }
-    
+
             .gameSettings {
                 width: 120%;
                 height: 50%;
@@ -210,24 +249,24 @@
                 font-family: var(--fira-code);
                 opacity: 0;
                 transition: opacity 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    
+
                 .wrapper {
                     width: 510px;
                     height: 475px;
                     display: flex;
                     flex-direction: column;
-                    background: rgb(4,101,149);
-                    background: rgb(4,101,149);
-                    background: -moz-linear-gradient(153deg, rgba(4,101,149,1) 0%, rgba(4,84,149,0.13) 80%);
-                    background: -webkit-linear-gradient(153deg, rgba(4,101,149,1) 0%, rgba(4,84,149,0.13) 80%);
-                    background: linear-gradient(153deg, rgba(4,101,149,1) 0%, rgba(4,84,149,0.13) 80%);
-                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#046595",endColorstr="#045495",GradientType=1);
+                    background: rgb(4, 101, 149);
+                    background: rgb(4, 101, 149);
+                    background: -moz-linear-gradient(153deg, rgba(4, 101, 149, 1) 0%, rgba(4, 84, 149, 0.13) 80%);
+                    background: -webkit-linear-gradient(153deg, rgba(4, 101, 149, 1) 0%, rgba(4, 84, 149, 0.13) 80%);
+                    background: linear-gradient(153deg, rgba(4, 101, 149, 1) 0%, rgba(4, 84, 149, 0.13) 80%);
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#046595", endColorstr="#045495", GradientType=1);
                     position: relative;
                     border-radius: 8px;
                     border: solid #0C1616;
                     backdrop-filter: blur(10px);
                     overflow: hidden;
-    
+
                     .bolt-container {
                         position: absolute;
                         display: flex;
@@ -235,35 +274,35 @@
                         height: 100%;
                         user-select: none;
                         pointer-events: none;
-    
+
                         img {
                             position: absolute;
                         }
-    
+
                         #bolt1 {
                             top: 14px;
                             left: 14px;
                         }
-    
+
                         #bolt2 {
                             bottom: 14px;
                             left: 14px;
                         }
-    
+
                         #bolt3 {
                             right: 14px;
                             top: 14px;
                         }
-    
+
                         #bolt4 {
                             right: 14px;
                             bottom: 14px;
                         }
                     }
-    
+
                     .game-settings-wrapper {
                         padding: 34px;
-    
+
                         .game-instructions {
                             display: flex;
                             color: white;
@@ -283,7 +322,7 @@
                             width: 100%;
                             display: flex;
                             flex-direction: row;
-    
+
                             .difficulty-wrapper {
                                 width: 100%;
                                 height: 100%;
@@ -302,7 +341,7 @@
                                     position: relative;
                                     left: -1ch;
                                 }
-    
+
                                 .difficulty-options-wrapper {
                                     display: flex;
                                     flex-direction: row;
@@ -310,7 +349,7 @@
                                     flex-wrap: wrap;
                                     line-height: 2.5rem;
                                     justify-content: space-between;
-    
+
                                     .difficulty-feedback {
                                         width: 50%;
                                         display: flex;
@@ -337,7 +376,7 @@
                                         &:nth-child(4) {
                                             justify-content: flex-end;
                                         }
-                                        
+
                                         &.active {
                                             font-weight: 500;
 
@@ -345,37 +384,37 @@
                                                 0% {
                                                     opacity: 0;
                                                 }
-    
+
                                                 50% {
                                                     opacity: 1;
                                                 }
-    
+
                                                 100% {
                                                     opacity: 0;
                                                 }
                                             }
-    
+
                                             @keyframes blinkLeft {
                                                 0% {
                                                     opacity: 0;
                                                 }
-    
+
                                                 50% {
                                                     opacity: 1;
                                                 }
-    
+
                                                 100% {
                                                     opacity: 0;
                                                 }
                                             }
-    
+
                                             &::after {
                                                 margin-right: -20px;
                                                 content: '⠀<';
                                                 animation: blinkRight 1s steps(1, jump-start) 0s infinite alternate;
                                                 will-change: contents;
                                             }
-        
+
                                             &::before {
                                                 margin-left: -20px;
                                                 content: '>⠀';
@@ -395,19 +434,19 @@
                             max-height: 124px;
                             pointer-events: all;
                             flex-direction: column;
-                
+
                             .end-game-status {
                                 color: rgba(255, 255, 255, 0.5);
                                 font-size: 0.875rem;
                             }
-                
+
                             .start-game-button {
                                 padding: 8px 20px;
                                 border-radius: 12px;
                                 border: none;
                                 font-size: 0.5rem;
                                 letter-spacing: 1px;
-                                transform: scale(1,2);
+                                transform: scale(1, 2);
                                 font-family: var(--press-start-font);
                                 color: black;
                                 font-weight: 400;
@@ -421,12 +460,12 @@
                                 &.show {
                                     opacity: 1;
                                 }
-                
-            
+
+
                                 &:hover {
                                     background-color: hsl(213, 62%, 60%);
                                 }
-                
+
                                 &:active {
                                     scale: 0.95;
                                 }
@@ -436,12 +475,12 @@
                 }
             }
         }
-    }    
+    }
 }
 
-@media only screen and (min-width: 1024px) {    
+@media only screen and (min-width: 1024px) {
     #content {
-    
+
         .container {
             width: 100%;
             flex-direction: row;
@@ -451,70 +490,70 @@
                 width: 50%;
                 height: 100%;
                 align-items: flex-start;
-    
+
                 .topper {
                     backdrop-filter: blur(2px) brightness(0.85);
                 }
-    
+
                 .title {
                     margin-bottom: 0px;
                     backdrop-filter: blur(2px);
                     line-height: 108px;
                 }
-    
+
                 .work {
                     color: #6ABAFB;
                     width: fit-content;
                 }
-    
+
                 .get-in-touch-button {
                     font-size: clamp(1.5rem, 3vw, 2rem);
-    
+
                     .GIT-wrapper {
-    
+
                         span {
                             padding: 16px 0px;
                         }
                     }
                 }
-    
+
 
 
                 .show-settings-panel-button {
                     display: none;
                 }
-    
+
                 .buttons-container {
                     flex-direction: row;
                     gap: 54px;
                 }
             }
-    
+
             .gameSettings {
                 width: 50%;
                 height: 100%;
                 display: flex;
                 justify-content: flex-end;
                 opacity: 1;
-    
+
                 .wrapper {
                     width: 80%;
                     max-width: 510px;
                     height: 80%;
                     min-height: 350px;
                     max-height: 475px;
-    
+
                     .game-settings-wrapper {
 
                         .start-game-button-wrapper {
                             height: 10%;
                             min-height: 44px;
-                
+
                             .start-game-button {
                                 margin-top: clamp(0px, 1vh, 32px) !important;
                             }
                         }
-    
+
                         .game-instructions {
                             padding: 0px;
                             height: 20vh;
@@ -526,9 +565,9 @@
                                 padding: 0px 32px;
                             }
                         }
-    
+
                         .settings {
-    
+
                             .difficulty-wrapper {
                                 gap: 4px;
 
@@ -536,10 +575,10 @@
                                     text-align: left;
                                     left: 0px;
                                 }
-    
+
                                 .difficulty-options-wrapper {
                                     justify-content: space-evenly;
-    
+
                                     .difficulty-feedback {
                                         justify-content: flex-start !important;
                                     }
@@ -550,28 +589,28 @@
                 }
             }
         }
-    }    
+    }
 }
 
-@media only screen and (min-width: 1250px) { 
+@media only screen and (min-width: 1250px) {
     #content {
-    
+
         .container {
-    
+
             .gameSettings {
-    
+
                 .wrapper {
-    
+
                     .game-settings-wrapper {
-    
+
                         .settings {
-    
+
                             .difficulty-wrapper {
-    
+
                                 .difficulty-options-wrapper {
                                     justify-content: space-between;
                                     flex-wrap: nowrap;
-    
+
                                     .difficulty-feedback {
                                         width: fit-content;
                                     }
@@ -582,7 +621,7 @@
                         .start-game-button-wrapper {
                             align-items: center;
                             height: 10%;
-    
+
                             .start-game-button {
                                 margin-top: clamp(0px, 1vh, 32px);
                             }
@@ -591,5 +630,5 @@
                 }
             }
         }
-    }    
+    }
 }

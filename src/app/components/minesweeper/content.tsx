@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import GameSettings from './components/gameSettings/GameSettings';
 import TextContent from './components/textContent/TextContent';
-import { ReactElement } from 'react';
 
-export default function Content(): ReactElement {
+export default function Content() {
     return (
         <>
             <div className="bombs-placed-container">
