@@ -2,63 +2,45 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import './styling.scss';
+import { Project } from '../../types/Project';
+import Link from 'next/link';
 
-export default function FullPortfolioPage({ projects }): ReactNode {
+interface Props {
+    projects: Project[]
+}
+
+export default function FullPortfolioPage({ projects }: Props): ReactNode {
     const router = useRouter();
-    const pathname = usePathname()
-        .split('/')
-        .slice(2)[0]
-        .toLowerCase();
-
-    const dataToPull = projects.filter((project) => project.attributes.title.toLowerCase().includes(pathname));
-
-    if ((dataToPull.length === 0) || (dataToPull[0].attributes.isEnabled === false)) {
-        sendToPortfolioPage();
-        return;
-    }
-
-    const projectAttributes = dataToPull[0].attributes;
+    const pathname = usePathname().toLowerCase();
+    const [selectedProject, setSelectedProject] = useState(projects.find(project => {
+        return project.link.includes(pathname);
+    }));
 
     useEffect((): void => {
-        const card: HTMLDivElement = document.querySelector('.item-container');
-        const titleTag: HTMLTitleElement = document.querySelector('title');
+        if (!selectedProject || !selectedProject.isEnabled) {
+            router.push('/portfolio');
+            return;
+        }
 
-        card.addEventListener('mousemove', (mouse: MouseEvent): void => {
-            const rect: DOMRect = card.getBoundingClientRect();
-            const mouseOnCardPosX: number = mouse.clientX - rect.left;
-            const mouseOnCardPosY: number = mouse.clientY - rect.top;
+        const titleTag = document.querySelector<HTMLTitleElement>('title');
 
-            setTimeout((): void => {
-                card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`);
-                card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`);
-            }, 100);
-        });
+        if (!titleTag) {
+            throw new Error('card or titleTag is missing. Are the searched-for containers mounted?');
+        }
 
-        titleTag.textContent = `Giannis N. | ${projectAttributes.name} Project`;
+        titleTag.textContent = `Giannis N. | ${selectedProject.name} Project`;
     }, []);
-
-    function sendToPortfolioPage(): void {
-        router.push('/portfolio');
-    }
-
-    function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
-        if (e.key !== 'Enter') return;
-        sendToPortfolioPage();
-    }
 
     return (
         <main>
             <section className="full-page-project">
                 <div className="container full-page-card">
                     <div className="card-wrapper">
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            onKeyDown={handleKeyDown}
-                            onClick={sendToPortfolioPage}
+                        <Link
+                            href="/portfolio"
                             className="back-arrow"
                         >
                             <Image
@@ -68,16 +50,29 @@ export default function FullPortfolioPage({ projects }): ReactNode {
                                 alt=""
                                 priority={true}
                             />
-                        </div>
-                        <ProjectCard project={dataToPull[0]} />
+                        </Link>
+                        {
+                            !!selectedProject && (
+                                <ProjectCard
+                                    project={selectedProject}
+                                    projectIndex={0}
+                                />
+                            )
+                        }
                     </div>
 
                     <div className="text-wrapper">
-                        <h1 className="title">// {projectAttributes.name}</h1>
-                        <div
-                            className="body"
-                            dangerouslySetInnerHTML={{ __html: dataToPull[0].html }}
-                        />
+                        <h1 className="title">
+                            // {selectedProject?.name}
+                        </h1>
+                        {
+                            !!selectedProject && (
+                                <div
+                                    className="body"
+                                    dangerouslySetInnerHTML={{ __html: selectedProject.body }}
+                                />
+                            )
+                        }
                     </div>
                 </div>
             </section>

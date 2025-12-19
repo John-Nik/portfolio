@@ -1,10 +1,14 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import './styling.scss';
 
-export default function Header() {
+interface Props {
+    children?: ReactNode;
+}
+
+export default function Header({ children }: Props) {
     const pathname = usePathname();
     const [navMenuState, setNavMenuState] = useState(0);
 
@@ -37,6 +41,8 @@ export default function Header() {
                             Giannis
                         </Link>
                     </div>
+
+                    {children}
 
                     <menu className={isMenuOpen()}>
                         <li>

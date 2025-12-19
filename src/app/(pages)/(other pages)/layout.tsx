@@ -22,5 +22,3 @@ export const metadata: metadataType = {
         canonical: '/portfolio'
     },
 };
-
-export const runtime = 'edge';

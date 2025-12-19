@@ -19,6 +19,23 @@
                 height: 64px;
                 justify-content: center;
 
+                .dead-smiley-wrapper {
+                    display: none;
+                    position: absolute;
+                    // margin-top: 24px;
+                    height: 100%;
+                    align-items: center;
+                    cursor: pointer;
+                    z-index: 10;
+
+
+                    img {
+                        width: 34px;
+                        height: 34px;
+                        cursor: pointer;
+                    }
+                }
+
                 .logo-container {
                     width: 50%;
                     display: flex;
@@ -30,6 +47,7 @@
                         font-size: clamp(3rem, 5.6vw, 3.625rem);
                         letter-spacing: 1px;
                         transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                        text-decoration: none;
                     }
 
                     .logo:hover {
@@ -233,6 +251,20 @@
                             font-size: clamp(1.5rem, 3vw, 1.813rem);
                             transition: all 0.15s cubic-bezier(0.445, 0.05, 0.55, 0.95);
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    body {
+        .header-navigation {
+            nav {
+                .container {
+                    .dead-smiley-wrapper {
+                        align-items: center;
                     }
                 }
             }

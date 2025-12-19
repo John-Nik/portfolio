@@ -2,10 +2,11 @@
 'use server';
 import './styling.scss';
 import CardsGridContainer from './components/CardsGridContainer/CardsGridContainer';
+import { importProjects } from '../../../helpers/importProjects';
+
 
 export default async function page() {
-    const content = require.context('../../../content', true);
-    const projects = content.keys().map((filename) => content(filename));
+    const projects = await importProjects();
 
     return (
         <main>

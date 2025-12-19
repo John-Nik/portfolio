@@ -5,42 +5,57 @@ import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { useCallback, useRef } from 'react';
+import { ReactNode, useCallback, useRef } from 'react';
+import { Project } from '../../types/Project';
+import { sleep } from '../../../../../../../public/scripts/debug/minesweeper/helpers';
+import Link from 'next/link';
 
-export default function ProjectCard({ project, children, projectIndex }: { project: any, children?: any, projectIndex?: number }) {
-    const router: AppRouterInstance = useRouter();
-    const isEnabled = useRef(project.attributes.isEnabled);
+interface Props {
+    children?: ReactNode;
+    projectIndex: number;
+    project: Project;
+    hasHoverEffect?: boolean;
+}
+
+export default function ProjectCard({ project, children, projectIndex, hasHoverEffect }: Props) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const isEnabled = useRef(project.isEnabled);
 
     const isCardEnabled = useCallback(() => {
         return isEnabled.current ? '' : 'grayscale(50) brightness(0.75)';
     }, [isEnabled]);
 
-    function handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
-        if (e.key !== 'Enter' || !isEnabled.current) return;
-        router.push(`/portfolio/${project.attributes.link}`);
-    }
+    async function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+        if (!hasHoverEffect) return;
 
-    function handleClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        e.stopPropagation();
-        if (!isEnabled.current) return;
+        const card = event.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const mouseOnCardPosX = event.clientX - rect.left;
+        const mouseOnCardPosY = event.clientY - rect.top;
 
-        router.push(`/portfolio/${project.attributes.title}`, project.attributes.title);
+        await sleep(100);
+
+        card.style.setProperty('--mouse-x', `${mouseOnCardPosX}px`);
+        card.style.setProperty('--mouse-y', `${mouseOnCardPosY}px`);
     }
 
     return (
-        <div className="item-container">
+        <div
+            ref={cardRef}
+            className="item-container"
+            onMouseMove={handleMouseMove}
+        >
             {children}
 
-            <div 
+            <Link 
                 tabIndex={0}
-                role="button"
-                onKeyDown={handleKeyDown}
-                onClickCapture={handleClick}
+                href={isEnabled.current ? `/portfolio/${project.link}` : ''}
+                aria-disabled={!isEnabled.current}
                 className="card"
             >
                 <Image 
                     className="background"
-                    src={`/${project.attributes.img}`}
+                    src={`/${project.img}`}
                     width={376}
                     height={376}
                     priority={projectIndex <= 3 ? true : false}
@@ -50,18 +65,18 @@ export default function ProjectCard({ project, children, projectIndex }: { proje
                         width: 'calc(100% - 2px)', 
                         height: 'calc(100% - 2px)',
                         filter: isCardEnabled(),
-                        color: `#${project.attributes.backgroundColor}`
+                        color: `#${project.backgroundColor}`
                     }}
-                    alt={`${project.attributes.title} Profile Picture`}
+                    alt={`${project.title} Profile Picture`}
                 />
 
-                <h2>{project.attributes.title}</h2>
+                <h2>{project.title}</h2>
 
                 <div className="icons-wrapper">
                     {isEnabled.current ? 
                         <>
-                            <WebsiteIcon link={project.attributes.siteLink} />
-                            <GithubIcon link={project.attributes.githubLink} />
+                            <WebsiteIcon link={project.siteLink} />
+                            <GithubIcon link={project.githubLink} />
                         </> 
                         : 
                         <span
@@ -77,7 +92,7 @@ export default function ProjectCard({ project, children, projectIndex }: { proje
                         </span>
                     }
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

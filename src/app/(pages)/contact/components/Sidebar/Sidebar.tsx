@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import DownloadCVButton from '../../../../components/buttons/DownloadCVButton';
-import CallIcon from '../../../../components/icons-components/CallIcon';
 import EmailIcon from '../../../../components/icons-components/EmailIcon';
 import GithubIcon from '../../../../components/icons-components/GithubIcon';
 import './styling.scss';
-import { ReactElement } from 'react';
 
-export default function Sidebar(): ReactElement {
+export default function Sidebar() {
     return (
         <aside id="sidebar">
             <div className="container">
@@ -16,15 +14,6 @@ export default function Sidebar(): ReactElement {
 
                 <div className="contact-info-container">
                     <ul className="contact-info-wrapper">
-                        <li className="contact">
-                            <CallIcon />
-                            <Link
-                                className="call-link"
-                                href="tel:0035799475294"
-                            >
-                                +357 99475294
-                            </Link>
-                        </li>
                         <li className="contact">
                             <EmailIcon />
                             <Link

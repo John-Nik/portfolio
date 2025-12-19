@@ -1,10 +1,15 @@
 import './footer.scss';
-import CallIcon from '../icons-components/CallIcon';
 import EmailIcon from '../icons-components/EmailIcon';
 import GithubIcon from '../icons-components/GithubIcon';
 import Link from 'next/link';
+import { ReactNode } from 'react';
 
-export default function Footer({ className } : { className?: string }) {
+interface Props {
+    className?: string;
+    children?: ReactNode;
+}
+
+export default function Footer({ className, children }: Props) {
     return ( 
         <footer className={className}>
             <div className="toggle-background" />
@@ -26,6 +31,8 @@ export default function Footer({ className } : { className?: string }) {
                 <li>
                     <GithubIcon link="https://www.github.com/John-Nik" />
                 </li>
+
+                {children}
             </ul>
         </footer>
     );

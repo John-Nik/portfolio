@@ -1,7 +1,9 @@
-import Footer from './components/footer-homepage/footer';
-import Header from './components/header-homepage/Header';
+import Footer from './components/footer/footer';
+import Header from './components/header/Header';
 import './components/minesweeper/minesweeper.scss';
 import dynamic from 'next/dynamic';
+import SocialsIcon from './components/icons-components/SocialsIcon';
+import FlagIcon from './components/icons-components/FlagIcon';
 
 interface alternates {
     canonical: string
@@ -26,13 +28,24 @@ const MinesweeperContainer = dynamic(() => import('./components/minesweeper/mine
 export default function page() {
     return (
         <>
-            <Header />
+            <Header>
+                <div className="dead-smiley-wrapper">
+                    <img src="/icons/dead-smiley.png" />
+                </div>
+            </Header>
 
             <main className="homepage-body">
                 <MinesweeperContainer />
             </main>
-            
-            <Footer />
+
+            <Footer>
+                <li className="socials-icon-wrap">
+                    <SocialsIcon />
+                </li>
+                <li className="flag-icon-wrap">
+                    <FlagIcon />
+                </li>
+            </Footer>
         </>
     );
 }

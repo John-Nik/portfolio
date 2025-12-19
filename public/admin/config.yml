@@ -1,4 +1,11 @@
 local_backend: true
+publish_mode: editorial_workflow
+logo_url: https://john-nik.com/admin/icon.svg
+media_folder: images
+public_folder: images
+site_url: https://john-nik.com
+display_url: https://your-site.com
+show_preview_links: true
 
 backend:
   name: github
@@ -7,14 +14,6 @@ backend:
   base_url: https://john-nik.com
   auth_endpoint: /api/auth
 
-publish_mode: editorial_workflow
-
-logo_url: https://john-nik.com/admin/icon.svg
-
-media_folder: images
-
-public_folder: images
-
 collections:
   - name: "projects"
     label: "Projects"
@@ -22,12 +21,71 @@ collections:
     create: true
     slug: "{{link}}"
     fields:
-      - {label: "Short Name", name: "title", widget: "string", required: true}
-      - {label: "Post's Link", name: "link", widget: "string", required: true}
-      - {label: "Full Name", name: "name", widget: "string", required: true}
-      - {label: "Picture", name: "img", widget: "image", required: true}
-      - {label: "Background Color", name: "backgroundColor", widget: "string", required: true}
-      - {label: "Site Link", name: "siteLink", widget: "string", required: false, default: 'no-link'}
-      - {label: "Github Repo", name: "githubLink", widget: "string", required: false, default: 'no-link'}
-      - {label: "Enabled", name: "isEnabled", widget: "boolean", default: true}
-      - {label: "Responsibilities", name: "body", widget: "markdown", required: false}
+      - {
+        label: "Short Name",
+        name: "title",
+        widget: "string",
+        required: true
+      }
+      - {
+        label: "Post's Link",
+        name: "link",
+        widget: "string",
+        required: true
+      }
+      - {
+        label: "Full Name",
+        name: "name",
+        widget: "string",
+        required: true
+      }
+      - {
+        label: "Picture",
+        name: "img",
+        widget: "image",
+        required: true
+      }
+      - {
+        label: "Background Color",
+        name: "backgroundColor",
+        widget: "string",
+        required: true
+      }
+      - {
+        label: "Site Link",
+        name: "siteLink",
+        widget: "string",
+        required: false,
+        default: 'no-link'
+      }
+      - {
+        label: "Github Repo",
+        name: "githubLink",
+        widget: "string",
+        required: false,
+        default: 'no-link'
+      }
+      - {
+        label: "Enabled",
+        name: "isEnabled",
+        widget: "boolean",
+        default: true
+      }
+      - {
+        label: "Technologies/Skills used",
+        name: "skills",
+        widget: "string",
+        required: true,
+      }
+      - {
+        label: "Date-span of work",
+        name: "dateSpan",
+        widget: "string",
+        required: true,
+      }
+      - {
+        label: "Responsibilities",
+        name: "body",
+        widget: "markdown",
+        required: false
+      }

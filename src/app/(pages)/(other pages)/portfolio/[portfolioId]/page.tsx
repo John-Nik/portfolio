@@ -1,13 +1,11 @@
 'use server';
 import FullPortfolioPage from '../components/FullPortfolioPage/FullPortfolioPage';
+import { importProjects } from '../../../../helpers/importProjects';
 
 export default async function page() {    
-    const content = await require.context('../../../../content', true);
-    const projects = content.keys().map((filename) => content(filename));
+    const projects = await importProjects();
 
     return (
-        <>
-            <FullPortfolioPage projects={projects} />
-        </>
+        <FullPortfolioPage projects={projects} />
     );
 }
