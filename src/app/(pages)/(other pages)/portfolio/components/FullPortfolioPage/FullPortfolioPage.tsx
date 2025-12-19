@@ -16,7 +16,7 @@ export default function FullPortfolioPage({ projects }: Props): ReactNode {
     const router = useRouter();
     const pathname = usePathname().toLowerCase();
     const [selectedProject, setSelectedProject] = useState(projects.find(project => {
-        return project.link.includes(pathname);
+        return pathname.includes(project.link);
     }));
 
     useEffect((): void => {
@@ -55,7 +55,9 @@ export default function FullPortfolioPage({ projects }: Props): ReactNode {
                             !!selectedProject && (
                                 <ProjectCard
                                     project={selectedProject}
+                                    hasHoverEffect={true}
                                     projectIndex={0}
+                                    no-redirect-link="true"
                                 />
                             )
                         }

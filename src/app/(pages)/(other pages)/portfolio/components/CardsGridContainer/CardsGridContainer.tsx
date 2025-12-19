@@ -1,46 +1,28 @@
 'use client';
-import { ReactElement } from 'react';
+import { ReactElement, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
 import GithubIcon from '../../../../../components/icons-components/GithubIcon';
 import { Project } from '../../types/Project';
 import Link from 'next/link';
 
-export const runtime = 'nodejs';
-
 export default function CardsGridContainer({ projects}: { projects: Project[] }): ReactElement {
-    const router = useRouter();
+    const globePerfImage = useRef<HTMLImageElement>(null);
 
-    function handleKeyDown(e: React.KeyboardEvent<HTMLImageElement>, link: string, isDisabled = false) {
-        if (e.key !== 'Enter') return;
-        redirect(link, isDisabled);
-    }
+    function adjustGlobeBrightness(mode: 'normal' | 'dim') {
+        if (!globePerfImage.current) return;
 
-    function redirect(link: string, isDisabled = false) {
-        if (isDisabled) return;
-        router.push(link);
-    }
-
-    function adjustGlobeBrightness(mode: 'normal' | 'dim'): void {
-        const globeImage: HTMLElement | null = document.querySelector('#globe-perf');
-
-        if (!globeImage) {
-            throw new Error('no globe found');
-        }
-
-        if (mode === 'normal') {
-            globeImage.style.filter = 'brightness(1)';
-        } else {
-            globeImage.style.filter = 'brightness(0.8)';
-        }
-    }
+        globePerfImage.current.style.filter = mode === 'normal'
+            ? 'brightness(1)'
+            : 'brightness(0.8)';
+    };
 
     return (
         <>
             <div className="project-card-container">
                 <Link href="/portfolio/globe-perf">
                     <Image
+                        ref={globePerfImage}
                         className="background"
                         src="/images/globe-perf.webp"
                         width={310}
@@ -78,7 +60,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                             key={index}
                         >
                             <Link
-                                className="w-full h-full flex"
+                                className="flex w-full h-full"
                                 href={project.isEnabled ? `/portfolio/${project.link}` : ''}
                             >
                                 <Image
@@ -102,6 +84,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
 
                             <div className="content">
                                 <h2>{ project.title }</h2>
+
                                 { project.isEnabled ? 
                                     <div className="icons-container">
                                         <WebsiteIcon link={project.siteLink} />

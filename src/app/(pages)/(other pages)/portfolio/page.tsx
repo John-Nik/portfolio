@@ -4,7 +4,6 @@ import './styling.scss';
 import CardsGridContainer from './components/CardsGridContainer/CardsGridContainer';
 import { importProjects } from '../../../helpers/importProjects';
 
-
 export default async function page() {
     const projects = await importProjects();
 
