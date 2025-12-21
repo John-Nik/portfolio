@@ -1,9 +1,99 @@
 @import './color-scheme.scss';
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+    --blur-2xs: 2px;
+    --text-shadow-heading: 0px 0px 50px black;
+
+    --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+    --dur-fast: 160ms;
+    --dur-fade: 280ms;
+    --dur-move: 420ms;
+    --dur-page: 560ms;
+
+    --animate-countdown: countdown 5s linear, redirecting 5s linear 5s infinite normal;
+    --animate-blinking: blink-caret 1s steps(1) infinite;
+
+    @keyframes countdown {
+        0% {
+            content: 'Redirecting to home page in 5';
+        }
+
+        20% {
+            content: 'Redirecting to home page in 4';
+        }
+
+        40% {
+            content: 'Redirecting to home page in 3';
+        }
+
+        60% {
+            content: 'Redirecting to home page in 2';
+        }
+
+        80% {
+            content: 'Redirecting to home page in 1';
+        }
+
+        100% {
+            content: 'Redirecting to home page now';
+        }
+    }
+
+    @keyframes redirecting {
+        0% {
+            content: 'Redirecting to home page now';
+        }
+
+        20% {
+            content: 'Redirecting to home page now.';
+        }
+
+        40% {
+            content: 'Redirecting to home page now..';
+        }
+
+        60% {
+            content: 'Redirecting to home page now...';
+        }
+
+        80% {
+            content: 'Redirecting to home page now....';
+        }
+
+        100% {
+            content: 'Redirecting to home page now';
+        }
+    }
+
+    @keyframes blink-caret {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+@utility calm-fast {
+    @apply ease-calm duration-(--dur-fast);
+
+    transition-property: all;
+}
+
+@utility calm {
+    @apply ease-calm duration-(--dur-fade);
+
+    transition-property: all;
+}
 
 * {
-    margin: 0;
-    padding: 0;
     -webkit-tap-highlight-color: transparent;
 }
 

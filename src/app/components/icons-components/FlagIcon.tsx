@@ -8,29 +8,28 @@ import {
 export default function SocialsIcon(): ReactElement {
     const flagIcon = useRef<HTMLImageElement>(null);
 
-    function toggleBetweenFlagAndShovelIcon(): void {
-        if (!flagIcon.current) return;
-
-        if (flagIcon.current.src.includes('shovel')) {
-            flagIcon.current.src = '/icons/flag2.svg';
-        } else {
-            flagIcon.current.src = '/icons/shovel.png';
-        }
-    }
-
     useEffect((): void =>  {
         if (!('ontouchstart' in window)) return;
 
         const flagIconWrap = document.querySelector('.flag-icon-wrap');
-        
+        if (!flagIcon.current || !flagIconWrap) return;
+
         flagIcon.current.classList.add('touch-enabled-device');
         flagIconWrap.classList.add('touch-enabled-device');
     }, []);
 
+    function toggleBetweenFlagAndShovelIcon(): void {
+        if (!flagIcon.current) return;
+
+        flagIcon.current.src = flagIcon.current.src.includes('shovel')
+            ? '/icons/flag2.svg'
+            : '/icons/shovel.png';
+    }
+
     return (
         <img
             ref={flagIcon}
-            className="flag-icon"
+            data-flag-icon
             onClick={toggleBetweenFlagAndShovelIcon}
             src="/icons/shovel.png"
             alt=""    

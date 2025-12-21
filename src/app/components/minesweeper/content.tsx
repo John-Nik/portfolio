@@ -20,11 +20,6 @@ export default function Content() {
                 <div className="container">
                     <TextContent />
 
-                    <div
-                        className="user-initiated-game-start"
-                        aria-hidden="true"
-                    />
-
                     <GameSettings />
                 </div>
             </div>

@@ -35,16 +35,6 @@
                 position: relative;
                 pointer-events: all;
 
-                img {
-                    position: relative;
-                    left: 0px;
-                    opacity: 0.8;
-                    scale: 1;
-                    transition: left 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.23s, scale 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.15s;
-                    will-change: scroll-position;
-                    pointer-events: all;
-                }
-
                 &:after {
                     content: "";
                     height: clamp(2.5rem, 3.75vw, 2.7rem);

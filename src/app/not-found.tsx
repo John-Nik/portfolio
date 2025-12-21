@@ -2,7 +2,6 @@
 import Header from './components/header/Header';
 import Footer from './components/footer/footer';
 import Image from 'next/image';
-import './not-found.scss';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -21,7 +20,7 @@ export default function Custom404() {
         <>
             <Header />
 
-            <main className="notFoundMain">
+            <main className="flex flex-col justify-center items-center gap-4 mx-6 min-[800px]:mt-24 h-[calc(100dvh-64px-58px)]! min-[800px]:h-[calc(100dvh-90px-59px)] overflow-hidden">
                 <Image
                     src="/icons/question-mark.svg"
                     alt=""
@@ -29,7 +28,10 @@ export default function Custom404() {
                     width="150"
                     priority={true}
                 />
-                <h1 style={{ color: 'white' }}>Page Not Found</h1>
+
+                <h1 className="relative flex flex-col items-center mt-1 px-4! w-full font-thin text-white after:text-gray-200 after:text-2xl text-4xl text-center after:text-center after:content-[''] after:animate-countdown">
+                    Page Not Found
+                </h1>
             </main>
 
             <Footer />

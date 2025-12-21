@@ -48,7 +48,8 @@ collections:
       - {
         label: "Background Color",
         name: "backgroundColor",
-        widget: "string",
+        widget: "color",
+        allowInput: true,
         required: true
       }
       - {

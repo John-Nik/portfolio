@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function GithubIcon({
     link = 'no-link',
@@ -18,11 +18,12 @@ export default function GithubIcon({
             <img
                 tabIndex={0}
                 role="button"
-                className={`github-icon icon ${className}`}
+                className={`rounded-1/2 shadow-[0_0_5px_black] aria-hidden:shadow-none aria-hidden:opacity-0 aria-hidden:scale-0 opacity-70 scale-100 hover:opacity-100 hover:aria-hidden:opacity-0 calm-fast ${className}`}
                 title={`Visit ${link}`}
                 src="/icons/github.svg"
                 alt={`redirect to ${link}`}
+                aria-hidden={false}
             />
         </Link>
-    )
+    );
 }

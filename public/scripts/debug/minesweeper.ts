@@ -23,11 +23,11 @@ class Game {
         this.board.init();
         this.ui.init();
 
-        if (!this.ui.elemToTriggerTapMode) {
-            throw new Error('element to trigger tap is not defined. Is the UI instantiated?');
+        if (!this.ui.flagIcon) {
+            throw new Error('Flag icon element is not found. Is the UI initialized?');
         }
 
-        this.ui.elemToTriggerTapMode.addEventListener('click', () => {
+        this.ui.flagIcon.addEventListener('click', () => {
             const newValue = this.board.mobileUserWantsToFlag + 1;
             this.board.mobileUserWantsToFlag = newValue % 2 as 0 | 1;
         }, { signal: this.abort.signal });

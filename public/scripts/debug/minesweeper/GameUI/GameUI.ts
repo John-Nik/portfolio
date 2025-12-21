@@ -10,8 +10,8 @@ class GameUI {
     heroSection: HTMLDivElement | null = document.querySelector('.textContent');
     gameSettings: HTMLDivElement | null = document.querySelector('.gameSettings');
     smileyFace: HTMLImageElement | null = document.querySelector('.dead-smiley-wrapper');
-    socialsIcon: HTMLDivElement | null = document.querySelector('.socials-icon-wrap');
-    flagIcon: HTMLDivElement | null = document.querySelector('.flag-icon-wrap');
+    socialsIcon: HTMLDivElement | null = document.querySelector('[data-socials-icon]');
+    flagIcon: HTMLDivElement | null = document.querySelector('[data-flag-icon]');
     footerIconsContainer: HTMLDivElement | null = document.querySelector('.footer-links-container');
     gameSettingsSubtitle: HTMLSpanElement | null = document.querySelector('.end-game-status'); // Visible only on desktop
     startGameButton: HTMLButtonElement | null = document.querySelector('.start-game-button');
@@ -19,7 +19,6 @@ class GameUI {
     wrapperElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container .wrapper');
     elementToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-text');
     instructionsElem: HTMLSpanElement | null = document.querySelector('.game-instructions-span');
-    elemToTriggerTapMode: HTMLDivElement | null = document.querySelector('.flag-icon-wrap');
     gameSettingsElem: HTMLDivElement | null = document.querySelector('.gameSettings');
     activeDifficultyElem: HTMLSpanElement | null = document.querySelector('.difficulty-feedback.active');
     isBombsPlacedTextVisible: boolean = false;

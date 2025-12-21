@@ -8,5 +8,6 @@ export interface Project {
     name: string;
     isEnabled: boolean;
     dateSpan: string; // E.g.: May 23 - Current;
+    skills: string;
     body: string; // Markdown-styled string
 }

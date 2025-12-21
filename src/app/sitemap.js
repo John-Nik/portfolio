@@ -3,26 +3,26 @@ export default function sitemap() {
         {
             url: 'https://john-nik.com',
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'yearly',
             priority: 1
         },
         {
             url: 'https://john-nik.com/about',
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'yearly',
             priority: 0.6
         },
         {
             url: 'https://john-nik.com/portfolio',
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'yearly',
             priority: 0.6
         },
         {
             url: 'https://john-nik.com/contact',
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'yearly',
             priority: 0.6
         }
-    ]
+    ];
 }

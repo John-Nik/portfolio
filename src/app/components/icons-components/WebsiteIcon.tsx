@@ -16,10 +16,11 @@ export default function WebsiteIcon({
             <img 
                 tabIndex={0}
                 role="button"
-                className="website-icon icon"
+                className="aria-hidden:opacity-0 scale-100 aria-hidden:scale-0 website-icon calm-fast"
                 title={`Visit ${link}`}
                 src="/icons/website.svg"
                 alt={`redirect to ${link}`}
+                aria-hidden={false}
             />
         </Link>
     );

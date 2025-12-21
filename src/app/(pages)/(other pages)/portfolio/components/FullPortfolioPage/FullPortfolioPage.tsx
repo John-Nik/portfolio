@@ -15,7 +15,7 @@ interface Props {
 export default function FullPortfolioPage({ projects }: Props): ReactNode {
     const router = useRouter();
     const pathname = usePathname().toLowerCase();
-    const [selectedProject, setSelectedProject] = useState(projects.find(project => {
+    const [selectedProject] = useState(projects.find(project => {
         return pathname.includes(project.link);
     }));
 
@@ -37,7 +37,7 @@ export default function FullPortfolioPage({ projects }: Props): ReactNode {
     return (
         <main>
             <section className="full-page-project">
-                <div className="container full-page-card">
+                <div className="gap-8 container full-page-card">
                     <div className="card-wrapper">
                         <Link
                             href="/portfolio"
@@ -63,10 +63,17 @@ export default function FullPortfolioPage({ projects }: Props): ReactNode {
                         }
                     </div>
 
-                    <div className="text-wrapper">
-                        <h1 className="title">
+                    <div className="flex flex-col overflow-hidden text-wrapper">
+                        <h1 className="pl-0! text-left title">
                             // {selectedProject?.name}
                         </h1>
+
+                        <div className="flex flex-col w-full text-white">
+                            <h5 className="font-(--fira-code)! text-xl! font-medium">
+                                <em>{selectedProject?.skills}</em>
+                            </h5>
+                        </div>
+
                         {
                             !!selectedProject && (
                                 <div

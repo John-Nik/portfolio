@@ -1,5 +1,5 @@
 'use client';
-import { ReactElement, useCallback, useRef } from 'react';
+import { ReactElement, useRef } from 'react';
 import Image from 'next/image';
 import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
 import GithubIcon from '../../../../../components/icons-components/GithubIcon';

@@ -43,33 +43,33 @@ export default function ProjectCard({ project, projectIndex, hasHoverEffect, noR
             className="item-container"
             onMouseMove={handleMouseMove}
         >
-            <Link
-                tabIndex={0}
-                href={`/portfolio/${project.link}`}
-                className="card"
-            >
-                <Image 
-                    className="w-[calc(100%-2px)] h-[calc(100%-2px)] background"
-                    src={`/${project.img}`}
-                    width={376}
-                    height={376}
-                    priority={projectIndex <= 3 ? true : false}
-                    quality={100}
-                    sizes="200vw"
-                    style={{
-                        filter: isCardEnabled(),
-                        color: `#${project.backgroundColor}`
-                    }}
-                    alt={`${project.title} Profile Picture`}
-                />
-
-                <h2>{project.title}</h2>
+            <div className="card">
+                <Link
+                    className="w-full h-full"
+                    tabIndex={0}
+                    href={`/portfolio/${project.link}`}
+                >
+                    <Image 
+                        className="w-[calc(100%-2px)] h-[calc(100%-2px)] background"
+                        src={`/${project.img}`}
+                        width={376}
+                        height={376}
+                        priority={projectIndex <= 3 ? true : false}
+                        quality={100}
+                        sizes="200vw"
+                        style={{
+                            filter: isCardEnabled(),
+                            color: `#${project.backgroundColor}`
+                        }}
+                        alt={`${project.title} Profile Picture`}
+                    />
+                </Link>
 
                 <div className="icons-wrapper">
                     <WebsiteIcon link={project.siteLink} />
                     <GithubIcon link={project.githubLink} />
                 </div>
-            </Link>
+            </div>
         </div>
     );
 }

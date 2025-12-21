@@ -1,13 +1,13 @@
 /* eslint-disable @stylistic/jsx-child-element-spacing */
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import './styling.scss';
 import Script from 'next/script';
 import './minesweeper.scss';
 import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
 
-const Canvas = dynamic(() => import('./Canvas'));
+const Canvas = dynamic(() => import('./Canvas.tsx'));
 
 interface Direction {
     direction: 'DOWN' | 'UP';

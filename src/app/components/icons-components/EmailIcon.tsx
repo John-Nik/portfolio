@@ -6,9 +6,10 @@ export default function EmailIcon() {
             <img
                 tabIndex={0}
                 role="button"
-                className="email-icon icon"
+                className="opacity-100 aria-hidden:opacity-0 scale-100 aria-hidden:scale-0 calm-fast"
                 src="/icons/email.svg"
                 alt=""
+                aria-hidden={false}
             />
         </Link>
     );

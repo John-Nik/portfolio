@@ -130,22 +130,25 @@
         .text-wrapper {
             width: 100%;
             max-width: 600px;
-            padding: 0px 24px;
 
             .body {
                 color: white;
-                font-family: var(--fira-code);
+                font-family: var(--fira-code) !important;
 
                 ul {
-                    padding-left: 20px;
                     font-size: 1.25rem;
+                    list-style-type: disc;
+                    gap: 16px;
+                    display: flex;
+                    flex-direction: column;
+                    list-style: disc;
                 }
 
                 li {
+                    list-style-type: disc;
                     text-wrap: wrap;
                     font-weight: 300;
                     max-width: 60ch;
-                    margin-bottom: 16px;
                     opacity: 0.9;
                 }
 
@@ -235,10 +238,6 @@
         .title {
             padding-left: 32px;
             text-align: left;
-        }
-
-        .body {
-            padding-left: 32px;
         }
 
         .item-container {
