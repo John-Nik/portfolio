@@ -4,6 +4,7 @@
 @theme {
     --blur-2xs: 2px;
     --text-shadow-heading: 0px 0px 50px black;
+    --shadow-subtle: 0px 0px 5px black;
 
     --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
     --dur-fast: 160ms;
@@ -12,7 +13,7 @@
     --dur-page: 560ms;
 
     --animate-countdown: countdown 5s linear, redirecting 5s linear 5s infinite normal;
-    --animate-blinking: blink-caret 1s steps(1) infinite;
+    --animate-blink-underline: blink-underline 1.5s steps(1) infinite;
 
     @keyframes countdown {
         0% {
@@ -66,17 +67,21 @@
         }
     }
 
-    @keyframes blink-caret {
+    @keyframes blink-underline {
         0% {
-            opacity: 1;
+            text-decoration: none;
+            // for some reason, without setting the color to be changing, safari will NOT start the animation effect. I have no idea why it does this
+            // color: #83ADE1;
         }
 
         50% {
-            opacity: 0;
+            text-decoration: underline;
+            // color: #83ADE2;
         }
 
         100% {
-            opacity: 1;
+            text-decoration: none;
+            // color: #83ADE1;
         }
     }
 }

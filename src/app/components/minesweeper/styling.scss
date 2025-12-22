@@ -54,57 +54,6 @@
             transition: all 0.4s ease-in-out;
             position: relative;
 
-
-            .textContent {
-
-                .topper {
-                    color: white;
-                    opacity: 0.7;
-                    font-size: 1.5rem;
-                    margin-bottom: 16px;
-                    width: fit-content;
-                    height: fit-content;
-                    text-shadow: 0px 0px 50px black;
-                    border-radius: 25px;
-                }
-
-                .show-settings-panel-button {
-                    font-size: 1.5rem;
-                    font-family: var(--fira-code);
-                    font-weight: 500;
-                    color: #83ADE2;
-                    background-color: transparent;
-                    border: none;
-                    width: fit-content;
-                    height: max-content;
-                    text-decoration: underline;
-                    text-underline-offset: 6px;
-                    backdrop-filter: brightness(0.6) blur(1px);
-                    pointer-events: all;
-                    box-shadow: 0px 0px 5px black;
-                    border-radius: 10%;
-                    animation: blink 1.5s steps(1) 0s infinite;
-
-                    @keyframes blink {
-                        0% {
-                            text-decoration: none;
-                            // for some reason, without setting the color to be changing, safari will NOT start the animation effect. I have no idea why it does this
-                            color: #83ADE1;
-                        }
-
-                        50% {
-                            text-decoration: underline;
-                            color: #83ADE2;
-                        }
-
-                        100% {
-                            text-decoration: none;
-                            color: #83ADE1;
-                        }
-                    }
-                }
-            }
-
             .gameSettings {
                 width: 120%;
                 height: 50%;
@@ -350,17 +299,6 @@
             width: 100%;
             flex-direction: row;
             padding: 0px 32px;
-
-            .textContent {
-
-                .topper {
-                    backdrop-filter: blur(2px) brightness(0.85);
-                }
-
-                .show-settings-panel-button {
-                    display: none;
-                }
-            }
 
             .gameSettings {
                 width: 50%;
