@@ -7,14 +7,14 @@ class GameUI {
     readonly MOBILE_BREAKPOINT: number = 720;
 
     gameBoardElem: HTMLDivElement | null = document.querySelector('#game');
-    heroSection: HTMLDivElement | null = document.querySelector('.textContent');
+    heroSection: HTMLDivElement | null = document.querySelector('[data-hero-text-container]');
     gameSettings: HTMLDivElement | null = document.querySelector('.gameSettings');
     smileyFace: HTMLImageElement | null = document.querySelector('.dead-smiley-wrapper');
     socialsIcon: HTMLDivElement | null = document.querySelector('[data-socials-icon]');
     flagIcon: HTMLDivElement | null = document.querySelector('[data-flag-icon]');
     footerIconsContainer: HTMLDivElement | null = document.querySelector('.footer-links-container');
     gameSettingsSubtitle: HTMLSpanElement | null = document.querySelector('.end-game-status'); // Visible only on desktop
-    startGameButton: HTMLButtonElement | null = document.querySelector('.start-game-button');
+    startGameButton: HTMLButtonElement | null = document.querySelector('[data-start-game-button]');
     containerElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container');
     wrapperElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container .wrapper');
     elementToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-text');
@@ -22,7 +22,7 @@ class GameUI {
     gameSettingsElem: HTMLDivElement | null = document.querySelector('.gameSettings');
     activeDifficultyElem: HTMLSpanElement | null = document.querySelector('.difficulty-feedback.active');
     isBombsPlacedTextVisible: boolean = false;
-    showSettingsButton: HTMLButtonElement | null = document.querySelector('.show-settings-panel-button');
+    showSettingsButton: HTMLButtonElement | null = document.querySelector('[data-show-game-settings-button]');
     game: Game | null = null;
     difficultySelectors: HTMLButtonElement[] = Array.from(document.querySelectorAll('.difficulty-feedback'));
     showGameSettingsButton: HTMLButtonElement | null = document.querySelector('.show-settings-panel-button'); // Only displayed on mobile view

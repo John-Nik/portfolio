@@ -113,7 +113,10 @@ export default function TextContent() {
 
     return (
         <>
-            <div className="flex flex-col justify-center items-center lg:items-start opacity-100 w-full lg:w-fit h-full overflow-hidden textContent calm">
+            <div
+                className="flex flex-col justify-center items-center lg:items-start opacity-100 w-full lg:w-fit h-full overflow-hidden calm"
+                data-hero-text-container
+            >
                 <span className="text-shadow-heading backdrop-blur-2xs brightness-65 p-1 rounded-full w-fit h-fit text-white text-2xl leading-none">
                     Hello, my name is
                 </span>
@@ -135,7 +138,10 @@ export default function TextContent() {
 
                     <DownloadCVButton />
 
-                    <button className="lg:hidden bg-transparent shadow-subtle backdrop-blur-2xs backdrop-brightness-60 p-1 border-none rounded-full w-fit h-max font-[var(--fira-code)] font-medium text-[#83ADE2] text-2xl animate-blink-underline underline underline-offset-6 leading-none pointer-events-auto">
+                    <button
+                        className="lg:hidden bg-transparent shadow-subtle backdrop-blur-2xs backdrop-brightness-60 p-1 border-none rounded-full w-fit h-max font-[var(--fira-code)] font-medium text-[#83ADE2] text-2xl animate-blink-underline underline underline-offset-6 leading-none pointer-events-auto"
+                        data-show-game-settings-button
+                    >
                         Start-Game
                     </button>
                 </div>

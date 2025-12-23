@@ -14,6 +14,8 @@
 
     --animate-countdown: countdown 5s linear, redirecting 5s linear 5s infinite normal;
     --animate-blink-underline: blink-underline 1.5s steps(1) infinite;
+    --animate-fade-in: fade-in 2s var(--ease-calm) forwards;
+    --animate-blink: blink 1s steps(1) infinite;
 
     @keyframes countdown {
         0% {
@@ -82,6 +84,30 @@
         100% {
             text-decoration: none;
             // color: #83ADE1;
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
         }
     }
 }

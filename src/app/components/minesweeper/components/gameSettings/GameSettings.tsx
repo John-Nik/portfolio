@@ -7,18 +7,37 @@ export default function GameSettings() {
     const startGameButton = useRef(null);
     const gameControlPanel = useRef(null);
 
+    const difficulties = [
+        {
+            label: 'Easy',
+            value: 1,
+        },
+        {
+            label: 'Normal',
+            value: 2,
+        },
+        {
+            label: 'Hard',
+            value: 3,
+        },
+        {
+            label: 'Challenging',
+            value: 4,
+        },
+    ];
+
     const [difficultiesWrapper] = useInView({
         triggerOnce: true,
         onChange: (inView, intersectionObserverObject) => {
             if (!inView) return;
 
-            setTimeout(() => {
-                intersectionObserverObject.target.childNodes.forEach((child: HTMLSpanElement) => {
-                    child.classList.add('show');
-                });
+            // SetTimeout(() => {
+            //     IntersectionObserverObject.target.childNodes.forEach((child: HTMLSpanElement) => {
+            //         Child.classList.add('show');
+            //     });
     
-                startGameButton.current.classList.add('show');
-            }, 100);
+            //     StartGameButton.current.classList.add('show');
+            // }, 100);
         }
     });
 
@@ -35,24 +54,24 @@ export default function GameSettings() {
                         aria-hidden="true"
                     >
                         <img
-                            id="bolt1"
                             src="/icons/bolt.svg"
+                            className="top-2.5 left-2.5 absolute"
                             alt=""
                         />
                         <img
-                            id="bolt2"
                             src="/icons/bolt.svg"
                             alt=""
+                            className="bottom-2.5 left-2.5 absolute"
                         />
                         <img
-                            id="bolt3"
                             src="/icons/bolt.svg"
                             alt=""
+                            className="top-2.5 right-2.5 absolute"
                         />
                         <img
-                            id="bolt4"
                             src="/icons/bolt.svg"
                             alt=""
+                            className="right-2.5 bottom-2.5 absolute"
                         />
                     </div>
 
@@ -68,47 +87,43 @@ export default function GameSettings() {
                         <div className="settings">
                             <div className="difficulty-wrapper">
                                 <span className="difficulty //">// Difficulty</span>
+
                                 <div
                                     className="difficulty-options-wrapper"
                                     ref={difficultiesWrapper}
                                 >
-                                    <span
-                                        className="difficulty-feedback"
-                                        data-difficulty={0}
-                                    >
-                                        Easy
-                                    </span>
-                                    <span
-                                        className="difficulty-feedback active"
-                                        data-difficulty={1}
-                                    >
-                                        Normal
-                                    </span>
-                                    <span
-                                        className="difficulty-feedback"
-                                        data-difficulty={2}
-                                    >
-                                        Hard
-                                    </span>
-                                    <span
-                                        className="difficulty-feedback"
-                                        data-difficulty={3}
-                                    >
-                                        Challenging
-                                    </span>
+                                    {difficulties.map(({ label, value }, index) => (
+                                        <span
+                                            key={value}
+                                            className={`animate-fade-in w-1/2 flex cursor-pointer select-none nth-2:justify-end nth-4:justify-end lg:justify-start xl:w-fit data-active:font-medium before:mr-2 after:ml-2 before:animate-blink after:animate-blink before:content-[''] after:content-[''] data-active:after:content-['<'] data-active:before:content-['>'] ${value === 2 && 'active'}`}
+                                            data-active={value === 2}
+                                            style={{
+                                                animationDelay: `${250 * index}ms`
+                                            }}
+                                            data-difficulty={value}
+                                        >
+                                            {label}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
                         </div>
 
-                        <div className="start-game-button-wrapper">
+                        <div className="flex flex-col items-center pointer-events-auto">
                             <button
                                 ref={startGameButton}
-                                className="start-game-button"
+                                className="bg-[#83ADE2] hover:bg-[hsl(213,62%,60%)] rounded-full active:scale-95 animate-fade-in cursor-pointer calm-fast"
+                                style={{
+                                    animationDelay: `${difficulties.length * 250}ms`
+                                }}
+                                data-start-game-button
                             >
-                                start-game
+                                <span className="font-(family-name:--press-start-font) block scale-y-180 origin-center px-5 py-3 text-black text-[0.5rem] tracking-[1px]">
+                                    start game
+                                </span>
                             </button>
 
-                            <div className="end-game-status" />
+                            <div className="mt-4 text-[0.875rem] text-white/50" />
                         </div>
                     </div>
                 </div>
