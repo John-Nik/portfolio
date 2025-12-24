@@ -8,23 +8,23 @@ class GameUI {
 
     gameBoardElem: HTMLDivElement | null = document.querySelector('#game');
     heroSection: HTMLDivElement | null = document.querySelector('[data-hero-text-container]');
-    gameSettings: HTMLDivElement | null = document.querySelector('.gameSettings');
+    gameSettings: HTMLDivElement | null = document.querySelector('[data-game-settings]');
     smileyFace: HTMLImageElement | null = document.querySelector('.dead-smiley-wrapper');
     socialsIcon: HTMLDivElement | null = document.querySelector('[data-socials-icon]');
     flagIcon: HTMLDivElement | null = document.querySelector('[data-flag-icon]');
     footerIconsContainer: HTMLDivElement | null = document.querySelector('.footer-links-container');
     gameSettingsSubtitle: HTMLSpanElement | null = document.querySelector('.end-game-status'); // Visible only on desktop
     startGameButton: HTMLButtonElement | null = document.querySelector('[data-start-game-button]');
-    containerElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container');
-    wrapperElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-container .wrapper');
-    elementToInformUserBombCount: HTMLDivElement | null = document.querySelector('.bombs-placed-text');
-    instructionsElem: HTMLSpanElement | null = document.querySelector('.game-instructions-span');
-    gameSettingsElem: HTMLDivElement | null = document.querySelector('.gameSettings');
-    activeDifficultyElem: HTMLSpanElement | null = document.querySelector('.difficulty-feedback.active');
+    containerElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('[data-bombs-placed-container]');
+    wrapperElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('[data-bombs-placed-wrapper]');
+    elementToInformUserBombCount: HTMLDivElement | null = document.querySelector('[data-bombs-placed-text]');
+    instructionsElem: HTMLSpanElement | null = document.querySelector('[data-instructions-span]');
+    gameSettingsElem: HTMLDivElement | null = document.querySelector('[data-game-settings]');
+    activeDifficultyElem: HTMLSpanElement | null = document.querySelector('[data-difficulty-selector][data-active=true]');
     isBombsPlacedTextVisible: boolean = false;
     showSettingsButton: HTMLButtonElement | null = document.querySelector('[data-show-game-settings-button]');
     game: Game | null = null;
-    difficultySelectors: HTMLButtonElement[] = Array.from(document.querySelectorAll('.difficulty-feedback'));
+    difficultySelectors: HTMLButtonElement[] = Array.from(document.querySelectorAll('[data-difficulty-selector]'));
     showGameSettingsButton: HTMLButtonElement | null = document.querySelector('.show-settings-panel-button'); // Only displayed on mobile view
     toggleBackgroundElem: HTMLDivElement | null = document.querySelector('.toggle-background');
     lastShownPanel: 'heroSection' | 'gameSettings' = 'heroSection';
@@ -104,31 +104,30 @@ class GameUI {
         this.resetBombsPlacedText();
     }
 
-    shakeBoard(times = 10) {
+    async shakeBoard(times = 10) {
         this.validateElem(this.gameBoardElem);
 
         this.gameBoardElem.style.scale = '1.005';
 
-        const intervalShakeGameBoard = setInterval(() => {
+        for (let i = 1; i <= times; i++) {
             this.validateElem(this.gameBoardElem);
 
-            if (times === 0) {
-                clearInterval(intervalShakeGameBoard);
+            if (i === times) {
                 this.gameBoardElem.style.scale = '1';
                 this.gameBoardElem.style.left = '0px';
                 this.gameBoardElem.style.top = '0px';
-                return;
+                continue;
             }
 
-            const randomX = Math.ceil(Math.random() * 2);
-            const randomY = Math.ceil(Math.random() * 2);
             const useNegativeShakeCoords = times % 2 === 0;
+            const randomX = Math.ceil(Math.random() * 2) * (useNegativeShakeCoords ? -1 : 1);
+            const randomY = Math.ceil(Math.random() * 2) * (useNegativeShakeCoords ? -1 : 1);
 
-            this.gameBoardElem.style.left = useNegativeShakeCoords ? `-${randomX}px` : `${randomX}px`;
-            this.gameBoardElem.style.top = useNegativeShakeCoords ? `-${randomY}px` : `${randomY}px`;
+            this.gameBoardElem.style.left = `${randomX}px`;
+            this.gameBoardElem.style.top = `${randomY}px`;
 
-            times--;
-        }, 30);
+            if (await this.sleepAndCheckDestroyed(30)) return;
+        }
     }
 
     async startGame(bombsCount: number | undefined = this.game?.board?.bombsPresent.value) {
@@ -472,7 +471,7 @@ class GameUI {
     };
 
     removeDifficultySelectorsActiveStatus() {
-        this.difficultySelectors.forEach((selector: HTMLButtonElement) => selector.classList.remove('active'));
+        this.difficultySelectors.forEach(button => button.dataset.active = 'false');
     };
 
     setEventListenersToDifficultySelectors() {
@@ -482,12 +481,15 @@ class GameUI {
             selector.addEventListener('click', (e: MouseEvent) => {
                 this.removeDifficultySelectorsActiveStatus();
 
-                const button = e.currentTarget as HTMLButtonElement;
-                button.classList.add('active');
+                const button = e.currentTarget;
+                if (!(button instanceof HTMLButtonElement)) {
+                    throw new Error('Difficulty selector is not an HTML Button');
+                }
+
+                button.dataset.active = 'true';
             }, { signal: this.game.abort.signal });
         });
     };
-
 
     async sleepAndCheckDestroyed(ms: number) {
         await sleep(ms);

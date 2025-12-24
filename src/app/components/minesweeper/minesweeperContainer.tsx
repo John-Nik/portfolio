@@ -1,6 +1,5 @@
 'use client';
 import Content from './content';
-import './styling.scss';
 import { useEffect } from 'react';
 import { resetGame, destroyGame } from './gameManager';
 

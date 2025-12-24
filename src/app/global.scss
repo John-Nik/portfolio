@@ -124,6 +124,18 @@
     transition-property: all;
 }
 
+@utility calm-slow {
+    @apply ease-calm duration-(--dur-move);
+
+    transition-property: all;
+}
+
+@utility calm-super-slow {
+    @apply ease-calm duration-(--dur-page);
+
+    transition-property: all;
+}
+
 * {
     -webkit-tap-highlight-color: transparent;
 }
