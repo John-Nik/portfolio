@@ -44,9 +44,12 @@ export default function mainLayout({ children }: { children: ReactNode }) {
         <html
             lang="en"
             className="h-full"
+            suppressHydrationWarning
         >
-            <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable} w-full h-full flex flex-col overflow-x-hidden relative font-(family-name:--zcool-font)`}>
-                {children}
+            <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable} w-full h-full font-(family-name:--zcool-font)`}>
+                <div className="relative grid grid-rows-[auto_1fr_auto] w-full h-full overflow-x-hidden">
+                    {children}
+                </div>
             </body>
         </html>
     );

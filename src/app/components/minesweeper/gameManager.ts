@@ -11,7 +11,7 @@ declare global {
 }
 
 export function resetGame() {
-    globalThis.__game?.destroy();
+    destroyGame();
     globalThis.__game = new Game();
 
     return globalThis.__game;

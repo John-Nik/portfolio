@@ -47,7 +47,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                 <div className="content">
                     <h2>Globe-Perf</h2>
                     <div className="icons-container">
-                        <WebsiteIcon link="no-link" />
+                        <WebsiteIconLink link="no-link" />
                         <GithubIconLink link="https://www.github.com/John-Nik/Globe-perf" />
                     </div>
                 </div>

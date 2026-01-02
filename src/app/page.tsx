@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
- 
 import Footer from './components/footer/footer';
 import Header from './components/header/Header';
-import './components/minesweeper/minesweeper.scss';
 import dynamic from 'next/dynamic';
-import SocialsIcon from './components/icons-components/SocialsIcon';
 import FlagIcon from './components/icons-components/FlagIcon';
 
 interface alternates {
