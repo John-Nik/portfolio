@@ -5,7 +5,7 @@ import { useCallback, useRef } from 'react';
 import { Project } from '../../types/Project';
 import { sleep } from '../../../../../../../public/scripts/debug/minesweeper/helpers';
 import Link from 'next/link';
-import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
+import WebsiteIconLink from '../../../../../components/icons-components/WebsiteIconLink';
 import GithubIconLink from '../../../../../components/icons-components/GithubIconLink';
 
 interface Props {
@@ -66,7 +66,7 @@ export default function ProjectCard({ project, projectIndex, hasHoverEffect, noR
                 </Link>
 
                 <div className="icons-wrapper">
-                    <WebsiteIcon link={project.siteLink} />
+                    <WebsiteIconLink link={project.siteLink} />
                     <GithubIconLink link={project.githubLink} />
                 </div>
             </div>

@@ -1,7 +1,7 @@
 'use client';
 import { ReactElement, useRef } from 'react';
 import Image from 'next/image';
-import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
+import WebsiteIconLink from '../../../../../components/icons-components/WebsiteIconLink';
 import GithubIconLink from '../../../../../components/icons-components/GithubIconLink';
 import { Project } from '../../types/Project';
 import Link from 'next/link';
@@ -87,8 +87,8 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
 
                                 { project.isEnabled ? 
                                     <div className="icons-container">
-                                        <WebsiteIcon link={project.siteLink} />
-                                        <GithubIcon link={project.githubLink} />
+                                        <WebsiteIconLink link={project.siteLink} />
+                                        <GithubIconLink link={project.githubLink} />
                                     </div>
                                     :
                                     <span>In Dev</span>

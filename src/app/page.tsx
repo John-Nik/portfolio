@@ -46,7 +46,7 @@ export default function page() {
                 <MinesweeperContainer />
             </main>
 
-            <Footer className="md:*:justify-start *:justify-between *:gap-16!">
+            <Footer className="md:*:justify-start *:justify-between">
                 <li
                     data-flag-icon-wrapper
                     className="hidden!"

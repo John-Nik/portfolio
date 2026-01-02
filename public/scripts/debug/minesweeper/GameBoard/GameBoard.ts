@@ -389,6 +389,14 @@ class GameBoard {
 
         this.addColumnOnResize(columnsToFit);
         this.addRowOnResize(rowsToFit);
+
+        /**
+         * Restart the autoplay, so that we can reset the state of the method's internal `flatBoard` variable.
+         * This is a far more efficient approach rather than forcing to loop around all of the matrix squares
+         * on every autoplay interval
+         */
+        this.stopGameAutoplay();
+        this.startGameAutoplay();
     }
 
     hideLastDugSquare() {
