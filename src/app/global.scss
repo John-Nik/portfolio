@@ -17,6 +17,16 @@
     --animate-fade-in: fade-in 2s var(--ease-calm) forwards;
     --animate-blink: blink 1s steps(1) infinite;
 
+    --color-base-color: #010e18;
+    --color-shade-1: #011627;
+    --color-tint-1: #406ABF;
+    --color-tint-2: #83ADE2;
+    --color-tint-3: #6ABAFB;
+    --color-tint-4: hsl(213, 62%, 60%);
+    --color-secondary-color: #217D7A;
+    --color-secondary-tint-1: #52E099;
+    --color-secondary-tint-2: hsl(150, 100%, 60%);
+
     @keyframes countdown {
         0% {
             content: 'Redirecting to home page in 5';
@@ -112,28 +122,92 @@
     }
 }
 
-@utility calm-fast {
-    @apply ease-calm duration-(--dur-fast);
+@layer components {
+    .calm-fast {
+        @apply ease-calm duration-(--dur-fast);
 
-    transition-property: all;
-}
+        transition-property: all;
+    }
 
-@utility calm {
-    @apply ease-calm duration-(--dur-fade);
+    .calm {
+        @apply ease-calm duration-(--dur-fade);
 
-    transition-property: all;
-}
+        transition-property: all;
+    }
 
-@utility calm-slow {
-    @apply ease-calm duration-(--dur-move);
+    .calm-slow {
+        @apply ease-calm duration-(--dur-move);
 
-    transition-property: all;
-}
+        transition-property: all;
+    }
 
-@utility calm-super-slow {
-    @apply ease-calm duration-(--dur-page);
+    .calm-super-slow {
+        @apply ease-calm duration-(--dur-page);
 
-    transition-property: all;
+        transition-property: all;
+    }
+
+    .row {
+        @apply gap-px grid w-full h-full;
+
+        grid-template-rows: 1fr;
+    }
+
+    .square {
+        @apply flex justify-center items-center w-full h-full select-none;
+
+        font-size: 20px;
+        font-family: var(--fira-code);
+        min-width: 28px;
+        box-shadow: inset 1px 1px 1px 1px rgba(255, 255, 255, 0.1), inset -1px -1px 1px 1px rgb(3, 3, 3, 0.5);
+        background-color: rgb(1, 14, 24);
+    }
+
+    .revealed-square {
+        @apply flex justify-center items-center w-full h-full select-none;
+
+        font-size: 20px;
+        font-family: var(--fira-code);
+        min-width: 28px;
+        background-color: rgb(1, 14, 24);
+        box-shadow: none;
+
+        svg {
+            @apply w-6 h-6;
+        }
+    }
+
+    .b1 {
+        color: #26D980 !important;
+    }
+
+    .b2 {
+        color: #62D926 !important;
+    }
+
+    .b3 {
+        color: #269DD9 !important;
+    }
+
+    .b4 {
+        color: #4426D9 !important;
+    }
+
+    .b5 {
+        color: #D926D9 !important;
+    }
+
+    .b6 {
+        color: #D9BB26 !important;
+    }
+
+    .b7 {
+        color: #D98026 !important;
+    }
+
+    .b8 {
+        color: #D92644 !important;
+    }
 }
 
 * {
@@ -159,22 +233,6 @@
 @media only screen and (min-width: 0px) {
     body {
         background-color: $base-color;
-        overflow-x: hidden;
         font-family: var(--zcool-font);
-
-
-        main {
-            margin-top: 64px;
-            height: min-content;
-        }
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    body {
-
-        main {
-            margin-top: 90px;
-        }
     }
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function GithubIcon({
+export default function GithubIconLink({
     link = 'no-link',
     className
 }: {

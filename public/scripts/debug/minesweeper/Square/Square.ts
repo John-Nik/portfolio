@@ -48,7 +48,10 @@ class Square {
         this.elem = square;
     }
 
-    floorRevealIfSafe() {
+    /**
+     * Only allows to dig surrounding squares if the number of flags around the square equal the amount of bombs surrounding the square
+     */
+    revealSurroundingSquaresIfAllowed() {
         const surroundingSquares = this.getSurroundingSquares();
         let countedBombs = 0;
         let flaggedSquares = 0;
@@ -75,33 +78,22 @@ class Square {
 
     async digSquare() {
         if (this.isRevealed) {
-            this.floorRevealIfSafe();
+            this.revealSurroundingSquaresIfAllowed();
             return;
         }
-        
-        this.validateGameBoardExists();
-        if (this.game.board.mobileUserWantsToFlag) {
+
+        if (this.mobileUserWantsToFlag()) {
             this.toggleSquareFlag();
             return;
         }
-        
+
         if (this.isFlagged) {
             this.unflagSquare();
             return;
         }
-        
-        if (this.hasBomb) {
-            this.validateGameUIExists();
-            this.revealSquare();
-            this.displayBombIcon();
-            
-            this.game.board.lostGame();
-            this.game.ui.lostGame();
-            
-            if (await this.sleepAndCheckDestroyed(5000)) return;
 
-            this.unRevealSquare();
-            this.flagSquare();
+        if (this.hasBomb) {
+            await this.handleDigSquareWithBomb();
             return;
         }
 
@@ -113,21 +105,47 @@ class Square {
             this.displayBombCount(surroundingBombs);
             return;
         }
-        
+
+        this.revealSurroundingSquares();
+    }
+
+    mobileUserWantsToFlag() {
+        this.validateGameBoardExists();
+        return this.game.board.mobileUserWantsToFlag;
+    }
+
+    revealSurroundingSquares() {        
         const surroundingSquares = this.getSurroundingSquares();
+        
         surroundingSquares.forEach(square => {
+            if (square.isFlagged) return;
+
             const surroundingBombs = square.countSurroundingBombs();
 
-            if (surroundingBombs === 0 && !square.isFlagged) {
+            if (surroundingBombs === 0) {
                 square.digSquare();
                 return;
             }
 
-            if (square.isFlagged) return;
-
             square.displayBombCount(surroundingBombs);
             square.revealSquare();
         });
+    }
+
+    async handleDigSquareWithBomb() {
+        this.validateGameBoardExists();
+        this.validateGameUIExists();
+
+        this.revealSquare();
+        this.displayBombIcon();
+
+        this.game.board.lostGame();
+        this.game.ui.lostGame();
+
+        if (await this.sleepAndCheckDestroyed(5000)) return;
+
+        this.unRevealSquare();
+        this.flagSquare();
     }
 
     countSurroundingBombs(): number {
@@ -174,7 +192,7 @@ class Square {
         this.validateElemExists();
 
         this.elem.innerHTML = String(count);
-        this.elem.classList.add(`B${count}`);
+        this.elem.classList.add(`b${count}`);
     }
 
     displayBombIcon() {
@@ -236,7 +254,7 @@ class Square {
 
         this.isRevealed = true;
         this.game.board.squaresInteractedWith++;
-        this.elem.classList.add('revealed');
+        this.elem.classList.replace('square', 'revealed-square');
     };
 
     unRevealSquare() {
@@ -245,7 +263,7 @@ class Square {
 
         this.isRevealed = false;
         this.game.board.squaresInteractedWith--;
-        this.elem.classList.remove('revealed');
+        this.elem.classList.replace('revealed-square', 'square');
         this.elem.innerHTML = '';
     };
 

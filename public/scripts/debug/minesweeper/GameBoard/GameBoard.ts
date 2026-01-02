@@ -3,6 +3,7 @@ import { sleep } from '../helpers';
 import Game from '../../minesweeper';
 import { Cords } from '../types/Cords';
 import GameUI from '../../../minesweeper/GameUI/GameUI';
+import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY, POST_WIN_CLEANUP_DELAY } from '../constants/FREEZE_TIME';
 
 type BombCounter = { value: number };
 
@@ -11,7 +12,7 @@ class GameBoard {
     readonly SQUARE_SIZE: number = 32;
 
     matrix: SquaresArray[] = [];
-    gameBoardElem: HTMLDivElement | null = document.querySelector('#game');
+    gameBoardElem = document.querySelector<HTMLDivElement>('#game');
     difficulty: typeof GameBoard.prototype.ALLOWED_DIFFICULTIES[number] = 0.12;
     squaresInteractedWith: number = 0;
     squaresInBoard: number = 0;
@@ -28,7 +29,9 @@ class GameBoard {
         set: (target, prop, value: number) => {
             if (prop !== 'value') return true; // Only care about "value"
 
-            this.game?.ui?.displayBombsPlacedText(value);
+            if (this.isUserPlaying) {
+                this.game?.ui?.displayBombsPlacedText(value);
+            }
 
             const diff = target.value - value;
             if (diff < 0) this.squaresInteractedWith++;
@@ -39,7 +42,6 @@ class GameBoard {
         },
     });
     isGameFinished: boolean = false;
-    minesweeperSessionIndicatorElem: HTMLDivElement | null = document.querySelector('.user-initiated-game-start');
     rows: number = 0;
     columns: number = 0;
     resizeObserver: ResizeObserver | null = null;
@@ -47,7 +49,7 @@ class GameBoard {
     rightClickFnReference: ((e: MouseEvent) => void) | null = null;
     timeoutToAddSquaresInteraction: NodeJS.Timeout | undefined = undefined;
     isBeingDestroyed: boolean = false;
-
+    isUserPlaying: boolean = false;
 
     constructor(game: Game) {
         this.game = game;
@@ -94,35 +96,14 @@ class GameBoard {
         this.gameBoardElem.appendChild(gameGrid);
     }
 
-    watchIfUserStartedGame() {
-        if (!this.minesweeperSessionIndicatorElem) {
-            throw new Error('Minesweeper session indicator element not found in DOM.');
-        };
-
-        this.watcherForUserInitiatedGame = new MutationObserver(() => {
-            if (!this.minesweeperSessionIndicatorElem) {
-                throw new Error('Minesweeper session indicator element not found in DOM.');
-            };
-
-            if (this.minesweeperSessionIndicatorElem.childElementCount !== 0) {
-                this.minesweeperSessionIndicatorElem.innerHTML = '';
-                return;
-            }
-
-            clearInterval(this.autoplayIntervalToDigSquare);
-            this.autoplayRunning = false;
-            this.startGame();
-        });
-
-        this.watcherForUserInitiatedGame.observe(this.minesweeperSessionIndicatorElem, { childList: true });
-    }
-
     startGame() {
+        this.stopGameAutoplay();
         this.resetBoard();
-        
+
         this.timeoutToAddSquaresInteraction = setTimeout(() => {
-            this.addInteractionToSquares();   
-        }, 2000);
+            this.addInteractionToSquares();
+            this.isUserPlaying = true;
+        }, FREEZE_TIME);
 
         return { 
             squaresInBoard: this.squaresInBoard,
@@ -231,18 +212,13 @@ class GameBoard {
     async lostGame() {
         this.validateGameUI();
 
-        this.isGameFinished = true;
+        this.handleGameEnd('lose');
 
-        this.removeInteractionFromSquares();
-        this.startGameAutoplay();
-
-        this.game.ui.lostGame();
-
-        if (await this.sleepAndCheckDestroyed(5000)) return;
-
-        if (!this.autoplayRunning) return;
+        if (await this.sleepAndCheckDestroyed(POST_LOSE_CLEANUP_DELAY)) return;
+        if (this.isUserPlaying) return; // The user could restart the game before the 5 seconds mark
 
         this.lastDugSquare?.unRevealSquare();
+        this.startGameAutoplay();
     }
 
     checkIfGameIsFinished() {
@@ -262,13 +238,26 @@ class GameBoard {
     async winGame() {
         this.validateGameUI();
 
-        this.game.ui.winGame();
-        this.removeInteractionFromSquares();
+        this.handleGameEnd('win');
 
-        if (await this.sleepAndCheckDestroyed(30000)) return;
+        if (await this.sleepAndCheckDestroyed(POST_WIN_CLEANUP_DELAY)) return;
+        if (this.isUserPlaying) return; // The user could restart the game before the 30 seconds mark
 
         this.resetBoard();
         this.startGameAutoplay();
+    }
+
+    handleGameEnd(result: 'win' | 'lose') {
+        this.isGameFinished = true;
+        this.isUserPlaying = false;
+
+        this.removeInteractionFromSquares();
+
+        if (result === 'win') {
+            this.game?.ui?.winGame();
+        } else {
+            this.game?.ui?.lostGame();
+        }
     }
 
     async sleepAndCheckDestroyed(ms: number) {
@@ -296,101 +285,110 @@ class GameBoard {
         this.resizeObserver.observe(this.gameBoardElem);
     }
 
+    addColumnOnResize(colsToAdd: number) {
+        this.validateGameUI();
+
+        if (colsToAdd <= 0) return;
+
+        const colsToFit = colsToAdd + this.columns;
+        const preResizeRightmostColumnSquares  = this.matrix.map(row => row.at(-1));
+
+        this.matrix.forEach((row, rowIndex) => {
+            this.validateRowHasElem(row);
+
+            while (row.length < colsToFit) {
+                const x = row.length;
+                const square = this.createSquare([rowIndex, x]);
+
+                this.validateSquareHasElem(square);
+
+                row.push(square);
+                row.elem.appendChild(square.elem);
+            }
+
+            row.elem.style.gridTemplateColumns = `repeat(${colsToFit}, minmax(24px, 1fr))`;
+        });
+
+        preResizeRightmostColumnSquares.forEach(square => {
+            this.validateSquare(square);
+
+            if (!square.isRevealed) return;
+
+            const surroundingBombs = square.countSurroundingBombs();
+            if (surroundingBombs === 0) return;
+
+            square.displayBombCount(surroundingBombs);
+        });
+
+        this.columns = colsToFit;
+    }
+
+    addRowOnResize(rowsToAdd: number) {
+        this.validateGameUI();
+
+        if (rowsToAdd <= 0) return;
+
+        const preResizeLastRow = this.matrix.at(-1);
+
+        const tempRowsGrid = new DocumentFragment();
+        const rowsToFit = rowsToAdd + this.rows;
+
+        while (this.rows < rowsToFit) {
+            const newRow = this.createRow();
+
+            this.validateRow(newRow);
+
+            const y = this.rows;
+            const squares = this.createSquares(this.columns, y);
+            const tempSquaresElems = new DocumentFragment();
+
+            squares.forEach(square => {
+                this.validateSquareHasElem(square);
+                tempSquaresElems.appendChild(square.elem);
+            });
+
+            newRow.elem.style.gridTemplateColumns = `repeat(${this.columns}, minmax(24px, 1fr))`;
+
+            newRow.push(...squares);
+            newRow.elem.append(tempSquaresElems);
+            tempRowsGrid.appendChild(newRow.elem);
+
+            this.matrix.push(newRow);
+            this.rows++;
+        }
+
+        this.validateElem(this.gameBoardElem);
+
+        this.gameBoardElem.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
+
+        this.gameBoardElem.append(tempRowsGrid);
+
+        this.validateRow(preResizeLastRow);
+
+        preResizeLastRow.forEach(square => {
+            this.validateSquare(square);
+
+            if (!square.isRevealed) return;
+
+            const surroundingBombs = square.countSurroundingBombs();
+            if (surroundingBombs === 0) return;
+
+            square.displayBombCount(surroundingBombs);
+        });
+    }
+
     handleResizeEvent() {
         this.validateGameUI();
+        this.validateGameBoard();
         this.validateElem(this.gameBoardElem);
 
         const width = this.gameBoardElem.clientWidth;
         const height = this.gameBoardElem.clientHeight;
-        const rowsToFit = Math.floor(height / this.SQUARE_SIZE);
-        const columnsToFit = Math.floor(width / this.SQUARE_SIZE);
-        const shouldAddRows = (rowsToFit - this.rows) > 0;
-        const shouldAddColumns = (columnsToFit - this.columns) > 0;
+        const rowsToFit = Math.floor(height / this.SQUARE_SIZE) - this.game.board.rows;
+        const columnsToFit = Math.floor(width / this.SQUARE_SIZE) - this.game.board.columns;
 
-        if (!shouldAddRows && !shouldAddColumns) return;
-
-        if (shouldAddColumns) {
-            const colsToAdd = columnsToFit - this.columns;
-            const oldBombsCount = this.bombsPresent.value;
-            const lastCol = this.matrix.map(row => row.at(-1));
-
-            this.matrix.forEach((row, rowIndex) => {
-                this.validateRowHasElem(row);
-
-                for (let i = 0; i < colsToAdd; i++) {
-                    const x = this.columns + i;
-                    const square = this.createSquare([rowIndex, x]);
-
-                    this.validateSquareHasElem(square);
-
-                    row.push(square);
-                    row.elem.appendChild(square.elem);
-                }
-
-                row.elem.style.gridTemplateColumns = `repeat(${columnsToFit}, minmax(24px, 1fr))`;
-            });
-
-            lastCol.forEach(square => {
-                this.validateSquare(square);
-
-                if (!square.isRevealed) return;
-
-                const surroundingBombs = square.countSurroundingBombs();
-                if (surroundingBombs === 0) return;
-
-                square.displayBombCount(surroundingBombs);
-            });
-
-            this.columns = columnsToFit;
-
-            this.game.ui.displayBombsPlacedText(this.bombsPresent.value - oldBombsCount);
-        }
-
-        if (shouldAddRows) {
-            const lastRow = this.matrix.at(-1);
-            const oldBombsCount = this.bombsPresent.value;
-            const newRows = this.createRows(rowsToFit - this.rows);
-            const tempRowsGrid = new DocumentFragment();
-
-            newRows.forEach((row, index) => {
-                this.validateRow(row);
-
-                const y = this.rows + index;                
-                const squares = this.createSquares(this.columns, y);
-
-                squares.forEach(square => {
-                    this.validateSquareHasElem(square);
-                    row.elem.appendChild(square.elem);
-                });
-
-                row.push(...squares);
-                tempRowsGrid.appendChild(row.elem);
-                row.elem.style.gridTemplateColumns = `repeat(${this.columns}, minmax(24px, 1fr))`;
-            });
-
-            this.validateElem(this.gameBoardElem);
-
-            this.matrix.push(...newRows);
-            this.gameBoardElem.append(tempRowsGrid);
-            this.gameBoardElem.style.gridTemplateRows = `repeat(${rowsToFit}, minmax(24px, 1fr))`;
-
-            this.validateRow(lastRow);
-
-            lastRow.forEach(square => {
-                this.validateSquare(square);
-
-                if (!square.isRevealed) return;
-
-                const surroundingBombs = square.countSurroundingBombs();
-                if (surroundingBombs === 0) return;
-
-                square.displayBombCount(surroundingBombs);
-            });
-
-            this.rows = rowsToFit;
-
-            this.game.ui.displayBombsPlacedText(this.bombsPresent.value - oldBombsCount);
-        }
+        this.addColumnOnResize(columnsToFit);
+        this.addRowOnResize(rowsToFit);
     }
 
     hideLastDugSquare() {
@@ -542,6 +540,14 @@ class GameBoard {
     validateElem(elem: unknown): asserts elem is NonNullable<typeof elem> {
         if (!(elem instanceof HTMLElement)) {
             throw new Error('Element is not instance of HTMLElement');
+        }
+    }
+
+    validateGameBoard(): asserts this is GameBoard & { game: Game & { board: GameBoard } } {
+        this.validateGameIsLinked();
+
+        if (!this.game.board) {
+            throw new Error('The Board is not linked to the main game. Is it instantiated?');
         }
     }
 

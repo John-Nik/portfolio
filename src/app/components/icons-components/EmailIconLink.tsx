@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function EmailIcon() {
+export default function EmailIconLink() {
     return (
         <Link href="mailto:nikolaou.giannis@yahoo.com?subject=Cool website">
             <img

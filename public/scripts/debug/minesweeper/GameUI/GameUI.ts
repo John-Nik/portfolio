@@ -1,37 +1,38 @@
 import GameBoard from '../../../minesweeper/GameBoard/GameBoard';
 import Game from '../../minesweeper';
+import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY } from '../constants/FREEZE_TIME';
 import { sleep } from '../helpers';
 
 class GameUI {
     readonly DESKTOP_BREAKPOINT: number = 1024;
     readonly MOBILE_BREAKPOINT: number = 720;
 
-    gameBoardElem: HTMLDivElement | null = document.querySelector('#game');
-    heroSection: HTMLDivElement | null = document.querySelector('[data-hero-text-container]');
-    gameSettings: HTMLDivElement | null = document.querySelector('[data-game-settings]');
-    smileyFace: HTMLImageElement | null = document.querySelector('.dead-smiley-wrapper');
-    socialsIcon: HTMLDivElement | null = document.querySelector('[data-socials-icon]');
-    flagIcon: HTMLDivElement | null = document.querySelector('[data-flag-icon]');
-    footerIconsContainer: HTMLDivElement | null = document.querySelector('.footer-links-container');
-    gameSettingsSubtitle: HTMLSpanElement | null = document.querySelector('.end-game-status'); // Visible only on desktop
-    startGameButton: HTMLButtonElement | null = document.querySelector('[data-start-game-button]');
-    containerElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('[data-bombs-placed-container]');
-    wrapperElemToInformUserBombCount: HTMLDivElement | null = document.querySelector('[data-bombs-placed-wrapper]');
-    elementToInformUserBombCount: HTMLDivElement | null = document.querySelector('[data-bombs-placed-text]');
-    instructionsElem: HTMLSpanElement | null = document.querySelector('[data-instructions-span]');
-    gameSettingsElem: HTMLDivElement | null = document.querySelector('[data-game-settings]');
-    activeDifficultyElem: HTMLSpanElement | null = document.querySelector('[data-difficulty-selector][data-active=true]');
+    gameBoardElem = document.querySelector<HTMLDivElement>('#game');
+    heroSection = document.querySelector<HTMLDivElement>('[data-hero-text-container]');
+    gameSettings = document.querySelector<HTMLDivElement>('[data-game-settings]');
+    smileyFace = document.querySelector<HTMLImageElement>('[data-smiley-face-wrapper]');
+    socialsIcon = document.querySelector<HTMLDivElement>('[data-socials-icon]');
+    flagIcon = document.querySelector<HTMLDivElement>('[data-flag-icon]');
+    footerIconsContainer = document.querySelector<HTMLDivElement>('[data-footer-links-container]');
+    gameSettingsSubtitle = document.querySelector<HTMLSpanElement>('[data-end-game-status]'); // Visible only on desktop
+    startGameButton = document.querySelector<HTMLButtonElement>('[data-start-game-button]');
+    containerElemToInformUserBombCount = document.querySelector<HTMLDivElement>('[data-bombs-placed-container]');
+    wrapperElemToInformUserBombCount = document.querySelector<HTMLDivElement>('[data-bombs-placed-wrapper]');
+    elementToInformUserBombCount = document.querySelector<HTMLDivElement>('[data-bombs-placed-text]');
+    instructionsElem = document.querySelector<HTMLSpanElement>('[data-instructions-span]');
+    gameSettingsElem = document.querySelector<HTMLDivElement>('[data-game-settings]');
+    activeDifficultyElem = document.querySelector<HTMLSpanElement>('[data-difficulty-selector][data-active=true]');
     isBombsPlacedTextVisible: boolean = false;
-    showSettingsButton: HTMLButtonElement | null = document.querySelector('[data-show-game-settings-button]');
+    showSettingsButton = document.querySelector<HTMLButtonElement>('[data-show-game-settings-button]');
     game: Game | null = null;
-    difficultySelectors: HTMLButtonElement[] = Array.from(document.querySelectorAll('[data-difficulty-selector]'));
-    showGameSettingsButton: HTMLButtonElement | null = document.querySelector('.show-settings-panel-button'); // Only displayed on mobile view
-    toggleBackgroundElem: HTMLDivElement | null = document.querySelector('.toggle-background');
+    difficultySelectors = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-difficulty-selector]'));
+    flagIconWrapper = document.querySelector<HTMLLIElement>('[data-flag-icon-wrapper]');
+    bombsPlacedPlaceholderElem = document.querySelector<HTMLLIElement>('[data-bombs-placed-placeholder]');
     lastShownPanel: 'heroSection' | 'gameSettings' = 'heroSection';
     isDesktopResolution: boolean = false;
     resizeObserver: ResizeObserver | null = null;
     isBeingDestroyed: boolean = false;
-    
+
     constructor(game: Game) {
         this.game = game;
     };
@@ -70,36 +71,42 @@ class GameUI {
     lostGame() {
         this.displaySmileyFace();
         this.displayLostGameText();
-        this.resetBombsCountElemPosition();
         this.shakeBoard();
-        this.hideBombsCountText();
-        this.adaptGameUserInstructionsToWidth();
-        this.unpackFooter();
-        this.lastShownPanel = 'heroSection';
+
+        this.handleGameEnd();
     }
 
     winGame() {
-        this.resetBombsCountElemPosition();
         this.displayWinGameText();
         this.adaptGameUserInstructionsToWidth();
-        this.unpackFooter();
+
+        this.handleGameEnd();
+    }
+
+    handleGameEnd() {
+        this.resetBombsCountElemPosition();
+        this.adaptGameUserInstructionsToWidth();
+
+        this.hideBombsCountText();
+
         this.lastShownPanel = 'heroSection';
+
+        this.displayHeroSection();
+
+        if (this.isDesktop()) {
+            this.displayGameSettings();
+        }
     }
 
     async resetBombsCountElemPosition() {
-        if (this.isMobile()) {
-            this.resetBombsPlacedText();
-            return;
-        }
-
-        if (await this.sleepAndCheckDestroyed(4500)) return;
+        if (await this.sleepAndCheckDestroyed(POST_LOSE_CLEANUP_DELAY)) return;
 
         this.validateGameBoard();
         if (!this.game.board.autoplayRunning) return;
 
         this.fadeOutBombsPlacedText();
 
-        if (await this.sleepAndCheckDestroyed(1500)) return;
+        if (await this.sleepAndCheckDestroyed(1200)) return;
 
         this.resetBombsPlacedText();
     }
@@ -130,11 +137,7 @@ class GameUI {
         }
     }
 
-    async startGame(bombsCount: number | undefined = this.game?.board?.bombsPresent.value) {
-        if (bombsCount === undefined) {
-            throw new Error('Bombs count is undefined. That is unexpected. Is the game initiated?');
-        }
-
+    startGame() {
         this.validateGameBoard();
 
         this.game.board.stopGameAutoplay();
@@ -143,50 +146,63 @@ class GameUI {
         this.hideSmileyFace();
         this.hideGameSettings();
         this.hideHeroSection();
+        this.showBombsPlacedPlaceholderElem();
 
-        if (this.isBombsPlacedTextVisible) {
-            this.centerPositionBombsPlacedText();
-            this.fullOpacityBombsPlacedText();
-            this.resetFontSizeBombsPlacedText();
+        this.handleDisplayOfBombsPlacedText(this.game.board.bombsPresent.value);
+    }
 
-            if (await this.sleepAndCheckDestroyed(2000)) return;
+    hideBombsPlacedPlaceholderElem() {
+        this.validateElem(this.bombsPlacedPlaceholderElem);
+        this.bombsPlacedPlaceholderElem.classList.add('hidden!');
+    }
 
-            this.validateElem(this.elementToInformUserBombCount);
+    showBombsPlacedPlaceholderElem() {
+        this.validateElem(this.bombsPlacedPlaceholderElem);
+        this.bombsPlacedPlaceholderElem.classList.remove('hidden!');
+    }
 
-            this.elementToInformUserBombCount.textContent = '//';
+    async handleDisplayOfBombsPlacedText(bombsCount: number) {
+        this.centerPositionBombsPlacedText();
 
-            if (await this.sleepAndCheckDestroyed(500)) return;
-
-            this.moveDownRightCornerBombsPlacedText();
-            this.reduceOpacityBombsPlacedText();
-            this.decreaseFontSizeBombsPlacedText();
-
-            if (await this.sleepAndCheckDestroyed(250)) return;
-
-            this.displayBombsPlacedText(bombsCount);
-        } else {
+        if (!this.isBombsPlacedTextVisible) {
             this.fadeInBombsPlacedText();
             this.displayBombsPlacedText(bombsCount);
 
-            if (await this.sleepAndCheckDestroyed(2000)) return;
+            if (await this.sleepAndCheckDestroyed(FREEZE_TIME)) return;
 
             this.moveDownRightCornerBombsPlacedText();
             this.reduceOpacityBombsPlacedText();
             this.decreaseFontSizeBombsPlacedText();
+            return;
+            
         }
+
+        this.fullOpacityBombsPlacedText();
+        this.resetFontSizeBombsPlacedText();
+
+        if (await this.sleepAndCheckDestroyed(FREEZE_TIME)) return;
+
+        this.validateElem(this.elementToInformUserBombCount);
+
+        this.elementToInformUserBombCount.textContent = '//';
+
+        if (await this.sleepAndCheckDestroyed(500)) return;
+
+        this.moveDownRightCornerBombsPlacedText();
+        this.reduceOpacityBombsPlacedText();
+        this.decreaseFontSizeBombsPlacedText();
+
+        if (await this.sleepAndCheckDestroyed(250)) return;
+
+        this.displayBombsPlacedText(bombsCount);
     }
 
     async hideBombsCountText() {
-        if (this.isTablet()) {
-            this.resetBombsPlacedText();
-            return;
-        }
-
-        if (await this.sleepAndCheckDestroyed(4500)) return;
+        if (await this.sleepAndCheckDestroyed(POST_LOSE_CLEANUP_DELAY)) return;
 
         this.validateGameBoard();
 
-        // If the user decided to restart the game in those 4500ms timespan, then exit the function early
+        // If the user decided to restart the game in the above time-span, then exit the function early
         if (!this.game.board.autoplayRunning) return;
 
         this.fadeOutBombsPlacedText();
@@ -194,6 +210,7 @@ class GameUI {
         if (await this.sleepAndCheckDestroyed(1500)) return;
 
         this.resetBombsPlacedText();
+        this.hideBombsPlacedPlaceholderElem();
     }
 
     displayLostGameText() {
@@ -203,7 +220,6 @@ class GameUI {
             }
 
             this.showSettingsButton.innerHTML = 'You-lost<br>Play-again?';
-            this.displayHeroSection();
             return;
         }
 
@@ -214,7 +230,6 @@ class GameUI {
         this.startGameButton.innerHTML = 'Play-again';
         
         this.displayHeroSection();
-        this.displayGameSettings();
     }
 
     displayWinGameText() {
@@ -243,10 +258,8 @@ class GameUI {
         this.validateElem(this.gameSettings);
 
         this.lastShownPanel = 'gameSettings';
-
-        this.compactFooter();
-
         this.heroSection.style.opacity = '0';
+        this.showFlagIconWrapper();
 
         if (await this.sleepAndCheckDestroyed(200)) return;
 
@@ -258,27 +271,15 @@ class GameUI {
         this.gameSettings.style.opacity = '1';
     }
 
-    compactFooter() {
-        this.validateElem(this.footerIconsContainer);
-        this.validateElem(this.socialsIcon);
-        this.validateElem(this.flagIcon);
+    showFlagIconWrapper() {
+        this.validateElem(this.flagIconWrapper);
+        this.flagIconWrapper.classList.remove('hidden!');
 
-        this.footerIconsContainer.classList.add('hide-icons');
-        this.socialsIcon.classList.add('show');
-        this.flagIcon.classList.add('show');
     }
 
-    unpackFooter() {
-        this.validateElem(this.toggleBackgroundElem);
-        this.validateElem(this.footerIconsContainer);
-        this.validateElem(this.socialsIcon);
-        this.validateElem(this.flagIcon);
-
-        this.toggleBackgroundElem.classList.remove('open');
-        this.footerIconsContainer.classList.remove('show-icons');
-        this.footerIconsContainer.classList.remove('hide-icons');
-        this.socialsIcon.classList.remove('show');
-        this.flagIcon.classList.remove('show');
+    hideFlagIconWrapper() {
+        this.validateElem(this.flagIconWrapper);
+        this.flagIconWrapper.classList.add('hidden!');
     }
 
     attachResizeObserver() {
@@ -353,8 +354,9 @@ class GameUI {
     centerPositionBombsPlacedText() {
         this.validateElem(this.wrapperElemToInformUserBombCount);
 
-        this.wrapperElemToInformUserBombCount.style.left = '0px';
-        this.wrapperElemToInformUserBombCount.style.top = '0px';
+        this.wrapperElemToInformUserBombCount.style.left = '50%';
+        this.wrapperElemToInformUserBombCount.style.top = '50%';
+        this.wrapperElemToInformUserBombCount.style.transform = '';
     };
 
     resetFontSizeBombsPlacedText() {
@@ -372,8 +374,9 @@ class GameUI {
     moveDownRightCornerBombsPlacedText() {
         this.validateElem(this.wrapperElemToInformUserBombCount);
 
-        this.wrapperElemToInformUserBombCount.style.left = 'calc(50% - 122px + 48px)';
-        this.wrapperElemToInformUserBombCount.style.top = 'calc(50% - 40px + 68px)';
+        this.wrapperElemToInformUserBombCount.style.left = '100%';
+        this.wrapperElemToInformUserBombCount.style.top = '100%';
+        this.wrapperElemToInformUserBombCount.style.transform = 'translateX(calc(-50% - 16px)) translateY(calc(50% + 2px))';
     }
 
     isMobile() {
@@ -384,9 +387,15 @@ class GameUI {
 
     isTablet() {
         this.validateElem(this.gameBoardElem);
-        
-        return this.gameBoardElem.getBoundingClientRect().width < this.DESKTOP_BREAKPOINT;
+
+        return !this.isMobile() && this.gameBoardElem.getBoundingClientRect().width < this.DESKTOP_BREAKPOINT;
     };
+
+    isDesktop() {
+        this.validateElem(this.gameBoardElem);
+
+        return this.gameBoardElem.getBoundingClientRect().width >= this.DESKTOP_BREAKPOINT;
+    }
 
     displaySmileyFace() {
         this.validateElem(this.smileyFace);
@@ -417,7 +426,6 @@ class GameUI {
 
     displayBombsPlacedText(count: number) {
         this.validateElem(this.elementToInformUserBombCount);
-
         this.elementToInformUserBombCount.textContent = `// ${count}`;
     };
 

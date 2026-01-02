@@ -1,8 +1,9 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
 import { ReactNode, useCallback, useState } from 'react';
-import './styling.scss';
+import { HeaderContext } from './HeaderContext';
+import MobileHeader from './MobileHeader';
+import TabletHeader from './TabletHeader';
 
 interface Props {
     children?: ReactNode;
@@ -10,87 +11,58 @@ interface Props {
 
 export default function Header({ children }: Props) {
     const pathname = usePathname();
-    const [navMenuState, setNavMenuState] = useState(0);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const isMenuOpen = useCallback(() => {
-        return navMenuState === 1 ? 'open-menu' : '';
-    }, [navMenuState]);
+    const routes = [
+        {
+            label: 'home',
+            href: '/'
+        },
+        {
+            label: 'aboutMe',
+            href: '/about'
+        },
+        {
+            label: 'portfolio',
+            href: '/portfolio'
+        },
+        {
+            label: 'contactMe',
+            href: '/contact'
+        }
+    ];
 
-    const activeClassFor = useCallback((path: string, includes = false): 'activeLink' | '' => {
+    const isActive = useCallback((path: string): boolean => {
         const pathnameWithoutSlash = pathname.slice(1);
 
-        if (includes) {
-            return pathnameWithoutSlash.includes(path) ? 'activeLink' : '';
+        if (pathnameWithoutSlash === '') {
+            return path === '/';
         }
-        return pathnameWithoutSlash === path ? 'activeLink' : '';
+
+        return path.includes(pathnameWithoutSlash);
     }, [pathname]);
 
-    function triggerNavMenu(): void {
-        setNavMenuState((navMenuState + 1) % 2);
+    function triggerNavMenu() {
+        setIsMenuOpen(!isMenuOpen);
     }
 
     return (
-        <header>
-            <nav>
-                <div className="container">
-                    <div className="logo-container">
-                        <Link
-                            href="/"
-                            className="logo"
-                        >
-                            Giannis
-                        </Link>
-                    </div>
-
+        <HeaderContext.Provider value={{ isMenuOpen, triggerNavMenu }}>
+            <header className="top-0 z-50 sticky bg-shade-1 shadow-[0px_4px_4px_rgba(255,255,255,0.05)] px-4 py-2 w-full">
+                <MobileHeader
+                    routes={routes}
+                    isActive={isActive}
+                >
                     {children}
+                </MobileHeader>
 
-                    <menu className={isMenuOpen()}>
-                        <li>
-                            <Link
-                                href="/"
-                                className={activeClassFor('')}
-                            >
-                                home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/about"
-                                className={activeClassFor('about')}
-                            >
-                                aboutMe
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/portfolio"
-                                className={activeClassFor('portfolio', true)}
-                            >
-                                portfolio
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/contact"
-                                className={activeClassFor('contact')}
-                            >
-                                contactMe
-                            </Link>
-                        </li>
-                    </menu>
-
-                    <div className="burger-icon-wrapper">
-                        <div
-                            className={`burger-icon ${isMenuOpen()}`}
-                            onClick={triggerNavMenu}
-                        >
-                            <div className="line1" />
-                            <div className="line2" />
-                            <div className="line3" />
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
+                <TabletHeader
+                    routes={routes}
+                    isActive={isActive}
+                >
+                    {children}
+                </TabletHeader>
+            </header>
+        </HeaderContext.Provider>
     );
 }

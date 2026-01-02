@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import DownloadCVButton from '../../../../components/buttons/DownloadCVButton';
-import EmailIcon from '../../../../components/icons-components/EmailIcon';
-import GithubIcon from '../../../../components/icons-components/GithubIcon';
+import EmailIconLink from '../../../../components/icons-components/EmailIconLink';
+import GithubIconLink from '../../../../components/icons-components/GithubIconLink';
 import './styling.scss';
 
 export default function Sidebar() {
@@ -15,7 +15,7 @@ export default function Sidebar() {
                 <div className="contact-info-container">
                     <ul className="contact-info-wrapper">
                         <li className="contact">
-                            <EmailIcon />
+                            <EmailIconLink />
                             <Link
                                 className="email-link"
                                 href="mailto:nikolaou.giannis@yahoo.com?subject=Cool website"
@@ -24,7 +24,7 @@ export default function Sidebar() {
                             </Link>
                         </li>
                         <li className="contact">
-                            <GithubIcon link="https://www.github.com/John-Nik" />
+                            <GithubIconLink link="https://www.github.com/John-Nik" />
                             <Link
                                 className="github-link"
                                 href="https://www.github.com/John-Nik"

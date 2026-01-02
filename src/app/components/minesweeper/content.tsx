@@ -7,11 +7,11 @@ export default function Content() {
         <>
             <div
                 data-bombs-placed-container
-                className="z-10000 absolute flex flex-col justify-center items-center opacity-0 w-full h-full delay-500 pointer-events-none select-none calm-super-slow"
+                className="z-10000 absolute flex flex-col opacity-0 w-full h-full delay-500 pointer-events-none select-none calm-super-slow"
             >
                 <div
                     data-bombs-placed-wrapper
-                    className="top-0 left-0 relative flex flex-col gap-2 text-white text-5xl tracking-[2px] duration-1200 ease-calm delay-500"
+                    className="top-1/2 left-1/2 relative flex flex-col gap-2 w-fit text-white text-5xl tracking-[2px] -translate-x-1/2 -translate-y-1/2 duration-1200 ease-calm delay-500"
                 >
                     <span>
                         // Bombs Placed

@@ -105,7 +105,10 @@ export default function GameSettings() {
                             </span>
                         </button>
 
-                        <div className="mt-4 text-[0.875rem] text-white/50" />
+                        <div
+                            data-end-game-status
+                            className="mt-4 text-[0.875rem] text-white/50"
+                        />
                     </div>
                 </div>
             </div>

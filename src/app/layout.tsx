@@ -43,9 +43,9 @@ export default function mainLayout({ children }: { children: ReactNode }) {
     return (
         <html
             lang="en"
-            suppressHydrationWarning
+            className="h-full"
         >
-            <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable}`}>
+            <body className={`${zcoolFont.variable} ${firaCodeFont.variable} ${pressStartFont.variable} w-full h-full flex flex-col overflow-x-hidden relative font-(family-name:--zcool-font)`}>
                 {children}
             </body>
         </html>

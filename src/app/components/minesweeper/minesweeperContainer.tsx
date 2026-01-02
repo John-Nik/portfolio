@@ -13,10 +13,16 @@ export default function MinesweeperContainer() {
     }, []);
 
     return (
-        <section id="minesweeper-container">
+        <section
+            data-minesweeper-container
+            className="relative w-full h-full [&_svg]:pointer-events-none"
+        >
             <Content />
 
-            <div id="game" />
+            <div
+                className="relative gap-px grid bg-black w-full h-full"
+                id="game"
+            />
         </section>
     );
 }

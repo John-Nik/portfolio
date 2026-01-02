@@ -2,7 +2,7 @@
 import { ReactElement, useRef } from 'react';
 import Image from 'next/image';
 import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
-import GithubIcon from '../../../../../components/icons-components/GithubIcon';
+import GithubIconLink from '../../../../../components/icons-components/GithubIconLink';
 import { Project } from '../../types/Project';
 import Link from 'next/link';
 
@@ -48,7 +48,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                     <h2>Globe-Perf</h2>
                     <div className="icons-container">
                         <WebsiteIcon link="no-link" />
-                        <GithubIcon link="https://www.github.com/John-Nik/Globe-perf" />
+                        <GithubIconLink link="https://www.github.com/John-Nik/Globe-perf" />
                     </div>
                 </div>
             </div>

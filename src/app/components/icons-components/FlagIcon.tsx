@@ -22,12 +22,13 @@ export default function SocialsIcon(): ReactElement {
         if (!flagIcon.current) return;
 
         flagIcon.current.src = flagIcon.current.src.includes('shovel')
-            ? '/icons/flag2.svg'
+            ? '/icons/flag.svg'
             : '/icons/shovel.png';
     }
 
     return (
         <img
+            className="w-6 h-6"
             ref={flagIcon}
             data-flag-icon
             onClick={toggleBetweenFlagAndShovelIcon}

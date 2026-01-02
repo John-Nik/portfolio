@@ -6,7 +6,7 @@ import { Project } from '../../types/Project';
 import { sleep } from '../../../../../../../public/scripts/debug/minesweeper/helpers';
 import Link from 'next/link';
 import WebsiteIcon from '../../../../../components/icons-components/WebsiteIcon';
-import GithubIcon from '../../../../../components/icons-components/GithubIcon';
+import GithubIconLink from '../../../../../components/icons-components/GithubIconLink';
 
 interface Props {
     projectIndex: number;
@@ -67,7 +67,7 @@ export default function ProjectCard({ project, projectIndex, hasHoverEffect, noR
 
                 <div className="icons-wrapper">
                     <WebsiteIcon link={project.siteLink} />
-                    <GithubIcon link={project.githubLink} />
+                    <GithubIconLink link={project.githubLink} />
                 </div>
             </div>
         </div>
