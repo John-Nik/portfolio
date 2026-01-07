@@ -3,7 +3,7 @@ import { sleep } from '../helpers';
 import Game from '../../minesweeper';
 import { Cords } from '../types/Cords';
 import GameUI from '../../../minesweeper/GameUI/GameUI';
-import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY, POST_WIN_CLEANUP_DELAY } from '../constants/FREEZE_TIME';
+import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY, POST_WIN_CLEANUP_DELAY } from '../constants/const';
 
 type BombCounter = { value: number };
 
@@ -29,7 +29,7 @@ class GameBoard {
         set: (target, prop, value: number) => {
             if (prop !== 'value') return true; // Only care about "value"
 
-            if (this.isUserPlaying) {
+            if (this.game?.isUserPlaying) {
                 this.game?.ui?.displayBombsPlacedText(value);
             }
 
@@ -49,7 +49,6 @@ class GameBoard {
     rightClickFnReference: ((e: MouseEvent) => void) | null = null;
     timeoutToAddSquaresInteraction: NodeJS.Timeout | undefined = undefined;
     isBeingDestroyed: boolean = false;
-    isUserPlaying: boolean = false;
 
     constructor(game: Game) {
         this.game = game;
@@ -102,7 +101,6 @@ class GameBoard {
 
         this.timeoutToAddSquaresInteraction = setTimeout(() => {
             this.addInteractionToSquares();
-            this.isUserPlaying = true;
         }, FREEZE_TIME);
 
         return { 
@@ -172,6 +170,11 @@ class GameBoard {
         this.autoplayRunning = true;
 
         this.autoplayIntervalToDigSquare = setInterval(() => {
+            if (this.game?.isUserPlaying) {
+                this.stopGameAutoplay();
+                return;
+            };
+
             if (flatBoard.length === 0) {
                 this.resetGameAutoplayBoard();
                 return;
@@ -215,10 +218,14 @@ class GameBoard {
         this.handleGameEnd('lose');
 
         if (await this.sleepAndCheckDestroyed(POST_LOSE_CLEANUP_DELAY)) return;
-        if (this.isUserPlaying) return; // The user could restart the game before the 5 seconds mark
+        if (this.game?.isUserPlaying) return; // The user could restart the game before the 5 seconds mark
 
         this.lastDugSquare?.unRevealSquare();
         this.startGameAutoplay();
+
+        if (!this.game) return;
+
+        this.game.isUserPlaying = false;
     }
 
     checkIfGameIsFinished() {
@@ -241,7 +248,7 @@ class GameBoard {
         this.handleGameEnd('win');
 
         if (await this.sleepAndCheckDestroyed(POST_WIN_CLEANUP_DELAY)) return;
-        if (this.isUserPlaying) return; // The user could restart the game before the 30 seconds mark
+        if (this.game?.isUserPlaying) return; // The user could restart the game before the 30 seconds mark
 
         this.resetBoard();
         this.startGameAutoplay();
@@ -249,7 +256,10 @@ class GameBoard {
 
     handleGameEnd(result: 'win' | 'lose') {
         this.isGameFinished = true;
-        this.isUserPlaying = false;
+
+        if (this.game?.isUserPlaying !== undefined) {
+            this.game.isUserPlaying = false;
+        }
 
         this.removeInteractionFromSquares();
 

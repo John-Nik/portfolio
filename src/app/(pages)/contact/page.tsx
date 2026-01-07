@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Header from '../../components/header/Header';
-import Footer from '../../components/footer/footer';
+import Footer from '../../components/footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import './styling.scss';
 import CodeWrapper from './components/CodeWrapper/CodeWrapper';

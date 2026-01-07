@@ -1,8 +1,8 @@
 'use client';
 import { useRef, useEffect } from 'react';
-import DownloadCVButton from '../../../buttons/DownloadCVButton';
+import DownloadCVButton from '../../DownloadCVButton';
 import Link from 'next/link';
-import { sleep } from '../../../../../../public/scripts/minesweeper/helpers';
+import { sleep } from '../../../../../public/scripts/minesweeper/helpers';
 
 export default function TextContent() {
     const isWritingChars = useRef(false);

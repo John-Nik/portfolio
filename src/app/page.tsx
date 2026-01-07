@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import Footer from './components/footer/footer';
+import Footer from './components/footer';
 import Header from './components/header/Header';
 import dynamic from 'next/dynamic';
 import FlagIcon from './components/icons-components/FlagIcon';
@@ -39,7 +39,7 @@ export default function page() {
                 </div>
             </Header>
 
-            <main className="flex flex-col flex-1 w-full">
+            <main className="flex w-full overflow-hidden">
                 <MinesweeperContainer />
             </main>
 

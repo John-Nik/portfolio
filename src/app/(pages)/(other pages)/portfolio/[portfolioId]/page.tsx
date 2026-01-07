@@ -1,11 +1,9 @@
 'use server';
-import FullPortfolioPage from '../components/FullPortfolioPage/FullPortfolioPage';
+import FullPortfolioPage from './FullPortfolioPage';
 import { importProjects } from '../../../../helpers/importProjects';
 
 export default async function page() {    
     const projects = await importProjects();
 
-    return (
-        <FullPortfolioPage projects={projects} />
-    );
+    return <FullPortfolioPage projects={projects} />;
 }

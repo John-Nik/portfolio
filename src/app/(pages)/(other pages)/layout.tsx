@@ -1,5 +1,5 @@
 import Header from '../../components/header/Header';
-import Footer from '../../components/footer/footer';
+import Footer from '../../components/footer';
 import { ReactNode } from 'react';
 import { metadataType } from '../../page';
 

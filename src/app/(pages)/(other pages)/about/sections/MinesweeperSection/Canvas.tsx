@@ -1,360 +1,356 @@
 'use client';
-import { useEffect } from 'react';
-import Konva from 'konva';
+// Import { useEffect } from 'react';
+// Import Konva from 'konva';
 
-export default function() {
+export default function Canvas() {
 
-    useEffect(() => {
-        let canvasElement = document.querySelector('#background-game') as HTMLDivElement;
-        let canvasWidth = canvasElement.offsetWidth;
-        let canvasHeight = canvasElement.offsetHeight;
-        let matrix = [];
-        let squareSize = 32;
-        let canvasLines = Math.floor(canvasHeight / squareSize);
-        let canvasColumns = Math.floor(canvasWidth / squareSize);
-        let squareWidth = canvasWidth / canvasColumns;
-        let squareHeight = canvasHeight / canvasLines;
-        let flatMatrix = [];
-        let interval;
-        let droppedSquares = 0;
+    // UseEffect(() => {
+    //     Let canvasElement = document.querySelector('#background-game') as HTMLDivElement;
+    //     Let canvasWidth = canvasElement.offsetWidth;
+    //     Let canvasHeight = canvasElement.offsetHeight;
+    //     Let matrix = [];
+    //     Let squareSize = 32;
+    //     Let canvasLines = Math.floor(canvasHeight / squareSize);
+    //     Let canvasColumns = Math.floor(canvasWidth / squareSize);
+    //     Let squareWidth = canvasWidth / canvasColumns;
+    //     Let squareHeight = canvasHeight / canvasLines;
+    //     Let flatMatrix = [];
+    //     Let interval;
+    //     Let droppedSquares = 0;
 
-        // Define the canvas stage and layers
-        let canvasStage = new Konva.Stage({
-            container: 'background-game',
-            width: canvasWidth,
-            height: canvasHeight * 2.2
-        });
+    //     // Define the canvas stage and layers
+    //     Let canvasStage = new Konva.Stage({
+    //         Container: 'background-game',
+    //         Width: canvasWidth,
+    //         Height: canvasHeight * 2.2
+    //     });
 
-        let backgroundLayer = new Konva.Layer({ listening: false });
-        let animLayer = new Konva.Layer({ listening: false });
-        canvasStage.add(backgroundLayer);
-        canvasStage.add(animLayer);
-
-
-        class square {
-            isRevealed: boolean;
-            hasBomb: boolean;
-            isFlagged: boolean;
-            position: [Y: number, X: number];
-            Square: Konva.Group;
-
-            constructor(position: [Y: number, X: number]) {
-                this.isRevealed = false;
-                this.hasBomb = false;
-                this.isFlagged = false;
-                this.position = position;
-
-                if (Math.random() < 0.3) this.hasBomb = true;
-
-                this.drawSquare();
-            }
-
-            private drawSquare() {
-                const [Y, X] = this.position;
-                const square = new Konva.Rect({
-                    x: 0,
-                    y: 0,
-                    width: squareWidth,
-                    height: squareHeight,
-                    fill: '#010e18',
-                    strokeWidth: 1,
-                    stroke: 'black',
-                    shadowForStrokeEnabled: false,
-                    perfectDrawEnabled: false,
-                    hitStrokeWidth: 0
-                });
-
-                const lighting = new Konva.Line({
-                    x: 2,
-                    y: 32,
-                    stroke: '#ffffff1a',
-                    strokeWidth: 2,
-                    points: [0, 0, 0, -30, 30, -30]
-                });
-
-                const shadows = new Konva.Line({
-                    x: 4,
-                    y: 31,
-                    stroke: '#03030380',
-                    strokeWidth: 1,
-                    points: [0, 0, 28, 0, 28, -31]
-                });
-
-                this.Square = new Konva.Group({
-                    x: X * squareWidth,
-                    y: Y * squareHeight
-                });
+    //     Let backgroundLayer = new Konva.Layer({ listening: false });
+    //     Let animLayer = new Konva.Layer({ listening: false });
+    //     CanvasStage.add(backgroundLayer);
+    //     CanvasStage.add(animLayer);
 
 
-                this.Square.add(square);
-                this.Square.add(lighting);
-                this.Square.add(shadows);
-                backgroundLayer.add(this.Square);
-            }
+    //     Class square {
+    //         IsRevealed: boolean;
+    //         HasBomb: boolean;
+    //         IsFlagged: boolean;
+    //         Position: [Y: number, X: number];
+    //         Square: Konva.Group;
 
-            digSquare() {
-                if ((this.hasBomb) && (!this.isFlagged)) {
-                    this.flagSquare();
-                    this.dropSquare();
-                    return;
-                }
+    //         Constructor(position: [Y: number, X: number]) {
+    //             This.isRevealed = false;
+    //             This.hasBomb = false;
+    //             This.isFlagged = false;
+    //             This.position = position;
 
-                if (this.isFlagged) return;
-                if (this.isRevealed) return;
+    //             If (Math.random() < 0.3) this.hasBomb = true;
+
+    //             This.drawSquare();
+    //         }
+
+    //         Private drawSquare() {
+    //             Const [Y, X] = this.position;
+    //             Const square = new Konva.Rect({
+    //                 X: 0,
+    //                 Y: 0,
+    //                 Width: squareWidth,
+    //                 Height: squareHeight,
+    //                 Fill: '#010e18',
+    //                 StrokeWidth: 1,
+    //                 Stroke: 'black',
+    //                 ShadowForStrokeEnabled: false,
+    //                 PerfectDrawEnabled: false,
+    //                 HitStrokeWidth: 0
+    //             });
+
+    //             Const lighting = new Konva.Line({
+    //                 X: 2,
+    //                 Y: 32,
+    //                 Stroke: '#ffffff1a',
+    //                 StrokeWidth: 2,
+    //                 Points: [0, 0, 0, -30, 30, -30]
+    //             });
+
+    //             Const shadows = new Konva.Line({
+    //                 X: 4,
+    //                 Y: 31,
+    //                 Stroke: '#03030380',
+    //                 StrokeWidth: 1,
+    //                 Points: [0, 0, 28, 0, 28, -31]
+    //             });
+
+    //             This.Square = new Konva.Group({
+    //                 X: X * squareWidth,
+    //                 Y: Y * squareHeight
+    //             });
+
+
+    //             This.Square.add(square);
+    //             This.Square.add(lighting);
+    //             This.Square.add(shadows);
+    //             BackgroundLayer.add(this.Square);
+    //         }
+
+    //         DigSquare() {
+    //             If ((this.hasBomb) && (!this.isFlagged)) {
+    //                 This.flagSquare();
+    //                 This.dropSquare();
+    //                 Return;
+    //             }
+
+    //             If (this.isFlagged) return;
+    //             If (this.isRevealed) return;
 
                 
-                const bombsCounted = this.countBombs();
-                if (bombsCounted === 0) {
-                    this.Square.destroy();
-                    this.revealNeighboringSquares();
-                    return;
-                }
+    //             Const bombsCounted = this.countBombs();
+    //             If (bombsCounted === 0) {
+    //                 This.Square.destroy();
+    //                 This.revealNeighboringSquares();
+    //                 Return;
+    //             }
 
-                this.dropSquare();
-                this.revealSquare(bombsCounted);
-                return;
-            }
+    //             This.dropSquare();
+    //             This.revealSquare(bombsCounted);
+    //             Return;
+    //         }
 
-            private flagSquare() {
-                this.isFlagged = true;
-                this.Square.moveTo(animLayer);
+    //         Private flagSquare() {
+    //             This.isFlagged = true;
+    //             This.Square.moveTo(animLayer);
 
-                Konva.Image.fromURL('/icons/flag.svg', (image) => {
-                    image.setAttrs({
-                        x: this.Square.children[0].attrs.width / 4,
-                        y: this.Square.children[0].attrs.height / 5,
-                        width: squareWidth / 1.5,
-                        height: squareWidth / 1.5
-                    });
+    //             Konva.Image.fromURL('/icons/flag.svg', (image) => {
+    //                 Image.setAttrs({
+    //                     X: this.Square.children[0].attrs.width / 4,
+    //                     Y: this.Square.children[0].attrs.height / 5,
+    //                     Width: squareWidth / 1.5,
+    //                     Height: squareWidth / 1.5
+    //                 });
 
-                    this.Square.add(image);
-                });
-                return;
-            }
+    //                 This.Square.add(image);
+    //             });
+    //             Return;
+    //         }
 
-            private revealSquare(bombsCounted: number) {
-                const textColor = ['#26D980', '#62D926', '#269DD9', '#4426D9', '#D926D9', '#D9BB26', '#D98026', '#D92644'];
+    //         Private revealSquare(bombsCounted: number) {
+    //             Const textColor = ['#26D980', '#62D926', '#269DD9', '#4426D9', '#D926D9', '#D9BB26', '#D98026', '#D92644'];
 
-                this.isRevealed = true;
+    //             This.isRevealed = true;
 
-                this.Square.moveTo(animLayer);
-                this.Square.children.pop();
-                this.Square.children.pop();
+    //             This.Square.moveTo(animLayer);
+    //             This.Square.children.pop();
+    //             This.Square.children.pop();
 
-                if (bombsCounted === 0) return;
+    //             If (bombsCounted === 0) return;
                 
-                const numberOfBombs = new Konva.Text({
-                    x: 0,
-                    y: 2,
-                    width: this.Square.children[0].attrs.width,
-                    height: this.Square.children[0].attrs.height,
-                    text: `${bombsCounted}`,
-                    fontSize: this.Square.children[0].attrs.height / 1.7,
-                    fill: `${textColor[bombsCounted - 1]}`,
-                    align: 'center',
-                    verticalAlign: 'middle',
-                    fontStyle: '500'
-                });
+    //             Const numberOfBombs = new Konva.Text({
+    //                 X: 0,
+    //                 Y: 2,
+    //                 Width: this.Square.children[0].attrs.width,
+    //                 Height: this.Square.children[0].attrs.height,
+    //                 Text: `${bombsCounted}`,
+    //                 FontSize: this.Square.children[0].attrs.height / 1.7,
+    //                 Fill: `${textColor[bombsCounted - 1]}`,
+    //                 Align: 'center',
+    //                 VerticalAlign: 'middle',
+    //                 FontStyle: '500'
+    //             });
                 
-                this.Square.add(numberOfBombs);
-                return;
-            }
+    //             This.Square.add(numberOfBombs);
+    //             Return;
+    //         }
 
-            private revealNeighboringSquares() {
-                const surroundingSquares = this.getSurroundingSquaresAboutMePage();
+    //         Private revealNeighboringSquares() {
+    //             Const surroundingSquares = this.getSurroundingSquaresAboutMePage();
 
-                this.revealSquare(0);
+    //             This.revealSquare(0);
 
-                surroundingSquares.forEach((square) => {
-                    square.digSquare();
-                });
+    //             SurroundingSquares.forEach((square) => {
+    //                 Square.digSquare();
+    //             });
 
-                flatMatrix = []; //Reset the flat matrix
-                matrix.forEach((line) => {
-                    line.forEach((square: square) => {
-                        if (square.isRevealed) return;
-                        if (square.isFlagged) return;
+    //             FlatMatrix = []; //Reset the flat matrix
+    //             Matrix.forEach((line) => {
+    //                 Line.forEach((square: square) => {
+    //                     If (square.isRevealed) return;
+    //                     If (square.isFlagged) return;
 
-                        flatMatrix.push(square);
-                    });
-                });
-                return;
-            }
+    //                     FlatMatrix.push(square);
+    //                 });
+    //             });
+    //             Return;
+    //         }
 
-            private countBombs() {
-                let bombsCounted = 0;
-                const surroundingSquares = this.getSurroundingSquaresAboutMePage();
+    //         Private countBombs() {
+    //             Let bombsCounted = 0;
+    //             Const surroundingSquares = this.getSurroundingSquaresAboutMePage();
             
-                surroundingSquares.forEach((square) => {
-                    if (square.hasBomb) {
-                        bombsCounted++;
-                    }
-                });
+    //             SurroundingSquares.forEach((square) => {
+    //                 If (square.hasBomb) {
+    //                     BombsCounted++;
+    //                 }
+    //             });
             
-                return bombsCounted;
-            }
+    //             Return bombsCounted;
+    //         }
 
-            private dropSquare() {
-                droppedSquares++;
-                const randomPixels = Math.floor(Math.random() * canvasStage.height() / 2);
-                let endGoal = randomPixels + canvasStage.height() / 2.2;
-                const startPosition = this.Square.y();
-                const timeToAnim = droppedSquares > 100 ? 4000 : 2300;
+    //         Private dropSquare() {
+    //             DroppedSquares++;
+    //             Const randomPixels = Math.floor(Math.random() * canvasStage.height() / 2);
+    //             Let endGoal = randomPixels + canvasStage.height() / 2.2;
+    //             Const startPosition = this.Square.y();
+    //             Const timeToAnim = droppedSquares > 100 ? 4000 : 2300;
 
-                if (droppedSquares > 100) {
-                    endGoal = canvasStage.height();
-                }
+    //             If (droppedSquares > 100) {
+    //                 EndGoal = canvasStage.height();
+    //             }
 
-                function bezier(t:number, initial:number, p1:number, p2:number, final:number) {
-                    return ((1 - t) * (1 - t) * (1 - t) * initial) + (3 * (1 - t) * (1 - t) * t * p1) + (3 * (1 - t) * t * t * p2) + (t * t * t * final);
-                }
+    //             Function bezier(t:number, initial:number, p1:number, p2:number, final:number) {
+    //                 Return ((1 - t) * (1 - t) * (1 - t) * initial) + (3 * (1 - t) * (1 - t) * t * p1) + (3 * (1 - t) * t * t * p2) + (t * t * t * final);
+    //             }
 
-                setTimeout(() => {
-                    animation.stop();
-                    if (droppedSquares > 100) this.Square.destroy();
-                }, timeToAnim);
+    //             SetTimeout(() => {
+    //                 Animation.stop();
+    //                 If (droppedSquares > 100) this.Square.destroy();
+    //             }, timeToAnim);
 
-                const animation = new Konva.Animation((frame) => {
-                    const time = frame.time / (timeToAnim / 1000);
+    //             Const animation = new Konva.Animation((frame) => {
+    //                 Const time = frame.time / (timeToAnim / 1000);
 
-                    this.Square.y(bezier(time / 1000, startPosition, endGoal, endGoal, endGoal));
-                }, animLayer);
+    //                 This.Square.y(bezier(time / 1000, startPosition, endGoal, endGoal, endGoal));
+    //             }, animLayer);
 
-                setTimeout(() => {
-                    animation.start();
-                }, Math.random() * 50);
-            }
+    //             SetTimeout(() => {
+    //                 Animation.start();
+    //             }, Math.random() * 50);
+    //         }
 
-            private getSurroundingSquaresAboutMePage() {
-                const surroundingSquares = [];
-                const [Y, X] = this.position;
+    //         Private getSurroundingSquaresAboutMePage() {
+    //             Const surroundingSquares = [];
+    //             Const [Y, X] = this.position;
             
-                for (let i = -1; i < 2; i++) {
-                    if (matrix[Number(Y) + Number(i)] != undefined) {
-                        for (let j = -1; j < 2; j++) {
-                            if (matrix[Number(Y) + Number(i)][Number(X) + Number(j)] != undefined) {
-                                if (Number(Y) + Number(i) != Y || Number(X) + Number(j) != X) {
-                                    surroundingSquares.push( matrix[Number(Y) + Number(i)][Number(X) + Number(j)] );
-                                }
-                            }
-                        }
-                    }
-                }
+    //             For (let i = -1; i < 2; i++) {
+    //                 If (matrix[Number(Y) + Number(i)] != undefined) {
+    //                     For (let j = -1; j < 2; j++) {
+    //                         If (matrix[Number(Y) + Number(i)][Number(X) + Number(j)] != undefined) {
+    //                             If (Number(Y) + Number(i) != Y || Number(X) + Number(j) != X) {
+    //                                 SurroundingSquares.push( matrix[Number(Y) + Number(i)][Number(X) + Number(j)] );
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             }
             
-                return surroundingSquares;
-            }
-        }
+    //             Return surroundingSquares;
+    //         }
+    //     }
 
-        populateBoard();
-        function populateBoard() {
-            for (let i = 0; i < canvasLines; i++) {
-                matrix.push([]);
-            }
+    //     PopulateBoard();
+    //     Function populateBoard() {
+    //         For (let i = 0; i < canvasLines; i++) {
+    //             Matrix.push([]);
+    //         }
     
-            matrix.forEach((row, rowIndex) => {
-                for (let i = 0; i <= canvasColumns; i++) {
-                    row.push(new square([rowIndex, i]));
-                }
-            });
-        }
+    //         Matrix.forEach((row, rowIndex) => {
+    //             For (let i = 0; i <= canvasColumns; i++) {
+    //                 Row.push(new square([rowIndex, i]));
+    //             }
+    //         });
+    //     }
 
 
-        let initialPopulation = true;
-        const resizeObserver = new ResizeObserver(() => {
-            if ((canvasElement.offsetWidth > canvasWidth === false) && (canvasElement.offsetHeight * 2.2 > canvasHeight === false)) return;
+    //     Let initialPopulation = true;
+    //     Const resizeObserver = new ResizeObserver(() => {
+    //         If ((canvasElement.offsetWidth > canvasWidth === false) && (canvasElement.offsetHeight * 2.2 > canvasHeight === false)) return;
 
-            if (initialPopulation) {
-                initialPopulation = false;
-                return;
-            }
+    //         If (initialPopulation) {
+    //             InitialPopulation = false;
+    //             Return;
+    //         }
 
 
-            canvasHeight = canvasElement.offsetHeight;
-            canvasWidth = canvasElement.offsetWidth;
-            canvasStage.height(canvasHeight * 2.2);
-            canvasStage.width(canvasWidth);
+    //         CanvasHeight = canvasElement.offsetHeight;
+    //         CanvasWidth = canvasElement.offsetWidth;
+    //         CanvasStage.height(canvasHeight * 2.2);
+    //         CanvasStage.width(canvasWidth);
 
-            if (canvasLines < Math.floor(canvasHeight / squareSize)) {
-                const dY = Math.floor(canvasHeight / squareSize) - canvasLines;
+    //         If (canvasLines < Math.floor(canvasHeight / squareSize)) {
+    //             Const dY = Math.floor(canvasHeight / squareSize) - canvasLines;
 
-                for (let i = 0; i < dY; i++) {
-                    const row = [];
-                    for (let j = 0; j < canvasColumns; j++) {
-                        row.push(new square([canvasLines + i, j]));
-                    }
-                    matrix.push(row);
+    //             For (let i = 0; i < dY; i++) {
+    //                 Const row = [];
+    //                 For (let j = 0; j < canvasColumns; j++) {
+    //                     Row.push(new square([canvasLines + i, j]));
+    //                 }
+    //                 Matrix.push(row);
                     
-                }
+    //             }
 
-                canvasLines += dY;
-                flatMatrix = matrix.flat();
-            }
+    //             CanvasLines += dY;
+    //             FlatMatrix = matrix.flat();
+    //         }
         
-            if (canvasColumns < Math.floor(canvasWidth / squareSize)) {
-                const dX = Math.floor(canvasWidth / squareSize) - canvasColumns;
+    //         If (canvasColumns < Math.floor(canvasWidth / squareSize)) {
+    //             Const dX = Math.floor(canvasWidth / squareSize) - canvasColumns;
 
-                matrix.forEach((row, rowIndex) => {
-                    for (let i = 0; i <= dX; i++) {
-                        row.push(new square([rowIndex, i + canvasColumns]));
-                    }
-                });
+    //             Matrix.forEach((row, rowIndex) => {
+    //                 For (let i = 0; i <= dX; i++) {
+    //                     Row.push(new square([rowIndex, i + canvasColumns]));
+    //                 }
+    //             });
 
-                canvasColumns += dX;
-                flatMatrix = matrix.flat();
-            }
-        });
-        resizeObserver.observe(canvasElement);
+    //             CanvasColumns += dX;
+    //             FlatMatrix = matrix.flat();
+    //         }
+    //     });
+    //     ResizeObserver.observe(canvasElement);
 
 
 
-        flatMatrix = matrix.flat();
+    //     FlatMatrix = matrix.flat();
 
-        interval = setInterval(autoplayGame, 1500);
-        function autoplayGame() {
-            const randomNumber = Math.floor(Math.random() * flatMatrix.length);
+    //     Interval = setInterval(autoplayGame, 1500);
+    //     Function autoplayGame() {
+    //         Const randomNumber = Math.floor(Math.random() * flatMatrix.length);
 
-            if (flatMatrix.length === 0) {
-                clearInterval(interval);
-                return;
-            }
+    //         If (flatMatrix.length === 0) {
+    //             ClearInterval(interval);
+    //             Return;
+    //         }
 
-            flatMatrix[randomNumber].digSquare();
-            flatMatrix.splice(randomNumber, 1);
-        }
+    //         FlatMatrix[randomNumber].digSquare();
+    //         FlatMatrix.splice(randomNumber, 1);
+    //     }
 
         
 
-        return () => {
-            canvasElement =  null;
-            canvasWidth = null;
-            canvasHeight = null;
-            matrix = null;
-            squareSize = null;
-            canvasLines = null;
-            canvasColumns = null;
-            squareWidth = null;
-            squareHeight = null;
-            flatMatrix = null;
-            clearInterval(interval);
-            interval = null;
-            canvasStage = null;
-            backgroundLayer = null;
-            animLayer = null;
-            droppedSquares = null;
-            resizeObserver.disconnect();
-            initialPopulation = null;
-        };
-    }, []);
-
-
-
+    //     Return () => {
+    //         CanvasElement =  null;
+    //         CanvasWidth = null;
+    //         CanvasHeight = null;
+    //         Matrix = null;
+    //         SquareSize = null;
+    //         CanvasLines = null;
+    //         CanvasColumns = null;
+    //         SquareWidth = null;
+    //         SquareHeight = null;
+    //         FlatMatrix = null;
+    //         ClearInterval(interval);
+    //         Interval = null;
+    //         CanvasStage = null;
+    //         BackgroundLayer = null;
+    //         AnimLayer = null;
+    //         DroppedSquares = null;
+    //         ResizeObserver.disconnect();
+    //         InitialPopulation = null;
+    //     };
+    // }, []);
 
     return (
-        <>
-            <div
-                aria-hidden="true"
-                id="background-game"
-            />
-        </>
+        <div
+            aria-hidden="true"
+            id="background-game"
+            className="z-0 absolute grid blur-2xs w-full h-[80dvh] min-h-[600px] max-h-[800px]"
+        />
     );
 }

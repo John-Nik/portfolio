@@ -208,6 +208,16 @@
     .b8 {
         color: #D92644 !important;
     }
+
+    .page-title {
+        font-size: clamp(3.125rem, 6vw, 4rem);
+        color: var(--color-tint-2);
+        text-align: center;
+    }
+}
+
+@utility konvajs-content {
+    mask-image: linear-gradient(rgba(0, 6, 10, 1) 70%, transparent 90%)
 }
 
 * {

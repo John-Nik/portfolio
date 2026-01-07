@@ -6,6 +6,7 @@ class Game {
 
     board: GameBoard | null = null;
     ui: GameUI | null = null;
+    isUserPlaying: boolean = false;
 
     abort = new AbortController();
 
@@ -49,6 +50,8 @@ class Game {
 
         this.board.startGame();
         this.ui.startGame();
+
+        this.isUserPlaying = true;
     }
 
     validateUI(): asserts this is Game & { ui: GameUI } {

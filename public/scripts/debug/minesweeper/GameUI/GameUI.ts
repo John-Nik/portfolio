@@ -1,6 +1,6 @@
 import GameBoard from '../../../minesweeper/GameBoard/GameBoard';
 import Game from '../../minesweeper';
-import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY } from '../constants/FREEZE_TIME';
+import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY } from '../constants/const';
 import { sleep } from '../helpers';
 
 class GameUI {
@@ -74,6 +74,10 @@ class GameUI {
         this.shakeBoard();
 
         this.handleGameEnd();
+
+        if (!this.game) return;
+
+        this.game.isUserPlaying = false;
     }
 
     winGame() {
@@ -283,17 +287,16 @@ class GameUI {
     }
 
     attachResizeObserver() {
-        this.resizeObserver = new ResizeObserver(entries => {
-            const { width } = entries[0].contentRect;
+        this.resizeObserver = new ResizeObserver(() => {
+            this.isDesktopResolution = this.isDesktop();
+        
+            if (this.game?.isUserPlaying) return;
 
-            if (width >= this.DESKTOP_BREAKPOINT) {
-                this.isDesktopResolution = true;
+            if (this.isDesktopResolution) {
                 this.displayHeroSection();
                 this.displayGameSettings();
                 return;
             }
-
-            this.isDesktopResolution = false;
 
             if (this.lastShownPanel === 'heroSection') {
                 this.hideGameSettings();
@@ -374,9 +377,9 @@ class GameUI {
     moveDownRightCornerBombsPlacedText() {
         this.validateElem(this.wrapperElemToInformUserBombCount);
 
-        this.wrapperElemToInformUserBombCount.style.left = '100%';
-        this.wrapperElemToInformUserBombCount.style.top = '100%';
-        this.wrapperElemToInformUserBombCount.style.transform = 'translateX(calc(-50% - 16px)) translateY(calc(50% + 2px))';
+        this.wrapperElemToInformUserBombCount.style.left = 'calc(100% - 16px)';
+        this.wrapperElemToInformUserBombCount.style.top = 'calc(100% - 6px)';
+        this.wrapperElemToInformUserBombCount.style.transform = 'translate(-50%, -50%)';
     }
 
     isMobile() {
@@ -526,6 +529,8 @@ class GameUI {
 
     destroy() {
         this.isBeingDestroyed = true;
+
+        this.resizeObserver?.disconnect();
     }
 }
 

@@ -1,14 +1,12 @@
 'use client';
+/* eslint-disable react/jsx-no-comment-textnodes */
 import Image from 'next/image';
-import './styling.scss';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Globe = dynamic(() => import('./Globe').then((globe) => globe.World), { ssr: false });
 
 export default function page() {
-    const router = useRouter();
-
     const globeConfig = {
         pointSize: 4,
         globeColor: '#062056',
@@ -396,25 +394,14 @@ export default function page() {
         },
     ];
 
-    function sendToPortfolioPage(): void {
-        router.push('/portfolio');
-    }
-
     return (
-        <main>
-            <section className={'globe-portfolio'}>
-                <div className={'container full-page-card'}>
-                    <div className="card-wrapper">
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
-                                    sendToPortfolioPage();
-                                }
-                            }}
-                            onClick={sendToPortfolioPage}
-                            className={'back-arrow'}
+        <main className="flex justify-center pt-8 xl:pt-20 w-full overflow-y-auto">
+            <section className="flex justify-center px-4 w-full max-w-screen-2xl">
+                <div className="flex xl:flex-row flex-col justify-center items-center xl:items-start gap-8 w-full h-full">
+                    <div className="top-0 left-0 xl:sticky flex xl:flex-row flex-col justify-center xl:gap-4 w-full max-w-screen-sm xl:max-w-screen h-full grow">
+                        <Link
+                            href="/portfolio"
+                            className="hidden xl:block"
                         >
                             <Image
                                 src="/icons/back-arrow.svg"
@@ -423,22 +410,41 @@ export default function page() {
                                 alt=""
                                 priority={true}
                             />
+                        </Link>
+
+                        <div className="flex w-full h-full scale-90">                        
+                            <Globe
+                                data={sampleArcs}
+                                globeConfig={globeConfig}
+                            />
                         </div>
-                        <Globe
-                            data={sampleArcs}
-                            globeConfig={globeConfig}
-                        />
                     </div>
-                    <div className={'text-wrapper'}>
-                        <h1 className={'title'}>// Globe-Perf</h1>
-                        <div className={'body'}>
-                            <h5>
-                                <em>Forked the source code and made changes to allow for dynamic changes in the polygon count of the globe</em>
-                            </h5>
-                            <h6>May 2024 release date</h6>
+
+                    <div className="flex flex-col gap-4 pb-12 w-full max-w-screen-sm xl:max-w-screen overflow-hidden grow">
+                        <h1 className="text-left leading-tight page-title">
+                            // Globe-Perf
+                        </h1>
+
+                        <div className="flex flex-col w-full text-white">
+                            <h2 className="font-(family-name:--fira-code) text-[clamp(12px,2.06vw,14px)] font-bold">
+                                <em className="flex max-w-[60ch]">
+                                    Forked the source code and made changes to allow for dynamic changes in the polygon count of the globe
+                                </em>
+                            </h2>
+                            <span className="text-[clamp(12px,2.06vw,14px)] font-light opacity-70 text-white font-(family-name:--fira-code)">
+                                May 2024 release date
+                            </span>
+                        </div>
+
+                        <div className="mt-8 text-white font-(family-name:--fira-code) [&>ul]:list-disc! ml-5 text-wrap [&_li]:max-w-[60ch] opacity-90 font-light [&>ul]:gap-4 [&>ul]:flex [&>ul]:flex-col text-[clamp(16px,2.94vw,20px)]">
                             <ul>
-                                <li>Edited the source code to make the necessary changes and allow for the manipulation of the polygons count</li>
-                                <li>Published the code on NPM so anyone can use this package freely, however they see fit</li>
+                                <li>
+                                    Edited the source code and made the necessary changes to allow for the adjustment of the polygon count
+                                </li>
+
+                                <li>
+                                    Published the code on NPM so anyone can use this package freely, however they see fit
+                                </li>
                             </ul>
                         </div>
                     </div>

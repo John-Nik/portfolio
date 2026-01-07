@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import DownloadCVButton from '../../../../components/buttons/DownloadCVButton';
+import DownloadCVButton from '../../../../components/DownloadCVButton';
 import EmailIconLink from '../../../../components/icons-components/EmailIconLink';
 import GithubIconLink from '../../../../components/icons-components/GithubIconLink';
 import './styling.scss';

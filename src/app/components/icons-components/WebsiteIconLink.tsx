@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { twMerge } from 'tailwind-merge';
 
-export default function WebsiteIcon({
-    link = 'no-link',
-}: {
+interface Props {
     link: string,
-}) {
+    className?: string;
+}
+
+export default function WebsiteIcon(props: Props) {
+    const { link = 'no-link', className } = props;
+
     if (link === 'no-link') return;
 
     return (
@@ -13,10 +17,10 @@ export default function WebsiteIcon({
             target="_blank"
             rel="noopener noreferrer"
         >
-            <img 
+            <img
                 tabIndex={0}
                 role="button"
-                className="aria-hidden:opacity-0 scale-100 aria-hidden:scale-0 website-icon calm-fast"
+                className={twMerge(className, 'aria-hidden:opacity-0 scale-100 aria-hidden:scale-0 website-icon calm-fast')}
                 title={`Visit ${link}`}
                 src="/icons/website.svg"
                 alt={`redirect to ${link}`}

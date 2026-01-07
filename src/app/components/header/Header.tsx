@@ -4,12 +4,14 @@ import { ReactNode, useCallback, useState } from 'react';
 import { HeaderContext } from './HeaderContext';
 import MobileHeader from './MobileHeader';
 import TabletHeader from './TabletHeader';
+import { twMerge } from 'tailwind-merge';
 
 interface Props {
     children?: ReactNode;
+    className?: string;
 }
 
-export default function Header({ children }: Props) {
+export default function Header({ children, className }: Props) {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -48,7 +50,7 @@ export default function Header({ children }: Props) {
 
     return (
         <HeaderContext.Provider value={{ isMenuOpen, triggerNavMenu }}>
-            <header className="top-0 z-50 sticky bg-shade-1 shadow-[0px_4px_4px_rgba(255,255,255,0.05)] px-4 py-2 w-full">
+            <header className={twMerge('top-0 z-50 sticky bg-shade-1 shadow-[0px_4px_4px_rgba(255,255,255,0.05)] px-4 py-2 w-full', className)}>
                 <MobileHeader
                     routes={routes}
                     isActive={isActive}

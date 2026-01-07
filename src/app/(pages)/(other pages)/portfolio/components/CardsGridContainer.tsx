@@ -1,9 +1,9 @@
 'use client';
 import { ReactElement, useRef } from 'react';
 import Image from 'next/image';
-import WebsiteIconLink from '../../../../../components/icons-components/WebsiteIconLink';
-import GithubIconLink from '../../../../../components/icons-components/GithubIconLink';
-import { Project } from '../../types/Project';
+import WebsiteIconLink from '../../../../components/icons-components/WebsiteIconLink';
+import GithubIconLink from '../../../../components/icons-components/GithubIconLink';
+import { Project } from '../types/Project';
 import Link from 'next/link';
 
 export default function CardsGridContainer({ projects}: { projects: Project[] }): ReactElement {
@@ -19,11 +19,14 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
 
     return (
         <>
-            <div className="project-card-container">
-                <Link href="/portfolio/globe-perf">
+            <div className="flex flex-col justify-center w-full h-full">
+                <Link
+                    className="flex rounded-4xl w-full h-full overflow-hidden"
+                    href="/portfolio/globe-perf"
+                >
                     <Image
                         ref={globePerfImage}
-                        className="background"
+                        className="w-full h-full object-fill"
                         src="/images/globe-perf.webp"
                         width={310}
                         height={224}
@@ -44,27 +47,34 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                     />
                 </Link>
 
-                <div className="content">
-                    <h2>Globe-Perf</h2>
-                    <div className="icons-container">
+                <div className="relative flex justify-between px-4">
+                    <Link
+                        href="/portfolio/globe-perf"
+                        className="text-white font-medium font-(family-name:--fira-code rounded-) text-[clamp(24px,6.36vw,28px)]"
+                    >
+                        Globe-Perf
+                    </Link>
+
+                    <div className="flex justify-end items-center gap-4 w-fit w-max h-fit overflow-visible">
                         <WebsiteIconLink link="no-link" />
                         <GithubIconLink link="https://www.github.com/John-Nik/Globe-perf" />
                     </div>
                 </div>
             </div>
+
             {
                 projects.map((project, index): ReactElement => {
                     return (
                         <div
-                            className="project-card-container"
+                            className="flex flex-col justify-center w-full h-full"
                             key={index}
                         >
                             <Link
-                                className="flex w-full h-full"
+                                className="flex rounded-4xl w-full h-full overflow-hidden"
                                 href={project.isEnabled ? `/portfolio/${project.link}` : ''}
                             >
                                 <Image
-                                    className="background"
+                                    className="w-full h-full object-fill"
                                     src={`/${project.img}`}
                                     width={310}
                                     height={224}
@@ -72,8 +82,6 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                                     quality={100}
                                     sizes="50vw"
                                     style={{
-                                        width: 'calc(100% - 2px)',
-                                        height: 'calc(100% - 2px)',
                                         backgroundColor: `#${project.backgroundColor}`,
                                         filter: !project.isEnabled ? 'brightness(0.5) saturate(0.5)' : '',
                                         cursor: !project.isEnabled ? 'default' : ''
@@ -82,16 +90,20 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                                 />
                             </Link>
 
-                            <div className="content">
-                                <h2>{ project.title }</h2>
+                            <div className="relative flex justify-between px-4">
+                                <Link
+                                    className="text-white font-medium font-(family-name:--fira-code rounded-) text-[clamp(24px,6.36vw,28px)]"
+                                    href={project.isEnabled ? `/portfolio/${project.link}` : ''}
+                                >
+                                    { project.title }
+                                </Link>
 
-                                { project.isEnabled ? 
-                                    <div className="icons-container">
+                                { project.isEnabled
+                                    ?  <div className="flex justify-end items-center gap-4 w-fit w-max h-fit overflow-visible">
                                         <WebsiteIconLink link={project.siteLink} />
                                         <GithubIconLink link={project.githubLink} />
                                     </div>
-                                    :
-                                    <span>In Dev</span>
+                                    : <span>In Dev</span>
                                 }
                             </div>
                         </div>

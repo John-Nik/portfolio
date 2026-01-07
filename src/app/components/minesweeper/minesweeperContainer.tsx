@@ -15,12 +15,12 @@ export default function MinesweeperContainer() {
     return (
         <section
             data-minesweeper-container
-            className="relative w-full h-full [&_svg]:pointer-events-none"
+            className="relative w-full h-full overflow-hidden [&_svg]:pointer-events-none"
         >
             <Content />
 
             <div
-                className="relative gap-px grid bg-black w-full h-full"
+                className="relative gap-px grid bg-black w-full h-full overflow-hidden"
                 id="game"
             />
         </section>

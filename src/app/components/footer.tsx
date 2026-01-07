@@ -1,5 +1,5 @@
-import EmailIconLink from '../icons-components/EmailIconLink';
-import GithubIconLink from '../icons-components/GithubIconLink';
+import EmailIconLink from './icons-components/EmailIconLink';
+import GithubIconLink from './icons-components/GithubIconLink';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -17,7 +17,7 @@ export default function Footer({ className, children }: Props) {
         <footer className={twMerge(className, 'z-100 flex items-center w-full shadow-[0_0_3px_black] sticky bottom-0 bg-base-color/30 backdrop-blur-lg backdrop-brightness-70')}>
             <ul
                 data-footer-links-container
-                className={`md:last:after:hidden relative flex flex-row md:justify-start items-center gap-4 px-4 py-2 w-full h-full pointer-events-none calm-fast ${liClasses} ${linkClasses}`}
+                className={`md:last:after:hidden relative flex flex-row md:justify-start justify-center items-center gap-12 md:gap-4 px-4 py-2 w-full h-full pointer-events-none calm-fast ${liClasses} ${linkClasses}`}
             >
                 <li>
                     <Link href="mailto:nikolaou.giannis@yahoo.com?subject=Cool website">

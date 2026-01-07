@@ -1,7 +1,6 @@
-import IntroductorySection from './sections/IntroductorySection/IntroductorySection';
-import DescriptionSection from './sections/DescriptionSection/DescriptionSection';
+import IntroductorySection from './sections/IntroductorySection';
+import DescriptionSection from './sections/DescriptionSection';
 import MinesweeperSection from './sections/MinesweeperSection/MinesweeperSection';
-import './styling.scss';
 import { metadataType } from '../../../page';
 import dynamic from 'next/dynamic';
 
@@ -9,7 +8,7 @@ const SkillsSection = dynamic(() => import('./sections/SkillsSection/SkillsSecti
 
 export default function page() {
     return (
-        <main className="about-me-main">
+        <main className="grid grid-cols-1 pt-20 w-full overflow-x-hidden overflow-y-auto">
             <IntroductorySection />
             <DescriptionSection />
             <MinesweeperSection />
