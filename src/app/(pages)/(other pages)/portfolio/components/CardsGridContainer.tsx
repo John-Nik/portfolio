@@ -1,5 +1,4 @@
-'use client';
-import { ReactElement, useRef } from 'react';
+import { ReactElement } from 'react';
 import Image from 'next/image';
 import WebsiteIconLink from '../../../../components/icons-components/WebsiteIconLink';
 import GithubIconLink from '../../../../components/icons-components/GithubIconLink';
@@ -7,19 +6,10 @@ import { Project } from '../types/Project';
 import Link from 'next/link';
 
 export default function CardsGridContainer({ projects}: { projects: Project[] }): ReactElement {
-    const globePerfImage = useRef<HTMLImageElement>(null);
-
-    function adjustGlobeBrightness(mode: 'normal' | 'dim') {
-        if (!globePerfImage.current) return;
-
-        globePerfImage.current.style.filter = mode === 'normal'
-            ? 'brightness(1)'
-            : 'brightness(0.8)';
-    };
 
     return (
         <>
-            <div className="flex flex-col justify-center w-full h-full">
+            {/* <div className="flex flex-col justify-center w-full h-full">
                 <Link
                     className="flex rounded-4xl w-full h-full overflow-hidden"
                     href="/portfolio/globe-perf"
@@ -60,7 +50,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                         <GithubIconLink link="https://www.github.com/John-Nik/Globe-perf" />
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {
                 projects.map((project, index): ReactElement => {
@@ -70,7 +60,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                             key={index}
                         >
                             <Link
-                                className="flex rounded-4xl w-full h-full overflow-hidden"
+                                className="flex hover:brightness-80 rounded-4xl w-full h-full overflow-hidden calm-fast"
                                 href={project.isEnabled ? `/portfolio/${project.link}` : ''}
                             >
                                 <Image
@@ -92,7 +82,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
 
                             <div className="relative flex justify-between px-4">
                                 <Link
-                                    className="text-white font-medium font-(family-name:--fira-code rounded-) text-[clamp(24px,6.36vw,28px)]"
+                                    className="text-white font-medium font-(family-name:--fira-code rounded-) text-[clamp(24px,6.36vw,28px)] hover:brightness-60 calm-fast"
                                     href={project.isEnabled ? `/portfolio/${project.link}` : ''}
                                 >
                                     { project.title }

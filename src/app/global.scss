@@ -214,6 +214,13 @@
         color: var(--color-tint-2);
         text-align: center;
     }
+
+    .codeline {
+        font-family: var(--fira-code);
+        color: gray;
+        word-break: break-all;
+        line-height: 1.5rem;
+    }
 }
 
 @utility konvajs-content {

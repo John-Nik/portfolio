@@ -1,35 +1,37 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer';
-import Sidebar from './components/Sidebar/Sidebar';
-import './styling.scss';
-import CodeWrapper from './components/CodeWrapper/CodeWrapper';
-import FormWrapper from './components/FormWrapper/FormWrapper';
+import Sidebar from './components/Sidebar';
+import CodeWrapper from './components/CodeWrapper';
+import FormWrapper from './components/FormWrapper';
 import { metadataType } from '../../page';
+import { ContactProvider } from './provide-inject/ContactContext';
 
 export default function page() {
     return (
-        <>
+        <> 
             <Header />
 
-            <main id="contact-me-main">
-                <Sidebar />
+            <ContactProvider>
+                <main className="relative flex flex-row h-full">
+                    <Sidebar />
 
-                <div className="main-content-container">
-                    <div className="content-wrapper">
-                        <div className="title-wrapper">
-                            <h1>// ContactMe</h1>
-                        </div>
+                    <div className="flex justify-center w-full h-fit">
+                        <div className="flex flex-col mt-16 px-4 w-full max-w-7xl h-fit">
+                            <h1 className="mb-16 page-title">
+                                // ContactMe
+                            </h1>
 
-                        <div className="form-container">
-                            <FormWrapper />
-                            <CodeWrapper />
+                            <div className="flex w-full">
+                                <FormWrapper />
+                                <CodeWrapper />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </main>
+                </main>
+            </ContactProvider>
 
-            <Footer className="contact-page-footer" />
+            <Footer className="lg:hidden" />
         </>
     );
 }
