@@ -10,7 +10,7 @@ import {
     useState
 } from 'react';
 import { ContactContext } from '../provide-inject/ContactContext';
-import createTypewriter from '../../../helpers/typeStringInElem';
+import createTypewriter from '../../../helpers/createTypewriter';
 
 interface TypewriterControls {
     startTyping: null | ReturnType<typeof createTypewriter>['startTyping'];

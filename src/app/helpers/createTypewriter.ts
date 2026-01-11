@@ -8,9 +8,16 @@ type HTMLElementStringOrNullProps<T extends HTMLElement> = {
 
 type HTMLElementStringOrNullPropKeys<T extends HTMLElement> = keyof HTMLElementStringOrNullProps<T>;
 
+interface TypewriterRunOptions<T extends HTMLElement> {
+    onFinish?: (elem: T) => void;
+    onBeforeEveryChar?: (elem: T) => void;
+    onAfterEveryChar?: (elem: T) => void;
+    mode?: TypewriterOptions<T>['mode'];
+}
+
 interface TypewriterOptions<T extends HTMLElement> {
     charsPerSec?: Milliseconds;
-    mode?: 'add' | 'remove';
+    mode?: 'appendChars' | 'removeChars';
     elemKeyToModify?: HTMLElementStringOrNullPropKeys<T>;
 }
 
@@ -19,7 +26,7 @@ export default function createTypewriter<T extends HTMLElement>(
     text?: string,
     options: TypewriterOptions<T> = {
         charsPerSec: 20,
-        mode: 'add',
+        mode: 'appendChars',
         elemKeyToModify: 'textContent' as HTMLElementStringOrNullPropKeys<T>
     }
 ) {
@@ -27,34 +34,39 @@ export default function createTypewriter<T extends HTMLElement>(
 
     const opts: Required<TypewriterOptions<T>> = {
         charsPerSec: 20,
-        mode: 'add',
+        mode: 'appendChars',
         elemKeyToModify: 'textContent' as HTMLElementStringOrNullPropKeys<T>,
         ...options
     };
     const msPerChar = 1000 / opts.charsPerSec;
 
 
-    function validateElement(el: unknown): el is HTMLElement {
+    function validateElement(el: unknown): el is T {
         return el instanceof HTMLElement;
     }
 
     function startTyping(
         str: string | undefined = text,
-        finishedTypingFunc?: () => void
+        customOpts?: TypewriterRunOptions<T>
     ) {
+        const typeWriterRunOpts: TypewriterRunOptions<T> = {
+            mode: options.mode,
+            ...customOpts
+        };
+
         interval = setInterval(() => {
             if (!validateElement(element)) {
                 stopTyping();
                 return;
             }
-
+    
             if (typeof str === 'string') {
-                processNextChar(str, finishedTypingFunc);
+                processNextChar(str, typeWriterRunOpts);
                 return;
             }
-
+    
             if (typeof text === 'string') {
-                processNextChar(text, finishedTypingFunc);
+                processNextChar(text, typeWriterRunOpts);
                 return;
             }
 
@@ -72,18 +84,28 @@ export default function createTypewriter<T extends HTMLElement>(
 
     function processNextChar(
         str: string,
-        finishedTypingFunc?: () => void
+        customOpts?: TypewriterRunOptions<T>
     ) {
-        if (opts.mode === 'add') {
-            appendNextChar(str, finishedTypingFunc);
+        if (!validateElement(element)) {
+            return;
+        };
+
+        const mode = customOpts?.mode ?? opts.mode;
+
+        customOpts?.onBeforeEveryChar?.(element);
+
+        if (mode === 'appendChars') {
+            appendNextChar(str, () => customOpts?.onFinish?.(element));
         } else {
-            removeLastCharacter(finishedTypingFunc);
+            removeLastCharacter(() => customOpts?.onFinish?.(element));
         }
+        
+        customOpts?.onAfterEveryChar?.(element);
     }
 
     function appendNextChar(
         str: string,
-        finishedTypingFunc?: () => void
+        onFinish?: () => void
     ) {
         if (!validateElement(element)) {
             stopTyping();
@@ -98,7 +120,7 @@ export default function createTypewriter<T extends HTMLElement>(
         }
 
         if (current === str) {
-            finishedTypingFunc?.();
+            onFinish?.();
             stopTyping();
             return;
         }
@@ -108,7 +130,7 @@ export default function createTypewriter<T extends HTMLElement>(
         Reflect.set(element, key, current + nextChar);
     }
 
-    function removeLastCharacter(finishedTypingFunc?: () => void) {
+    function removeLastCharacter(onFinish?: () => void) {
         if (!validateElement(element)) {
             stopTyping();
             return;
@@ -123,10 +145,10 @@ export default function createTypewriter<T extends HTMLElement>(
 
         if (current === '') {
             stopTyping();
-            finishedTypingFunc?.();
+            onFinish?.();
         }
 
-        const stringWithLastCharExcluded = current.slice(0, current.length - 2);
+        const stringWithLastCharExcluded = current.slice(0, -1);
 
         Reflect.set(element, key, stringWithLastCharExcluded);
     }

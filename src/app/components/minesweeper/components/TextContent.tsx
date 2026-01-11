@@ -3,112 +3,90 @@ import { useRef, useEffect } from 'react';
 import DownloadCVButton from '../../DownloadCVButton';
 import Link from 'next/link';
 import { sleep } from '../../../../../public/scripts/minesweeper/helpers';
+import createTypewriter from '../../../helpers/createTypewriter';
+
+interface StartStopTyping<T extends HTMLElement> {
+    startTyping: ReturnType<typeof createTypewriter<T>>['startTyping'] | null;
+    stopTyping: ReturnType<typeof createTypewriter<T>>['stopTyping'] | null
+}
 
 export default function TextContent() {
-    const isWritingChars = useRef(false);
+    const titleBeingTypedIndex = useRef(0);
     const workTitleElem = useRef<HTMLHeadingElement | null>(null);
+    const workTitleTypewriter = useRef<StartStopTyping<NonNullable<typeof workTitleElem['current']>>>({
+        startTyping: null,
+        stopTyping: null,
+    });
 
-    const timeInterval = 70;
-    const titles = ['a Front-End Devel', 'a Back-End Dev', 'a Full-Stack Developer'];
+    const titles = [
+        'a Front-End Devel',
+        'a Back-End Dev',
+        'a Full-Stack Developer'
+    ];
 
     useEffect(() => {
-        startWritingChars();
+        workTitleTypewriter.current = createTypewriter(workTitleElem.current, undefined, {
+            charsPerSec: 20
+        });
+        titleBeingTypedIndex.current = 0;
+
+        startTypingTitles();
+
+        return () => {
+            workTitleTypewriter.current.stopTyping?.();
+        };
     }, []);
 
-    async function startWritingChars() {
-        if (isWritingChars.current) return;
-        if (!workTitleElem.current) {
-            isWritingChars.current = false;
-            return;
-        };
+    function startTypingTitles(mode: 'appendChars' | 'removeChars' = 'appendChars') {
+        workTitleTypewriter.current.startTyping?.(titles[titleBeingTypedIndex.current], {
+            mode,
+            onFinish: async(elem) => {
+                if (mode === 'appendChars') {
+                    titleBeingTypedIndex.current++;
+                }
 
-        isWritingChars.current = true;
+                if (titleBeingTypedIndex.current === titles.length) {
+                    await sleep(50);
+                    await blinkPipe(5);
+                    removePipe(elem);
+                    return;
+                };
 
-        for (const title of titles) {
-            if (!isWritingChars.current) {
-                return;
-            }
+                await sleep(50);
 
-            await typeOutCharsFor(title);
+                if (mode === 'appendChars') {
+                    await blinkPipe(1);
+                }
 
-            await sleep(250);
-            await handlePipeCharAnim(1);
-
-            if (title !== titles.at(-1)) {
-                await removeCharsFromTitle();
-            }
-        }
-
-        await handlePipeCharAnim(3);
-
-        // Due to the asynchronous nature of everything, we must verify this exists before setting a new value
-        if (!workTitleElem.current) {
-            isWritingChars.current = false;
-            return;
-        };
-
-        // We must remove the pipe character from the final title displayed
-        workTitleElem.current.textContent = workTitleElem.current.textContent.slice(0, -1);
-
-        isWritingChars.current = false;
+                startTypingTitles(mode === 'appendChars' ? 'removeChars' : 'appendChars');
+            },
+            onBeforeEveryChar: removePipe,
+            onAfterEveryChar: appendPipe
+        });
     }
 
-    async function handlePipeCharAnim(blinkAmount: number) {
-        const timeBetweenBlink = 500;
+    function removePipe<T extends HTMLElement>(elem: T) {
+        elem.textContent = elem.textContent.slice(0, -1);
+    }
+
+    function appendPipe<T extends HTMLElement>(elem: T) {
+        elem.textContent += '|';
+    }
+
+    async function blinkPipe(blinkAmount: number) {
+        const timeBetweenBlink = 400;
 
         for (let i = 0; i < blinkAmount; i++) {
             if (!workTitleElem.current) return;
 
-            workTitleElem.current.textContent = workTitleElem.current.textContent.slice(0, -1);
+            removePipe(workTitleElem.current);
             await sleep(timeBetweenBlink);
 
             if (!workTitleElem.current) return;
 
-            workTitleElem.current.textContent += '|';
+            appendPipe(workTitleElem.current);
             await sleep(timeBetweenBlink);
         }
-    }
-
-    async function typeOutCharsFor(text: string) {
-        if (!workTitleElem.current) return;
-
-        for (let i = 0; i < text.length + 1; i++) { // It's text.length + 1 because the last character is the pipe char
-            if (!isWritingChars.current) {
-                resetWorkTitle();
-                return;
-            }
-
-            if (!workTitleElem.current) return;
-
-            const [textContent] = workTitleElem.current.textContent.split('|');
-            workTitleElem.current.textContent = `${textContent}${text.charAt(i)}|`;
-
-            await sleep(timeInterval);
-        }
-    }
-
-    async function removeCharsFromTitle() {
-        if (!workTitleElem.current) return;
-
-        // The reason it's workTitleElem.current.textContent.length - 1 is because we count the pipe char
-        while ((workTitleElem.current?.textContent.length ?? 0) - 1 > 0) {
-            if (!isWritingChars.current) {
-                resetWorkTitle();
-                return;
-            }
-
-            if (!workTitleElem.current) return;
-
-            const [textContent] = workTitleElem.current.textContent.split('|');
-
-            workTitleElem.current.textContent = `${textContent.slice(0, -1)}|`;
-            await sleep(timeInterval / 1.5);
-        }
-    }
-
-    function resetWorkTitle() {
-        if (!workTitleElem.current) return;
-        workTitleElem.current.textContent = '';
     }
 
     return (
