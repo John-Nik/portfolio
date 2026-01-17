@@ -44,7 +44,7 @@ export default class CanvasBoard {
     }
 
     beginAutoplay() {
-        const timeBetweenPlays = 5; // In ms
+        const timeBetweenPlays = 250; // In ms
     
         this.autoplayInterval = setInterval(() => {    
             const randomRow = this.getRandomRow();
