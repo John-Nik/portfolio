@@ -1,8 +1,8 @@
-import Game from '../../minesweeper';
-import GameBoard from '../GameBoard/GameBoard';
-import GameUI from '../GameUI/GameUI';
-import { sleep } from '../helpers';
-import { Cords } from '../types/Cords';
+import Game from '../minesweeper';
+import GameBoard from './GameBoard';
+import GameUI from './GameUI';
+import { sleep } from './helpers';
+import { Cords } from './types/Cords';
 
 export type SquaresArray = Square[] & {
     elem?: HTMLDivElement;

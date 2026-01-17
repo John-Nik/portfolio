@@ -1,5 +1,5 @@
-import GameBoard from './minesweeper/GameBoard/GameBoard';
-import GameUI from './minesweeper/GameUI/GameUI';
+import GameBoard from './minesweeper/GameBoard';
+import GameUI from './minesweeper/GameUI';
 
 class Game {
     readonly ALLOWED_DIFFICULTIES: number[] = [0.12, 0.15, 0.20, 0.25];

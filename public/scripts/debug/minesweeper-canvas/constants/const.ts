@@ -1,0 +1,1 @@
+export const SQUARE_SIZE = 32; // In px

@@ -1,7 +1,7 @@
-import GameBoard from '../../../minesweeper/GameBoard/GameBoard';
-import Game from '../../minesweeper';
-import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY } from '../constants/const';
-import { sleep } from '../helpers';
+import GameBoard from '../../minesweeper/GameBoard/GameBoard';
+import Game from '../minesweeper';
+import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY } from './constants/const';
+import { sleep } from './helpers';
 
 class GameUI {
     readonly DESKTOP_BREAKPOINT: number = 1024;

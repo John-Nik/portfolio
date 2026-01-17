@@ -9,8 +9,8 @@ const SkillsSection = dynamic(() => import('./sections/SkillsSection/SkillsSecti
 export default function page() {
     return (
         <main className="grid grid-cols-1 pt-20 w-full overflow-x-hidden overflow-y-auto">
-            <IntroductorySection />
-            <DescriptionSection />
+            {/* <IntroductorySection /> */}
+            {/* <DescriptionSection /> */}
             <MinesweeperSection />
             <SkillsSection />
         </main> 
