@@ -2,7 +2,7 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useMemo } from 'react';
 import ProjectCard from '../components/ProjectCard';
 import { Project } from '../types/Project';
 import Link from 'next/link';
@@ -14,9 +14,10 @@ interface Props {
 export default function FullPortfolioPage({ projects }: Props): ReactNode {
     const router = useRouter();
     const pathname = usePathname().toLowerCase();
-    const [selectedProject] = useState(projects.find(project => {
-        return pathname.includes(project.link);
-    }));
+    const selectedProject = useMemo(() => {
+        const slug = pathname.split('/').filter(Boolean).pop();
+        return projects.find(project => project.link.toLowerCase() === slug);
+    }, [projects, pathname]);
 
     useEffect((): void => {
         if (!selectedProject || !selectedProject.isEnabled) {
@@ -31,7 +32,7 @@ export default function FullPortfolioPage({ projects }: Props): ReactNode {
         }
 
         titleTag.textContent = `Giannis N. | ${selectedProject.name} Project`;
-    }, []);
+    }, [router, selectedProject]);
 
     return (
         <main className="flex justify-center pt-8 xl:pt-20 w-full overflow-y-auto">

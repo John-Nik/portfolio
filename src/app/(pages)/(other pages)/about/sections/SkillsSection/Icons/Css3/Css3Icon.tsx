@@ -2,7 +2,7 @@ import type { RefObject } from 'react';
 import './style.scss';
 
 type Css3IconProps = {
-    iconRef?: RefObject<HTMLDivElement>;
+    iconRef?: RefObject<HTMLDivElement | null>;
 };
 
 export default function Css3Icon({ iconRef }: Css3IconProps) {

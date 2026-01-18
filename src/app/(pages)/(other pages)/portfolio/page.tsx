@@ -14,7 +14,7 @@ export default async function page() {
                         // Portfolio
                     </h1>
 
-                    <div className="justify-center gap-x-12 gap-y-16 grid grid-cols-[minmax(100px,380px)] md:grid-cols-[repeat(2,minmax(100px,380px))] xl:grid-cols-[repeat(3,minmax(100px,380px))] w-full">
+                    <div className="justify-center gap-x-12 gap-y-16 grid grid-cols-[minmax(100px,380px)] md:grid-cols-[repeat(2,minmax(100px,380px))] xl:grid-cols-[repeat(3,minmax(100px,380px))] mb-16 w-full">
                         <CardsGridContainer projects={projects} />
                     </div>
                 </div>

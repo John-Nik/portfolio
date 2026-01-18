@@ -1,0 +1,13 @@
+{
+    "title": "Resonat",
+    "link": "resonat",
+    "name": "Marketing Agency Website",
+    "img": "images/resonat.webp",
+    "backgroundColor": "002030",
+    "siteLink": "https://www.resonat.net",
+    "githubLink": "no-link",
+    "isEnabled": true,
+    "skills": "Wix, AWS, SMTP Server Setup, Enhanced Email Spoofing Protection",
+    "dateSpan": "Mar. 2023 - Present",
+    "body": "* Set up the appropriate SPF, DKIM and DMARC domain properties, offering private and reliable e-mail servers with enchanced protection against spoofing attempts\n* Instituted a proactive approach for timely updates, adapting to new releases to maintain the site's relevance and functionality\n* Implemented ongoing site maintenance to ensure smooth user experience and website reliability, addressing technical issues as they arise\n* Collaborated with the marketing team to align the website design and content with the agency's branding and marketing goals, ensuring a consistent message across all platforms"
+}
