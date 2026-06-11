@@ -14,6 +14,7 @@ export default function NunjucksIcon() {
                                 <img
                                     src="icons/nunjucks-icon.svg"
                                     alt=""
+                                    className="rounded-4xl"
                                 />
                             </div>
                             <div className="cr cr-0">

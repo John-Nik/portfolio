@@ -1,12 +1,9 @@
 import './style.scss';
 
-export default function PhpIcon() {
+export default function LinuxIcon() {
     return (
-        <div
-            className="threeD-icon"
-            data-show-icon="false"
-        >
-            <div className="php targetHover">
+        <div className="threeD-icon">
+            <div className="linux targetHover">
                 <div id="tridiv">
                     <div className="scene">
                         <div className="shape cuboid-1 cub-1">
@@ -16,8 +13,9 @@ export default function PhpIcon() {
                             <div className="face bm" />
                             <div className="face tp">
                                 <img
-                                    src="/icons/php.svg"
-                                    alt="php icon"
+                                    src="/icons/tux.webp"
+                                    alt=""
+                                    className="mx-auto p-8 h-full object-contain"
                                 />
                             </div>
                             <div className="cr cr-0">

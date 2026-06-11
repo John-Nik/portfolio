@@ -1,0 +1,13 @@
+{
+    "title": "Homelab",
+    "link": "homelab",
+    "name": "My Personal Homelab",
+    "img": "images/homelab.webp",
+    "backgroundColor": "010a11",
+    "siteLink": "https://health.john-nik.com",
+    "githubLink": "no-link",
+    "isEnabled": true,
+    "skills": "DevOps, Security, Linux, Docker, Cloudflare, Optimization, Self-Hosting, Home Network Setup, Nginx, Apparmor, Fail2ban, VPN, Dynamic DNS, Network Optimization, Automation, Backup Strategies, Monitoring and Alerting",
+    "dateSpan": "Oct. 2025 - Present Day",
+    "body": "* Managed DNS records and configured mutual TLS authentication through Cloudflare to ensure only authorized connections can access the server\n* Implemented port-knocking authentication for SSH to add an extra layer of security against unauthorized access attempts\n* Configured multiple backup strategies with varying retention periods to protect against hardware failures and ransomware attacks\n* Created automation scripts for routine tasks including backups, disk health monitoring, and software updates\n* Set up remote desktop access to easily manage the server from anywhere\n* Configured Nginx as a reverse proxy with caching, rate limiting, and a web application firewall for optimal performance and security\n* Isolated each web application under separate user accounts to limit the impact of potential security vulnerabilities\n* Implemented AppArmor security profiles to strictly control application permissions and restrict damage from potential exploits\n* Configured Fail2ban to monitor login attempts and automatically block suspicious IPs across both SSH and web services\n* Set up rootless Docker containers with individual AppArmor profiles to minimize security risks from container-based attacks\n* Implemented monitoring and alerting to track server health, security events, and application permission requests\n* Configured VPN routing for torrent traffic to maintain privacy\n* Designed a restrictive firewall policy allowing only pre-approved inbound proxies and whitelisted outbound domains\n* Set up dynamic DNS to maintain stable connectivity despite ISP limitations\n* Optimized the server's network stack and packet routing to maximize inbound and outbound throughput"
+}

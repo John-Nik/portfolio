@@ -1,12 +1,9 @@
 import './style.scss';
 
-export default function PhpIcon() {
+export default function DevOpsIcon() {
     return (
-        <div
-            className="threeD-icon"
-            data-show-icon="false"
-        >
-            <div className="php targetHover">
+        <div className="threeD-icon">
+            <div className="devops targetHover">
                 <div id="tridiv">
                     <div className="scene">
                         <div className="shape cuboid-1 cub-1">
@@ -14,10 +11,13 @@ export default function PhpIcon() {
                             <div className="face rt" />
                             <div className="face lt" />
                             <div className="face bm" />
-                            <div className="face tp">
+                            <div className="flex justify-center items-center face tp">
                                 <img
-                                    src="/icons/php.svg"
-                                    alt="php icon"
+                                    src="/icons/devops.webp"
+                                    width="200px"
+                                    height="200px"
+                                    alt=""
+                                    className="mx-auto my-auto w-9/10"
                                 />
                             </div>
                             <div className="cr cr-0">

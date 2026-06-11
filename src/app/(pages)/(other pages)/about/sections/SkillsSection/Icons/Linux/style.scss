@@ -1,6 +1,6 @@
 @media only screen and (min-width: 0px) {
     #skills-section {
-        .javascript {
+        .linux {
             width: 100%;
             aspect-ratio: 1/1;
             z-index: 3;
@@ -9,7 +9,6 @@
             flex-direction: row-reverse;
             overflow: visible;
             top: 70px;
-            left: 20px;
 
             &:has(.face:hover),
             &.hover {
@@ -97,7 +96,7 @@
             }
 
             [class*="cuboid"] .lt {
-                transform: rotateY(90deg) translateX(-53%);
+                transform: rotateY(90deg) translateX(-50%);
             }
 
             [class*="cuboid"] .tp {
@@ -133,7 +132,7 @@
             }
 
             .cub-1 .bk {
-                transform: translateZ(-30em) translateX(-20px) rotateY(180deg);
+                transform: translateZ(-30em) rotateY(180deg);
             }
 
             .cub-1 .rt,
@@ -159,31 +158,31 @@
             }
 
             .cub-1 .face {
-                background-color: #FFFFFF;
+                background-color: #FFF;
             }
 
             .cub-1 .ft {
-                background-color: #d3b912;
+                background-color: #DDD;
             }
 
             .cub-1 .bk {
-                background-color: #d3b912;
+                background-color: #DDD;
             }
 
             .cub-1 .tp {
-                background-color: #F0DB4F;
+                background-color: #FFF;
             }
 
             .cub-1 .bm {
-                background-color: #d3b912;
+                background-color: #DDD;
             }
 
             .cub-1 .lt {
-                background-color: #d3b912;
+                background-color: #DDD;
             }
 
             .cub-1 .rt {
-                background-color: #d3b912;
+                background-color: #DDD;
             }
 
             .cub-1 .ft {
@@ -231,7 +230,7 @@
 
             .cr {
                 div {
-                    background-color: #d3b912 !important;
+                    background-color: #DDD !important;
                 }
             }
 
@@ -516,7 +515,7 @@
 
 @media only screen and (min-width: 800px) {
     #skills-section {
-        .javascript {
+        .linux {
             width: 120px;
             aspect-ratio: 1/1;
             z-index: 3;
@@ -527,6 +526,12 @@
             top: 100px;
 
             &:has(.face:hover),
+            &.hover {
+                .cub-1 {
+                    transform: translate3D(50px, -60px, 0) rotateX(-91deg) rotateY(0deg) rotateZ(0deg) scale3D(1.3, 1.3, 1.3);
+                }
+            }
+
             &.hover {
                 .cub-1 {
                     transform: translate3D(80px, -60px, 0) rotateX(-91deg) rotateY(0deg) rotateZ(0deg) scale3D(1.3, 1.3, 1.3);

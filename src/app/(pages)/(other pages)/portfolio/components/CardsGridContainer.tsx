@@ -9,49 +9,6 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
 
     return (
         <>
-            {/* <div className="flex flex-col justify-center w-full h-full">
-                <Link
-                    className="flex rounded-4xl w-full h-full overflow-hidden"
-                    href="/portfolio/globe-perf"
-                >
-                    <Image
-                        ref={globePerfImage}
-                        className="w-full h-full object-fill"
-                        src="/images/globe-perf.webp"
-                        width={310}
-                        height={224}
-                        priority={true}
-                        quality={100}
-                        sizes="50vw"
-                        id="globe-perf"
-                        style={{
-                            width: 'calc(100% - 2px)',
-                            height: 'calc(100% - 2px)',
-                            opacity: '0.8',
-                            filter: 'brightness(0.8)',
-                            objectFit: 'cover',
-                        }}
-                        alt="Globe-Perf preview picture"
-                        onMouseEnter={() => adjustGlobeBrightness('normal')}
-                        onMouseLeave={() => adjustGlobeBrightness('dim')}
-                    />
-                </Link>
-
-                <div className="relative flex justify-between px-4">
-                    <Link
-                        href="/portfolio/globe-perf"
-                        className="text-white font-medium font-(family-name:--fira-code rounded-) text-[clamp(24px,6.36vw,28px)]"
-                    >
-                        Globe-Perf
-                    </Link>
-
-                    <div className="flex justify-end items-center gap-4 w-fit w-max h-fit overflow-visible">
-                        <WebsiteIconLink link="no-link" />
-                        <GithubIconLink link="https://www.github.com/John-Nik/Globe-perf" />
-                    </div>
-                </div>
-            </div> */}
-
             {
                 projects.map((project, index): ReactElement => {
                     return (
@@ -80,7 +37,7 @@ export default function CardsGridContainer({ projects}: { projects: Project[] })
                                 />
                             </Link>
 
-                            <div className="relative flex justify-between px-4">
+                            <div className="relative flex justify-between mt-4 px-4">
                                 <Link
                                     className="text-white font-medium font-(family-name:--fira-code rounded-) text-[clamp(24px,6.36vw,28px)] hover:brightness-60 calm-fast"
                                     href={project.isEnabled ? `/portfolio/${project.link}` : ''}

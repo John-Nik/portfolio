@@ -13,6 +13,10 @@ import ReactIcon from './Icons/React/ReactIcon';
 import ScssIcon from './Icons/Scss/ScssIcon';
 import TailwindIcon from './Icons/Tailwind/TailwindIcon';
 import TypescriptIcon from './Icons/Typescript/TypescriptIcon';
+import { NginxIcon } from './Icons/Nginx/NginxIcon';
+import LinuxIcon from './Icons/Linux/LinuxIcon';
+import { VueIcon } from './Icons/Vue/VueIcon';
+import DevOpsIcon from './Icons/DevOps/DevOpsIcon';
 
 export default function SkillsSection() {
     const html5Icon = useRef<HTMLDivElement | null>(null);
@@ -57,28 +61,29 @@ export default function SkillsSection() {
     });
 
     useEffect(() => {
-        let allOtherIcons: HTMLDivElement[] = Array.from(document.querySelectorAll('#tridiv'));
-        let allIcons = document.querySelectorAll('.targetHover');
-        let minute = 1000 * 60;
-        let windowWidth: number = window.innerWidth;
-        let interval = setInterval(triggerHover, minute / 15);
-        let removeHoverTimeoutFunc;
+        const allOtherIcons = document.querySelectorAll<HTMLDivElement>('#tridiv');
+        const allIcons = document.querySelectorAll<HTMLDivElement>('.targetHover');
+        const FOUR_SECONDS = 1000 * 60 * 4;
+        let interval: NodeJS.Timeout | null = setInterval(triggerHover, FOUR_SECONDS);
+        let removeHoverTimeoutFunc: NodeJS.Timeout | null = null;
 
         function triggerHover() {
-            const randomSelect = allIcons[Math.floor(Math.random() * allIcons.length)];
+            const randomIndex = Math.floor(Math.random() * allIcons.length);
+            const randomSelect = allIcons[randomIndex];
 
             randomSelect.classList.add('hover');
 
             removeHoverTimeoutFunc = setTimeout(() => {
                 randomSelect.classList.remove('hover');
-            }, minute / 15);
+            }, FOUR_SECONDS);
         }
 
         window.addEventListener('resize', setIconSize);
 
         setIconSize();
+
         function setIconSize(): void {
-            windowWidth = window.innerWidth;
+            const windowWidth = window.innerWidth;
 
             if (!html5Icon.current || !css3Icon.current) {
                 return;
@@ -100,17 +105,18 @@ export default function SkillsSection() {
         }
 
         return () => {
-            windowWidth = null;
-            clearInterval(interval);
+            if (interval) {
+                clearInterval(interval);
+            }
             interval = null;
-            minute = null;
-            allIcons = null;
-            allOtherIcons = null;
-            clearTimeout(removeHoverTimeoutFunc);
+
+            if (removeHoverTimeoutFunc) {
+                clearTimeout(removeHoverTimeoutFunc);
+            }
             removeHoverTimeoutFunc = null;
+
             window.removeEventListener('resize', setIconSize);
         };
-        
     }, []);
 
     return (
@@ -149,6 +155,10 @@ export default function SkillsSection() {
                     <NunjucksIcon />
                     <ReactIcon />
                     <NextjsIcon />
+                    <NginxIcon />
+                    <LinuxIcon />
+                    <VueIcon />
+                    <DevOpsIcon />
                 </div>
             </div>
         </section>
