@@ -11,6 +11,7 @@ export default function ReactIcon() {
                                 <img
                                     src="icons/react-icon.svg"
                                     alt=""
+                                    className="rounded-full"
                                 />
                             </div>
                             <div className="face side s0" />
