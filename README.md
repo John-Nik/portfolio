@@ -563,3 +563,5 @@
 **1.10.1:** Reduced minesweeper autoplay interval
 
 **1.10.2:** Adjusted the minesweeper's autoplay interval again, and refactored the code in the TextContent.tsx component
+
+**2.0.0:** Complete refactor of the website's code. Now the site uses tailwind css whenever possible for better code organization, improved the code readability on many many parts of the website, as my skill level in writing code has grown through the months of work, improved performance on areas, and added new content to reflect my career growth
