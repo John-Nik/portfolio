@@ -244,7 +244,37 @@ export default class CanvasBoard {
     }
 
     stopResizeObserver() {
+        if (!this.resizeObserver) return;
+        this.resizeObserver.disconnect();
+        this.resizeObserver = null;
+    }
 
+    destroy() {
+        this.stopAutoplay();
+        this.stopResizeObserver();
+
+        this.matrix = [];
+        this.interactedSquares = [];
+        this.nonInteractedSquares = [];
+
+        this.resizeObserver = null;
+
+        // CSS pixel size (sent from main thread)
+        this.cssWidth = 0;
+        this.cssHeight = 0;
+        this.dpr = 1;
+        this.initialCssWidth = 0;
+        this.initialCssHeight = 0;
+
+        this.ctx = null;
+
+        this.width = 0;
+        this.height = 0;
+
+        this.FLAG_IMG = null;
+        this.flagReady = false;
+
+        this.autoplayInterval = null;
     }
 
     validateElem<T extends HTMLElement>(elem: T | null | undefined): asserts elem is T {

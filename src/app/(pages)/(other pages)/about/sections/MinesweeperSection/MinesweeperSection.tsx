@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import dynamic from 'next/dynamic';
 import useBringToView from '../../composables/useBringToView';
 
-const Canvas = dynamic(() => import('./Canvas.tsx'));
+const Canvas = dynamic(() => import('./Canvas'));
 
 export default function MinesweeperSection() {
     const { ref } = useBringToView();

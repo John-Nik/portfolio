@@ -75,15 +75,15 @@ export default function FormWrapper() {
     useEffect(() => {
         messageTypewriterRef.current = createTypewriter(thankYouSpan.current);
         nameTypewriterRef.current = createTypewriter(nameInput.current, '', {
-            mode: 'remove',
+            mode: 'removeChars',
             elemKeyToModify: 'value',
         });
         emailTypewriterRef.current = createTypewriter(emailInput.current, '', {
-            mode: 'remove',
+            mode: 'removeChars',
             elemKeyToModify: 'value',
         });
         messageInputTypewriterRef.current = createTypewriter(messageInput.current, '', {
-            mode: 'remove',
+            mode: 'removeChars',
             elemKeyToModify: 'value',
         });
         terminalTypewriterRef.current = createTypewriter(terminalFirstLine, 'curl --json {message} -X POST https://john-nik.com/');
@@ -142,17 +142,23 @@ export default function FormWrapper() {
             throw new Error('No removeCharsFromMessageInput function provided');
         }
 
-        removeCharsFromNameInput(undefined, () => {
-            finishedTypingNameInput = true;
-            finishedTypingInputs();
+        removeCharsFromNameInput(undefined, {
+            onFinish: () => {
+                finishedTypingNameInput = true;
+                finishedTypingInputs();
+            }
         });
-        removeCharsFromEmailInput(undefined, () => {
-            finishedTypingEmailInput = true;
-            finishedTypingInputs();
+        removeCharsFromEmailInput(undefined, {
+            onFinish: () => {
+                finishedTypingEmailInput = true;
+                finishedTypingInputs();
+            }
         });
-        removeCharsFromMessageInput(undefined, () => {
-            finishedTypingMessageInput = true;
-            finishedTypingInputs();
+        removeCharsFromMessageInput(undefined, {
+            onFinish: () => {
+                finishedTypingMessageInput = true;
+                finishedTypingInputs();
+            }
         });
     }
 
@@ -182,8 +188,10 @@ export default function FormWrapper() {
         
         terminalFirstLine.style.display = 'flex';
 
-        startTyping(undefined, () => {
-            setShowRequestResponse(true);
+        startTyping(undefined, {
+            onFinish: () => {
+                setShowRequestResponse(true);
+            }
         });
     }
 

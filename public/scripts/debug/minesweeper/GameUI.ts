@@ -1,6 +1,9 @@
-import GameBoard from '../../minesweeper/GameBoard/GameBoard';
+import GameBoard from './GameBoard';
 import Game from '../minesweeper';
-import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY } from './constants/const';
+import {
+    FREEZE_TIME,
+    POST_LOSE_CLEANUP_DELAY
+} from './constants/const';
 import { sleep } from './helpers';
 
 class GameUI {

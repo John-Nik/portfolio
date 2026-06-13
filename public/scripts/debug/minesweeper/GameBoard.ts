@@ -2,8 +2,12 @@ import Square, { SquaresArray } from './Square';
 import { sleep } from './helpers';
 import Game from '../minesweeper';
 import { Cords } from './types/Cords';
-import GameUI from '../../minesweeper/GameUI/GameUI';
-import { FREEZE_TIME, POST_LOSE_CLEANUP_DELAY, POST_WIN_CLEANUP_DELAY } from './constants/const';
+import GameUI from './GameUI';
+import {
+    FREEZE_TIME,
+    POST_LOSE_CLEANUP_DELAY,
+    POST_WIN_CLEANUP_DELAY
+} from './constants/const';
 
 type BombCounter = { value: number };
 
