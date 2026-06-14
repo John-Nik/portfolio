@@ -6,7 +6,7 @@ function redirectToLowercasePath(request: NextRequest, lowercaseLink: string) {
     return NextResponse.redirect(new URL(request.nextUrl.href.toLowerCase()));
 }
 
-export function proxy(request: NextRequest) {
+export default function proxy(request: NextRequest) {
     const lowercaseLink = request.nextUrl.pathname.toLowerCase();
 
     // Handle special cases where I must type the extensions explicitly

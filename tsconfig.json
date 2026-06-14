@@ -30,7 +30,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/app/not-found.tsx",
-    "src/proxy.ts",
+    "src/middleware.ts",
     "public/scripts/**/*",
     ".next/dev/types/**/*.ts"
   ],
