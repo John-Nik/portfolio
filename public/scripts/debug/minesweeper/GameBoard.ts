@@ -404,6 +404,8 @@ class GameBoard {
         this.addColumnOnResize(columnsToFit);
         this.addRowOnResize(rowsToFit);
 
+        if (this.game?.isUserPlaying) return;
+
         /**
          * Restart the autoplay, so that we can reset the state of the method's internal `flatBoard` variable.
          * This is a far more efficient approach rather than forcing to loop around all of the matrix squares

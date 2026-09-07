@@ -21,7 +21,7 @@ export default function MinesweeperContainer() {
         >
             <div
                 data-bombs-placed-container
-                className="top-0 left-0 z-10000 fixed flex flex-col opacity-0 w-screen h-screen delay-500 pointer-events-none select-none calm-super-slow"
+                className="top-0 left-0 z-10000 fixed flex flex-col opacity-0 w-dvw h-dvh delay-500 pointer-events-none select-none calm-super-slow"
             >
                 <div
                     data-bombs-placed-wrapper

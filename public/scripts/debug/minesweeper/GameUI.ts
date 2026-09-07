@@ -147,8 +147,8 @@ class GameUI {
     startGame() {
         this.validateGameBoard();
 
-        this.game.board.stopGameAutoplay();
         this.game.board.startGame();
+        this.game.isUserPlaying = true;
 
         this.hideSmileyFace();
         this.hideGameSettings();
